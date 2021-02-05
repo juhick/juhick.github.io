@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo+typora 插入图片的简便解决方案</title>
+    <url>/2021/01/21/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<p>因为我不想使用图床来存图片，所以直接将图片存放到了source文件夹下</p>
+<p>在 source 文件夹下新建 imadges 文件夹</p>
+<p>然后在 Typora 偏好设置的图片选项下将路径设置如下</p>
+<p><img src="../images/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20210121153204959.png" alt="image-20210121153204959"></p>
+<p>则每次插入图片会自动复制到 images 文件夹下，就可以实现方便的插入图片了</p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>插入图片</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linear Regression</title>
     <url>/2021/02/05/Linear-Regression/</url>
     <content><![CDATA[<h1 id="Linear-regression-with-one-variable"><a href="#Linear-regression-with-one-variable" class="headerlink" title="Linear regression with one variable"></a>Linear regression with one variable</h1><h2 id="Plotting-the-Data"><a href="#Plotting-the-Data" class="headerlink" title="Plotting the Data"></a>Plotting the Data</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data &#x3D; load(&#39;ex1data1.txt&#39;); % read comma separated data</span><br><span class="line">X &#x3D; data(:, 1); y &#x3D; data(:, 2);</span><br><span class="line">m &#x3D; length(y); % number of training examples</span><br></pre></td></tr></table></figure>
@@ -28,20 +42,6 @@ J({\theta}) = \frac{1}{2m}\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})^2</script><f
       <tags>
         <tag>Linear Regression</tag>
         <tag>Machine Learning</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo+typora 插入图片的简便解决方案</title>
-    <url>/2021/01/21/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<p>因为我不想使用图床来存图片，所以直接将图片存放到了source文件夹下</p>
-<p>在 source 文件夹下新建 imadges 文件夹</p>
-<p>然后在 Typora 偏好设置的图片选项下将路径设置如下</p>
-<p><img src="../images/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20210121153204959.png" alt="image-20210121153204959"></p>
-<p>则每次插入图片会自动复制到 images 文件夹下，就可以实现方便的插入图片了</p>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>插入图片</tag>
       </tags>
   </entry>
   <entry>
