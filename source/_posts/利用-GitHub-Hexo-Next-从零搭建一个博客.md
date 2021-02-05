@@ -376,3 +376,7 @@ git clone https://github.com/theme-next/theme-next-pjax source/lib/pjax
 ![image-20210121121223956](../images/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121121223956.png)
 
 这样避免了每次部署的时候自定义域名被清除的情况了。 以上就是从零搭建一个 Hexo 博客的流程，希望对大家有帮助。
+
+## live2d
+
+[详情见](https://github.com/EYHN/hexo-helper-live2d/blob/HEAD/README.zh-CN.md)
