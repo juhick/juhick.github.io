@@ -7,7 +7,6 @@ tags:
 categories: 
  - Machine Learning
 mathjax: true
-typora-root-url: ../
 ---
 
 # Linear regression with one variable
