@@ -64,7 +64,7 @@ end
 
 公式
 $$
-{\theta}_j := {\theta}_j - \alpha\frac{1}{m}\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})x_j^{(i)}
+\theta_{j}:=\theta_{j}-\alpha \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)}
 $$
 **simultaneously update $\theta_j$ for all *j***
 
