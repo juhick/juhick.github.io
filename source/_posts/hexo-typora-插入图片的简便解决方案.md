@@ -5,7 +5,7 @@ tags:
  - Hexo
  - 插入图片
 categories:
- - 
+mathjax:
 ---
 
 因为我不想使用图床来存图片，所以直接将图片存放到了source文件夹下

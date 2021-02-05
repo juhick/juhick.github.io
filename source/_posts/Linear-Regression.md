@@ -6,6 +6,7 @@ tags:
  - Machine Learning
 categories: 
  - Machine Learning
+mathjax: true
 ---
 
 # Linear regression with one variable

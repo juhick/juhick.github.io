@@ -7,6 +7,7 @@ tags:
  - 个人博客
 categories:
  - 博客
+mathjax:
 ---
 
 ## Github 建库+配置SSH
