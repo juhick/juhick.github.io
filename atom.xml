@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-01-21T07:32:54.443Z</updated>
+  <updated>2021-02-05T03:09:22.366Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="http://example.com/2021/01/21/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
     <id>http://example.com/2021/01/21/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
     <published>2021-01-21T07:04:00.000Z</published>
-    <updated>2021-01-21T07:32:54.443Z</updated>
+    <updated>2021-02-05T03:09:22.366Z</updated>
     
-    <content type="html"><![CDATA[<p>因为我不想使用图床来村图片，所以直接将图片存放到了source文件夹下</p><p>在 source 文件夹下新建 imadges 文件夹</p><p>然后在 Typora 偏好设置的图片选项下将路径设置如下</p><p><img src="../images/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20210121153204959.png" alt="image-20210121153204959"></p><p>则每次插入图片会自动复制到 images 文件夹下，就可以实现方便的插入图片了</p>]]></content>
+    <content type="html"><![CDATA[<p>因为我不想使用图床来存图片，所以直接将图片存放到了source文件夹下</p><p>在 source 文件夹下新建 imadges 文件夹</p><p>然后在 Typora 偏好设置的图片选项下将路径设置如下</p><p><img src="../images/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20210121153204959.png" alt="image-20210121153204959"></p><p>则每次插入图片会自动复制到 images 文件夹下，就可以实现方便的插入图片了</p>]]></content>
     
     
       
       
-    <summary type="html">&lt;p&gt;因为我不想使用图床来村图片，所以直接将图片存放到了source文件夹下&lt;/p&gt;
+    <summary type="html">&lt;p&gt;因为我不想使用图床来存图片，所以直接将图片存放到了source文件夹下&lt;/p&gt;
 &lt;p&gt;在 source 文件夹下新建 imadges 文件夹&lt;/p&gt;
 &lt;p&gt;然后在 Typora 偏好设置的图片选项下将路径设置如下&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;../images/hex</summary>

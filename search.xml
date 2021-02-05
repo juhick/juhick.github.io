@@ -3,7 +3,7 @@
   <entry>
     <title>hexo+typora 插入图片的简便解决方案</title>
     <url>/2021/01/21/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<p>因为我不想使用图床来村图片，所以直接将图片存放到了source文件夹下</p>
+    <content><![CDATA[<p>因为我不想使用图床来存图片，所以直接将图片存放到了source文件夹下</p>
 <p>在 source 文件夹下新建 imadges 文件夹</p>
 <p>然后在 Typora 偏好设置的图片选项下将路径设置如下</p>
 <p><img src="../images/hexo-typora-%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87%E7%9A%84%E7%AE%80%E4%BE%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/image-20210121153204959.png" alt="image-20210121153204959"></p>
