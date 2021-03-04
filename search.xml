@@ -6,18 +6,21 @@
     <content><![CDATA[<h1 id="Linear-regression-with-one-variable"><a href="#Linear-regression-with-one-variable" class="headerlink" title="Linear regression with one variable"></a>Linear regression with one variable</h1><h2 id="Plotting-the-Data"><a href="#Plotting-the-Data" class="headerlink" title="Plotting the Data"></a>Plotting the Data</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data &#x3D; load(&#39;ex1data1.txt&#39;); % read comma separated data</span><br><span class="line">X &#x3D; data(:, 1); y &#x3D; data(:, 2);</span><br><span class="line">m &#x3D; length(y); % number of training examples</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">plot(x, y, &#39;rx&#39;, &#39;MarkerSize&#39;, 10); % Plot the data</span><br><span class="line">ylabel(&#39;Profit in $10,000s&#39;); % Set the y-axis label</span><br><span class="line">xlabel(&#39;Population of City in 10,000s&#39;); % Set the x-axis label</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-
-<h2 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h2><h3 id="Computing-the-cost-J-theta"><a href="#Computing-the-cost-J-theta" class="headerlink" title="Computing the cost $J(\theta)$"></a>Computing the cost $J(\theta)$</h3><p>公式<br>$$<br>h_{\theta}(x)={\theta}^Tx = {\theta}_0 + {\theta}_1x<br>$$</p>
-<p>$$<br>J({\theta}) = \frac{1}{2m}\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})^2<br>$$</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function J &#x3D; computeCost(X, y, theta)</span><br><span class="line">%COMPUTECOST Compute cost for linear regression</span><br><span class="line">%   J &#x3D; COMPUTECOST(X, y, theta) computes the cost of using theta as the</span><br><span class="line">%   parameter for linear regression to fit the data points in X and y</span><br><span class="line"></span><br><span class="line">% Initialize some useful values</span><br><span class="line">m &#x3D; length(y); % number of training examples</span><br><span class="line"></span><br><span class="line">% You need to return the following variables correctly </span><br><span class="line">J &#x3D; 0;</span><br><span class="line"></span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">% Instructions: Compute the cost of a particular choice of theta</span><br><span class="line">%               You should set J to the cost.</span><br><span class="line">J &#x3D; sum((X*theta - y).^2)&#x2F;(2*m);</span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h3 id="Gradient-Descent-1"><a href="#Gradient-Descent-1" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h3><p>公式<br>$$<br>\theta_{j}:=\theta_{j}-\alpha \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)}<br>$$<br><strong>simultaneously update $\theta_j$ for all <em>j</em></strong></p>
+<h2 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h2><h3 id="Computing-the-cost-J-theta"><a href="#Computing-the-cost-J-theta" class="headerlink" title="Computing the cost $J(\theta)$"></a>Computing the cost $J(\theta)$</h3><p>公式</p>
+<script type="math/tex; mode=display">
+h_{\theta}(x)={\theta}^Tx = {\theta}_0 + {\theta}_1x</script><script type="math/tex; mode=display">
+J({\theta}) = \frac{1}{2m}\sum_{i=1}^m(h_{\theta}(x^{(i)})-y^{(i)})^2</script><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function J &#x3D; computeCost(X, y, theta)</span><br><span class="line">%COMPUTECOST Compute cost for linear regression</span><br><span class="line">%   J &#x3D; COMPUTECOST(X, y, theta) computes the cost of using theta as the</span><br><span class="line">%   parameter for linear regression to fit the data points in X and y</span><br><span class="line"></span><br><span class="line">% Initialize some useful values</span><br><span class="line">m &#x3D; length(y); % number of training examples</span><br><span class="line"></span><br><span class="line">% You need to return the following variables correctly </span><br><span class="line">J &#x3D; 0;</span><br><span class="line"></span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">% Instructions: Compute the cost of a particular choice of theta</span><br><span class="line">%               You should set J to the cost.</span><br><span class="line">J &#x3D; sum((X*theta - y).^2)&#x2F;(2*m);</span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h3 id="Gradient-Descent-1"><a href="#Gradient-Descent-1" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h3><p>公式</p>
+<script type="math/tex; mode=display">
+\theta_{j}:=\theta_{j}-\alpha \frac{1}{m} \sum_{i=1}^{m}\left(h_{\theta}\left(x^{(i)}\right)-y^{(i)}\right) x_{j}^{(i)}</script><p><strong>simultaneously update $\theta_j$ for all <em>j</em></strong></p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function [theta, J_history] &#x3D; gradientDescent(X, y, theta, alpha, num_iters)</span><br><span class="line">%GRADIENTDESCENT Performs gradient descent to learn theta</span><br><span class="line">%   theta &#x3D; GRADIENTDESCENT(X, y, theta, alpha, num_iters) updates theta by </span><br><span class="line">%   taking num_iters gradient steps with learning rate alpha</span><br><span class="line"></span><br><span class="line">% Initialize some useful values</span><br><span class="line">m &#x3D; length(y); % number of training examples</span><br><span class="line">J_history &#x3D; zeros(num_iters, 1);</span><br><span class="line"></span><br><span class="line">for iter &#x3D; 1:num_iters</span><br><span class="line">    % &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">    % Instructions: Perform a single gradient step on the parameter vector</span><br><span class="line">    %               theta. </span><br><span class="line">    %</span><br><span class="line">    % Hint: While debugging, it can be useful to print out the values</span><br><span class="line">    %       of the cost function (computeCost) and gradient here.</span><br><span class="line">    %</span><br><span class="line">    theta &#x3D; theta - alpha*(X&#39;*(X*theta - y)&#x2F;m);</span><br><span class="line">    % &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">    % Save the cost J in every iteration    </span><br><span class="line">    J_history(iter) &#x3D; computeCost(X, y, theta);</span><br><span class="line">end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h2 id="Visualizing-J-theta"><a href="#Visualizing-J-theta" class="headerlink" title="Visualizing $J({\theta})$"></a>Visualizing $J({\theta})$</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">% initialize J_vals to a matrix of 0&#39;s </span><br><span class="line">J_vals &#x3D; zeros(length(theta0_vals), length(theta1_vals));</span><br><span class="line">% Fill out J vals</span><br><span class="line">for i &#x3D; 1:length(theta0_vals)</span><br><span class="line">	for j &#x3D; 1:length(theta1_vals)</span><br><span class="line">		t &#x3D; [theta0_vals(i); theta1_vals(j)];</span><br><span class="line">		J vals(i,j) &#x3D; computeCost(x, y, t);</span><br><span class="line">	end</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h1 id="Linear-regression-with-multiple-variables"><a href="#Linear-regression-with-multiple-variables" class="headerlink" title="Linear regression with multiple variables"></a>Linear regression with multiple variables</h1><h2 id="Feature-Normalization"><a href="#Feature-Normalization" class="headerlink" title="Feature Normalization"></a>Feature Normalization</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function [X_norm, mu, sigma] &#x3D; featureNormalize(X)</span><br><span class="line">%FEATURENORMALIZE Normalizes the features in X </span><br><span class="line">%   FEATURENORMALIZE(X) returns a normalized version of X where</span><br><span class="line">%   the mean value of each feature is 0 and the standard deviation</span><br><span class="line">%   is 1. This is often a good preprocessing step to do when</span><br><span class="line">%   working with learning algorithms.</span><br><span class="line"></span><br><span class="line">% You need to set these values correctly</span><br><span class="line">X_norm &#x3D; X;</span><br><span class="line">mu &#x3D; zeros(1, size(X, 2));</span><br><span class="line">sigma &#x3D; zeros(1, size(X, 2));</span><br><span class="line"></span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">% Instructions: First, for each feature dimension, compute the mean</span><br><span class="line">%               of the feature and subtract it from the dataset,</span><br><span class="line">%               storing the mean value in mu. Next, compute the </span><br><span class="line">%               standard deviation of each feature and divide</span><br><span class="line">%               each feature by it&#39;s standard deviation, storing</span><br><span class="line">%               the standard deviation in sigma. </span><br><span class="line">%</span><br><span class="line">%               Note that X is a matrix where each column is a </span><br><span class="line">%               feature and each row is an example. You need </span><br><span class="line">%               to perform the normalization separately for </span><br><span class="line">%               each feature. </span><br><span class="line">%</span><br><span class="line">% Hint: You might find the &#39;mean&#39; and &#39;std&#39; functions useful.</span><br><span class="line">%       </span><br><span class="line">mu &#x3D; mean(X_norm);</span><br><span class="line">sigma &#x3D; std(X_norm);</span><br><span class="line">X_norm &#x3D; (X .- mu).&#x2F;sigma;</span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h2 id="Compute-Cost"><a href="#Compute-Cost" class="headerlink" title="Compute Cost"></a>Compute Cost</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function J &#x3D; computeCostMulti(X, y, theta)</span><br><span class="line">%COMPUTECOSTMULTI Compute cost for linear regression with multiple variables</span><br><span class="line">%   J &#x3D; COMPUTECOSTMULTI(X, y, theta) computes the cost of using theta as the</span><br><span class="line">%   parameter for linear regression to fit the data points in X and y</span><br><span class="line"></span><br><span class="line">% Initialize some useful values</span><br><span class="line">m &#x3D; length(y); % number of training examples</span><br><span class="line"></span><br><span class="line">% You need to return the following variables correctly </span><br><span class="line">J &#x3D; 0;</span><br><span class="line"></span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">% Instructions: Compute the cost of a particular choice of theta</span><br><span class="line">%               You should set J to the cost.</span><br><span class="line">J &#x3D; (X*theta - y)&#39;*(X*theta)&#x2F;(2*m);</span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 <h2 id="Gradient-Descent-2"><a href="#Gradient-Descent-2" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function [theta, J_history] &#x3D; gradientDescentMulti(X, y, theta, alpha, num_iters)</span><br><span class="line">%GRADIENTDESCENTMULTI Performs gradient descent to learn theta</span><br><span class="line">%   theta &#x3D; GRADIENTDESCENTMULTI(x, y, theta, alpha, num_iters) updates theta by</span><br><span class="line">%   taking num_iters gradient steps with learning rate alpha</span><br><span class="line"></span><br><span class="line">% Initialize some useful values</span><br><span class="line">m &#x3D; length(y); % number of training examples</span><br><span class="line">J_history &#x3D; zeros(num_iters, 1);</span><br><span class="line"></span><br><span class="line">for iter &#x3D; 1:num_iters</span><br><span class="line"></span><br><span class="line">    % &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">    % Instructions: Perform a single gradient step on the parameter vector</span><br><span class="line">    %               theta. </span><br><span class="line">    %</span><br><span class="line">    % Hint: While debugging, it can be useful to print out the values</span><br><span class="line">    %       of the cost function (computeCostMulti) and gradient here.</span><br><span class="line">    %</span><br><span class="line">    theta &#x3D; theta - alpha*(X&#39;*(X*theta - y)&#x2F;m);</span><br><span class="line">    % &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">    % Save the cost J in every iteration    </span><br><span class="line">    J_history(iter) &#x3D; computeCostMulti(X, y, theta);</span><br><span class="line"></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<h2 id="Normal-Equations"><a href="#Normal-Equations" class="headerlink" title="Normal Equations"></a>Normal Equations</h2><p>公式<br>$$<br>\theta = (X^TX)^{-1}X^T\vec{y}<br>$$</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function [theta] &#x3D; normalEqn(X, y)</span><br><span class="line">%NORMALEQN Computes the closed-form solution to linear regression </span><br><span class="line">%   NORMALEQN(X,y) computes the closed-form solution to linear </span><br><span class="line">%   regression using the normal equations.</span><br><span class="line"></span><br><span class="line">theta &#x3D; zeros(size(X, 2), 1);</span><br><span class="line"></span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">% Instructions: Complete the code to compute the closed form solution</span><br><span class="line">%               to linear regression and put the result in theta.</span><br><span class="line">%</span><br><span class="line"></span><br><span class="line">% ---------------------- Sample Solution ----------------------</span><br><span class="line">theta &#x3D; pinv(X&#39;*X)*X&#39;*y</span><br><span class="line">% -------------------------------------------------------------</span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<h2 id="Normal-Equations"><a href="#Normal-Equations" class="headerlink" title="Normal Equations"></a>Normal Equations</h2><p>公式</p>
+<script type="math/tex; mode=display">
+\theta = (X^TX)^{-1}X^T\vec{y}</script><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function [theta] &#x3D; normalEqn(X, y)</span><br><span class="line">%NORMALEQN Computes the closed-form solution to linear regression </span><br><span class="line">%   NORMALEQN(X,y) computes the closed-form solution to linear </span><br><span class="line">%   regression using the normal equations.</span><br><span class="line"></span><br><span class="line">theta &#x3D; zeros(size(X, 2), 1);</span><br><span class="line"></span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; YOUR CODE HERE &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">% Instructions: Complete the code to compute the closed form solution</span><br><span class="line">%               to linear regression and put the result in theta.</span><br><span class="line">%</span><br><span class="line"></span><br><span class="line">% ---------------------- Sample Solution ----------------------</span><br><span class="line">theta &#x3D; pinv(X&#39;*X)*X&#39;*y</span><br><span class="line">% -------------------------------------------------------------</span><br><span class="line">% &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line"></span><br><span class="line">end</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Machine Learning</category>
@@ -39,7 +42,6 @@
 <li>在实际的算法问题中，写出状态转移方程是最困难的</li>
 </ul>
 <a id="more"></a>
-
 <h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><p>明确 base case -&gt; 明确 <strong>状态</strong> -&gt; 明确 <strong>选择</strong> -&gt; 定义 dp 数组/函数的含义</p>
 <h2 id="基本框架"><a href="#基本框架" class="headerlink" title="基本框架"></a>基本框架</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"># 初始化 base <span class="keyword">case</span></span><br><span class="line">dp[<span class="number">0</span>][<span class="number">0</span>][...] = base</span><br><span class="line"># 进行状态转移</span><br><span class="line"><span class="keyword">for</span> 状态<span class="number">1</span> in 状态<span class="number">1</span>的所有取值：</span><br><span class="line">    <span class="keyword">for</span> 状态<span class="number">2</span> in 状态<span class="number">2</span>的所有取值：</span><br><span class="line">        <span class="keyword">for</span> ...</span><br><span class="line">            dp[状态<span class="number">1</span>][状态<span class="number">2</span>][...] = 求最值(选择<span class="number">1</span>，选择<span class="number">2.</span>..)</span><br></pre></td></tr></table></figure>
 <h2 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h2><h3 id="暴力递归"><a href="#暴力递归" class="headerlink" title="暴力递归"></a>暴力递归</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (N == <span class="number">1</span> || N == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> fib(N - <span class="number">1</span>) + fib(N - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -47,7 +49,7 @@
 <p>PS：但凡遇到需要递归的问题，最好都画出递归树，这对你分析算法的复杂度，寻找算法低效的原因都有巨大帮助。</p>
 </blockquote>
 <p>假设 n = 20，请画出递归树：</p>
-<p><img src="/2021/03/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/70af23686865b425f7b88f172ac696878985f4c6.jpg" alt="img"></p>
+<p><img src="70af23686865b425f7b88f172ac696878985f4c6.jpg" alt="img"></p>
 <blockquote>
 <p><strong>递归算法的时间复杂度怎么计算？就是用子问题个数乘以解决一个子问题需要的时间。</strong></p>
 <p>首先计算子问题个数，即递归树中节点的总数。显然二叉树节点总数为指数级别，所以子问题个数为 O(2^n)。</p>
@@ -59,34 +61,33 @@
 <p>一般使用数组来充当<strong>备忘录</strong>，当然也可以使用哈希表(字典)，思想都是一样的。</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (N &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 备忘录全初始化为 0</span></span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">memo</span><span class="params">(N + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="comment">// 进行带备忘录的递归</span></span><br><span class="line">    <span class="keyword">return</span> helper(memo, N);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">helper</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; memo, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// base case</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span> || n == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 已经计算过</span></span><br><span class="line">    <span class="keyword">if</span> (memo[n] != <span class="number">0</span>) <span class="keyword">return</span> memo[n];</span><br><span class="line">    memo[n] = helper(memo, n - <span class="number">1</span>) + helper(memo, n - <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">return</span> memo[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>画出递归树：</p>
-<p><img src="/2021/03/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/e6547795e536cbd16b7f5f23da637032cc88e87e.jpg" alt="img"></p>
+<p><img src="e6547795e536cbd16b7f5f23da637032cc88e87e.jpg" alt="img"></p>
 <blockquote>
 <p>实际上，带「备忘录」的递归算法，把一棵存在巨量冗余的递归树通过「剪枝」，改造成了一幅不存在冗余的递归图，极大减少了子问题（即递归图中节点）的个数。</p>
 </blockquote>
-<p><img src="/2021/03/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/6d82de2baa7ef942d20da7d9323d86cf55051f67.jpg" alt="img"></p>
+<p><img src="6d82de2baa7ef942d20da7d9323d86cf55051f67.jpg" alt="img"></p>
 <blockquote>
 <p><strong>递归算法的时间复杂度怎么计算？就是用子问题个数乘以解决一个子问题需要的时间。</strong></p>
 <p>子问题个数，即图中节点的总数，由于本算法不存在冗余计算，子问题就是 <code>f(1)</code>, <code>f(2)</code>, <code>f(3)</code> … <code>f(20)</code>，数量和输入规模 n = 20 成正比，所以子问题个数为 O(n)。</p>
 <p>解决一个子问题的时间，同上，没有什么循环，时间为 O(1)。</p>
 <p>所以，本算法的时间复杂度是 O(n)。比起暴力算法，是降维打击。</p>
-</blockquote>
-<blockquote>
 <p>至此，带备忘录的递归解法的效率已经和迭代的动态规划解法一样了。实际上，这种解法和迭代的动态规划已经差不多了，只不过这种方法叫做「自顶向下」，动态规划叫做「自底向上」。</p>
 <p>啥叫「自顶向下」？注意我们刚才画的递归树（或者说图），是从上向下延伸，都是从一个规模较大的原问题比如说 <code>f(20)</code>，向下逐渐分解规模，直到 <code>f(1)</code> 和 <code>f(2)</code> 这两个 base case，然后逐层返回答案，这就叫「自顶向下」。</p>
 <p>啥叫「自底向上」？反过来，我们直接从最底下，最简单，问题规模最小的 <code>f(1)</code> 和 <code>f(2)</code> 开始往上推，直到推到我们想要的答案 <code>f(20)</code>，这就是动态规划的思路，这也是为什么动态规划一般都脱离了递归，而是由循环迭代完成计算。</p>
 </blockquote>
 <h3 id="dp数组的迭代解法"><a href="#dp数组的迭代解法" class="headerlink" title="dp数组的迭代解法"></a>dp数组的迭代解法</h3><p>有了<strong>备忘录</strong>的启发，我们可以把这个<strong>备忘录</strong>独立出来成为一张表，就叫做 DP table，在这张表上完成<strong>自底向上</strong>的推算</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (N &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (N == <span class="number">1</span> || N == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(N + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="comment">// base case</span></span><br><span class="line">    dp[<span class="number">1</span>] = dp[<span class="number">2</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">3</span>; i &lt;= N; i++)</span><br><span class="line">        dp[i] = dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">return</span> dp[N];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/03/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/65192fe4cbb8d583daf45ceb260b2d333ba77169.jpg" alt="img"></p>
+<p><img src="65192fe4cbb8d583daf45ceb260b2d333ba77169.jpg" alt="img"></p>
 <blockquote>
 <p>画个图就很好理解了，而且你发现这个 DP table 特别像之前那个「剪枝」后的结果，只是反过来算而已。实际上，带备忘录的递归解法中的「备忘录」，最终完成后就是这个 DP table，所以说这两种解法其实是差不多的，大部分情况下，效率也基本相同。</p>
 <p>这里，引出「状态转移方程」这个名词，实际上就是描述问题结构的数学形式：</p>
 </blockquote>
-<p>$$<br>f(n)=\left{\begin{array}{r}<br>1, n=1,2 \<br>f(n-1)+f(n-2), n&gt;2<br>\end{array}\right.<br>$$</p>
-<blockquote>
+<script type="math/tex; mode=display">
+f(n)=\left\{\begin{array}{r}
+1, n=1,2 \\
+f(n-1)+f(n-2), n>2
+\end{array}\right.</script><blockquote>
 <p>为啥叫「状态转移方程」？其实就是为了听起来高端。你把 <code>f(n)</code> 想做一个状态 <code>n</code>，这个状态 <code>n</code> 是由状态 <code>n - 1</code> 和状态 <code>n - 2</code> 相加转移而来，这就叫状态转移，仅此而已。</p>
-</blockquote>
-<blockquote>
 <p>你会发现，上面的几种解法中的所有操作，例如 <code>return f(n - 1) + f(n - 2)</code>，<code>dp[i] = dp[i - 1] + dp[i - 2]</code>，以及对备忘录或 DP table 的初始化操作，都是围绕这个方程式的不同表现形式。可见列出「状态转移方程」的重要性，它是解决问题的核心。而且很容易发现，其实状态转移方程直接代表着暴力解法。</p>
 <p><strong>千万不要看不起暴力解，动态规划问题最困难的就是写出这个暴力解，即状态转移方程</strong>。只要写出暴力解，优化方法无非是用备忘录或者 DP table，再无奥妙可言。</p>
 </blockquote>
@@ -111,8 +112,14 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"># 伪码框架</span><br><span class="line"><span class="function">def <span class="title">coinChange</span><span class="params">(coins: List[<span class="keyword">int</span>], amount: <span class="keyword">int</span>)</span>:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line">    # 定义：要凑出金额 n，至少要 dp(n) 个硬币</span><br><span class="line">    <span class="function">def <span class="title">dp</span><span class="params">(n)</span>:</span></span><br><span class="line">        # 做选择，选择需要硬币最少的那个结果</span><br><span class="line">        <span class="keyword">for</span> coin in coins:</span><br><span class="line">            res = min(res, <span class="number">1</span> + dp(n - coin))</span><br><span class="line">        <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line">    # 题目要求的最终结果是 dp(amount)</span><br><span class="line">    <span class="keyword">return</span> dp(amount)</span><br></pre></td></tr></table></figure>
 <p>根据伪码，我们加上 base case 即可得到最终的答案。显然目标金额为 0 时，所需硬币数量为 0；当目标金额小于 0 时，无解，返回 -1：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">coinChange</span><span class="params">(coins: List[<span class="keyword">int</span>], amount: <span class="keyword">int</span>)</span>:</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">    def <span class="title">dp</span><span class="params">(n)</span>:</span></span><br><span class="line"><span class="function">        <span class="meta"># base case</span></span></span><br><span class="line"><span class="function">        <span class="keyword">if</span> n </span>== <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>: <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        # 求最小值，所以初始化为正无穷</span><br><span class="line">        res = float(&#x27;INF&#x27;)</span><br><span class="line">        <span class="keyword">for</span> coin in coins:</span><br><span class="line">            subproblem = dp(n - coin)</span><br><span class="line">            # 子问题无解，跳过</span><br><span class="line">            <span class="keyword">if</span> subproblem == <span class="number">-1</span>: <span class="keyword">continue</span></span><br><span class="line">            res = min(res, <span class="number">1</span> + subproblem)</span><br><span class="line"></span><br><span class="line">        return res if res != float(&#x27;INF&#x27;) else -1</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp(amount)</span><br></pre></td></tr></table></figure>
-<p>至此，状态转移方程其实已经完成了，以上算法已经是暴力解法了，以上代码的数学形式就是状态转移方程：<br>$$<br>dp(n)=\left{\begin{array}{r}<br>0, n=0 \<br>-1, n&lt;0 \<br>\min {d p(n-\operatorname{coin})+1 \mid \operatorname{coin} \in \operatorname{coins}}, n&gt;0<br>\end{array}\right.<br>$$<br>至此，这个问题其实就解决了，只不过需要消除一下重叠子问题，比如 <code>amount = 11, coins = &#123;1,2,5&#125;</code> 时画出递归树看看：</p>
-<p><img src="/2021/03/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/11389aca27fca8bf28578565fcd46e2c4b051e91.jpg" alt="img"></p>
+<p>至此，状态转移方程其实已经完成了，以上算法已经是暴力解法了，以上代码的数学形式就是状态转移方程：</p>
+<script type="math/tex; mode=display">
+dp(n)=\left\{\begin{array}{r}
+0, n=0 \\
+-1, n<0 \\
+\min \{d p(n-\operatorname{coin})+1 \mid \operatorname{coin} \in \operatorname{coins}\}, n>0
+\end{array}\right.</script><p>至此，这个问题其实就解决了，只不过需要消除一下重叠子问题，比如 <code>amount = 11, coins = &#123;1,2,5&#125;</code> 时画出递归树看看：</p>
+<p><img src="11389aca27fca8bf28578565fcd46e2c4b051e91.jpg" alt="img"></p>
 <p><strong>递归算法的时间复杂度分析：子问题总数 x 每个子问题的时间</strong>。</p>
 <p>子问题总数为递归树节点个数，这个比较难看出来，是 O(n^k)，总之是指数级别的。每个子问题中含有一个 for 循环，复杂度为 O(k)。所以总时间复杂度为 O(k * n^k)，指数级别。</p>
 <h3 id="带备忘录的递归"><a href="#带备忘录的递归" class="headerlink" title="带备忘录的递归"></a>带备忘录的递归</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">def <span class="title">coinChange</span><span class="params">(coins: List[<span class="keyword">int</span>], amount: <span class="keyword">int</span>)</span>:</span></span><br><span class="line">    # 备忘录</span><br><span class="line">    memo = dict()</span><br><span class="line">    def dp(n):</span><br><span class="line">        # 查备忘录，避免重复计算</span><br><span class="line">        <span class="keyword">if</span> n in memo: <span class="keyword">return</span> memo[n]</span><br><span class="line">        <span class="meta"># base case</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>: <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> n &lt; <span class="number">0</span>: <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        res = float(&#x27;INF&#x27;)</span><br><span class="line">        <span class="keyword">for</span> coin in coins:</span><br><span class="line">            subproblem = dp(n - coin)</span><br><span class="line">            <span class="keyword">if</span> subproblem == <span class="number">-1</span>: <span class="keyword">continue</span></span><br><span class="line">            res = min(res, <span class="number">1</span> + subproblem)</span><br><span class="line"></span><br><span class="line">        # 记入备忘录</span><br><span class="line">        memo[n] = res if res != float(&#x27;INF&#x27;) else -1</span><br><span class="line">        <span class="keyword">return</span> memo[n]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp(amount)</span><br></pre></td></tr></table></figure>
@@ -121,7 +128,7 @@
 <p><strong><code>dp</code></strong> <strong>数组的定义：当目标金额为</strong> <strong><code>i</code></strong> <strong>时，至少需要</strong> <strong><code>dp[i]</code></strong> <strong>枚硬币凑出</strong>。</p>
 <p>根据我们文章开头给出的动态规划代码框架可以写出如下解法：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">coinChange</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; coins, <span class="keyword">int</span> amount)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 数组大小为 amount + 1，初始值也为 amount + 1</span></span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">dp</span><span class="params">(amount + <span class="number">1</span>, amount + <span class="number">1</span>)</span></span>;</span><br><span class="line">    <span class="comment">// base case</span></span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 外层 for 循环在遍历所有状态的所有取值</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; dp.size(); i++) &#123;</span><br><span class="line">        <span class="comment">// 内层 for 循环在求所有选择的最小值</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> coin : coins) &#123;</span><br><span class="line">            <span class="comment">// 子问题无解，跳过</span></span><br><span class="line">            <span class="keyword">if</span> (i - coin &lt; <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            dp[i] = min(dp[i], <span class="number">1</span> + dp[i - coin]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (dp[amount] == amount + <span class="number">1</span>) ? <span class="number">-1</span> : dp[amount];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="/2021/03/04/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E9%A2%98%E5%A5%97%E8%B7%AF%E6%A1%86%E6%9E%B6/17a588ce985b456232062703d025551175d57895.jpg" alt="img"></p>
+<p><img src="17a588ce985b456232062703d025551175d57895.jpg" alt="img"></p>
 <blockquote>
 <p>PS：为啥 <code>dp</code> 数组初始化为 <code>amount + 1</code> 呢，因为凑成 <code>amount</code> 金额的硬币数最多只可能等于 <code>amount</code>（全用 1 元面值的硬币），所以初始化为 <code>amount + 1</code> 就相当于初始化为正无穷，便于后续取最小值。</p>
 </blockquote>
@@ -143,13 +150,10 @@
     <content><![CDATA[<h1 id="数据结构的存储方式"><a href="#数据结构的存储方式" class="headerlink" title="数据结构的存储方式"></a>数据结构的存储方式</h1><p><strong>数据结构的存储方式只有两种：数组（顺序存储）和链表（链式存储）</strong>。</p>
 <h2 id="二者的优缺点"><a href="#二者的优缺点" class="headerlink" title="二者的优缺点"></a>二者的优缺点</h2><blockquote>
 <p><strong>数组</strong>由于是紧凑连续存储,可以随机访问，通过索引快速找到对应元素，而且相对节约存储空间。但正因为连续存储，内存空间必须一次性分配够，所以说数组如果要扩容，需要重新分配一块更大的空间，再把数据全部复制过去，时间复杂度 O(N)；而且你如果想在数组中间进行插入和删除，每次必须搬移后面的所有数据以保持连续，时间复杂度 O(N)。</p>
-</blockquote>
-<blockquote>
 <p><strong>链表</strong>因为元素不连续，而是靠指针指向下一个元素的位置，所以不存在数组的扩容问题；如果知道某一元素的前驱和后驱，操作指针即可删除该元素或者插入新元素，时间复杂度 O(1)。但是正因为存储空间不连续，你无法根据一个索引算出对应元素的地址，所以不能随机访问；而且由于每个元素必须存储指向前后元素位置的指针，会消耗相对更多的储存空间。</p>
 </blockquote>
 <h1 id="数据结构的基本操作"><a href="#数据结构的基本操作" class="headerlink" title="数据结构的基本操作"></a>数据结构的基本操作</h1><p>基本操作无非就是增删查改</p>
 <a id="more"></a>
-
 <h2 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="comment">// 迭代访问 arr[i]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="链表遍历"><a href="#链表遍历" class="headerlink" title="链表遍历"></a>链表遍历</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 基本的单链表节点 */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (ListNode p = head; p != null; p = p.next) &#123;</span><br><span class="line">        <span class="comment">// 迭代访问 p.val</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 递归访问 head.val</span></span><br><span class="line">    traverse(head.next);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="二叉树遍历"><a href="#二叉树遍历" class="headerlink" title="二叉树遍历"></a>二叉树遍历</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 基本的二叉树节点 */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    TreeNode left, right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    traverse(root.left);</span><br><span class="line">    traverse(root.right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -170,13 +174,10 @@
     <url>/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h2 id="Github-建库-配置SSH"><a href="#Github-建库-配置SSH" class="headerlink" title="Github 建库+配置SSH"></a>Github 建库+配置SSH</h2><blockquote>
 <p>因为要采用 github pages，所以先创建名为 “用户名.github.io” 的库</p>
-</blockquote>
-<blockquote>
 <p>使用<code>ssh-keygen -t -rsa -C &quot;电子邮箱&quot;</code>生成SSH key</p>
 <p>然后在用户主目录下会生成 .ssh 文件夹，将其中 .pub 后缀的内容添加到 Github 即可</p>
 </blockquote>
 <a id="more"></a>
-
 <h2 id="安装-Node-js"><a href="#安装-Node-js" class="headerlink" title="安装 Node.js"></a>安装 Node.js</h2><p>推荐安装长期支持版本</p>
 <p>直接去<a href="https://nodejs.org/zh-cn/">官网</a>下载即可</p>
 <h2 id="切换国内源"><a href="#切换国内源" class="headerlink" title="切换国内源"></a>切换国内源</h2><p><code>npm config set registry http://registry.npm.taobao.org</code></p>
@@ -186,30 +187,30 @@
 <p><code>hexo init &#123;name&#125;</code></p>
 <p>name 即为我们的项目名，根据自己需要修改</p>
 <p>执行结束后就会在当前目录下生成 Hexo 的初始化文件，如下图所示</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121150123443.png" alt="image-20210121150123443"></p>
+<p><img src="image-20210121150123443.png" alt="image-20210121150123443"></p>
 <p>我们暂且不用关心这些文件都是什么，先整个跑起来观察一下</p>
 <p>在该目录下使用<code>hexo generate</code>即可将 Hexo 编译为 html 代码</p>
 <p>该命令就会生成如下文件，包含了 js、css、font 等内容，保存在项目根目录的 public 文件夹下</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121100347546.png" alt="image-20210121100347546"></p>
+<p><img src="image-20210121100347546.png" alt="image-20210121100347546"></p>
 <p> 然后我们利用 Hexo 提供的 server 命令把博客在本地运行起来</p>
 <p>命令为<code>hexo server</code></p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121100529862.png" alt="image-20210121100529862"></p>
+<p><img src="image-20210121100529862.png" alt="image-20210121100529862"></p>
 <p>运行后 Hexo 就会运行在本地 4000 端口上了，可以打开看一下，如下图所示</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121100629375.png" alt="image-20210121100629375"></p>
+<p><img src="image-20210121100629375.png" alt="image-20210121100629375"></p>
 <p>这样我们仅仅使用了三个命令就搭建出了一个博客的骨架</p>
 <h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>然后我们对这个初始化的项目进行一下部署，放到 Github Pages 上面验证一下其可用性。成功之后再进行后续的修改，这样可以防止我们花费大量时间搭建之后发现不能部署，再重新整就会浪费时间</p>
 <p>在部署之前，我们需要设置一下项目的部署地址</p>
 <p>打开项目目录下的 _config.yml 文件，找到 Deployment 这个地方，把刚才新建的 Repository 的地址贴过来，然后指定分支为 master 分支</p>
 <p>修改完成如下图所示：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121101102281.png" alt="image-20210121101102281"></p>
+<p><img src="image-20210121101102281.png" alt="image-20210121101102281"></p>
 <p>仓库要设置为自己的仓库地址</p>
 <p>另外我们还需要额外安装一个支持 Git 的部署插件，名字叫做 hexo-deployer-git</p>
 <p>在项目目录下执行安装命令 <code>npm install hexo-deployer-git --save</code></p>
 <p>安装完成后，运行部署命令<code>hexo deploy</code></p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121101451628.png" alt="image-20210121101451628"></p>
-<p>出现该提示即部署成功了，这时候我们访问一下 GitHub Repository 同名的链接，比如我的 <a href="https://juhick.github.io/">https://juhick.github.io</a> ，这时候我们就可以看到跟本地一模一样的博客内容了</p>
+<p><img src="image-20210121101451628.png" alt="image-20210121101451628"></p>
+<p>出现该提示即部署成功了，这时候我们访问一下 GitHub Repository 同名的链接，比如我的 <a href="https://juhick.github.io">https://juhick.github.io</a> ，这时候我们就可以看到跟本地一模一样的博客内容了</p>
 <p>我们打开 Github 就可以看到如下内容</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121102223531.png" alt="image-20210121102223531"></p>
+<p><img src="image-20210121102223531.png" alt="image-20210121102223531"></p>
 <p>这实际上是博客文件夹下面的 public 文件夹下的所有内容，Hexo 把编译之后的静态页面内容上传到 GitHub 的 master 分支上面去了。</p>
 <p>因为我们编译之后的网页使用了 master 分支，那么我们源码则需要放到另一个分支，上传命令如下：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git checkout -b <span class="built_in">source</span></span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">&quot;init blog&quot;</span></span><br><span class="line">git remote add origin git@github.com:&#123;username&#125;/&#123;username&#125;.github.io.git</span><br><span class="line">git push origin <span class="built_in">source</span></span><br></pre></td></tr></table></figure>
@@ -219,75 +220,75 @@
 <p>完成如上内容之后，实际上我们只完成了博客搭建的一小步，因为我们仅仅是把初始化的页面部署成功了，博客里面还没有设置任何有效的信息。下面就让我们来进行一下博客的基本配置，另外换一个好看的主题，配置一些其他的内容，让博客真正变成属于我们自己的博客吧。</p>
 </blockquote>
 <p> 修改根目录下的 _config.yml 文件，找到 Site 区域，这里面可以配置站点标题 title、副标题 subtitle 等内容、关键字 keywords 等内容，比如我的就修改为如下内容：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121102933951.png" alt="image-20210121102933951"></p>
+<p><img src="image-20210121102933951.png" alt="image-20210121102933951"></p>
 <p>这里参照格式修改为自己的，这样就完成了基本信息的配置，完成之后可以看到信息已经修改</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121103117191.png" alt="image-20210121103117191"></p>
+<p><img src="image-20210121103117191.png" alt="image-20210121103117191"></p>
 <h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h2><blockquote>
 <p>目前来看，整个页面的样式个人感觉并不是那么好看，想换一个风格，这就涉及到主题的配置了。目前 Hexo 里面应用最多的主题基本就是 Next 主题了，个人感觉这个主题还是挺好看的，另外它支持的插件和功能也极为丰富，配置了这个主题，我们的博客可以支持更多的扩展功能，比如阅览进度条、中英文空格排版、图片懒加载等等。</p>
 </blockquote>
 <p>下边就来安装 Next 这个主题，主题的 <a href="https://github.com/theme-next/hexo-theme-next">Github 地址</a>，我们可以直接把 master 分支 clone 下来。在项目根目录下执行如下命令</p>
 <p><code>git clone https://github.com/theme-next/hexo-theme-next themes/next</code></p>
 <p>然后我们需要修改下博客所用的主题名称，修改项目根目录下的 _config.yml 文件，找到 theme 字段，修改为 next 即可，修改如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121103756633.png" alt="image-20210121103756633"></p>
+<p><img src="image-20210121103756633.png" alt="image-20210121103756633"></p>
 <p>然后重新开启本地服务，就可以看到 next 主题切换成功了</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121104338586.png" alt="image-20210121104338586"></p>
+<p><img src="image-20210121104338586.png" alt="image-20210121104338586"></p>
 <h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><blockquote>
 <p>现在我们已经成功切换到 next 主题上面了，接下来我们就对主题进行进一步地详细配置吧，比如修改样式、增加其他各项功能的支持，下面逐项道来。 Next 主题内部也提供了一个配置文件，名字同样叫做 _config.yml，只不过位置不一样，它在 themes/next 文件夹下，Next 主题里面所有的功能都可以通过这个配置文件来控制，下文所述的内容都是修改的 themes/next/_config.yml 文件。</p>
 </blockquote>
 <h3 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h3><p>Next 主题还提供了多种样式，风格都是类似黑白的搭配，但整个布局位置不太一样，通过修改配置文件的 scheme 字段即可</p>
 <p>这里选用了 Pisces 样式</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121104933472.png" alt="image-20210121104933472"></p>
+<p><img src="image-20210121104933472.png" alt="image-20210121104933472"></p>
 <p>刷新之后可以看到对应的页面</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121104953906.png" alt="image-20210121104953906"></p>
+<p><img src="image-20210121104953906.png" alt="image-20210121104953906"></p>
 <h3 id="favico"><a href="#favico" class="headerlink" title="favico"></a>favico</h3><p>favicon 就是站点标签栏的小图标，默认是用的 Hexo 的小图标，如果我们有站点 Logo 的图片的话，我们可以自己定制小图标。 但这并不意味着我们需要自己用 PS 自己来设计，已经有一个网站可以直接将图片转化为站点小图标，站点链接为：<a href="https://realfavicongenerator.net/">https://realfavicongenerator.net</a>，到这里上传一张图，便可以直接打包下载各种尺寸和适配不同设备的小图标。 图标下载下来之后把它放在 themes/next/source/images 目录下面。 然后在配置文件里面找到 favicon 配置项，把一些相关路径配置进去即可，示例如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121105631632.png" alt="image-20210121105631632"></p>
+<p><img src="image-20210121105631632.png" alt="image-20210121105631632"></p>
 <p>配置完成之后刷新页面，整个页面的标签图标就被更新了。</p>
 <h3 id="avatar"><a href="#avatar" class="headerlink" title="avatar"></a>avatar</h3><p>avatar 这个就类似站点的头像，如果设置了这个，会在站点的作者信息旁边额外显示一个头像</p>
 <p>比如我有一张 avatar.png 图片如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/avatar.png" alt="avatar"></p>
+<p><img src="avatar.png" alt="avatar"></p>
 <p>将其放置到 themes/next/source/avatar.png 路径，然后在主题 _config.yml 文件下编辑 avatar 的配置，修改为正确的路径即可。</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121110050335.png" alt="image-20210121110050335"></p>
+<p><img src="image-20210121110050335.png" alt="image-20210121110050335"></p>
 <p>这里有 rounded 选项是是否显示圆形，rotated 是是否带有旋转效果，大家可以根据喜好选择是否开启。</p>
 <p>效果如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121110117823.png" alt="image-20210121110117823"></p>
+<p><img src="image-20210121110117823.png" alt="image-20210121110117823"></p>
 <h3 id="rss"><a href="#rss" class="headerlink" title="rss"></a>rss</h3><p>博客一般是需要 RSS 订阅的，如果要开启 RSS 订阅，这里需要安装一个插件，叫做 hexo-generator-feed，安装完成之后，站点会自动生成 RSS Feed 文件，安装命令如下：</p>
 <p><code>npm install hexo-generator-feed --save</code></p>
 <p>在项目根目录下运行这个命令，安装完成之后不需要其他的配置，以后每次编译生成站点的时候就会自动生成 RSS Feed 文件了。</p>
 <h3 id="code"><a href="#code" class="headerlink" title="code"></a>code</h3><p>作为程序猿，代码块的显示还是需要很讲究的</p>
 <p>可以在配置文件中的 codeblock 区块下设置自己喜欢的样式</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121110623804.png" alt="image-20210121110623804"></p>
+<p><img src="image-20210121110623804.png" alt="image-20210121110623804"></p>
 <h3 id="back2top"><a href="#back2top" class="headerlink" title="back2top"></a>back2top</h3><p>字面意思，回到顶部，可以在 back2top 区块设置</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121110756732.png" alt="image-20210121110756732"></p>
+<p><img src="image-20210121110756732.png" alt="image-20210121110756732"></p>
 <p>依次为是否启用，是否在侧边栏显示按钮，是否显示阅读百分比</p>
 <h3 id="reading-progress"><a href="#reading-progress" class="headerlink" title="reading_progress"></a>reading_progress</h3><p>阅读进度，在页面顶端的黑条</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121111022793.png" alt="image-20210121111022793"></p>
+<p><img src="image-20210121111022793.png" alt="image-20210121111022793"></p>
 <p>可以在 reading_progress 区块设置是否开启，以及设置喜欢的样式</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121111107432.png" alt="image-20210121111107432"></p>
+<p><img src="image-20210121111107432.png" alt="image-20210121111107432"></p>
 <h3 id="bookmark"><a href="#bookmark" class="headerlink" title="bookmark"></a>bookmark</h3><p>书签，可以根据阅读历史记录，在下次打开页面的时候快速帮助我们定位到上次的位置，大家可以根据喜好开启和关闭</p>
 <p>配置如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121111313077.png" alt="image-20210121111313077"></p>
+<p><img src="image-20210121111313077.png" alt="image-20210121111313077"></p>
 <h3 id="github-banner"><a href="#github-banner" class="headerlink" title="github_banner"></a>github_banner</h3><p>在一些技术博客上，大家可能注意到在页面的右上角有个 GitHub 图标，点击之后可以跳转到其源码页面，可以为 GitHub Repository 引流，大家如果想显示的话可以自行选择打开</p>
 <p>配置如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121111504461.png" alt="image-20210121111504461"></p>
+<p><img src="image-20210121111504461.png" alt="image-20210121111504461"></p>
 <p>根据需要自行修改，效果如下：</p>
-<p>​    <img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121150225357.png" alt="image-20210121150225357"></p>
+<p>​    <img src="image-20210121150225357.png" alt="image-20210121150225357"></p>
 <h3 id="gittalk"><a href="#gittalk" class="headerlink" title="gittalk"></a>gittalk</h3><blockquote>
-<p>由于 Hexo 的博客是静态博客，而且也没有连接数据库的功能，所以它的评论功能是不能自行集成的，但可以集成第三方的服务。 Next 主题里面提供了多种评论插件的集成，有 changyan | disqus | disqusjs | facebook_comments_plugin | gitalk | livere | valine | vkontakte 这些。 作为一名程序员，我个人比较喜欢 gitalk，它是利用 GitHub 的 Issue 来当评论，样式也比较不错。 首先需要在 GitHub 上面注册一个 OAuth Application，链接为：<a href="https://github.com/settings/applications/new%EF%BC%8C%E6%B3%A8%E5%86%8C%E5%AE%8C%E6%AF%95%E4%B9%8B%E5%90%8E%E6%8B%BF%E5%88%B0">https://github.com/settings/applications/new，注册完毕之后拿到</a> Client ID、Client Secret 就可以了。 首先需要在 _config.yml 文件的 comments 区域配置使用 gitalk</p>
+<p>由于 Hexo 的博客是静态博客，而且也没有连接数据库的功能，所以它的评论功能是不能自行集成的，但可以集成第三方的服务。 Next 主题里面提供了多种评论插件的集成，有 changyan | disqus | disqusjs | facebook_comments_plugin | gitalk | livere | valine | vkontakte 这些。 作为一名程序员，我个人比较喜欢 gitalk，它是利用 GitHub 的 Issue 来当评论，样式也比较不错。 首先需要在 GitHub 上面注册一个 OAuth Application，链接为：<a href="https://github.com/settings/applications/new，注册完毕之后拿到">https://github.com/settings/applications/new，注册完毕之后拿到</a> Client ID、Client Secret 就可以了。 首先需要在 _config.yml 文件的 comments 区域配置使用 gitalk</p>
 </blockquote>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121112405020.png" alt="image-20210121112405020"></p>
+<p><img src="image-20210121112405020.png" alt="image-20210121112405020"></p>
 <p>主要是 comments.active 字段选择对应的名称即可。 然后找到 gitalk 配置，添加它的各项配置：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121112534324.png" alt="image-20210121112534324"></p>
+<p><img src="image-20210121112534324.png" alt="image-20210121112534324"></p>
 <p>配置完成之后 gitalk 就可以使用了，点击进入文章页面，就会出现如下页面：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121112722998.png" alt="image-20210121112722998"></p>
+<p><img src="image-20210121112722998.png" alt="image-20210121112722998"></p>
 <p>GitHub 授权登录之后就可以使用了，评论的内容会自动出现在 Issue 里面。</p>
 <h3 id="pangu"><a href="#pangu" class="headerlink" title="pangu"></a>pangu</h3><blockquote>
 <p>我个人有个强迫症，那就是写中文和英文的时候中间必须要留有间距，一个简单直接的方法就是中间加个空格，但某些情况下可能习惯性不加或者忘记加了，这就导致中英文混排并不是那么美观。 pangu 就是来解决这个问题的，我们只需要在主题里面开启这个选项，在编译生成页面的时候，中英文之间就会自动添加空格，看起来更加美观。 具体的修改如下：</p>
 </blockquote>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121112813035.png" alt="image-20210121112813035"></p>
+<p><img src="image-20210121112813035.png" alt="image-20210121112813035"></p>
 <h3 id="math"><a href="#math" class="headerlink" title="math"></a>math</h3><blockquote>
-<p>可能在一些情况下我们需要写一个公式，比如演示一个算法推导过程，MarkDown 是支持公式显示的，Hexo 的 Next 主题同样是支持的。 Next 主题提供了两个渲染引擎，分别是 mathjax 和 katex，后者相对前者来说渲染速度更快，而且不需要 JavaScript 的额外支持，但后者支持的功能现在还不如前者丰富，具体的对比可以看官方文档：<a href="https://theme-next.org/docs/third-party-services/math-equations%E3%80%82">https://theme-next.org/docs/third-party-services/math-equations。</a> 所以我这里选择了 mathjax，通过修改配置即可启用：</p>
+<p>可能在一些情况下我们需要写一个公式，比如演示一个算法推导过程，MarkDown 是支持公式显示的，Hexo 的 Next 主题同样是支持的。 Next 主题提供了两个渲染引擎，分别是 mathjax 和 katex，后者相对前者来说渲染速度更快，而且不需要 JavaScript 的额外支持，但后者支持的功能现在还不如前者丰富，具体的对比可以看官方文档：<a href="https://theme-next.org/docs/third-party-services/math-equations。">https://theme-next.org/docs/third-party-services/math-equations。</a> 所以我这里选择了 mathjax，通过修改配置即可启用：</p>
 </blockquote>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121112952638.png" alt="image-20210121112952638"></p>
+<p><img src="image-20210121112952638.png" alt="image-20210121112952638"></p>
 <blockquote>
 <p>mathjax 的使用需要我们额外安装一个插件，叫做 hexo-renderer-kramed，另外也可以安装 hexo-renderer-pandoc，命令如下：</p>
 </blockquote>
@@ -296,47 +297,47 @@
 <h3 id="pjax"><a href="#pjax" class="headerlink" title="pjax"></a>pjax</h3><blockquote>
 <p>可能大家听说过 Ajax，没听说过 pjax，这个技术实际上就是利用 Ajax 技术实现了局部页面刷新，既可以实现 URL 的更换，有可以做到无刷新加载。 要开启这个功能需要先将 pjax 功能开启，然后安装对应的 pjax 依赖库，首先修改 _config.yml 修改如下：</p>
 </blockquote>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121113222284.png" alt="image-20210121113222284"></p>
+<p><img src="image-20210121113222284.png" alt="image-20210121113222284"></p>
 <p>然后安装依赖库，切换到 next 主题下，然后安装依赖库：</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd themes&#x2F;next</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;theme-next-pjax source&#x2F;lib&#x2F;pjax</span><br></pre></td></tr></table></figure>
-<p>这样 pjax 就开启了，页面就可以实现无刷新加载了。 另外关于 Next 主题的设置还有挺多的，这里就介绍到这里了，更多的主题设置大家可以参考官方文档：<a href="https://theme-next.org/docs/%E3%80%82">https://theme-next.org/docs/。</a></p>
+<p>这样 pjax 就开启了，页面就可以实现无刷新加载了。 另外关于 Next 主题的设置还有挺多的，这里就介绍到这里了，更多的主题设置大家可以参考官方文档：<a href="https://theme-next.org/docs/。">https://theme-next.org/docs/。</a></p>
 <h2 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h2><p>如何添加文章呢？只需要使用 Hexo 提供的 new 命令即可，比如要新建一篇 [hello world] 的文章，命令如下：</p>
 <p><code>hexo new hello-world</code></p>
 <p>创建的文章会出现在 <code>source/_posts</code> 文件夹下，是 MarkDown 格式。 在文章开头通过如下格式添加必要信息：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121113650483.png" alt="image-20210121113650483"></p>
-<p>开头下方撰写正文，MarkDown 格式书写即可。 这样在下次编译的时候就会自动识别标题、时间、类别等等，另外还有其他的一些参数设置，可以参考文档：<a href="https://hexo.io/zh-cn/docs/writing.html%E3%80%82">https://hexo.io/zh-cn/docs/writing.html。</a></p>
+<p><img src="image-20210121113650483.png" alt="image-20210121113650483"></p>
+<p>开头下方撰写正文，MarkDown 格式书写即可。 这样在下次编译的时候就会自动识别标题、时间、类别等等，另外还有其他的一些参数设置，可以参考文档：<a href="https://hexo.io/zh-cn/docs/writing.html。">https://hexo.io/zh-cn/docs/writing.html。</a></p>
 <h2 id="标签页"><a href="#标签页" class="headerlink" title="标签页"></a>标签页</h2><p>现在我们的博客只有首页、文章页，如果我们想要增加标签页，可以自行添加，这里 Hexo 也为我们提供了这个功能，在根目录下执行命令：</p>
 <p><code>hexo new page tags</code></p>
 <p>执行这个命令之后会自动帮我们生成一个 source/tags/index.md 文件，内容就只有这样子的：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121114628693.png" alt="image-20210121114628693"></p>
+<p><img src="image-20210121114628693.png" alt="image-20210121114628693"></p>
 <p>我们可以自行添加一个 type 字段来指定页面的类型:</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121114810036.png" alt="image-20210121114810036"></p>
+<p><img src="image-20210121114810036.png" alt="image-20210121114810036"></p>
 <p>然后再在主题的 _config.yml 文件将这个页面的链接添加到主菜单里面，修改 menu 字段如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121115217009.png" alt="image-20210121115217009"></p>
+<p><img src="image-20210121115217009.png" alt="image-20210121115217009"></p>
 <p>这样重新本地启动看下页面状态，效果如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121115311153.png" alt="image-20210121115311153"></p>
+<p><img src="image-20210121115311153.png" alt="image-20210121115311153"></p>
 <h2 id="分类页"><a href="#分类页" class="headerlink" title="分类页"></a>分类页</h2><p>分类功能和标签类似，一个文章可以对应某个分类，如果要增加分类页面可以使用如下命令创建：</p>
 <p><code>hexo new page categories</code></p>
 <p>然后同样地，会生成一个 source/categories/index.md 文件。 我们可以自行添加一个 type 字段来指定页面的类型：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121115650753.png" alt="image-20210121115650753"></p>
+<p><img src="image-20210121115650753.png" alt="image-20210121115650753"></p>
 <p>然后再在主题的 _config.yml 文件将这个页面的链接添加到主菜单里面，修改 menu 字段如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121115927053.png" alt="image-20210121115927053"></p>
+<p><img src="image-20210121115927053.png" alt="image-20210121115927053"></p>
 <p>这样页面就会增加分类的支持，效果如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121120257495.png" alt="image-20210121120257495"></p>
+<p><img src="image-20210121120257495.png" alt="image-20210121120257495"></p>
 <h2 id="搜索页"><a href="#搜索页" class="headerlink" title="搜索页"></a>搜索页</h2><p>很多情况下我们需要搜索全站的内容，所以一个搜索功能的支持也是很有必要的。 如果要添加搜索的支持，需要先安装一个插件，叫做 hexo-generator-searchdb，命令如下：</p>
 <p><code>npm install hexo-generator-searchdb --save</code></p>
 <p>然后在项目的 _config.yml 里面添加搜索设置如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121120626168.png" alt="image-20210121120626168"></p>
+<p><img src="image-20210121120626168.png" alt="image-20210121120626168"></p>
 <p>然后在主题的 _config.yml 里面修改如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121120709093.png" alt="image-20210121120709093"></p>
-<p>这里用的是 Local Search，如果想启用其他是 Search Service 的话可以参考官方文档：<a href="https://theme-next.org/docs/third-party-services/search-services%E3%80%82">https://theme-next.org/docs/third-party-services/search-services。</a></p>
+<p><img src="image-20210121120709093.png" alt="image-20210121120709093"></p>
+<p>这里用的是 Local Search，如果想启用其他是 Search Service 的话可以参考官方文档：<a href="https://theme-next.org/docs/third-party-services/search-services。">https://theme-next.org/docs/third-party-services/search-services。</a></p>
 <h2 id="404页面"><a href="#404页面" class="headerlink" title="404页面"></a>404页面</h2><p>另外还需要添加一个 404 页面，直接在根目录 source 文件夹新建一个 404.md 文件即可，内容可以仿照如下：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121120956169.png" alt="image-20210121120956169"></p>
+<p><img src="image-20210121120956169.png" alt="image-20210121120956169"></p>
 <p>这里面的一些相关信息和链接可以替换成自己的。 增加了这个 404 页面之后就可以 完成了上面的配置基本就完成了大半了，其实 Hexo 还有很多很多功能，这里就介绍不过来了，大家可以直接参考官方文档：<a href="https://hexo.io/zh-cn/docs/">https://hexo.io/zh-cn/docs/</a> 查看更多的配置。</p>
 <h2 id="自定义域名"><a href="#自定义域名" class="headerlink" title="自定义域名"></a>自定义域名</h2><p>将页面修改之后可以用上面的脚本重新部署下博客，其内容便会跟着更新。 另外我们也可以在 GitHub 的 Repository 里面设置域名，找到 Settings，拉到下面，可以看到有个 GitHub Pages 的配置项，如图所示：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121121114011.png" alt="image-20210121121114011"></p>
+<p><img src="image-20210121121114011.png" alt="image-20210121121114011"></p>
 <p>下面有个 custom domain 的选项，输入你想自定义的域名地址，然后添加 CNAME 解析就好了。 另外下面还有一个 Enforce HTTPS 的选项，GitHub Pages 会在我们配置自定义域名之后自动帮我们配置 HTTPS 服务。刚配置完自定义域名的时候可能这个选项是不可用的，一段时间后等到其可以勾选了，直接勾选即可，这样整个博客就会变成 HTTPS 的协议的了。 另外有一个值得注意的地方，如果配置了自定义域名，在目前的情况下，每次部署的时候这个自定义域名的设置是会被自动清除的。所以为了避免这个情况，我们需要在项目目录下面新建一个 CNAME 文件，路径为 source/CNAME，内容就是自定义域名。 比如我就在 source 目录下新建了一个 CNAME 文件，内容为：</p>
-<p><img src="/2021/01/21/%E5%88%A9%E7%94%A8-GitHub-Hexo-Next-%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/image-20210121121223956.png" alt="image-20210121121223956"></p>
+<p><img src="image-20210121121223956.png" alt="image-20210121121223956"></p>
 <p>这样避免了每次部署的时候自定义域名被清除的情况了。 以上就是从零搭建一个 Hexo 博客的流程，希望对大家有帮助。</p>
 <h2 id="live2d"><a href="#live2d" class="headerlink" title="live2d"></a>live2d</h2><p><a href="https://github.com/EYHN/hexo-helper-live2d/blob/HEAD/README.zh-CN.md">详情见</a></p>
 ]]></content>
