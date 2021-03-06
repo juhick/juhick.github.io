@@ -298,7 +298,7 @@ dp(n)=\left\{\begin{array}{r}
   <entry>
     <title>滑动窗口算法解题思路</title>
     <url>/2021/03/06/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%AE%97%E6%B3%95%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/</url>
-    <content><![CDATA[<h1 id="滑动窗口算法"><a href="#滑动窗口算法" class="headerlink" title="滑动窗口算法"></a>滑动窗口算法</h1><p><img src="https://blog.qinhaiqi.com/44f31f99b3c5c33a45cf7867519a031e0c07b3cf.png" alt="img"></p>
+    <content><![CDATA[<h1 id="滑动窗口算法"><a href="#滑动窗口算法" class="headerlink" title="滑动窗口算法"></a>滑动窗口算法</h1><p><img src="44f31f99b3c5c33a45cf7867519a031e0c07b3cf.png" alt="img"></p>
 <a id="more"></a>
 <h2 id="技巧思路"><a href="#技巧思路" class="headerlink" title="技巧思路"></a>技巧思路</h2><p>这个算法技巧的思路非常简单，就是维护一个窗口，不断滑动，然后更新答案么。</p>
 <p>大致逻辑如下：</p>
