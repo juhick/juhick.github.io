@@ -216,10 +216,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-03-06 17:42:10 / 修改时间：19:37:04" itemprop="dateCreated datePublished" datetime="2021-03-06T17:42:10+08:00">2021-03-06</time>
+              <time title="创建时间：2021-03-06 17:42:10" itemprop="dateCreated datePublished" datetime="2021-03-06T17:42:10+08:00">2021-03-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-07 20:56:36" itemprop="dateModified" datetime="2021-03-07T20:56:36+08:00">2021-03-07</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -245,7 +251,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="递归反转链表的一部分"><a href="#递归反转链表的一部分" class="headerlink" title="递归反转链表的一部分"></a>递归反转链表的一部分</h2><h3 id="递归反转整个链表"><a href="#递归反转整个链表" class="headerlink" title="递归反转整个链表"></a>递归反转整个链表</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head.next == null) <span class="keyword">return</span> head;</span><br><span class="line">    ListNode last = reverse(head.next);</span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = null;</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="递归反转链表的一部分（递归）"><a href="#递归反转链表的一部分（递归）" class="headerlink" title="递归反转链表的一部分（递归）"></a>递归反转链表的一部分（递归）</h2><h3 id="递归反转整个链表"><a href="#递归反转整个链表" class="headerlink" title="递归反转整个链表"></a>递归反转整个链表</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode <span class="title">reverse</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (head.next == null) <span class="keyword">return</span> head;</span><br><span class="line">    ListNode last = reverse(head.next);</span><br><span class="line">    head.next.next = head;</span><br><span class="line">    head.next = null;</span><br><span class="line">    <span class="keyword">return</span> last;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/06/%E9%93%BE%E8%A1%A8%E7%9B%B8%E5%85%B3%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF/#more" rel="contents">
