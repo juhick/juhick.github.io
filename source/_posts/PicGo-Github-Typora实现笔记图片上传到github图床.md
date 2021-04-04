@@ -62,4 +62,7 @@ mathjax:
 
 ![](https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png)
 
-但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改
+~~但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改~~
+
+发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可
+
