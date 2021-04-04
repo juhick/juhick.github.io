@@ -26,7 +26,8 @@
 <p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
 <p>进行如下图所示的设置即可</p>
 <p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
-<p>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</p>
+<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
+<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
 ]]></content>
       <tags>
         <tag>个人博客</tag>
