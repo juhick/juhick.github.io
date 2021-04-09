@@ -22,32 +22,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="PicGo+Github+Typora实现笔记图片上传到github图床GIthub新建仓库并获取Token首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的">
+  <meta name="description" content="从前序与中序遍历序列构造二叉树原题链接 题目描述根据一棵树的前序遍历与中序遍历构造二叉树。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PicGo+Github+Typora实现笔记图片上传到github图床">
-<meta property="og:url" content="http://example.com/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/index.html">
+<meta property="og:title" content="从前序与中序遍历序列构造二叉树">
+<meta property="og:url" content="http://example.com/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
 <meta property="og:site_name" content="曾许人间第一流">
-<meta property="og:description" content="PicGo+Github+Typora实现笔记图片上传到github图床GIthub新建仓库并获取Token首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的">
+<meta property="og:description" content="从前序与中序遍历序列构造二叉树原题链接 题目描述根据一棵树的前序遍历与中序遍历构造二叉树。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png">
-<meta property="article:published_time" content="2021-04-03T13:26:29.000Z">
-<meta property="article:modified_time" content="2021-04-04T01:00:41.266Z">
+<meta property="article:published_time" content="2021-04-08T13:31:43.000Z">
+<meta property="article:modified_time" content="2021-04-09T02:19:53.457Z">
 <meta property="article:author" content="juhick">
-<meta property="article:tag" content="个人博客">
-<meta property="article:tag" content="图床">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="树">
+<meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png">
 
-<link rel="canonical" href="http://example.com/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/">
+<link rel="canonical" href="http://example.com/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">
 
 
 <script id="page-configurations">
@@ -60,7 +50,7 @@
   };
 </script>
 
-  <title>PicGo+Github+Typora实现笔记图片上传到github图床 | 曾许人间第一流</title>
+  <title>从前序与中序遍历序列构造二叉树 | 曾许人间第一流</title>
   
 
 
@@ -208,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -221,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PicGo+Github+Typora实现笔记图片上传到github图床
+          从前序与中序遍历序列构造二叉树
         </h1>
 
         <div class="post-meta">
@@ -231,15 +221,28 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-04-03 21:26:29" itemprop="dateCreated datePublished" datetime="2021-04-03T21:26:29+08:00">2021-04-03</time>
+              <time title="创建时间：2021-04-08 21:31:43" itemprop="dateCreated datePublished" datetime="2021-04-08T21:31:43+08:00">2021-04-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-04 09:00:41" itemprop="dateModified" datetime="2021-04-04T09:00:41+08:00">2021-04-04</time>
+                <time title="修改时间：2021-04-09 10:19:53" itemprop="dateModified" datetime="2021-04-09T10:19:53+08:00">2021-04-09</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">树</span></a>
+                </span>
+            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -259,31 +262,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
+        <h1 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a>从前序与中序遍历序列构造二叉树</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">原题链接</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>根据一棵树的前序遍历与中序遍历构造二叉树。</p>
 <a id="more"></a>
-<p>点击用户里的设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
-<p>点击开发者选项</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
-<p>点击个人token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
-<p>点击生成新的token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
-<p>只需要选择repo选项即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
-<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
-<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">PicGo</a>，选择适合自己的版本即可</p>
-<p>安装完成后设置Github图床</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
-<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
-<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
-<p>进行如下图所示的设置即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
-<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
-<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
+<p><strong>注意:</strong></p>
+<p>你可以假设树中没有重复的元素。</p>
+<p>例如，给出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">前序遍历 preorder &#x3D; [3,9,20,15,7]</span><br><span class="line">中序遍历 inorder &#x3D; [9,3,15,20,7]</span><br></pre></td></tr></table></figure>
+<p>返回如下的二叉树：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h3><p>对于任意一颗树而言，前序遍历的形式总是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]</span><br></pre></td></tr></table></figure>
+<p>即根节点总是前序遍历中的第一个节点。而中序遍历的形式总是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]</span><br></pre></td></tr></table></figure>
+<p>前序遍历序列的第一个必定为当前树的树根。每次选前序遍历的第一个作为树根，找到其在中序遍历中的位置，然后就可以获取到左右子树的长度。</p>
+<p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
+<p>具体实现如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> build(preorder, <span class="number">0</span>, preorder.size() - <span class="number">1</span>, inorder, <span class="number">0</span>, inorder.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorder, <span class="keyword">int</span> preStart, <span class="keyword">int</span> preEnd, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorder, <span class="keyword">int</span> inStart, <span class="keyword">int</span> inEnd)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preStart &gt; preEnd)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> rootVal = preorder[preStart];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = inStart; i &lt;= inEnd; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(inorder[i] == rootVal)&#123;</span><br><span class="line">                index = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftSize = index - inStart;</span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> TreeNode(rootVal);</span><br><span class="line"></span><br><span class="line">        root-&gt;left = build(preorder, preStart + <span class="number">1</span>, preStart + leftSize, inorder, inStart, index - <span class="number">1</span>);</span><br><span class="line">        root-&gt;right = build(preorder, preStart + leftSize + <span class="number">1</span>, preEnd, inorder, index + <span class="number">1</span>, inEnd);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="方法二：迭代"><a href="#方法二：迭代" class="headerlink" title="方法二：迭代"></a>方法二：迭代</h3><blockquote>
+<p>对于前序遍历中的任意两个连续节点 <em>u</em> 和 <em>v</em>，根据前序遍历的流程，我们可以知道 <em>u</em> 和<em>v</em> 只有两种可能的关系：</p>
+<ul>
+<li><em>v</em> 是 <em>u</em> 的左儿子。这是因为在遍历到 <em>u</em> 之后，下一个遍历的节点就是 <em>u</em> 的左儿子，即 <em>v</em>；</li>
+<li>u<em>u</em> 没有左儿子，并且 <em>v</em> 是 <em>u</em> 的某个祖先节点（或者 <em>u</em> 本身）的右儿子。如果 <em>u</em> 没有左儿子，那么下一个遍历的节点就是 <em>u</em> 的右儿子。如果 <em>u</em> 没有右儿子，我们就会向上回溯，直到遇到第一个有右儿子（且 <em>u</em> 不在它的右儿子的子树中）的节点 <em>u_a</em>，那么 <em>v</em> 就是 <em>u_a</em> 的右儿子。</li>
+</ul>
+</blockquote>
+<p> 因为前序遍历是根-&gt;左孩子-&gt;右孩子的顺序，所以在树中会向左一直访问到左孩子直到没有左孩子往上再访问右孩子。而中序遍历则是左孩子-&gt;根-&gt;右孩子的顺序，所以第一个访问的就是最左边的左孩子，再依次访问根和右孩子。因此，我们在前序遍历中找到中序的第一个，再往前回退，前序回退时中序往后走，若值仍相等，则说明这一个是前一个的左孩子，然后一直往下走，直到值不同时出现右孩子应在的位置。</p>
+<blockquote>
+<p>我们用一个栈 <code>stack</code> 来维护「当前节点的所有还没有考虑过右儿子的祖先节点」，栈顶就是当前节点。也就是说，只有在栈中的节点才可能连接一个新的右儿子。同时，我们用一个指针 <code>index</code> 指向中序遍历的某个位置，初始值为 <code>0</code>。<code>index</code> 对应的节点是「当前节点不断往左走达到的最终节点」，这也是符合中序遍历的。</p>
+</blockquote>
+<p>具体代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preorder.size() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; stk;</span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> TreeNode(preorder[<span class="number">0</span>]);</span><br><span class="line">        stk.push(root);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; preorder.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> preVal = preorder[i];</span><br><span class="line">            TreeNode* node = stk.top();</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;val != inorder[index])&#123;</span><br><span class="line">                node-&gt;left = <span class="keyword">new</span> TreeNode(preVal);</span><br><span class="line">                stk.push(node-&gt;left);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(!stk.empty() &amp;&amp; stk.top()-&gt;val == inorder[index])&#123;</span><br><span class="line">                    node = stk.top();</span><br><span class="line">                    stk.pop();</span><br><span class="line">                    index++;</span><br><span class="line">                &#125;</span><br><span class="line">                node-&gt;right = <span class="keyword">new</span> TreeNode(preVal);</span><br><span class="line">                stk.push(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -332,8 +340,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="tag"># 个人博客</a>
-              <a href="/tags/%E5%9B%BE%E5%BA%8A/" rel="tag"># 图床</a>
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag"># 数据结构</a>
           </div>
 
         
@@ -341,11 +350,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/" rel="next" title="面试技巧总结">
-      面试技巧总结 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/" rel="prev" title="面试技巧总结">
+      <i class="fa fa-chevron-left"></i> 面试技巧总结
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -405,7 +414,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A"><span class="nav-number">1.</span> <span class="nav-text">PicGo+Github+Typora实现笔记图片上传到github图床</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GIthub%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93%E5%B9%B6%E8%8E%B7%E5%8F%96Token"><span class="nav-number">1.1.</span> <span class="nav-text">GIthub新建仓库并获取Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEPicGo"><span class="nav-number">1.2.</span> <span class="nav-text">设置PicGo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AETypora"><span class="nav-number">1.3.</span> <span class="nav-text">配置Typora</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">从前序与中序遍历序列构造二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">解题思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E9%80%92%E5%BD%92"><span class="nav-number">1.2.1.</span> <span class="nav-text">方法一：递归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E8%BF%AD%E4%BB%A3"><span class="nav-number">1.2.2.</span> <span class="nav-text">方法二：迭代</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -627,7 +636,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'juhick.github.io',
       owner       : 'juhick',
       admin       : ['juhick'],
-      id          : '9b198db90ffac0c8cce0f0b9a8d1bde9',
+      id          : 'e7f4673f56cfb0e623889129415d0805',
         language: 'zh-CN',
       distractionFreeMode: true
     });
