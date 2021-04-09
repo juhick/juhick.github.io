@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-09T02:24:55.922Z</updated>
+  <updated>2021-04-09T06:03:43.389Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>二叉树的层次遍历</title>
+    <link href="http://example.com/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/"/>
+    <id>http://example.com/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</id>
+    <published>2021-04-09T05:46:17.000Z</published>
+    <updated>2021-04-09T06:03:43.389Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="二叉树的层次遍历"><a href="#二叉树的层次遍历" class="headerlink" title="二叉树的层次遍历"></a>二叉树的层次遍历</h1><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">原题链接</a></p><h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/">从上到下打印二叉树</a></p><p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/">从上到下打印二叉树 II</a></p><p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/">从上到下打印二叉树 III</a></p><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个二叉树，请你返回其按 <strong>层序遍历</strong> 得到的节点值。 （即逐层地，从左到右访问所有节点）。</p><a id="more"></a><p><strong>示例：</strong><br>二叉树：<code>[3,9,20,null,null,15,7]</code>,</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure><p>返回其层序遍历结果：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [9,20],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这几个题目的思路相同。都是采用广度优先搜索进行层次遍历，然后将结果存入数组中即可。</p><p>因为有的题目需要按层次进行输出。</p><p>我们可以用一种巧妙的方法修改广度优先搜索：</p><ul><li>首先根元素入队</li><li>当队列不为空的时候<ul><li>求当前队列的长度 <em>s~i~</em></li><li>依次从队列中取 <em>s~i~</em> 个元素进行拓展，然后进入下一次迭代</li></ul></li></ul><p>它和普通广度优先搜索的区别在于，普通广度优先搜索每次只取一个元素拓展，而这里每次取 <em>s~i~</em> 个元素。在上述过程中的第 <em>i</em> 次迭代就得到了二叉树的第 <em>i</em> 层的 <em>s~i~</em> 个元素。</p><h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrder(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> sz = q.size();</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curVec;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; ++i)&#123;</span><br><span class="line">                TreeNode* curNode = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                curVec.push_back(curNode-&gt;val);</span><br><span class="line">                <span class="keyword">if</span>(curNode-&gt;left != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    q.push(curNode-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(curNode-&gt;right != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    q.push(curNode-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res.push_back(curVec);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;二叉树的层次遍历&quot;&gt;&lt;a href=&quot;#二叉树的层次遍历&quot; class=&quot;headerlink&quot; title=&quot;二叉树的层次遍历&quot;&gt;&lt;/a&gt;二叉树的层次遍历&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/binary-tree-level-order-traversal/&quot;&gt;原题链接&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;相关题目&quot;&gt;&lt;a href=&quot;#相关题目&quot; class=&quot;headerlink&quot; title=&quot;相关题目&quot;&gt;&lt;/a&gt;相关题目&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/&quot;&gt;从上到下打印二叉树&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/&quot;&gt;从上到下打印二叉树 II&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/&quot;&gt;从上到下打印二叉树 III&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给你一个二叉树，请你返回其按 &lt;strong&gt;层序遍历&lt;/strong&gt; 得到的节点值。 （即逐层地，从左到右访问所有节点）。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/categories/leetcode/"/>
+    
+    <category term="树" scheme="http://example.com/categories/leetcode/%E6%A0%91/"/>
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+    <category term="树" scheme="http://example.com/tags/%E6%A0%91/"/>
+    
+    <category term="数据结构" scheme="http://example.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>从前序与中序遍历序列构造二叉树</title>
