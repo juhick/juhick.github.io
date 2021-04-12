@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-04-09T14:02:31.948Z</updated>
+  <updated>2021-04-12T02:33:21.236Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最小覆盖子串</title>
+    <link href="http://example.com/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/"/>
+    <id>http://example.com/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</id>
+    <published>2021-04-12T01:36:34.000Z</published>
+    <updated>2021-04-12T02:33:21.236Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><p><a href="https://leetcode-cn.com/problems/minimum-window-substring/">原题链接</a></p><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p><p><strong>注意：</strong>如果 <code>s</code> 中存在这样的子串，我们保证它是唯一的答案。</p><a id="more"></a><p><strong>示例 1：</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;ADOBECODEBANC&quot;, t &#x3D; &quot;ABC&quot;</span><br><span class="line">输出：&quot;BANC&quot;</span><br></pre></td></tr></table></figure><p><strong>示例 2：</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：s &#x3D; &quot;a&quot;, t &#x3D; &quot;a&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br></pre></td></tr></table></figure><p><strong>提示：</strong></p><ul><li><code>1 &lt;= s.length, t.length &lt;= 105</code></li><li><code>s</code> 和 <code>t</code> 由英文字母组成</li></ul><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>该题目可以采用滑动窗口算法，即可清晰简便地完成</p><p>具体步骤：</p><pre><code>1. 用双指针在字符串`S`中标记窗口的位置 2. 扩大窗口直至满足要求，也就是包含`t`中所有字符 3. 缩小窗口直至不满足要求，每次缩小窗口，都更新一下结果 4. 重复2和3直到到达字符串末尾</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; need, window;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c:t)&#123;</span><br><span class="line">            need[c]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, len = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> valid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(right &lt; s.size())&#123;</span><br><span class="line">            <span class="keyword">char</span> cur = s[right++];</span><br><span class="line">            <span class="keyword">if</span>(need.count(cur))&#123;</span><br><span class="line">                window[cur]++;</span><br><span class="line">                <span class="keyword">if</span>(window[cur] == need[cur])</span><br><span class="line">                    valid++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(valid == need.size())&#123;</span><br><span class="line">                <span class="keyword">if</span>(valid == need.size())&#123;</span><br><span class="line">                   <span class="keyword">if</span>(len &gt; right - left)&#123;</span><br><span class="line">                        start = left;</span><br><span class="line">                        len = right - left;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> head = s[left++];</span><br><span class="line">                <span class="keyword">if</span>(need.count(head))&#123;</span><br><span class="line">                    <span class="keyword">if</span>(window[head] == need[head])</span><br><span class="line">                        valid--;</span><br><span class="line">                    window[head]--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (len == INT_MAX) ? <span class="string">&quot;&quot;</span>:s.substr(start, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;最小覆盖子串&quot;&gt;&lt;a href=&quot;#最小覆盖子串&quot; class=&quot;headerlink&quot; title=&quot;最小覆盖子串&quot;&gt;&lt;/a&gt;最小覆盖子串&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/minimum-window-substring/&quot;&gt;原题链接&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;p&gt;给你一个字符串 &lt;code&gt;s&lt;/code&gt; 、一个字符串 &lt;code&gt;t&lt;/code&gt; 。返回 &lt;code&gt;s&lt;/code&gt; 中涵盖 &lt;code&gt;t&lt;/code&gt; 所有字符的最小子串。如果 &lt;code&gt;s&lt;/code&gt; 中不存在涵盖 &lt;code&gt;t&lt;/code&gt; 所有字符的子串，则返回空字符串 &lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注意：&lt;/strong&gt;如果 &lt;code&gt;s&lt;/code&gt; 中存在这样的子串，我们保证它是唯一的答案。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="leetcode" scheme="http://example.com/categories/leetcode/"/>
+    
+    <category term="滑动窗口" scheme="http://example.com/categories/leetcode/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
+    
+    
+    <category term="leetcode" scheme="http://example.com/tags/leetcode/"/>
+    
+    <category term="算法" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="滑动窗口" scheme="http://example.com/tags/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>验证二叉搜索树</title>
