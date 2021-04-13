@@ -171,6 +171,106 @@
       </tags>
   </entry>
   <entry>
+    <title>面试知识点总结</title>
+    <url>/2021/04/12/%E9%9D%A2%E8%AF%95%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="面试知识点总结"><a href="#面试知识点总结" class="headerlink" title="面试知识点总结"></a>面试知识点总结</h1><p>很多是看书时随手记下来的，不一定是面试的时候会问的。</p>
+<a id="more"></a>
+<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h3 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h3><h4 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h4><ol>
+<li>处理时延</li>
+<li>排队时延</li>
+<li>传输时延</li>
+<li>传播时延</li>
+</ol>
+<h3 id="分层体系结构"><a href="#分层体系结构" class="headerlink" title="分层体系结构"></a>分层体系结构</h3><h4 id="因特网协议栈"><a href="#因特网协议栈" class="headerlink" title="因特网协议栈"></a>因特网协议栈</h4><ol>
+<li>应用层<br>包含网络应用程序及<strong>HTTP、SMTP、FTP</strong>等应用层协议<br>信息分组为<strong>报文</strong></li>
+<li>运输层<br>在应用程序端点之间传送应用层报文<br>包括<strong>TCP和UDP</strong>运输协议<br>分组为<strong>报文段</strong></li>
+<li>网络层<br>负责将网络层分组——<strong>数据报</strong>从一台主机移动到另一台主机<br>包括网际协议<strong>IP</strong>以及路由选择协议</li>
+<li>链路层<br>传输网络层下传的数据<br>分组为<strong>帧</strong></li>
+<li>物理层<br>运输帧中的一个个<strong>比特</strong></li>
+</ol>
+<h4 id="OSI模型-开放系统互连模型"><a href="#OSI模型-开放系统互连模型" class="headerlink" title="OSI模型(开放系统互连模型)"></a>OSI模型(开放系统互连模型)</h4><p>包括以上五层，并在应用层和运输层之间添加了表示层和会话层</p>
+<ol>
+<li>表示层：使通信的应用程序能够交换数据的含义<br>包括<strong>数据压缩</strong>、<strong>数据加密</strong>和<strong>数据描述</strong></li>
+<li>会话层：提供数据交换的定界和同步功能，包括建立检查点和恢复方案的方法</li>
+</ol>
+<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><h4 id="网络应用程序体系结构"><a href="#网络应用程序体系结构" class="headerlink" title="网络应用程序体系结构"></a>网络应用程序体系结构</h4><ol>
+<li>客户-服务器体系结构(CS结构)<br>客户相互之间不直接通信<br>服务器具有固定的、周知的IP地址<br>服务器总是打开的<br>主机分为客户和服务器</li>
+<li>P2P(对等)体系结构<br>主机称为对等方<br>对等方为用户所有<br>应用程序在间断连接的主机对之间使用直接通信<br>高度非集中式结构，面临安全性、性能和可靠性等挑战 </li>
+</ol>
+<h4 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h4><p>在两个不同端系统上的进程，通过跨越计算机网络交换<strong>报文</strong>而相互通信。</p>
+<ol>
+<li>客户和服务器进程<br>发起通信的进程被标识为<strong>客户</strong>，在会话开始时等待联系的进程是<strong>服务器</strong></li>
+<li>进程与计算机网络之间的接口<br>进程通过<strong>套接字(Socket)</strong>与网络通信<br>套接字是同一台主机应用层和运输层之间的接口</li>
+<li>进程寻址<br>采用<strong>IP地址</strong>+<strong>端口号</strong></li>
+</ol>
+<h4 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h4><p>Web的应用层协议是超文本传输协议(HyperText Transfer Protocol, HTTP)，它是Web的核心。</p>
+<p>Web页面(也叫文档)由对象组成。一个对象只是一个文件，且可以通过URL地址进行寻址。</p>
+<p>多数Web页面含有一个HTML基本文件以及几个引用对象。</p>
+<h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><p>HTTP定义了Web客户向Web服务器请求Web页面的方式，以及服务器向客户传送Web页面的方式。</p>
+<p>HTTP使用TCP作为它的支撑运输协议。</p>
+<p>HTTP是<strong>无状态协议</strong>，不保存用户的任何信息。</p>
+<p>HTTP默认使用持续连接，也支持非持续连接。</p>
+<h5 id="采用非持续连接的HTTP"><a href="#采用非持续连接的HTTP" class="headerlink" title="采用非持续连接的HTTP"></a>采用非持续连接的HTTP</h5><p>每个TCP连接在服务器发送一个对象后关闭，即该连接并不为其他的对象而持续下来。</p>
+<p>每个TCP连接只传输一个请求报文和一个响应报文。</p>
+<p>在默认方式下，大部分浏览器打开5~10个并行的TCP连接。用户可以配置浏览器来控制量级的并行度。</p>
+<p>假定Web页面有一个HTML基本文件和10个JPEG图形，并且这11个对象位于同一台服务器上。假设该HTML文件的地址为:<code>http://www.example.com/some/index.html</code>。</p>
+<ol>
+<li>HTTP客户进程在端口号80发起一个到服务器<code>www.example.com</code>的TCP连接。在客户和服务器上分别有一个套接字与该连接相关联。(该过程涉及一次“三次握手”过程，并且第三次握手与下一步中的请求报文相结合)。</li>
+<li>HTTP客户经由它的套接字向该服务器发送一个HTTP请求报文。请求报文中包含了路径名<code>/some/index.html</code>。</li>
+<li>HTTP服务器进程经它的套接字接收该请求报文，从存储器(RAM或磁盘)中检索出对象<code>www.example.com/some/index.html</code>，在一个HTTP响应报文中封装对象，并通过其套接字向客户发送响应报文。</li>
+<li>HTTP服务器进程通知TCP断开该TCP连接。(直到TCP确认客户完整地接收到响应报文为止，它才会实际中断连接。)</li>
+<li>HTTP客户端接收响应报文，TCP连接关闭。该报文指出封装的对象是一个HTML文件，客户从响应报文中提取出该文件，检查该HTML文件，得到对10个JPEG图形的引用。</li>
+<li>对每个引用的JPEG对象重复前四个步骤。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>必须为每一个请求的对象建立和维护一个全新的连接。对于每个这样的连接，在客户和服务器中都要分配TCP的缓冲区和保持TCP变量，为Web服务器带来了严重的负担。</li>
+<li>每一个对象都要经受两倍RTT的交付时延。</li>
+</ol>
+<h5 id="采用持续连接的HTTP"><a href="#采用持续连接的HTTP" class="headerlink" title="采用持续连接的HTTP"></a>采用持续连接的HTTP</h5><p>服务器在发送响应后保持该TCP连接打开，后续的请求和响应报文可以通过相同的连接进行传送。</p>
+<p>一般来说，如果一个连接经过一段时间间隔(可配置的时间间隔)仍未被使用，HTTP服务器就关闭该连接。</p>
+<h5 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h5><p>下面是一个典型的HTTP请求报文</p>
+<figure class="highlight http"><table><tr><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/somedir/page.html</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>www.someschool.edu //指明了对象所在的主机</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close //指明不使用持续连接</span><br><span class="line"><span class="attribute">User-agent</span><span class="punctuation">: </span>Mozilia/5.0 //指名向服务器发送请求的浏览器的类型</span><br><span class="line"><span class="attribute">Accept-language</span><span class="punctuation">: </span>fr //表示用户想要得到的语言版本</span><br></pre></td></tr></table></figure>
+<p>第一行为请求行，包括三个字段：方法字段、URL字段和HTTP版本字段。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210413165620.png" alt="6D912A7180EBEAC28FE14650C189B3EB"></p>
+<p>上面是一个HTTP请求报文的通用格式</p>
+<p>在首部行之后还有一个“实体体”，使用GET方法时实体体为空，使用POST方法时才使用该实体体。</p>
+<h5 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h5><p>下面是一条典型的HTTP响应报文，该响应报文是对刚刚讨论的例子中的请求报文的响应。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="meta">HTTP/1.1</span> <span class="number">200</span> OK</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close //告诉客户，发送完报文后将关闭该TCP连接</span><br><span class="line"><span class="attribute">Date</span><span class="punctuation">: </span>Tue, 18 Aug 2015 15:44:04 GMT //服务器产生并发送该响应报文的日期和时间</span><br><span class="line"><span class="attribute">Server</span><span class="punctuation">: </span>Apache/2.2.3 (CentOS) //指名服务器的类型</span><br><span class="line"><span class="attribute">Last-Modified</span><span class="punctuation">: </span>Tue, 18 Aug 2015 15:11:03 GMT //对象创建或最后修改的日期和时间</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>6821 //指示了被发送对象中的字节数</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>text/html //指名实体体中的对象类型</span><br><span class="line"></span><br><span class="line">(data data data data ...)</span><br></pre></td></tr></table></figure>
+<p>包含一个初始状态行，包括协议版本字段、状态码和相应状态信息</p>
+<p>6个首部行</p>
+<p>然后是实体体</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210413174044.png" alt="9EA6171716E8F8273B15D1951160A44C"></p>
+<p>上图是一个HTTP响应报文的通用格式</p>
+<p>常见的状态码和相关的短语：</p>
+<ul>
+<li>200 OK：请求成功，信息在返回的响应报文中</li>
+<li>301 Moved Permanently：请求的对象已经被永久转移了，新的URL定义在响应报文的Location：首部行中。客户软件将自动获取新的URL。</li>
+<li>400 Bad Request：一个通用的差错代码，指示该请求不能被服务器理解。</li>
+<li>404 Not Found：被请求的文档不在服务器上</li>
+<li>505 HTTP Version Not Supported：服务器不支持请求报文使用的HTTP协议版本</li>
+</ul>
+<h5 id="用户与服务器的交互：Cookie"><a href="#用户与服务器的交互：Cookie" class="headerlink" title="用户与服务器的交互：Cookie"></a>用户与服务器的交互：Cookie</h5><p>HTTP使用cookie来对用户进行追踪。</p>
+<p>Cookie用四个组件;</p>
+<ol>
+<li>在HTTP响应报文中的一个cookie首部行</li>
+<li>在HTTP请求报文中的一个cookie首部行</li>
+<li>在用户端系统中保留有一个cookie文件，并由用户的浏览器进行管理</li>
+<li>位于Web站点的一个后端数据库</li>
+</ol>
+<p>用户首次请求网站时，服务器会产生一个唯一识别码，并以此为索引在它的后端数据库中产生一个表项。接下来服务器用一个包含Set-cookie：首部的HTTP响应报文对用户的浏览器进行响应。其中Set-cookie首部含有该识别码。</p>
+<p>用户的浏览器收到该HTTP响应报文后，会看到Set-cookie首部。浏览器会在它管理的特定cookie文件中添加一行，该行包括服务器的主机名和在Set-cookie首部中的识别码。</p>
+<p>当用户再次范围网站时，浏览器会查询该cookie文件并提取出该网站的识别码，并放到HTTP请求报文中包括识别码的cookie首部行中。</p>
+<p>服务器就可以根据该识别码跟踪用户在站点的活动。</p>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>验证二叉搜索树</title>
     <url>/2021/04/09/%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
     <content><![CDATA[<h1 id="验证二叉搜索树"><a href="#验证二叉搜索树" class="headerlink" title="验证二叉搜索树"></a>验证二叉搜索树</h1><p><a href="[验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/">原题链接</a>)</p>
