@@ -35,43 +35,6 @@
       </tags>
   </entry>
   <entry>
-    <title>二叉树的层次遍历</title>
-    <url>/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</url>
-    <content><![CDATA[<h1 id="二叉树的层次遍历"><a href="#二叉树的层次遍历" class="headerlink" title="二叉树的层次遍历"></a>二叉树的层次遍历</h1><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">原题链接</a></p>
-<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/">从上到下打印二叉树</a></p>
-<p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/">从上到下打印二叉树 II</a></p>
-<p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/">从上到下打印二叉树 III</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个二叉树，请你返回其按 <strong>层序遍历</strong> 得到的节点值。 （即逐层地，从左到右访问所有节点）。</p>
-<a id="more"></a>
-<p><strong>示例：</strong><br>二叉树：<code>[3,9,20,null,null,15,7]</code>,</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<p>返回其层序遍历结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [9,20],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这几个题目的思路相同。都是采用广度优先搜索进行层次遍历，然后将结果存入数组中即可。</p>
-<p>因为有的题目需要按层次进行输出。</p>
-<p>我们可以用一种巧妙的方法修改广度优先搜索：</p>
-<ul>
-<li>首先根元素入队</li>
-<li>当队列不为空的时候<ul>
-<li>求当前队列的长度 <em>s~i~</em></li>
-<li>依次从队列中取 <em>s~i~</em> 个元素进行拓展，然后进入下一次迭代</li>
-</ul>
-</li>
-</ul>
-<p>它和普通广度优先搜索的区别在于，普通广度优先搜索每次只取一个元素拓展，而这里每次取 <em>s~i~</em> 个元素。在上述过程中的第 <em>i</em> 次迭代就得到了二叉树的第 <em>i</em> 层的 <em>s~i~</em> 个元素。</p>
-<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrder(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> sz = q.size();</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curVec;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; ++i)&#123;</span><br><span class="line">                TreeNode* curNode = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                curVec.push_back(curNode-&gt;val);</span><br><span class="line">                <span class="keyword">if</span>(curNode-&gt;left != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    q.push(curNode-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(curNode-&gt;right != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    q.push(curNode-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res.push_back(curVec);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-        <category>树</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>从前序与中序遍历序列构造二叉树</title>
     <url>/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a>从前序与中序遍历序列构造二叉树</h1><p><a href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">原题链接</a></p>
@@ -116,6 +79,43 @@
       </tags>
   </entry>
   <entry>
+    <title>二叉树的层次遍历</title>
+    <url>/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</url>
+    <content><![CDATA[<h1 id="二叉树的层次遍历"><a href="#二叉树的层次遍历" class="headerlink" title="二叉树的层次遍历"></a>二叉树的层次遍历</h1><p><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">原题链接</a></p>
+<h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/">从上到下打印二叉树</a></p>
+<p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/">从上到下打印二叉树 II</a></p>
+<p><a href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-iii-lcof/">从上到下打印二叉树 III</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个二叉树，请你返回其按 <strong>层序遍历</strong> 得到的节点值。 （即逐层地，从左到右访问所有节点）。</p>
+<a id="more"></a>
+<p><strong>示例：</strong><br>二叉树：<code>[3,9,20,null,null,15,7]</code>,</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<p>返回其层序遍历结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  [3],</span><br><span class="line">  [9,20],</span><br><span class="line">  [15,7]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这几个题目的思路相同。都是采用广度优先搜索进行层次遍历，然后将结果存入数组中即可。</p>
+<p>因为有的题目需要按层次进行输出。</p>
+<p>我们可以用一种巧妙的方法修改广度优先搜索：</p>
+<ul>
+<li>首先根元素入队</li>
+<li>当队列不为空的时候<ul>
+<li>求当前队列的长度 <em>s~i~</em></li>
+<li>依次从队列中取 <em>s~i~</em> 个元素进行拓展，然后进入下一次迭代</li>
+</ul>
+</li>
+</ul>
+<p>它和普通广度优先搜索的区别在于，普通广度优先搜索每次只取一个元素拓展，而这里每次取 <em>s~i~</em> 个元素。在上述过程中的第 <em>i</em> 次迭代就得到了二叉树的第 <em>i</em> 层的 <em>s~i~</em> 个元素。</p>
+<h2 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h2><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrder(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="built_in">queue</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> sz = q.size();</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; curVec;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz; ++i)&#123;</span><br><span class="line">                TreeNode* curNode = q.front();</span><br><span class="line">                q.pop();</span><br><span class="line">                curVec.push_back(curNode-&gt;val);</span><br><span class="line">                <span class="keyword">if</span>(curNode-&gt;left != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    q.push(curNode-&gt;left);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(curNode-&gt;right != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    q.push(curNode-&gt;right);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res.push_back(curVec);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>最小覆盖子串</title>
     <url>/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</url>
     <content><![CDATA[<h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><p><a href="https://leetcode-cn.com/problems/minimum-window-substring/">原题链接</a></p>
@@ -147,27 +147,6 @@
         <tag>leetcode</tag>
         <tag>算法</tag>
         <tag>滑动窗口</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>面试技巧总结</title>
-    <url>/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="面试技巧总结"><a href="#面试技巧总结" class="headerlink" title="面试技巧总结"></a>面试技巧总结</h1><h2 id="央视新闻微博发的面试技巧"><a href="#央视新闻微博发的面试技巧" class="headerlink" title="央视新闻微博发的面试技巧"></a>央视新闻微博发的面试技巧</h2><a id="more"></a>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212021.jpg" alt="微信图片_20210408211903"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212034.jpg" alt="微信图片_20210408211909"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212045.jpg" alt="微信图片_20210408211912"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212129.jpg" alt="微信图片_20210408211915"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212138.jpg" alt="微信图片_20210408211917"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212157.jpg" alt="微信图片_20210408211920"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212204.jpg" alt="微信图片_20210408211922"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212211.jpg" alt="微信图片_20210408211925"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408211951.jpg" alt="微信图片_20210408211927"></p>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
       </tags>
   </entry>
   <entry>
@@ -262,6 +241,135 @@
 <p>用户的浏览器收到该HTTP响应报文后，会看到Set-cookie首部。浏览器会在它管理的特定cookie文件中添加一行，该行包括服务器的主机名和在Set-cookie首部中的识别码。</p>
 <p>当用户再次范围网站时，浏览器会查询该cookie文件并提取出该网站的识别码，并放到HTTP请求报文中包括识别码的cookie首部行中。</p>
 <p>服务器就可以根据该识别码跟踪用户在站点的活动。</p>
+<h4 id="HTTP与SMTP的对比"><a href="#HTTP与SMTP的对比" class="headerlink" title="HTTP与SMTP的对比"></a>HTTP与SMTP的对比</h4><p>相同之处：</p>
+<ol>
+<li>都是从一台主机向另一台主机发送文件</li>
+<li>持续的HTTP和SMTP都使用持续连接</li>
+</ol>
+<p>区别：</p>
+<ol>
+<li>HTTP主要是一个<strong>拉协议</strong>，用户从服务器拉取信息。TCP连接是由想接受文件的机器发起的。<br>SMTP主要是一个<strong>推协议</strong>，发送邮件服务器把文件推向接收邮件服务器。TCP连接由要发送文件的机器发起。</li>
+<li>SMTP要求每个报文（包括他们的体）采用7比特ASCII码格式。<br>HTTP不受这种限制。</li>
+<li>HTTP把每个对象封装到它自己的HTTP响应报文中。<br>SMTP则把所有报文对象放在一个报文之中。</li>
+</ol>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><h5 id="DNS提供的服务"><a href="#DNS提供的服务" class="headerlink" title="DNS提供的服务"></a>DNS提供的服务</h5><ol>
+<li>将主机名解析为IP地址</li>
+<li>主机别名</li>
+<li>邮件服务器别名</li>
+<li>负载分配，一个IP地址集合与一个规范主机名相联系，DNS在这些冗余的Web服务器之间循环分配了负载。</li>
+</ol>
+<h5 id="三层DNS服务器"><a href="#三层DNS服务器" class="headerlink" title="三层DNS服务器"></a>三层DNS服务器</h5><ol>
+<li>根DNS服务器</li>
+<li>TLD DNS服务器</li>
+<li>权威DNS服务器</li>
+</ol>
+<h5 id="DNS记录"><a href="#DNS记录" class="headerlink" title="DNS记录"></a>DNS记录</h5><p>资源记录RR：</p>
+<p>​    <code>(Name, Value, Type, TTL)</code>，TTL是该记录的生存时间，它决定了资源记录应当从缓存中删除的时间。</p>
+<p>记录类型：</p>
+<p><code>Type = A</code>，则<code>Name</code>是主机名，<code>Value</code>是该主机名对应的IP地址。提供了标准的主机名到IP地址的映射。</p>
+<p><code>Type = NS</code>，则<code>Name</code>是个域，如(<code>foo.com</code>)，而<code>Value</code>是个知道如何获得该域中主机IP地址的权威DNS服务器的主机名。该记录用于沿着查询链来路由DNS查询。</p>
+<p><code>Type = CNAME</code>，则<code>Value</code>是别名为<code>Name</code>的主机对应的规范主机名。该记录能够向查询的主机提供一个主机名对应的规范主机名。</p>
+<p><code>Type = MX</code>，则<code>Value</code>是个别名为<code>Name</code>的邮件服务器的规范主机名。MX记录允许邮件服务器主机名有简单的别名。通过MX记录，一个公司的邮件服务器和其他服务器可以使用相同的别名。</p>
+<h4 id="DoS"><a href="#DoS" class="headerlink" title="DoS"></a>DoS</h4><p>DoS称为拒绝服务攻击，DDoS是<strong>分布式DoS</strong>。</p>
+<p>Dos的种类：</p>
+<ol>
+<li>弱点攻击</li>
+<li>带宽洪泛：发送大量分组</li>
+<li>连接洪泛：创建大量的半开或全开的TCP连接</li>
+</ol>
+<h3 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h3><h4 id="多路复用和多路分解"><a href="#多路复用和多路分解" class="headerlink" title="多路复用和多路分解"></a>多路复用和多路分解</h4><p>多路复用和多路分解是所有计算机网络需要的。</p>
+<p>将运输层报文段中的数据交付到争取的套接字的工作称为<strong>多路分解</strong>。</p>
+<p>在源主机从不同套接字中手机数据块，并为每个数据块封装上首部信息（这将在以后用于分解）从而生成报文段，然后将报文段传递到网络层，所有这些工作称为<strong>多路复用</strong>。</p>
+<h4 id="无连接运输：UDP"><a href="#无连接运输：UDP" class="headerlink" title="无连接运输：UDP"></a>无连接运输：UDP</h4><p>UDP除了复用/分解功能及少量的差错检测外，几乎没有对IP增加别的东西。</p>
+<p>UDP首部只有8字节。</p>
+<p>UDP的特点：</p>
+<ol>
+<li><p>关于发送什么数据以及何时发送的应用层控制更为精细。</p>
+</li>
+<li><p>无须建立连接，不会引入建立连接的时延。</p>
+</li>
+<li><p>无连接状态。</p>
+</li>
+<li><p>分组首部开销小。每个TCP报文段都有20字节的首部开销，而UDP仅有8字节的开销。</p>
+</li>
+</ol>
+<h4 id="回退N步（GBN）协议"><a href="#回退N步（GBN）协议" class="headerlink" title="回退N步（GBN）协议"></a>回退N步（GBN）协议</h4><p>允许发送方发送多个分组（当有多个分组可用时）而不需等待确认，但它也受限于在流水线中未确认的分组数不能超过某个最大允许数N。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210415171754.png" alt="5AAF2F098550DD15DAEAD1395B9EE20E"></p>
+<p>在实践中，一个分组的序号承载在分组首部的一个固定长度的字段中。如果分组序号字段的比特数是<code>k</code>，则该序号范围是<code>[0, 2^k - 1]</code>。</p>
+<p>GBN发送方必须响应三种类型的事件：</p>
+<ul>
+<li>上层的调用。窗口未满则产生一个分组并将其发送，并相应地更新变量。</li>
+<li>收到一个ACK。对序号为n的分组的确认采用<strong>累计确认</strong>的方式，表明接收方已正确接收到序号为n的以前且包括n在内的所有分组。</li>
+<li>超时事件。出现超时，发送方重传所有已发送但还未确认的分组。</li>
+</ul>
+<p>接收方的动作也很简单。如果一个序号为n的分组被接收到，并且按序（即上次交付给上层的数据是序号为n - 1的分组），则接收方为分组n发送一个ACK，并将该分组中的数据部分交付给上层。在所有其他情况下，接收方丢弃该分组，并为最近按序接收的分组重新发送ACK。注意到因为一次交付给上层一个分组，如果分组k已接受并交付，则所有序号比k小的分组也已经交付。</p>
+<p>在GBN协议中，接收方丢弃所有失序分组。这样接收方将不用缓存任何失序分组。</p>
+<h5 id="用到的可靠数据传输技术"><a href="#用到的可靠数据传输技术" class="headerlink" title="用到的可靠数据传输技术"></a>用到的可靠数据传输技术</h5><ol>
+<li>使用序号</li>
+<li>累计确认</li>
+<li>校验和</li>
+<li>超时/重传</li>
+</ol>
+<h4 id="选择重传（SR）"><a href="#选择重传（SR）" class="headerlink" title="选择重传（SR）"></a>选择重传（SR）</h4><p>选择重传协议通过让发送方仅重传那些它怀疑在接收方出错（即丢失或受损）的分组而避免了不必要的重传。这种个别的、按需的重传要求接收方<em>逐个地</em>确认正确接受的分组。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210415201234.png" alt="0183CCAA4C3B00781FE49AF39B465D43"></p>
+<p>SR发送方的事件与动作：</p>
+<ol>
+<li>从上层收到数据。检查下一个可用于该分组的序号，如果序号在发送方的窗口内，则将数据打包并发送。</li>
+<li>超时。每个分组有自己的逻辑定时器。超时发生时只能发送一个分组。</li>
+<li>收到ACK。倘若该分组序号在窗口内，则发送方将被确认的分组标记为已接收。如果该分组的序号等于send_base，则窗口基序号向前移动到具有最小序号的未确认分组处。如果窗口移动了且有序号落在窗口内的未发送分组，则发送这些分组。</li>
+</ol>
+<p>SR接收方的事件与动作：</p>
+<ol>
+<li>序号在[rcv_base, rcv_base + N - 1]内的分组被正确接收。一个选择ACK被回送给发送方。如果该分组以前没收到过，则缓存该分组。如果分组的序号等于接收窗口的基序号（如上图的rcv_base），则该分组以及以前缓存的序号连续的（起始于rcv_base的）分组交付给上层。然后，接收窗口按向前移动分组的编号向上交付这些分组。</li>
+<li>序号在[rcv_base - N, rcv_base - 1]内的分组被正确收到。在此情况下，必须产生一个ACK，即使该分组是接收方之前已经确认过的分组。</li>
+<li>其他情况。忽略该分组。</li>
+</ol>
+<h4 id="可靠数据传输机制"><a href="#可靠数据传输机制" class="headerlink" title="可靠数据传输机制"></a>可靠数据传输机制</h4><ol>
+<li>检验和</li>
+<li>定时器</li>
+<li>序号</li>
+<li>确认</li>
+<li>否定确认</li>
+<li>窗口、流水线</li>
+</ol>
+<h4 id="面向连接的运输：TCP"><a href="#面向连接的运输：TCP" class="headerlink" title="面向连接的运输：TCP"></a>面向连接的运输：TCP</h4><p>TCP依赖于差错检测、重传、累计确认、定时器以及用于序号和确认号的首部字段。</p>
+<p>TCP的首部字节一般是20字节。</p>
+<p>特点：</p>
+<ol>
+<li><strong>面向连接</strong>，连接组成：一台主机上的缓存、变量和与进程连接的套接字以及另一台主机上的另一组缓存、变量和与进程连接的套接字。</li>
+<li>提供的是<strong>全双工服务</strong></li>
+<li>TCP连接总是<strong>点对点</strong>的，即在单个发送方和单个接收方之间的连接。</li>
+</ol>
+<h5 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h5><ol>
+<li>客户首先发送给一个特殊的TCP报文段</li>
+<li>服务器用另一个特殊的TCP报文段响应</li>
+<li>客户再用第三个特殊报文段作为回应</li>
+</ol>
+<p>前两个报文段不承载“有效载荷”，也就是不包含应用层数据。第三个报文段可以承载有效载荷。</p>
+<h6 id="MSS"><a href="#MSS" class="headerlink" title="MSS"></a>MSS</h6><p>MSS即<strong>最大报文段长度</strong>，MSS是指在报文段里应用层数据的最大长度，而不是指包括首部的TCP报文段的最大长度。</p>
+<p>MSS通常根据最初确定的由本地发送主句发送的最大链路层帧长度（即所谓的<strong>最大传输单元</strong>（MTU））来设置。设置MSS要保证一个TCP报文段（当封装在一个IP数据报中）加上TCP/IP长度（通常为40字节）将适合单个链路层帧。</p>
+<p>以太网和PPP链路层协议都有1500字节的MTU，因此MSS的典型值为1460字节。</p>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试技巧总结</title>
+    <url>/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="面试技巧总结"><a href="#面试技巧总结" class="headerlink" title="面试技巧总结"></a>面试技巧总结</h1><h2 id="央视新闻微博发的面试技巧"><a href="#央视新闻微博发的面试技巧" class="headerlink" title="央视新闻微博发的面试技巧"></a>央视新闻微博发的面试技巧</h2><a id="more"></a>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212021.jpg" alt="微信图片_20210408211903"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212034.jpg" alt="微信图片_20210408211909"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212045.jpg" alt="微信图片_20210408211912"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212129.jpg" alt="微信图片_20210408211915"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212138.jpg" alt="微信图片_20210408211917"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212157.jpg" alt="微信图片_20210408211920"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212204.jpg" alt="微信图片_20210408211922"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212211.jpg" alt="微信图片_20210408211925"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408211951.jpg" alt="微信图片_20210408211927"></p>
 ]]></content>
       <categories>
         <category>面试</category>
