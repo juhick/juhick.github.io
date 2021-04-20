@@ -1,40 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
-    <url>/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/</url>
-    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
-<a id="more"></a>
-<p>点击用户里的设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
-<p>点击开发者选项</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
-<p>点击个人token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
-<p>点击生成新的token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
-<p>只需要选择repo选项即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
-<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
-<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
-<p>安装完成后设置Github图床</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
-<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
-<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
-<p>进行如下图所示的设置即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
-<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
-<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
-]]></content>
-      <tags>
-        <tag>个人博客</tag>
-        <tag>图床</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>二叉树的层次遍历</title>
     <url>/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</url>
     <content><![CDATA[<h1 id="二叉树的层次遍历"><a href="#二叉树的层次遍历" class="headerlink" title="二叉树的层次遍历"></a>二叉树的层次遍历</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmluYXJ5LXRyZWUtbGV2ZWwtb3JkZXItdHJhdmVyc2FsLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
@@ -69,6 +35,40 @@
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
+    <url>/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
+<a id="more"></a>
+<p>点击用户里的设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
+<p>点击开发者选项</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
+<p>点击个人token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
+<p>点击生成新的token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
+<p>只需要选择repo选项即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
+<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
+<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
+<p>安装完成后设置Github图床</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
+<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
+<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
+<p>进行如下图所示的设置即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
+<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
+<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
+]]></content>
+      <tags>
+        <tag>个人博客</tag>
+        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
