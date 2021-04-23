@@ -33,8 +33,12 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210413174044.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210415171754.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210415201234.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422220405.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422221225.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423100106.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423101154.png">
 <meta property="article:published_time" content="2021-04-22T06:25:41.000Z">
-<meta property="article:modified_time" content="2021-04-22T06:28:50.873Z">
+<meta property="article:modified_time" content="2021-04-23T02:46:38.212Z">
 <meta property="article:author" content="秦海祺">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="计算机网络">
@@ -224,10 +228,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-04-22 14:25:41 / 修改时间：14:28:50" itemprop="dateCreated datePublished" datetime="2021-04-22T14:25:41+08:00">2021-04-22</time>
+              <time title="创建时间：2021-04-22 14:25:41" itemprop="dateCreated datePublished" datetime="2021-04-22T14:25:41+08:00">2021-04-22</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-23 10:46:38" itemprop="dateModified" datetime="2021-04-23T10:46:38+08:00">2021-04-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -464,6 +474,188 @@
 <li>拥塞避免<br>每个RTT只将cwnd的值增加一个MSS。一种通用的方式是对于TCP发送方无论何时到达一个新的确认，就将cwnd增加一个MSS（MSS/cwnd）字节。<br>出现超时事件则将ssthresh设置为cwnd的一半，cwnd设置为1，进入慢启动状态。ssthresh = cwnd/2，cwnd = ssthresh。<br>出现三个冗余ACK，则将ssthresh设置为cwnd的一半，cwnd设置为ssthresh + 3*MSS，并进入快速恢复阶状态</li>
 <li>快速恢复<br>对收到的每个冗余的ACK，cwnd的值增加一个MSS。<br>当对丢失报文段的一个ACK到达时，TCP在降低cwnd（降为ssthresh）后进入拥塞避免状态。<br>出现超时事件，则采取跟另两个状态相同的操作并进入慢启动状态。<br>快速恢复时TCP推荐的而非必须的构件。</li>
 </ol>
+<h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><ul>
+<li><strong>应用层：</strong>由用户自己规定，<strong>规定各个应用之间消息传递的形式</strong>等，包括各机互访协议，分布式数据库协议等。常见的应用层协议有HTTP协议、SMTP协议和FTP协议等。</li>
+<li><strong>表示层：</strong>在满足用户需求的基础上，尽可能的节省传输费用而设置的，比如传输压缩文件，jpeg或者加密文件等格式。</li>
+<li><strong>会话层：</strong>用于建立和拆除会话。</li>
+<li><strong>传输层：</strong>负责将来自会话层的消息传递给网络层，<strong>常见的传输层协议有TCP和UDP等协议。</strong></li>
+<li><strong>网络层：</strong>规定通信网内的路由选择等方式，建立用户间的信息报传输设施。常见的网络层协议有IP，ICMP以及ARP等协议。</li>
+<li><strong>数据链路层：</strong>与建立数据传输链路相关。</li>
+<li><strong>物理层：</strong>规定一些机电性能，也包括工作方式如双工、单工或半双工，建立通信的启动和终止等。</li>
+</ul>
+<h3 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h3><p>TCP/IP协议是一系列网络协议的总称，是网络通信的基本骨架。TCP/IP协议模型在OSI七层模型的基础上，通过合并的方式，简化为<strong>四层</strong>，分别为<strong>应用层，传输层，网络层以及链路层</strong>。</p>
+<p>我们通常的应用程序都工作在应用层，当各个应用之间通信时，传输层的TCP模块负责给HTTP数据添加TCP头部等信息；网络层的IP模块负责给HTTP数据添加IP头部等信息；链路层添加以太网首部等信息，并且通过电信号来传输数据包；然后数据包会依次经过对方的链路层，网络层，传输层以及应用层，实现数据的通信。</p>
+<h4 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h4><p>IP协议制定了一套网络地址，也就是IP地址，根据IP协议能够区分两台主机是否同属一个网络（子网）。</p>
+<h4 id="ARP协议（地址解析协议）："><a href="#ARP协议（地址解析协议）：" class="headerlink" title="ARP协议（地址解析协议）："></a>ARP协议（地址解析协议）：</h4><p>根据IP地址获取MAC地址，将目标的IP地址在链路层进行包装，生成以太网数据包，在同一个子网内进行广播出去，各个主机拿到IP地址和自己的IP地址对比，若一样，则返回自己的MAC地址。注意，MAC地址与对应的IP地址存入本机ARP缓存中并保留一定时间。</p>
+<h4 id="路由协议："><a href="#路由协议：" class="headerlink" title="路由协议："></a>路由协议：</h4><p>ARP的寻址必须是在同一个子网内，我们可以通过IP协议来确定是否是同一个子网。如果不是同一个子网，则通过网关将数据包多次转发到对应的子网中，完成这个路由协议的物理设备就是路由器。</p>
+<h4 id="三次握手流程图"><a href="#三次握手流程图" class="headerlink" title="三次握手流程图"></a>三次握手流程图</h4><p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422220405.png" alt="图片说明"></p>
+<p>客户端经历了Close-&gt;SYN_SENT-&gt;ESTABLISHED的状态变化；</p>
+<p>服务端经历了Close-&gt;Listen-&gt;SYN_RCVD-&gt;EATABLISHED的状态变化。</p>
+<h4 id="四次挥手的状态流程图："><a href="#四次挥手的状态流程图：" class="headerlink" title="四次挥手的状态流程图："></a>四次挥手的状态流程图：</h4><p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422221225.png" alt="图片说明"></p>
+<p><strong>客户端经历的状态变化为：</strong><br>    ESTABLISHED-&gt;FIN_WAIT_1-&gt;FIN_WAIT_2-&gt;TIME_WAIT-&gt;CLOSE</p>
+<p><strong>服务端经历的状态变化为：</strong><br>    ESTABLISHED-&gt;CLOSE_WAIT-&gt; LAST_ACK-&gt;CLOSE</p>
+<h3 id="常见的HTTP-Code有哪些？"><a href="#常见的HTTP-Code有哪些？" class="headerlink" title="常见的HTTP Code有哪些？"></a>常见的HTTP Code有哪些？</h3><ul>
+<li>1xx（临时响应）</li>
+<li>2xx（成功）</li>
+<li>3xx（重定向）：表示要完成请求需要进一步操作</li>
+<li>4xx（错误）：表示请求可能出错，妨碍了服务器的处理</li>
+<li>5xx（服务器错误）：表示服务器在尝试处理请求时发生内部错误</li>
+</ul>
+<h3 id="常见HTTP协议的状态码"><a href="#常见HTTP协议的状态码" class="headerlink" title="常见HTTP协议的状态码"></a>常见HTTP协议的状态码</h3><ul>
+<li>200（成功）</li>
+<li>302 （重定向）：请求重定向到指定网页</li>
+<li>304（未修改）：自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容</li>
+<li>400：访问的页面域名不存在或者请求错误</li>
+<li>401（未授权）：请求要求身份验证</li>
+<li>403（禁止）：服务器拒绝请求（比如死循环了，一直访问）</li>
+<li>404（未找到）：服务器找不到请求的网页</li>
+<li>405 （方法禁用）:Post请求当成了Get请求直接访问</li>
+<li>500 （服务器内部错误）：有bug导致程序嗝屁了</li>
+<li>502 （错误网关）：服务器从上游接到了无效响应</li>
+<li>504 （ 网关超时）：nginx请求超时，请求一直没有返回</li>
+<li>505：HTTP版本不支持</li>
+</ul>
+<h3 id="SSL协议"><a href="#SSL协议" class="headerlink" title="SSL协议"></a>SSL协议</h3><p>HTTPS协议在HTTP的基础上加入了SSL（安全套接字层）协议，SSL逐渐演变为了TLS协议，但是业界习惯仍然称其为SSL协议。</p>
+<p>SSL协议在传输控制层的基础上建立了安全的连接，它作为一种通用可靠的安全解决方案，可与多种应用层协议结合使用，实现应用数据的安全传输。SSL协议分为<strong>记录协议，握手协议，警告协议和密码规范改变协议</strong>：</p>
+<p><strong>记录协议：</strong>接收上层协议或下层协议的消息并进行一系列的处理，然后再将处理后的消息继续向下或向上传递。主要包括对消息进行加解密，压缩解压缩，分段或者重组等操作。</p>
+<p><strong>握手协议：</strong>建立在三次握手之后，为通信双方确立安全连接所需要的安全参数，通常也会在此阶段对通信双方身份的真实性进行验证。</p>
+<p><strong>警告协议：</strong>无论是在握手阶段还是在对应用层数据的传输阶段，都有可能出现差错。警告协议规定了在SSL协议工作过程中可能出现的差错、错误的严重等级以及相应的处理方式。</p>
+<p><strong>密码规范改变协议：</strong>在SSL握手刚开始的时候，加密参数还没确定，消息都是明文传送的。双方协商好加密参数之后，在发送握手结束消息之前，需要发送一个密码规范改变消息（Change Cipher Message）来通知对方随后的消息都使用刚刚协商好的加密算法和加密密钥进行加密。</p>
+<h3 id="HTTP1-0，HTTP1-1以及HTTP2-0协议的区别"><a href="#HTTP1-0，HTTP1-1以及HTTP2-0协议的区别" class="headerlink" title="HTTP1.0，HTTP1.1以及HTTP2.0协议的区别"></a>HTTP1.0，HTTP1.1以及HTTP2.0协议的区别</h3><ul>
+<li><p>HTTP1.0<br>浏览器的每次请求都需要与服务器建立一个TCP连接，服务器处理完成后立即断开TCP连接，服务器不跟踪每个客户端也不记录过去的请求。也就是默认使用Connection: close</p>
+</li>
+<li><p>HTTP1.1<br>HTTP/1.1中默认使用Connection: keep-alive，避免了连接建立和释放的开销。但服务器必须按照客户端请求的先后顺序依次回送相应的结果，以保证客户端能够区分出每次请求的响应内容。通过Content-Length字段来判断当前请求的数据是否已经全部接收。不允许同时存在两个并行的响应。</p>
+</li>
+<li><p>HTTP2.0</p>
+<p>HTTP2.0协议新增了二进制分帧，多路复用，头部压缩和服务器推送等功能，进一步提高了传输效率。</p>
+</li>
+</ul>
+<h3 id="路由汇聚"><a href="#路由汇聚" class="headerlink" title="路由汇聚"></a>路由汇聚</h3><p><strong>路由汇聚</strong>是指把一组路由汇聚为一个单个的路由广播。路由汇聚优点是可以缩小网络上的路由表的尺寸。</p>
+<ul>
+<li>将各子网地址的网段以二进制写出。</li>
+<li>比较，从第1位比特开始进行比较，将从开始不相同的比特到末尾位填充为0。由此得到的地址为汇总后的网段的网络地址，其网络位为连续的相同的比特的位数。</li>
+</ul>
+<p>假设下面有4个网络:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">172.18.129.0/24</span><br><span class="line">172.18.130.0/24</span><br><span class="line">172.18.132.0/24</span><br><span class="line">172.18.133.0/24</span><br></pre></td></tr></table></figure>
+<p><strong>具体计算方式如下：</strong></p>
+<ul>
+<li>129的二进制代码是10000001</li>
+<li>130的二进制代码是10000010</li>
+<li>132的二进制代码是10000100</li>
+<li>133的二进制代码是10000101</li>
+</ul>
+<p>这四个数的前五位相同都是10000，所以加上前面的172.18这两部分相同的位数，网络号就是<strong>8+8+5=21</strong>。而10000000的十进制数是128，所以，路由汇聚的IP地址就是172.18.128.0。所以最终答案就是172.18.128.0/21</p>
+<h3 id="子网掩码的求法"><a href="#子网掩码的求法" class="headerlink" title="子网掩码的求法"></a>子网掩码的求法</h3><p><strong>根据划分的子网数：</strong></p>
+<p><strong>算法实现：</strong>在求子网掩码之前必须先搞清楚要划分的子网数目，以及每个子网内的所需主机数目。</p>
+<ul>
+<li>将子网数目转化为二进制来表示</li>
+<li>取得该二进制的位数，为 N</li>
+<li>取得该IP地址的类子网掩码，将其主机地址部分的前N位置1 即得出该IP地址划分子网的子网掩码。</li>
+</ul>
+<p><strong>举例：</strong></p>
+<p>如欲将B类IP地址168.195.0.0划分成27个子网，则其子网掩码为<strong>255.255.248.0</strong></p>
+<ul>
+<li>27=11011</li>
+<li>该二进制为五位数，N = 5</li>
+<li>将B类地址的子网掩码255.255.0.0的主机地址前5位置1（B类地址的主机位包括后两个字节，所以这里要把第三个字节的前5位置1），得到 <strong>255.255.248.0</strong></li>
+</ul>
+<p>根据每个子网中的主机数：</p>
+<p><strong>算法实现：</strong>利用主机数来计算。</p>
+<ul>
+<li>将主机数目转化为二进制来表示</li>
+<li>如果主机数小于或等于254（注意去掉保留的两个IP地址），则取得该主机的二进制位数，为 N，这里肯定N<8。如果大于254，则 N>8，这就是说主机地址将占据不止8位。</li>
+<li>使用255.255.255.255来将该类IP地址的主机地址位数全部置1，然后从后向前的将N位全部置为 0，即为子网掩码值。</li>
+</ul>
+<p><strong>举例：</strong></p>
+<p>如欲将B类IP地址168.195.0.0划分成若干子网，每个子网内有主机700台，则其子网掩码为：<strong>255.255.252.0</strong></p>
+<ul>
+<li>700=1010111100</li>
+<li>该二进制为十位数，N = 10</li>
+<li>将该B类地址的子网掩码255.255.0.0的主机地址全部置1，得到255.255.255.255</li>
+<li>然后再从后向前将后10位置0,即为： 11111111.11111111.11111100.00000000</li>
+<li>即255.255.252.0。</li>
+</ul>
+<h3 id="XSS跨站脚本攻击："><a href="#XSS跨站脚本攻击：" class="headerlink" title="XSS跨站脚本攻击："></a>XSS跨站脚本攻击：</h3><p><strong>XSS （Cross-Site Scripting）</strong>跨站脚本攻击是一种常见的安全漏洞，恶意攻击者在用户提交的数据中加入一些代码，将代码嵌入到了Web页面中，从而可以盗取用户资料，控制用户行为或者破坏页面结构和样式等。为了和 CSS 区分，这里把攻击的第一个字母改成了 X，于是叫做 XSS。</p>
+<p>最简单的就是当我们提交一个查询后弹出一个alert页面，却无论如何都关不掉，这就是发生了XSS跨站脚本攻击。</p>
+<h4 id="XSS产生原因："><a href="#XSS产生原因：" class="headerlink" title="XSS产生原因："></a>XSS产生原因：</h4><p>XSS产生的原因是过于信任客户端的数据，没有做好过滤或者转义等工作。如果客户端上传的数据中插入一些符号以及javascript代码，那么这些数据将会成为应用代码中的一部分了，这样就造成了XSS攻击。</p>
+<h4 id="XSS分类："><a href="#XSS分类：" class="headerlink" title="XSS分类："></a>XSS分类：</h4><ul>
+<li><strong>存储型：</strong>攻击者将恶意代码存储到了数据库中，在响应浏览器请求的时候返回恶意代码，并且执行。这种攻击常见于带有用户保存数据的网站功能；</li>
+<li><strong>反射型：</strong>将恶意代码放在URL中，将参数提交到服务器。服务器解析后响应，在响应结果中存在XSS代码，最终通过浏览器解析执行；</li>
+<li><strong>DOM型：</strong>取出和执行恶意代码由浏览器端完成，属于前端 JavaScript的安全漏洞。</li>
+</ul>
+<h4 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h4><p><strong>XSS防御：</strong></p>
+<ul>
+<li>对重要的 cookie设置 httpOnly, 防止客户端通过document.cookie读取 cookie；</li>
+<li>对输入内容的特定字符进行编码，前端后端都可以对传入的内容进行过滤，去掉带javascript等字段的输入</li>
+</ul>
+<h3 id="CSRF跨站请求伪造："><a href="#CSRF跨站请求伪造：" class="headerlink" title="CSRF跨站请求伪造："></a>CSRF跨站请求伪造：</h3><p><strong>CSRF（ Cross-site request forgery）跨站请求伪造</strong>，也是一种常见的安全漏洞。XSS相当于是控制了站点内的信任用户，而CSRF则通过<strong>伪装</strong>成受信任用户的请求来利用受信任的网站。</p>
+<p><strong>CSRF举例：</strong></p>
+<p>用户登录受信任网站A，并在本地生成登录态Cookie。（如果用户没有登录网站A，那么网站B在获取A网站的信息并且去请求网站A的接口时，会提示登录）<strong>在不登出A的情况下</strong>，访问恶意网站B，那么网站B得到了网站A的所有信息，然后B网站去请求A网站的接口，伪装成A网站的正常请求为所欲为。</p>
+<p>下边以示意图来说明<strong>CSRF整个流程</strong>：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423100106.png" alt="图片说明"></p>
+<p><strong>注意：</strong></p>
+<p>CSRF中恶意网站仅仅是伪装成了正常用户，但是其并不可以直接获取到正常用户的登录态cookie等信息。如果不做防御，被攻击网站服务器是无法区分是否是冒用用户，因为当前请求确实带着登录凭证等信息。</p>
+<p><strong>CSRF防御：</strong></p>
+<ul>
+<li><strong>Referer 头验证</strong>：在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。不靠谱，Referer可以被改变；</li>
+<li><strong>Token验证</strong>：服务器发送给客户端一个Token，客户端提交的表单中（或者URL上）带着这个Token。如果这个Token 不合法，那么服务器拒绝这个请求。</li>
+<li><strong>双重Cookie验证</strong>：利用恶意网站无法获取cookie信息，仅可冒用的特点，我们将cookie中的参数取出来，加入到请求参数中，服务端进行校验，如果参数中没有附加额外的cookie中的参数，那么就拒绝请求。</li>
+</ul>
+<p><strong>解析：</strong></p>
+<p>XSS和CSRF均属于安全漏洞，和我们的开发工作息息相关。对于一些对安全性有一定要求的方向和岗位，了解常见的XSS和CSRF攻击无疑是面试的一大加分项。</p>
+<p>那么接下来，我们看看<strong>CSRF和XSS的区别有哪些呢</strong>？</p>
+<ul>
+<li>CSRF攻击需要用户先登录网站A，恶意网站B获取到A网站用户的 cookie；</li>
+<li>XSS攻击则不需要登录。</li>
+<li>CSRF攻击本质是利用网站A本身的漏洞，去请求网站A的相关接口；</li>
+<li>XSS攻击向网站 A 注入恶意代码，然后通过执行恶意代码，篡改了网站A的内容。</li>
+</ul>
+<h3 id="SSRF服务端请求伪造"><a href="#SSRF服务端请求伪造" class="headerlink" title="SSRF服务端请求伪造"></a>SSRF服务端请求伪造</h3><p>SSRF是一种由攻击者构造请求，利用服务端发起的一种安全漏洞。一般情况下，SSRF攻击的目标是<strong>外网无法访问的内部系统。</strong>我们先来看下SSRF攻击的示意图：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423101154.png" alt="图片说明"></p>
+<p><strong>SSRF漏洞举例：</strong></p>
+<ul>
+<li>正常的网络请求流程：客户端A发起请求 -&gt; 服务端B接收请求 -&gt; 服务端B处理请求 -&gt; 服务端B返回响应</li>
+<li>存在SSRF漏洞下的网络请求流程：<br>比如现在客户端A发起的请求是这样的 <span class="exturl" data-url="aHR0cDovL3d3dy5ub3djb2Rlci5jb20veHh4LnBocD9pbWFnZT13d3cuYWJjLmNvbS9waG90by5qcGc=">www.nowcoder.com/xxx.php?image=www.abc.com/photo.jpg<i class="fa fa-external-link-alt"></i></span>服务端B收到该请求后，会接着取访问<span class="exturl" data-url="aHR0cDovL3d3dy5hYmMuY29tL3Bob3RvLmpwZw==">www.abc.com/photo.jpg<i class="fa fa-external-link-alt"></i></span> 获取资源文件。如果服务端B对客户端发起的请求没有进行过滤等操作，那么?image=可能会被恶意篡改。最后的结果就是，<strong>借助于公网上的服务器来访问了内网系统。</strong></li>
+</ul>
+<p><strong>SSRF产生原因：</strong></p>
+<p>SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。比如指定URL地址获取网页文本内容，加载指定地址的图片和文档等。</p>
+<p><strong>常见SSRF漏洞出现场景：</strong></p>
+<ul>
+<li>分享场景，通过URL地址分享网页内容。</li>
+<li>转码服务，在线翻译场景。</li>
+<li>地址加载或下载图片。</li>
+<li>图片、文章收藏功能。</li>
+<li>未公开的api实现以及其他调用URL的功能等。</li>
+</ul>
+<p><strong>SSRF漏洞危害：</strong></p>
+<p>因为外网借助了服务端来实现了对内网服务器的访问，所以很多操作都可以进行，包括如下的危害：</p>
+<ul>
+<li>对服务器所在的内网进行端口扫描，获取一些服务的banner信息等。</li>
+<li>攻击运行在内网或者本地的应用程序。</li>
+<li>对内网WEB应用进行指纹识别，通过访问默认文件实现。</li>
+<li>下载内网的一些资源文件等。</li>
+</ul>
+<p><strong>SSRF的防御措施：</strong></p>
+<ul>
+<li>对<strong>错误信息进行统一处理</strong>，避免用户可以根据错误信息来判断远端服务器的端口状态。</li>
+<li>对请求的<strong>端口进行限制</strong>，限定为HTTP常用的端口，比如，80，443和8080等。</li>
+<li>设定<strong>IP黑名单</strong>。避免应用被用来获取内网数据，攻击内网。</li>
+<li><strong>禁用不需要的协议</strong>。仅仅允许HTTP和HTTPS请求。</li>
+<li>对返回信息进行<strong>有效过滤</strong>等。</li>
+</ul>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><p>SQL注入是指通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器，执行恶意的SQL命令。</p>
+<p>SQL注入就是服务端将客户端传入的恶意SQL语句直接进行了执行，这样会导致问题出现。比如说用户在登录的时候，使用了or 1=1来完成身份验证和授权。</p>
+<p>SQL注入是一种流行的攻击攻击方法，但是通过一些手段是可以防御该攻击的，<strong>常见的防御手段如下：</strong></p>
+<ul>
+<li>使用预编译语句，比如MyBatis中的SQL语句使用#号代替$符号。</li>
+<li>使用安全的存储过程来防止SQL注入。</li>
+<li>对客户端的输入进行数据类型的检查等。</li>
+</ul>
+<p>作为一名优秀的服务端开发人员，我们应该牢记一条原则，“<strong>永远不要相信客户端</strong>”。对客户端的每次请求，我们都要做好充分的过滤，验证与授权，这样才可以尽可能的避免常见的Web安全漏洞，抵御来自外部世界的攻击。</p>
+<h3 id="从浏览器输入一个网站，之后会发生什么"><a href="#从浏览器输入一个网站，之后会发生什么" class="headerlink" title="从浏览器输入一个网站，之后会发生什么"></a>从浏览器输入一个网站，之后会发生什么</h3><p>在浏览器中输入一个网址，首先要做的就是<strong>域名的解析</strong>，也就是域名-&gt;ip的解析，依次查看了浏览器缓存，系统缓存，hosts文件，路由器缓存，递归搜索根域名服务器，直到<strong>找到最终的ip地址</strong>。</p>
+<p>然后就是TCP协议的<strong>三次握手</strong>建立连接，过程我们已经阐述了。由浏览器发送一个HTTP请求；经过路由器的转发，通过服务器的防火墙，该HTTP请求到达了服务器；服务器处理该HTTP请求，返回一个<strong>HTML文件</strong>；浏览器解析该HTML文件，并且<strong>渲染显示</strong>在浏览器端。</p>
+<p>这里，我们可以来具体阐述下<strong>HTTP协议和TCP协议的关系与区别。</strong></p>
+<h3 id="HTTP协议和TCP协议的关系与区别："><a href="#HTTP协议和TCP协议的关系与区别：" class="headerlink" title="HTTP协议和TCP协议的关系与区别："></a>HTTP协议和TCP协议的关系与区别：</h3><p>HTTP协议是一种基于TCP/IP的应用层协议，进行HTTP数据请求必须先建立TCP/IP连接。HTTP协议提供了封装或者显示数据的具体形式；TCP协议提供了网络通信的能力。两个计算机之间的交流其实就是是两个端口之间的数据通信,具体的数据会以什么样的形式展现是以不同的应用层协议来定义的。</p>
 
     </div>
 
@@ -605,7 +797,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">分组交换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">时延</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">分层体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">因特网协议栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI%E6%A8%A1%E5%9E%8B-%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E4%BA%92%E8%BF%9E%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">OSI模型(开放系统互连模型)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">网络应用程序体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">1.3.1.</span> <span class="nav-text">进程通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">1.3.2.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">1.3.3.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E9%9D%9E%E6%8C%81%E7%BB%AD%E8%BF%9E%E6%8E%A5%E7%9A%84HTTP"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">采用非持续连接的HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E6%8C%81%E7%BB%AD%E8%BF%9E%E6%8E%A5%E7%9A%84HTTP"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">采用持续连接的HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">HTTP请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">HTTP响应报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%BA%A4%E4%BA%92%EF%BC%9ACookie"><span class="nav-number">1.3.3.5.</span> <span class="nav-text">用户与服务器的交互：Cookie</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E4%B8%8ESMTP%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.3.4.</span> <span class="nav-text">HTTP与SMTP的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.3.5.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">DNS提供的服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E5%B1%82DNS%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">三层DNS服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS%E8%AE%B0%E5%BD%95"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">DNS记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DoS"><span class="nav-number">1.3.6.</span> <span class="nav-text">DoS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%92%8C%E5%A4%9A%E8%B7%AF%E5%88%86%E8%A7%A3"><span class="nav-number">1.4.1.</span> <span class="nav-text">多路复用和多路分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5%E8%BF%90%E8%BE%93%EF%BC%9AUDP"><span class="nav-number">1.4.2.</span> <span class="nav-text">无连接运输：UDP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E9%80%80N%E6%AD%A5%EF%BC%88GBN%EF%BC%89%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.3.</span> <span class="nav-text">回退N步（GBN）协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E5%88%B0%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%8A%80%E6%9C%AF"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">用到的可靠数据传输技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%EF%BC%88SR%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">选择重传（SR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%9C%BA%E5%88%B6"><span class="nav-number">1.4.5.</span> <span class="nav-text">可靠数据传输机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%BF%90%E8%BE%93%EF%BC%9ATCP"><span class="nav-number">1.4.6.</span> <span class="nav-text">面向连接的运输：TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSS"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">MSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%A5%E5%A1%9E%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">网络拥塞的代价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">1.4.7.</span> <span class="nav-text">TCP拥塞控制</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">分组交换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E5%BB%B6"><span class="nav-number">1.1.1.</span> <span class="nav-text">时延</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.</span> <span class="nav-text">分层体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%A0%E7%89%B9%E7%BD%91%E5%8D%8F%E8%AE%AE%E6%A0%88"><span class="nav-number">1.2.1.</span> <span class="nav-text">因特网协议栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI%E6%A8%A1%E5%9E%8B-%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E4%BA%92%E8%BF%9E%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.2.</span> <span class="nav-text">OSI模型(开放系统互连模型)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">网络应用程序体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">1.3.1.</span> <span class="nav-text">进程通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">1.3.2.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP"><span class="nav-number">1.3.3.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E9%9D%9E%E6%8C%81%E7%BB%AD%E8%BF%9E%E6%8E%A5%E7%9A%84HTTP"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">采用非持续连接的HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%87%E7%94%A8%E6%8C%81%E7%BB%AD%E8%BF%9E%E6%8E%A5%E7%9A%84HTTP"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">采用持续连接的HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">HTTP请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">HTTP响应报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E4%BA%A4%E4%BA%92%EF%BC%9ACookie"><span class="nav-number">1.3.3.5.</span> <span class="nav-text">用户与服务器的交互：Cookie</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E4%B8%8ESMTP%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="nav-number">1.3.4.</span> <span class="nav-text">HTTP与SMTP的对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS"><span class="nav-number">1.3.5.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS%E6%8F%90%E4%BE%9B%E7%9A%84%E6%9C%8D%E5%8A%A1"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">DNS提供的服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E5%B1%82DNS%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">三层DNS服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS%E8%AE%B0%E5%BD%95"><span class="nav-number">1.3.5.3.</span> <span class="nav-text">DNS记录</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DoS"><span class="nav-number">1.3.6.</span> <span class="nav-text">DoS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%BE%93%E5%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">运输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8%E5%92%8C%E5%A4%9A%E8%B7%AF%E5%88%86%E8%A7%A3"><span class="nav-number">1.4.1.</span> <span class="nav-text">多路复用和多路分解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E8%BF%9E%E6%8E%A5%E8%BF%90%E8%BE%93%EF%BC%9AUDP"><span class="nav-number">1.4.2.</span> <span class="nav-text">无连接运输：UDP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E9%80%80N%E6%AD%A5%EF%BC%88GBN%EF%BC%89%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.3.</span> <span class="nav-text">回退N步（GBN）协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E5%88%B0%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%8A%80%E6%9C%AF"><span class="nav-number">1.4.3.1.</span> <span class="nav-text">用到的可靠数据传输技术</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E9%87%8D%E4%BC%A0%EF%BC%88SR%EF%BC%89"><span class="nav-number">1.4.4.</span> <span class="nav-text">选择重传（SR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%9C%BA%E5%88%B6"><span class="nav-number">1.4.5.</span> <span class="nav-text">可靠数据传输机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%BF%90%E8%BE%93%EF%BC%9ATCP"><span class="nav-number">1.4.6.</span> <span class="nav-text">面向连接的运输：TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">1.4.6.1.</span> <span class="nav-text">三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MSS"><span class="nav-number">1.4.6.2.</span> <span class="nav-text">MSS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%8B%A5%E5%A1%9E%E7%9A%84%E4%BB%A3%E4%BB%B7"><span class="nav-number">1.4.6.3.</span> <span class="nav-text">网络拥塞的代价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">1.4.7.</span> <span class="nav-text">TCP拥塞控制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.4.8.</span> <span class="nav-text">OSI七层模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP-IP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.9.</span> <span class="nav-text">TCP&#x2F;IP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.9.1.</span> <span class="nav-text">IP协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ARP%E5%8D%8F%E8%AE%AE%EF%BC%88%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AE%EF%BC%89%EF%BC%9A"><span class="nav-number">1.4.9.2.</span> <span class="nav-text">ARP协议（地址解析协议）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="nav-number">1.4.9.3.</span> <span class="nav-text">路由协议：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="nav-number">1.4.9.4.</span> <span class="nav-text">三次握手流程图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%9A%84%E7%8A%B6%E6%80%81%E6%B5%81%E7%A8%8B%E5%9B%BE%EF%BC%9A"><span class="nav-number">1.4.9.5.</span> <span class="nav-text">四次挥手的状态流程图：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84HTTP-Code%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.4.10.</span> <span class="nav-text">常见的HTTP Code有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81HTTP%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">1.4.11.</span> <span class="nav-text">常见HTTP协议的状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.12.</span> <span class="nav-text">SSL协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-0%EF%BC%8CHTTP1-1%E4%BB%A5%E5%8F%8AHTTP2-0%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.4.13.</span> <span class="nav-text">HTTP1.0，HTTP1.1以及HTTP2.0协议的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%B1%87%E8%81%9A"><span class="nav-number">1.4.14.</span> <span class="nav-text">路由汇聚</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E7%9A%84%E6%B1%82%E6%B3%95"><span class="nav-number">1.4.15.</span> <span class="nav-text">子网掩码的求法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%9A"><span class="nav-number">1.4.16.</span> <span class="nav-text">XSS跨站脚本攻击：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS%E4%BA%A7%E7%94%9F%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="nav-number">1.4.16.1.</span> <span class="nav-text">XSS产生原因：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="nav-number">1.4.16.2.</span> <span class="nav-text">XSS分类：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#XSS%E9%98%B2%E5%BE%A1"><span class="nav-number">1.4.16.3.</span> <span class="nav-text">XSS防御</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%9A"><span class="nav-number">1.4.17.</span> <span class="nav-text">CSRF跨站请求伪造：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSRF%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0"><span class="nav-number">1.4.18.</span> <span class="nav-text">SSRF服务端请求伪造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="nav-number">1.4.19.</span> <span class="nav-text">SQL注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA%E7%BD%91%E7%AB%99%EF%BC%8C%E4%B9%8B%E5%90%8E%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88"><span class="nav-number">1.4.20.</span> <span class="nav-text">从浏览器输入一个网站，之后会发生什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%8D%8F%E8%AE%AE%E5%92%8CTCP%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%85%B3%E7%B3%BB%E4%B8%8E%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-number">1.4.21.</span> <span class="nav-text">HTTP协议和TCP协议的关系与区别：</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -621,7 +813,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -634,7 +826,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
