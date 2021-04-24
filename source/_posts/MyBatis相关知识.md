@@ -20,6 +20,8 @@ MyBatis **使用XML或注解来配置和映射原生信息**，将 POJO映射成
 
 MyBatis**通过xml文件或注解的方式将要执行的各种 statement 配置起来**，并通过Java对象和 statement中SQL的动态参数进行映射生成最终执行的SQL语句，最后由MyBatis框架执行SQL语句，并将结果映射为Java对象并返回。
 
+
+<!-- more -->
 #### MyBatis和Hibernate的区别
 
 - **MyBatis**的优点是代码开发量少、简单易上手、SQL语句和代码分离（便于修改）、数据库可移植；但是，其缺点是SQL语句需要自己写，并且参数只能有一个。
