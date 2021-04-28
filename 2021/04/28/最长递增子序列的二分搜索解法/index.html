@@ -22,32 +22,21 @@
     var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="PicGo+Github+Typora实现笔记图片上传到github图床GIthub新建仓库并获取Token首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的">
+  <meta name="description" content="最长递增子序列的二分搜索解法题目描述：给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。 子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PicGo+Github+Typora实现笔记图片上传到github图床">
-<meta property="og:url" content="https://blog.qinhaiqi.com/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/index.html">
+<meta property="og:title" content="最长递增子序列的二分搜索解法">
+<meta property="og:url" content="https://blog.qinhaiqi.com/2021/04/28/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95/index.html">
 <meta property="og:site_name" content="曾许人间第一流">
-<meta property="og:description" content="PicGo+Github+Typora实现笔记图片上传到github图床GIthub新建仓库并获取Token首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的">
+<meta property="og:description" content="最长递增子序列的二分搜索解法题目描述：给你一个整数数组 nums ，找到其中最长严格递增子序列的长度。 子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，[3,6,2,7] 是数组 [0,3,1,6,2,2,7] 的子序列。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png">
-<meta property="article:published_time" content="2021-04-03T13:26:29.000Z">
-<meta property="article:modified_time" content="2021-04-04T01:00:41.266Z">
+<meta property="article:published_time" content="2021-04-28T09:57:31.000Z">
+<meta property="article:modified_time" content="2021-04-28T10:20:20.665Z">
 <meta property="article:author" content="秦海祺">
-<meta property="article:tag" content="个人博客">
-<meta property="article:tag" content="图床">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="二分搜索">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png">
 
-<link rel="canonical" href="https://blog.qinhaiqi.com/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/">
+<link rel="canonical" href="https://blog.qinhaiqi.com/2021/04/28/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -60,7 +49,7 @@
   };
 </script>
 
-  <title>PicGo+Github+Typora实现笔记图片上传到github图床 | 曾许人间第一流</title>
+  <title>最长递增子序列的二分搜索解法 | 曾许人间第一流</title>
   
 
 
@@ -208,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/">
+    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/04/28/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -221,7 +210,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PicGo+Github+Typora实现笔记图片上传到github图床
+          最长递增子序列的二分搜索解法
         </h1>
 
         <div class="post-meta">
@@ -230,16 +219,19 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-04-03 21:26:29" itemprop="dateCreated datePublished" datetime="2021-04-03T21:26:29+08:00">2021-04-03</time>
+              <time title="创建时间：2021-04-28 17:57:31 / 修改时间：18:20:20" itemprop="dateCreated datePublished" datetime="2021-04-28T17:57:31+08:00">2021-04-28</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-04 09:00:41" itemprop="dateModified" datetime="2021-04-04T09:00:41+08:00">2021-04-04</time>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index"><span itemprop="name">leetcode</span></a>
+                </span>
+            </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -259,31 +251,27 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
-<a id="more"></a>
-<p>点击用户里的设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
-<p>点击开发者选项</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
-<p>点击个人token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
-<p>点击生成新的token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
-<p>只需要选择repo选项即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
-<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
-<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
-<p>安装完成后设置Github图床</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
-<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
-<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
-<p>进行如下图所示的设置即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
-<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
-<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
+        <h1 id="最长递增子序列的二分搜索解法"><a href="#最长递增子序列的二分搜索解法" class="headerlink" title="最长递增子序列的二分搜索解法"></a>最长递增子序列的二分搜索解法</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给你一个整数数组 <code>nums</code> ，找到其中最长严格递增子序列的长度。</p>
+<p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，<code>[3,6,2,7]</code> 是数组 <code>[0,3,1,6,2,2,7]</code> 的子序列。</p>
+<a id="more"></a> 
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [10,9,2,5,3,7,101,18]</span><br><span class="line">输出：4</span><br><span class="line">解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [0,1,0,3,2,3]</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [7,7,7,7,7,7,7]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><p>该解法与windows上蜘蛛纸牌的规则类似。</p>
+<p>首先，给一排扑克牌，我们从左到右把扑克牌分成若干个分组。</p>
+<p><strong>处理分组时的规则如下：</strong></p>
+<ol>
+<li>只能把点数小的牌放到点数大于等于的牌上；</li>
+<li>如果当前牌的点数较大，没有合适的分组可以放入的话就单独划分一个新的分组；</li>
+<li>如果有多个分组可以放入的话，则放入最左边的分组（为了使分组顶端的牌保持有序）。</li>
+</ol>
+<p>按照以上规则对数组进行分组的话，最后的分组数即为最长递增子序列的长度，数学证明我目前不会，等看懂了再进行补充。</p>
+<p>我们只需要根据以上规则进行程序编写，通过二分查找来找到要放的分组位置，最后划分出的分组数即为最长递增子序列的长度。</p>
+<p>样例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建N个分组,只需要保存分组最后放入的数的值</span></span><br><span class="line">        <span class="keyword">int</span>[] group = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="comment">//初始化分组数</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//处理每一个数字</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i)&#123;</span><br><span class="line">            <span class="comment">//当前数字的值</span></span><br><span class="line">            <span class="keyword">int</span> cur = nums[i];</span><br><span class="line">            <span class="comment">//搜索区间</span></span><br><span class="line">            <span class="keyword">int</span> left = <span class="number">0</span>, right = count;</span><br><span class="line">            <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">                <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(group[mid] &lt; cur)&#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    right = mid;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//若没有合适的分组则新建分组</span></span><br><span class="line">            <span class="keyword">if</span>(left == count)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            group[left] = cur;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -319,7 +307,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.qinhaiqi.com/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/" title="PicGo+Github+Typora实现笔记图片上传到github图床">https://blog.qinhaiqi.com/2021/04/03/PicGo-Github-Typora实现笔记图片上传到github图床/</a>
+    <a href="https://blog.qinhaiqi.com/2021/04/28/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95/" title="最长递增子序列的二分搜索解法">https://blog.qinhaiqi.com/2021/04/28/最长递增子序列的二分搜索解法/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -349,8 +337,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" rel="tag"># 个人博客</a>
-              <a href="/tags/%E5%9B%BE%E5%BA%8A/" rel="tag"># 图床</a>
+              <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+              <a href="/tags/%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2/" rel="tag"># 二分搜索</a>
           </div>
 
         
@@ -358,11 +346,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/" rel="next" title="面试技巧总结">
-      面试技巧总结 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/04/24/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" rel="prev" title="排序算法">
+      <i class="fa fa-chevron-left"></i> 排序算法
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -422,7 +410,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A"><span class="nav-number">1.</span> <span class="nav-text">PicGo+Github+Typora实现笔记图片上传到github图床</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#GIthub%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93%E5%B9%B6%E8%8E%B7%E5%8F%96Token"><span class="nav-number">1.1.</span> <span class="nav-text">GIthub新建仓库并获取Token</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AEPicGo"><span class="nav-number">1.2.</span> <span class="nav-text">设置PicGo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AETypora"><span class="nav-number">1.3.</span> <span class="nav-text">配置Typora</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">最长递增子序列的二分搜索解法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">解题思路：</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -644,7 +632,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'juhick.github.io',
       owner       : 'juhick',
       admin       : ['juhick'],
-      id          : '9b198db90ffac0c8cce0f0b9a8d1bde9',
+      id          : '9879c294f234618bd44c1b1dd503553f',
         language: 'zh-CN',
       distractionFreeMode: true
     });
