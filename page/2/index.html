@@ -193,6 +193,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/04/22/Java%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="秦海祺">
+      <meta itemprop="description" content="须知少日拏云志，曾许人间第一流">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="曾许人间第一流">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/22/Java%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/" class="post-title-link" itemprop="url">Java进阶部分</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-22 14:31:14" itemprop="dateCreated datePublished" datetime="2021-04-22T14:31:14+08:00">2021-04-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-07 11:09:07" itemprop="dateModified" datetime="2021-05-07T11:09:07+08:00">2021-05-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Java进阶"><a href="#Java进阶" class="headerlink" title="Java进阶"></a>Java进阶</h3><p>从Java5.0开始，JDK中提供了<strong>java.util.concurrent（简称JUC ）包</strong>，在此包中增加了并发编程中常用的工具类，用于定义线程的自定义子系统，包括线程池、异步IO 和轻量级任务框架等。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/22/Java%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/04/22/Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -224,7 +305,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-24 18:51:38" itemprop="dateModified" datetime="2021-04-24T18:51:38+08:00">2021-04-24</time>
+                <time title="修改时间：2021-05-07 11:09:09" itemprop="dateModified" datetime="2021-05-07T11:09:09+08:00">2021-05-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -247,7 +328,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          Here's something encrypted, password is required to continue reading.
+          <h3 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h3><h4 id="面向对象的特性"><a href="#面向对象的特性" class="headerlink" title="面向对象的特性"></a>面向对象的特性</h4><ol>
+<li><p>封装：将事物封装成一个类，<strong>减少耦合，隐藏细节</strong>。保留特定的接口与外界联系，当接口内部发生改变时，不会影响外部调用。<br>比如将类的属性私有化，只有<strong>通过公共的get/set方法才能进行访问</strong>，在get/set方法中我们可以对<strong>内部逻辑进行封装处理</strong>，外部的调用方法不必关心我们的处理逻辑。</p>
+</li>
+<li><p>继承：从一个已知的类中<strong>派生出一个新的类</strong>（子类），新的类可以使用已知类（即父类）的行为和属性，并且可以<strong>通过覆盖/重写</strong>来增强已知类的能力。<br>JAVA不支持多继承，并且JAVA的构造函数不可以被继承。<br>构造函数被private修饰的话，其就是不明确的构造函数，该类不可以被其他类继承。<br>JAVA中类的初始化顺序：</p>
+<ol>
+<li>初始化<strong>父类</strong>中的<strong>静态成员变量和静态代码块</strong></li>
+<li>初始化<strong>子类</strong>中的<strong>静态成员变量和静态代码块</strong></li>
+<li>初始化<strong>父类</strong>中的普通成员变量和代码块，再<strong>执行父类的构造方法</strong></li>
+<li>初始化<strong>子类</strong>中的普通成员变量和代码块，再<strong>执行子类的构造方法</strong></li>
+</ol>
+<p>子类的特点：</p>
+<ol>
+<li>子类<strong>拥有</strong>父类非private的属性和方法</li>
+<li>子类可以添加自己的方法和属性，即<strong>对父类进行扩展</strong></li>
+<li>子类可以重新定义父类的方法，即<strong>方法的覆盖/重写</strong></li>
+</ol>
+</li>
+<li><p>多态：多态的本质是一个程序中存在多个同名的不同方法，主要通过三种方式来实现</p>
+<ol>
+<li>通过子类对父类的<strong>覆盖（重写）</strong>来实现</li>
+<li>通过在一个类中对方法的<strong>重载</strong>来实现</li>
+<li>通过将<strong>子类对象作为父类对象</strong>使用来实现</li>
+</ol>
+</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/04/22/Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/#more" rel="contents">
@@ -917,7 +1022,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -930,7 +1035,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
