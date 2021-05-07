@@ -132,6 +132,43 @@
       </tags>
   </entry>
   <entry>
+    <title>LFU算法设计</title>
+    <url>/2021/05/07/LFU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="LFU算法设计"><a href="#LFU算法设计" class="headerlink" title="LFU算法设计"></a>LFU算法设计</h1><h2 id="机制简介"><a href="#机制简介" class="headerlink" title="机制简介"></a>机制简介</h2><p>根据访问频度进行淘汰的缓存淘汰机制，每次淘汰那些使用次数最少的数据。</p>
+<p>当遇到多个访问次数相同时，删除最早插入的那个。</p>
+<a id="more"></a>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>根据LFU的算法逻辑，其需要满足以下几个条件：</p>
+<ol>
+<li>调用<code>get(key)</code>方法时，要返回<code>key</code>对应的<code>val</code>。</li>
+<li>只要用<code>get</code>或者<code>put</code>方法访问一次某个<code>key</code>，该<code>key</code>的<code>freq</code>就要加一。</li>
+<li>如果在容量满了之后继续插入，则需要将<code>frep</code>最小的<code>key</code>删除，如果最小的<code>freq</code>对应着多个<code>key</code>，则删除其中最旧的那个。</li>
+</ol>
+<p>因为我们需要在<code>O(1)</code>的时间复杂度内完成以上操作，所以下面对以上的条件进行具体分析：</p>
+<ol>
+<li>使用一个<code>HashMap</code>存储<code>key</code>到<code>val</code>的映射，就可以快速计算<code>get(key)。</code><br><code>HashMap&lt;Integer, Integer&gt; keyToVal;</code></li>
+<li>使用一个<code>HashMap</code>存储<code>key</code>到<code>freq</code>的映射，就可以快速操作<code>key</code>对应的<code>freq</code>。<br><code>HashMap&lt;Integer, Integer&gt; keyToFreq;</code></li>
+<li>该部分为LFU算法的核心，分为以下几点:<ol>
+<li>需要<code>freq</code>到<code>key</code>的映射</li>
+<li>将<code>freq</code>最小的<code>key</code>删除，那么就应该能够快速得到当前所有<code>key</code>最小的<code>freq</code>是多少。想要时间复杂度<code>O(1)</code>的话，肯定不能遍历，需要使用一个遍历<code>minFreq</code>来记录当前最小的<code>freq</code>。</li>
+<li>可能有多个<code>key</code>拥有相同的<code>freq</code>，所以<code>freq</code>对<code>key</code>是一对多的关系，一个<code>freq</code>对应着一个<code>key</code>的列表</li>
+<li>希望<code>freq</code>对应的<code>key</code>的列表是存在时序的，便于快速查找并删除最旧的<code>key</code>。</li>
+<li>希望能够快速删除<code>key</code>列表中的任何一个<code>key</code>，因为如果频次为<code>freq</code>的某个<code>key</code>被访问，那么它的频度就会变为<code>freq+1</code>，就应该从<code>freq</code>对应的<code>key</code>列表中删除，加到<code>freq+1</code>对应的<code>key</code>列表里。<br><code>HashMap&lt;Integer, LinkedHashSet&lt;Integer&gt;&gt; freqToKeys;</code><br><code>int minFreq = 0;</code></li>
+</ol>
+</li>
+</ol>
+<p>基本数据结构：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashSet;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> </span>&#123;</span><br><span class="line">    <span class="comment">//key到val的映射</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; keyToVal;</span><br><span class="line">    <span class="comment">//key到freq的映射</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; keyToFreq;</span><br><span class="line">    <span class="comment">//freq到key表的映射</span></span><br><span class="line">    HashMap&lt;Integer, LinkedHashSet&lt;Integer&gt;&gt; freqToKey;</span><br><span class="line">    <span class="comment">//记录最小的频次</span></span><br><span class="line">    <span class="keyword">int</span> minFreq;</span><br><span class="line">    <span class="comment">//记录LFU缓存的最大容量</span></span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LFUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        keyToVal = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        keyToFreq = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        freqToKey = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cap = capacity;</span><br><span class="line">        minFreq = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="代码框架"><a href="#代码框架" class="headerlink" title="代码框架"></a>代码框架</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashSet;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LFUCache</span> </span>&#123;</span><br><span class="line">    <span class="comment">//key到val的映射</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; keyToVal;</span><br><span class="line">    <span class="comment">//key到freq的映射</span></span><br><span class="line">    HashMap&lt;Integer, Integer&gt; keyToFreq;</span><br><span class="line">    <span class="comment">//freq到key表的映射</span></span><br><span class="line">    HashMap&lt;Integer, LinkedHashSet&lt;Integer&gt;&gt; freqToKeys;</span><br><span class="line">    <span class="comment">//记录最小的频次</span></span><br><span class="line">    <span class="keyword">int</span> minFreq;</span><br><span class="line">    <span class="comment">//记录LFU缓存的最大容量</span></span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LFUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        keyToVal = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        keyToFreq = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        freqToKeys = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cap = capacity;</span><br><span class="line">        minFreq = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!keyToVal.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//访问一次增加key对应的频度</span></span><br><span class="line">        increaseFreq(key);</span><br><span class="line">        <span class="keyword">return</span> keyToVal.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cap &lt;= <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">//若key已经存在，则修改对应的val即可</span></span><br><span class="line">        <span class="keyword">if</span>(keyToVal.containsKey(key))&#123;</span><br><span class="line">            keyToVal.put(key, value);</span><br><span class="line">            <span class="comment">//对应的频度加一</span></span><br><span class="line">            increaseFreq(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//key不存在，需要插入</span></span><br><span class="line">        <span class="comment">//容量义满的话需要淘汰一个freq最小的key</span></span><br><span class="line">        <span class="keyword">if</span>(cap &lt;= keyToVal.size())&#123;</span><br><span class="line">            removeMinFreqKey();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//插入key和val，对应的freq为一</span></span><br><span class="line">        <span class="comment">//插入KV表</span></span><br><span class="line">        keyToVal.put(key, value);</span><br><span class="line">        <span class="comment">//插入KF表</span></span><br><span class="line">        keyToFreq.put(key, <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//插入FK表</span></span><br><span class="line">        freqToKeys.putIfAbsent(<span class="number">1</span>, <span class="keyword">new</span> LinkedHashSet&lt;&gt;());</span><br><span class="line">        freqToKeys.get(<span class="number">1</span>).add(key);</span><br><span class="line">        <span class="comment">//插入新key后最小频度为1</span></span><br><span class="line">        minFreq = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">increaseFreq</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> freq = keyToFreq.get(key);</span><br><span class="line">        <span class="comment">//更新KF表</span></span><br><span class="line">        keyToFreq.put(key, freq + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//更新FK表</span></span><br><span class="line">        <span class="comment">//将key从freq对应的列表中删除</span></span><br><span class="line">        freqToKeys.get(freq).remove(key);</span><br><span class="line">        <span class="comment">//将key加入freq+1对应的列表中</span></span><br><span class="line">        freqToKeys.putIfAbsent(freq + <span class="number">1</span>, <span class="keyword">new</span> LinkedHashSet&lt;&gt;());</span><br><span class="line">        freqToKeys.get(freq + <span class="number">1</span>).add(key);</span><br><span class="line">        <span class="comment">//如果freq对应的列表空了，移除这个freq</span></span><br><span class="line">        <span class="keyword">if</span>(freqToKeys.get(freq).isEmpty())&#123;</span><br><span class="line">            freqToKeys.remove(freq);</span><br><span class="line">            <span class="comment">//如果这个freq恰好是minFreq，更新minFreq</span></span><br><span class="line">            <span class="keyword">if</span>(freq == minFreq)&#123;</span><br><span class="line">                minFreq++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">removeMinFreqKey</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="comment">//获取频度最小的列表</span></span><br><span class="line">        LinkedHashSet&lt;Integer&gt; keyList = freqToKeys.get(minFreq);</span><br><span class="line">        <span class="comment">//最先被插入的那个key就是被淘汰的key</span></span><br><span class="line">        <span class="keyword">int</span> deletedKey = keyList.iterator().next();</span><br><span class="line">        <span class="comment">//更新Fk表</span></span><br><span class="line">        keyList.remove(deletedKey);</span><br><span class="line">        <span class="keyword">if</span>(keyList.isEmpty())&#123;</span><br><span class="line">            freqToKeys.remove(minFreq);</span><br><span class="line">            <span class="comment">//此处没有必要更新minFreq，因为remove是在put之前的，put会更新minFreq</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//更新KV表</span></span><br><span class="line">        keyToVal.remove(deletedKey);</span><br><span class="line">        <span class="comment">//更新KF表</span></span><br><span class="line">        keyToFreq.remove(deletedKey);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>LFU</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LRU算法设计</title>
     <url>/2021/05/07/LRU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h1 id="LRU缓存算法设计"><a href="#LRU缓存算法设计" class="headerlink" title="LRU缓存算法设计"></a>LRU缓存算法设计</h1><h2 id="机制简单介绍"><a href="#机制简单介绍" class="headerlink" title="机制简单介绍"></a>机制简单介绍</h2><p>每次放入缓存中的数据会到队列头，如果满了会将队列尾部的删除，每次访问的也放到队列头，也就是根据访问的时序来进行淘汰。</p>
@@ -497,37 +534,27 @@
       </tags>
   </entry>
   <entry>
-    <title>最小覆盖子串</title>
-    <url>/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</url>
-    <content><![CDATA[<h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWluaW11bS13aW5kb3ctc3Vic3RyaW5nLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p>
-<p><strong>注意：</strong>如果 <code>s</code> 中存在这样的子串，我们保证它是唯一的答案。</p>
+    <title>排序算法</title>
+    <url>/2021/04/24/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>每次找出数组中最小的元素，将它与数组的第一个元素交换。再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换。如此往复，直至将整个数组排序。</p>
 <a id="more"></a>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：s &#x3D; &quot;ADOBECODEBANC&quot;, t &#x3D; &quot;ABC&quot;</span><br><span class="line">输出：&quot;BANC&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：s &#x3D; &quot;a&quot;, t &#x3D; &quot;a&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br></pre></td></tr></table></figure>
-<p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= s.length, t.length &lt;= 105</code></li>
-<li><code>s</code> 和 <code>t</code> 由英文字母组成</li>
-</ul>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>该题目可以采用滑动窗口算法，即可清晰简便地完成</p>
-<p>具体步骤：</p>
-<pre><code>1. 用双指针在字符串`S`中标记窗口的位置
- 2. 扩大窗口直至满足要求，也就是包含`t`中所有字符
- 3. 缩小窗口直至不满足要求，每次缩小窗口，都更新一下结果
- 4. 重复2和3直到到达字符串末尾
-</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; need, window;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c:t)&#123;</span><br><span class="line">            need[c]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, len = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> valid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(right &lt; s.size())&#123;</span><br><span class="line">            <span class="keyword">char</span> cur = s[right++];</span><br><span class="line">            <span class="keyword">if</span>(need.count(cur))&#123;</span><br><span class="line">                window[cur]++;</span><br><span class="line">                <span class="keyword">if</span>(window[cur] == need[cur])</span><br><span class="line">                    valid++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(valid == need.size())&#123;</span><br><span class="line">                <span class="keyword">if</span>(valid == need.size())&#123;</span><br><span class="line">                   <span class="keyword">if</span>(len &gt; right - left)&#123;</span><br><span class="line">                        start = left;</span><br><span class="line">                        len = right - left;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> head = s[left++];</span><br><span class="line">                <span class="keyword">if</span>(need.count(head))&#123;</span><br><span class="line">                    <span class="keyword">if</span>(window[head] == need[head])</span><br><span class="line">                        valid--;</span><br><span class="line">                    window[head]--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (len == INT_MAX) ? <span class="string">&quot;&quot;</span>:s.substr(start, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> min;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            min = i;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[min] &gt; nums[j])&#123;</span><br><span class="line">                    min = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[i];</span><br><span class="line">            nums[i] = nums[min];</span><br><span class="line">            nums[min] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>为了给要插入的元素腾出空间，我们需要将其余所有元素在插入之前都向右移动一位。</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; nums[j] &lt; nums[j - <span class="number">1</span>]; j--)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[j];</span><br><span class="line">            nums[j] = nums[j - <span class="number">1</span>];</span><br><span class="line">            nums[j - <span class="number">1</span>] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至 1 时，整个文件恰被分成一组，算法便终止。</p>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> gap = nums.length;&#123;</span><br><span class="line">        <span class="keyword">while</span>(gap != <span class="number">1</span>)&#123;</span><br><span class="line">            gap /= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gap; i++)&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i + gap; j &lt; nums.length; j += gap)&#123;</span><br><span class="line">                    <span class="keyword">int</span> k = j - gap;</span><br><span class="line">                    <span class="keyword">while</span>(k &gt;= <span class="number">0</span> &amp;&amp; nums[k] &gt; nums[k + gap])&#123;</span><br><span class="line">                        <span class="keyword">int</span> tmp = nums[k];</span><br><span class="line">                        nums[k] = nums[k + gap];</span><br><span class="line">                        nums[k + gap] = tmp;</span><br><span class="line">                        k -= gap;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">mergeSort</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] aux;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> mid, <span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = lo, j = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = lo; k &lt;= hi; ++k)&#123;</span><br><span class="line">            aux[k] = a[k];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = lo; k &lt;= hi; ++k)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; mid) a[k] = aux[j++];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(j &gt; hi) a[k] = aux[i++];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(aux[i] &gt; aux[j])&#123;</span><br><span class="line">                a[k] = aux[j++];</span><br><span class="line">            &#125;<span class="keyword">else</span> a[k] = aux[i++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        aux = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        sort(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(lo &gt;= hi) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        sort(nums, lo, mid);</span><br><span class="line">        sort(nums, mid + <span class="number">1</span>, hi);</span><br><span class="line">        merge(nums, lo, mid, hi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(low &gt;= high) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> i = low, j = high;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt; nums[low]) j--;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[low]) i++;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[i];</span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            nums[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> tmp = nums[i];</span><br><span class="line">        nums[i] = nums[low];</span><br><span class="line">        nums[low] = tmp;</span><br><span class="line">        quickSort(nums, low, i - <span class="number">1</span>);</span><br><span class="line">        quickSort(nums, i + <span class="number">1</span>, high);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>leetcode</category>
-        <category>滑动窗口</category>
+        <category>算法</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>算法</tag>
-        <tag>滑动窗口</tag>
+        <tag>排序算法</tag>
       </tags>
   </entry>
   <entry>
@@ -564,48 +591,37 @@
       </tags>
   </entry>
   <entry>
-    <title>面试技巧总结</title>
-    <url>/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="面试技巧总结"><a href="#面试技巧总结" class="headerlink" title="面试技巧总结"></a>面试技巧总结</h1><h2 id="央视新闻微博发的面试技巧"><a href="#央视新闻微博发的面试技巧" class="headerlink" title="央视新闻微博发的面试技巧"></a>央视新闻微博发的面试技巧</h2><a id="more"></a>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212021.jpg" alt="微信图片_20210408211903"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212034.jpg" alt="微信图片_20210408211909"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212045.jpg" alt="微信图片_20210408211912"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212129.jpg" alt="微信图片_20210408211915"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212138.jpg" alt="微信图片_20210408211917"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212157.jpg" alt="微信图片_20210408211920"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212204.jpg" alt="微信图片_20210408211922"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212211.jpg" alt="微信图片_20210408211925"></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408211951.jpg" alt="微信图片_20210408211927"></p>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>排序算法</title>
-    <url>/2021/04/24/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>每次找出数组中最小的元素，将它与数组的第一个元素交换。再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换。如此往复，直至将整个数组排序。</p>
+    <title>最小覆盖子串</title>
+    <url>/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</url>
+    <content><![CDATA[<h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWluaW11bS13aW5kb3ctc3Vic3RyaW5nLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p>
+<p><strong>注意：</strong>如果 <code>s</code> 中存在这样的子串，我们保证它是唯一的答案。</p>
 <a id="more"></a>
-<p>示例代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span> min;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)&#123;</span><br><span class="line">            min = i;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(nums[min] &gt; nums[j])&#123;</span><br><span class="line">                    min = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[i];</span><br><span class="line">            nums[i] = nums[min];</span><br><span class="line">            nums[min] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>为了给要插入的元素腾出空间，我们需要将其余所有元素在插入之前都向右移动一位。</p>
-<p>示例代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.length;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; ++i)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; nums[j] &lt; nums[j - <span class="number">1</span>]; j--)&#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[j];</span><br><span class="line">            nums[j] = nums[j - <span class="number">1</span>];</span><br><span class="line">            nums[j - <span class="number">1</span>] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>希尔排序是把记录按下标的一定增量分组，对每组使用直接插入排序算法排序；随着增量逐渐减少，每组包含的关键词越来越多，当增量减至 1 时，整个文件恰被分成一组，算法便终止。</p>
-<p>示例代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> gap = nums.length;&#123;</span><br><span class="line">        <span class="keyword">while</span>(gap != <span class="number">1</span>)&#123;</span><br><span class="line">            gap /= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gap; i++)&#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = i + gap; j &lt; nums.length; j += gap)&#123;</span><br><span class="line">                    <span class="keyword">int</span> k = j - gap;</span><br><span class="line">                    <span class="keyword">while</span>(k &gt;= <span class="number">0</span> &amp;&amp; nums[k] &gt; nums[k + gap])&#123;</span><br><span class="line">                        <span class="keyword">int</span> tmp = nums[k];</span><br><span class="line">                        nums[k] = nums[k + gap];</span><br><span class="line">                        nums[k + gap] = tmp;</span><br><span class="line">                        k -= gap;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">mergeSort</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] aux;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span>[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> mid, <span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = lo, j = mid + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = lo; k &lt;= hi; ++k)&#123;</span><br><span class="line">            aux[k] = a[k];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> k = lo; k &lt;= hi; ++k)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &gt; mid) a[k] = aux[j++];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(j &gt; hi) a[k] = aux[i++];</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(aux[i] &gt; aux[j])&#123;</span><br><span class="line">                a[k] = aux[j++];</span><br><span class="line">            &#125;<span class="keyword">else</span> a[k] = aux[i++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        aux = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        sort(nums, <span class="number">0</span>, nums.length - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(lo &gt;= hi) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">        sort(nums, lo, mid);</span><br><span class="line">        sort(nums, mid + <span class="number">1</span>, hi);</span><br><span class="line">        merge(nums, lo, mid, hi);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(low &gt;= high) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">int</span> i = low, j = high;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[j] &gt; nums[low]) j--;</span><br><span class="line">            <span class="keyword">while</span> (i &lt; j &amp;&amp; nums[i] &lt;= nums[low]) i++;</span><br><span class="line">            <span class="keyword">int</span> tmp = nums[i];</span><br><span class="line">            nums[i] = nums[j];</span><br><span class="line">            nums[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> tmp = nums[i];</span><br><span class="line">        nums[i] = nums[low];</span><br><span class="line">        nums[low] = tmp;</span><br><span class="line">        quickSort(nums, low, i - <span class="number">1</span>);</span><br><span class="line">        quickSort(nums, i + <span class="number">1</span>, high);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：s &#x3D; &quot;ADOBECODEBANC&quot;, t &#x3D; &quot;ABC&quot;</span><br><span class="line">输出：&quot;BANC&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：s &#x3D; &quot;a&quot;, t &#x3D; &quot;a&quot;</span><br><span class="line">输出：&quot;a&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length, t.length &lt;= 105</code></li>
+<li><code>s</code> 和 <code>t</code> 由英文字母组成</li>
+</ul>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>该题目可以采用滑动窗口算法，即可清晰简便地完成</p>
+<p>具体步骤：</p>
+<pre><code>1. 用双指针在字符串`S`中标记窗口的位置
+ 2. 扩大窗口直至满足要求，也就是包含`t`中所有字符
+ 3. 缩小窗口直至不满足要求，每次缩小窗口，都更新一下结果
+ 4. 重复2和3直到到达字符串末尾
+</code></pre><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">minWindow</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; need, window;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">char</span> c:t)&#123;</span><br><span class="line">            need[c]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>, right = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>, len = INT_MAX;</span><br><span class="line">        <span class="keyword">int</span> valid = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(right &lt; s.size())&#123;</span><br><span class="line">            <span class="keyword">char</span> cur = s[right++];</span><br><span class="line">            <span class="keyword">if</span>(need.count(cur))&#123;</span><br><span class="line">                window[cur]++;</span><br><span class="line">                <span class="keyword">if</span>(window[cur] == need[cur])</span><br><span class="line">                    valid++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span>(valid == need.size())&#123;</span><br><span class="line">                <span class="keyword">if</span>(valid == need.size())&#123;</span><br><span class="line">                   <span class="keyword">if</span>(len &gt; right - left)&#123;</span><br><span class="line">                        start = left;</span><br><span class="line">                        len = right - left;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">char</span> head = s[left++];</span><br><span class="line">                <span class="keyword">if</span>(need.count(head))&#123;</span><br><span class="line">                    <span class="keyword">if</span>(window[head] == need[head])</span><br><span class="line">                        valid--;</span><br><span class="line">                    window[head]--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (len == INT_MAX) ? <span class="string">&quot;&quot;</span>:s.substr(start, len);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>算法</category>
+        <category>leetcode</category>
+        <category>滑动窗口</category>
       </categories>
       <tags>
+        <tag>leetcode</tag>
         <tag>算法</tag>
-        <tag>排序算法</tag>
+        <tag>滑动窗口</tag>
       </tags>
   </entry>
   <entry>
@@ -638,6 +654,199 @@
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面试技巧总结</title>
+    <url>/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="面试技巧总结"><a href="#面试技巧总结" class="headerlink" title="面试技巧总结"></a>面试技巧总结</h1><h2 id="央视新闻微博发的面试技巧"><a href="#央视新闻微博发的面试技巧" class="headerlink" title="央视新闻微博发的面试技巧"></a>央视新闻微博发的面试技巧</h2><a id="more"></a>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212021.jpg" alt="微信图片_20210408211903"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212034.jpg" alt="微信图片_20210408211909"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212045.jpg" alt="微信图片_20210408211912"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212129.jpg" alt="微信图片_20210408211915"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212138.jpg" alt="微信图片_20210408211917"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212157.jpg" alt="微信图片_20210408211920"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212204.jpg" alt="微信图片_20210408211922"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212211.jpg" alt="微信图片_20210408211925"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408211951.jpg" alt="微信图片_20210408211927"></p>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring相关知识</title>
+    <url>/2021/04/23/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-的控制反转（IOC）"><a href="#Spring-的控制反转（IOC）" class="headerlink" title="Spring 的控制反转（IOC）"></a>Spring 的控制反转（IOC）</h3><p>IOC也叫<strong>控制反转，将对象间的依赖关系交给Spring容器</strong>，使用配置文件来创建所依赖的对象，由<strong>主动</strong>创建对象改为了<strong>被动</strong>方式，实现解耦合。</p>
+<p>可以通过注解<strong>@Autowired和@Resource</strong>来注入对象，被注入的对象必须被下边的四个注解之一标注：</p>
+<ul>
+<li><strong>@Controller</strong></li>
+<li><strong>@Service</strong></li>
+<li><strong>@Repository</strong></li>
+<li><strong>@Component</strong></li>
+</ul>
+<a id="more"></a>
+<p>在Spring配置文件中配置 <code>&lt;context:annotation-config/&gt;</code>元素开启注解。还有一个概念是<strong>DI（依赖注入）</strong>，和控制反转是同一个概念的不同角度的描述，即应用程序在运行时依赖IOC容器来动态注入对象需要的外部资源（对象等）。</p>
+<p>Spring是一个<strong>轻量级的IOC和AOP容器</strong>框架。是为Java应用程序提供基础服务的一套框架，目的是用于简化企业应用程序的开发，它使得开发者只需要关心业务需求。</p>
+<p>Spring的<strong>核心模块</strong>如下所示：</p>
+<ul>
+<li><strong>Spring Core：</strong>是核心类库，提供IOC服务；</li>
+<li><strong>Spring Context：</strong>提供框架式的Bean访问方式，以及企业级功能（JNDI、定时任务等）；</li>
+<li><strong>Spring AOP：</strong>提供AOP服务；</li>
+<li><strong>Spring DAO：</strong>对JDBC进行了抽象，简化了数据访问异常等处理；</li>
+<li><strong>Spring ORM：</strong>对现有的ORM持久层框架进行了支持；</li>
+<li><strong>Spring Web：</strong>提供了基本的面向Web的综合特性；</li>
+<li><strong>Spring MVC：</strong>提供面向Web应用的Model-View-Controller实现。</li>
+</ul>
+<h3 id="Spring的优点有哪些呢？"><a href="#Spring的优点有哪些呢？" class="headerlink" title="Spring的优点有哪些呢？"></a>Spring的优点有哪些呢？</h3><ul>
+<li>Spring的<strong>依赖注入</strong>将对象之间的依赖关系交给了框架来处理，减小了各个组件之间的耦合性；</li>
+<li><strong>AOP面向切面编程</strong>，可以将通用的任务抽取出来，复用性更高；</li>
+<li>Spring对于其余<strong>主流框架都提供了很好的支持</strong>，代码的侵入性很低。</li>
+</ul>
+<h3 id="Spring中的AOP面向切面编程"><a href="#Spring中的AOP面向切面编程" class="headerlink" title="Spring中的AOP面向切面编程"></a>Spring中的AOP面向切面编程</h3><p><strong>AOP，</strong>面向切面编程是指当需要在某一个方法之前或者之后做一些额外的操作，比如说日志记录，权限判断，异常统计等，可以利用AOP<strong>将功能代码从业务逻辑代码中分离出来。</strong></p>
+<p><strong>AOP中有如下的操作术语：</strong></p>
+<ul>
+<li><strong>Joinpoint(连接点)：</strong> 类里面可以被增强的方法，这些方法称为连接点</li>
+<li><strong>Pointcut(切入点)：</strong>所谓切入点是指我们要对哪些Joinpoint进行拦截的定义</li>
+<li><strong>Advice(通知/增强)：</strong>所谓通知是指拦截到Joinpoint之后所要做的事情就是通知。</li>
+<li><strong>Aspect(切面)：</strong>是切入点和通知（引介）的结合</li>
+<li><strong>Introduction(引介)：</strong>引介是一种特殊的通知在不修改类代码的前提下，Introduction可以在运行期为类动态地添加一些方法或属性</li>
+<li><strong>Target(目标对象)：</strong>代（dai）理的目标对象(要增强的类)</li>
+<li><strong>Weaving(织入)：</strong>是把增强应用到目标的过程，把advice 应用到 target的过程</li>
+<li><strong>Proxy（代(dai)理）：</strong>一个类被AOP织入增强后，就产生一个结果代（dai）理类</li>
+</ul>
+<p><strong>切入点就是在类里边可以有很多方法被增强</strong>，比如实际操作中，只是增强了个别方法，则定义实际被增强的某个方法为切入点；<strong>通知/增强 就是指增强的逻辑</strong>，比如扩展日志功能，这个日志功能称为增强；<strong>切面</strong>就是把增强应用到具体方法上面的过程称为切面。</p>
+<h3 id="Spring中AOP主要有两种实现方式："><a href="#Spring中AOP主要有两种实现方式：" class="headerlink" title="Spring中AOP主要有两种实现方式："></a>Spring中AOP主要有两种实现方式：</h3><ul>
+<li><strong>使用JDK动态代（dai）理实现</strong>，使用java.lang.reflection.Proxy类来处理</li>
+<li><strong>使用cglib来实现</strong></li>
+</ul>
+<h4 id="两种实现方式的不同之处："><a href="#两种实现方式的不同之处：" class="headerlink" title="两种实现方式的不同之处："></a>两种实现方式的不同之处：</h4><p><strong>JDK动态代理</strong>，只能对实现了接口的类生成代理，而不是针对类，该目标类型实现的接口都将被代理。原理是通过在运行期间创建一个接口的实现类来完成对目标对象的代理。<strong>实现步骤大概如下：</strong></p>
+<ul>
+<li>定义一个实现接口InvocationHandler的类</li>
+<li>通过构造函数，注入被代理类</li>
+<li>实现invoke（ Object proxy, Method method, Object[ ] args）方法</li>
+<li>在主函数中获得被代理类的类加载器</li>
+<li>使用Proxy.newProxyInstance( )产生一个代理对象</li>
+<li>通过代理对象调用各种方法</li>
+</ul>
+<p>JDK动态代理的实例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//定义一个People作为被代理的类</span></span><br><span class="line">        IPeople ple = <span class="keyword">new</span> People();</span><br><span class="line">        <span class="comment">//定义一个Handler</span></span><br><span class="line">        InvocationHandler handler = <span class="keyword">new</span> MyHandle(ple);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得类加载器</span></span><br><span class="line">        ClassLoader cl = ple.getClass().getClassLoader();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//动态产生一个代理，以下两种方法都可以</span></span><br><span class="line">        IPeople p = (IPeople) Proxy.newProxyInstance(cl, ple.getClass().getInterfaces(), handler);</span><br><span class="line">        <span class="comment">//或者 IPeople p = (IPeople) Proxy.newProxyInstance(cl, new Class[]&#123;IPeople.class&#125;, handler);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行被代理的方法</span></span><br><span class="line">        p.func();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHandle</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//被代理的实例</span></span><br><span class="line">    Object obj = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我要代理谁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyHandle</span><span class="params">(Object obj)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        Object result = method.invoke(<span class="keyword">this</span>.obj, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实际被代理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是fun方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是func方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>cglib主要针对类实现代理</strong>，<strong>对是否实现接口无要求</strong>。原理是对指定的类生成一个子类，覆盖其中的方法，因为是继承，所以被代理的类或方法不可以声明为final类型。<strong>实现步骤大概如下：</strong></p>
+<ul>
+<li>定义一个实现了MethodInterceptor接口的类</li>
+<li>实现其 intercept()方法，在其中调用proxy.invokeSuper()</li>
+</ul>
+<h4 id="Spring-AOP对这两种代（dai）理方式的选择："><a href="#Spring-AOP对这两种代（dai）理方式的选择：" class="headerlink" title="Spring AOP对这两种代（dai）理方式的选择："></a>Spring AOP对这两种代（dai）理方式的选择：</h4><ul>
+<li>如果目标对象实现了接口，默认情况下会采用JDK的动态代（dai）理实现AOP，也可以强制使用cglib实现AOP；</li>
+<li>如果目标对象没有实现接口，必须采用cglib库，Spring会自动在JDK动态代（dai）理和cglib之间转换。</li>
+</ul>
+<h3 id="IOC容器的初始化过程"><a href="#IOC容器的初始化过程" class="headerlink" title="IOC容器的初始化过程"></a>IOC容器的初始化过程</h3><p>IOC容器的初始化主要包括<strong>Resource定位，载入和注册</strong>三个步骤，接下来我们依次介绍。</p>
+<ul>
+<li><strong>Resource资源定位：</strong><br>Resouce定位是指BeanDefinition的资源定位，也就是IOC容器找数据的过程。Spring中使用外部资源来描述一个Bean对象，IOC容器第一步就是需要定位Resource外部资源。由ResourceLoader通过统一的Resource接口来完成定位。</li>
+<li><strong>BeanDefinition的载入：</strong><br>载入过程就是把定义好的Bean表示成IOC容器内部的数据结构，即BeanDefinition。在配置文件中每一个Bean都对应着一个BeanDefinition对象。<br>通过BeanDefinitionReader读取，解析Resource定位的资源，将用户定义好的Bean表示成IOC容器的内部数据结构BeanDefinition。<br>在IOC容器内部维护着一个BeanDefinitionMap的数据结构，通过BeanDefinitionMap，IOC容器可以对Bean进行更好的管理。</li>
+<li><strong>BeanDefinition的注册：</strong><br>注册就是将前面的BeanDefition保存到Map中的过程，通过BeanDefinitionRegistry接口来实现注册。</li>
+</ul>
+<h4 id="依赖注入的发生时刻"><a href="#依赖注入的发生时刻" class="headerlink" title="依赖注入的发生时刻"></a>依赖注入的发生时刻</h4><p><strong>IOC容器的初始化过程就是对Bean定义资源的定位、载入和注册</strong>，此时容器对Bean的依赖注入并没有发生。接下来，我们看下<strong>依赖注入的发生时刻吧。</strong></p>
+<p>ApplicationContext默认会在容器启动的时候创建我们配置好的各个Bean，我们的Bean配置如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=``<span class="string">&quot;oneBean&quot;</span>` `<span class="class"><span class="keyword">class</span>``</span>=``<span class="string">&quot;com.nowcoder.oneBean&quot;</span>``&gt;</span><br></pre></td></tr></table></figure>
+<p>这里边的隐藏属性是lazy-init，即上边的配置和下边的是一样的：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=``<span class="string">&quot;oneBean&quot;</span>` `<span class="class"><span class="keyword">class</span>``</span>=``<span class="string">&quot;com.nowcoder.oneBean&quot;</span>` `lazy-init=``<span class="string">&quot;false&quot;</span>``&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>lazy-init=false</strong>表示不开启延迟加载，在容器启动的时候即创建该Bean。对应的，我们还可以配置lazy-init=true表示开启延迟加载，那么该Bean的创建发生在应用程序<strong>第一次向容器索取Bean</strong>时，通过getBean()方法的调用完成。</p>
+<h4 id="BeanFactory和FactoryBean的区别"><a href="#BeanFactory和FactoryBean的区别" class="headerlink" title="BeanFactory和FactoryBean的区别"></a>BeanFactory和FactoryBean的区别</h4><ul>
+<li><strong>BeanFactory</strong>：Bean工厂，是一个工厂(Factory)， 是Spring IOC容器的最顶层接口，它的作用是<strong>管理Bean，即实例化、定位、配置</strong>应用程序中的对象及建立这些对象间的依赖。</li>
+<li><strong>FactoryBean</strong>：工厂Bean，<strong>是一个Bean，作用是产生其他Bean实例</strong>，需要提供一个工厂方法，该方法用来返回其他Bean实例。</li>
+</ul>
+<h4 id="BeanFactory和ApplicationContext有什么区别？"><a href="#BeanFactory和ApplicationContext有什么区别？" class="headerlink" title="BeanFactory和ApplicationContext有什么区别？"></a>BeanFactory和ApplicationContext有什么区别？</h4><p>BeanFactory是Spring里面最顶层的接口，包含了各种Bean的定义，读取Bean配置文档，管理Bean的加载、实例化，控制Bean的生命周期，维护Bean之间的依赖关系。</p>
+<p><strong>ApplicationContext</strong>接口是BeanFactory的派生，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：</p>
+<ul>
+<li>继承了MessageSource，支持国际化。</li>
+<li>提供了统一的资源文件访问方式。</li>
+<li>提供在Listener中注册Bean的事件。</li>
+<li>提供同时加载多个配置文件的功能。</li>
+<li>载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。</li>
+</ul>
+<p><strong>ApplicationContext 三种常见的实现方式:</strong></p>
+<ul>
+<li><strong>FileSystemXmlApplicationContext</strong>：此容器从一个XML文件中加载Bean的定义，XML Bean 配置文件的全路径名必须提供给它的构造函数。</li>
+<li><strong>ClassPathXmlApplicationContext</strong>：此容器也从一个XML文件中加载Bean的定义，需要正确设置classpath因为这个容器将在classpath里找Bean配置。</li>
+<li><strong>WebXmlApplicationContext</strong>：此容器加载一个XML文件，定义了一个WEB应用的所有Bean。</li>
+</ul>
+<p><strong>在创建Bean和内存占用方面的区别：</strong></p>
+<ul>
+<li><strong>BeanFactory采用的是延迟加载形式来注入Bean的</strong>，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，就不能发现一些存在于<strong>Spring配置</strong>中的问题。如果Bean的某一个属性没有注入，BeanFactory加载后，直至第一次使用调用getBean方法才会抛出异常。</li>
+<li><strong>ApplicationContext，它是在容器启动时，一次性创建了所有的Bean</strong>。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 ApplicationContext启动后预载入所有的单实例Bean，通过预载入单实例Bean ,确保当需要的时候，可以直接获取。</li>
+<li>相对于基本的BeanFactory，ApplicationContext不足之处是占用内存空间。当应用程序配置Bean较多时，程序启动较慢，因为其一次性创建了所有的Bean。</li>
+</ul>
+<h4 id="BeanFactory和ApplicationContext的优缺点："><a href="#BeanFactory和ApplicationContext的优缺点：" class="headerlink" title="BeanFactory和ApplicationContext的优缺点："></a>BeanFactory和ApplicationContext的优缺点：</h4><p><strong>BeanFactory的优缺点：</strong></p>
+<p><strong>优点</strong>：应用启动的时候占用资源很少，对资源要求较高的应用，比较有优势；</p>
+<p><strong>缺点</strong>：运行速度会相对来说慢一些。而且有可能会出现空指针异常的错误，而且通过Bean工厂创建的Bean生命周期会简单一些。</p>
+<p><strong>ApplicationContext的优缺点：</strong></p>
+<p><strong>优点</strong>：所有的Bean在启动的时候都进行了加载，系统运行的速度快；在系统启动的时候，可以发现系统中的配置问题。</p>
+<p><strong>缺点</strong>：把费时的操作放到系统启动中完成，所有的对象都可以预加载，缺点就是内存占用较大。</p>
+<h3 id="Spring中Bean的作用域"><a href="#Spring中Bean的作用域" class="headerlink" title="Spring中Bean的作用域"></a>Spring中Bean的作用域</h3><p>Spring框架支持以下五种Bean的作用域：</p>
+<ul>
+<li><strong>singleton</strong> : Bean在每个Spring IOC 容器中只有一个实例，默认作用域。</li>
+<li><strong>prototype</strong>：一个Bean的定义可以有多个实例。</li>
+<li><strong>request</strong>：每次http请求都会创建一个Bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
+<li><strong>session</strong>：在一个HTTP Session中，一个Bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
+<li><strong>global-session</strong>：在一个全局的HTTP Session中，一个Bean对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
+</ul>
+<h4 id="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"><a href="#Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？" class="headerlink" title="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"></a>Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？</h4><p><strong>单例Bean和线程安全与否没有必然的关系</strong>。多个线程在多个<strong>工作内存和主内存交互</strong>的时候会出现不一致的地方，那么就不是线程安全的。大部分的Spring Bean并<strong>没有可变的状态</strong>(比如Service类和DAO类)，所以一定程度上可以说Spring的单例Bean是线程安全的。如果你的Bean有多种状态的话（比如 View Model 对象），就需要自行保证线程安全。在一般情况下，<strong>只有无状态的Bean才可以在多线程环境下共享。</strong></p>
+<h4 id="循环依赖："><a href="#循环依赖：" class="headerlink" title="循环依赖："></a>循环依赖：</h4><p>“<strong>如果A对象创建的过程需要使用到B对象，但是B对象创建的时候也需要A对象，也就是构成了循环依赖的现象，那么Spring会如何解决？</strong>”</p>
+<p>这是一种<strong>构造器循环依赖，通过构造器注入构成的循环依赖，此依赖是无法解决的，只能抛出BeanCurrentlyInCreationException异常表示循环依赖。</strong></p>
+<h4 id="Spring事务"><a href="#Spring事务" class="headerlink" title="Spring事务"></a>Spring事务</h4><p>Spring支持编程式事务管理和声明式事务管理两种方式：</p>
+<ul>
+<li><strong>编程式事务管理</strong>：使用TransactionTemplate实现。</li>
+<li><strong>声明式事务管理</strong>：建立在AOP之上的。其本质是通过AOP功能，对方法前后进行拦截，将事务处理的功能编织到拦截的方法中，也就是在目标方法开始之前加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务</li>
+</ul>
+<p><strong>声明式事务的优点：</strong></p>
+<p>就是不需要在业务逻辑代码中掺杂事务管理的代码，只需在配置文件中做相关的事务规则声明或通过@Transactional注解的方式，便可以将事务规则应用到业务逻辑中。</p>
+<p><strong>事务选择：</strong></p>
+<p>声明式事务管理要优于编程式事务管理，这正是Spring倡导的<strong>非侵入式的开发</strong>方式，使业务代码不受污染，只要<strong>加上注解</strong>就可以获得完全的事务支持。唯一不足之处是声明式事务的最细粒度只能作用到方法级别，无法做到像编程式事务那样可以作用到代码块级别。</p>
+<h4 id="事务的传播行为"><a href="#事务的传播行为" class="headerlink" title="事务的传播行为"></a>事务的传播行为</h4><ul>
+<li><strong>PROPAGATION_REQUIRED</strong>：如果当前没有事务，就创建一个新事务，如果当前存在事务，就加入该事务，<strong>该设置是最常用的设置。</strong></li>
+<li>PROPAGATION_SUPPORTS：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就以非事务执行。</li>
+<li>PROPAGATION_MANDATORY：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就抛出异常。</li>
+<li>PROPAGATION_REQUIRES_NEW：创建新事务，无论当前存不存在事务，都创建新事务。</li>
+<li>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</li>
+<li>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。</li>
+<li>PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则按REQUIRED属性执行。</li>
+</ul>
+<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><ul>
+<li>读未提交</li>
+<li>读已提交</li>
+<li>可重复读</li>
+<li>串行（序列化）</li>
+</ul>
+<h3 id="SpringMVC的消息处理机制"><a href="#SpringMVC的消息处理机制" class="headerlink" title="SpringMVC的消息处理机制"></a>SpringMVC的消息处理机制</h3><p> SpringMVC是一种轻量级的Web层框架，是一个基于请求驱动的Web框架，使用了<strong>“前端控制器（DispatcherServlet）”模型</strong>来进行设计，再根据请求映射规则分发给相应的页面控制器进行处理。消息处理依次经过的组件如下：</p>
+<p><strong>DispatcherServlet、HandlerMapping、HandlerAdapter，返回一个ModelAndView逻辑视图名、ViewResolver、View</strong></p>
+<p><strong>具体流程可以概括为</strong>：通过前端控制器DispatcherServlet来接收并且分发请求，然后通过HandlerMapping和HandlerAdapter找到具体可以处理该请求的Handler，经过逻辑处理，返回一个ModelAndView，经过ViewResolver处理，最后生成了一个View视图返回给了客户端。可以参考如下的示意图：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210424084138.png" alt="图片说明"></p>
+<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p>Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件<strong>一站式解决方案</strong>，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了<strong>各种启动器starter</strong>，开发者能快速上手。</p>
+<p>SpringBoot的优点包括可以独立运行，简化了配置，可以实现<strong>自动配置</strong>，无代码生成以及XML配置，并且可以进行应用监控。</p>
+<p><strong>注解 @EnableAutoConfiguration, @Configuration, @ConditionalOnClass 就是自动配置</strong>的核心，实现了SpringBoot项目的自动配置。</p>
+<h4 id="SpringBoot的核心注解"><a href="#SpringBoot的核心注解" class="headerlink" title="SpringBoot的核心注解"></a>SpringBoot的核心注解</h4><p>启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解，主要组合包含了以下 3 个注解：</p>
+<ul>
+<li>@<strong>SpringBootConfiguration</strong>：组合了 @Configuration 注解，实现配置文件的功能。</li>
+<li>@<strong>EnableAutoConfiguration</strong>：打开自动配置的功能，也可以关闭某个自动配置的选项。如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。</li>
+<li>@<strong>ComponentScan</strong>：Spring组件扫描。</li>
+</ul>
+<h4 id="SpringBoot项目启动分析"><a href="#SpringBoot项目启动分析" class="headerlink" title="SpringBoot项目启动分析"></a>SpringBoot项目启动分析</h4><p>Application类是通过<strong>SpringApplication</strong>类的静态run方法来启动应用的。打开这个静态方法，该静态方法真正执行的是两部分：<strong>new SpringApplication( )并且执行对象run()方法。</strong></p>
+<h4 id="轻量级和重量级的划分"><a href="#轻量级和重量级的划分" class="headerlink" title="轻量级和重量级的划分"></a>轻量级和重量级的划分</h4><ol>
+<li>主要看它使用了多少服务，使用的服务越多，容器为普通的java对象做的工作就越多，必然会影响到应用的发布时间，或者运行性能。</li>
+<li>对于spring容器，他提供了很多服务，但默认是关闭的，应用需要某种服务，需要指明使用服务，如果服务很少，如只使用了spring核心服务，就认为此时应用属于轻量级的，如果使用了大部分的服务，这时就属于重量级的。</li>
+<li>目前EJB容器就重量级。因为他默认为应用提供了Ejb规范中的所有功能，所以属于重量级。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -1014,178 +1223,6 @@
       <tags>
         <tag>面试</tag>
         <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring相关知识</title>
-    <url>/2021/04/23/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-的控制反转（IOC）"><a href="#Spring-的控制反转（IOC）" class="headerlink" title="Spring 的控制反转（IOC）"></a>Spring 的控制反转（IOC）</h3><p>IOC也叫<strong>控制反转，将对象间的依赖关系交给Spring容器</strong>，使用配置文件来创建所依赖的对象，由<strong>主动</strong>创建对象改为了<strong>被动</strong>方式，实现解耦合。</p>
-<p>可以通过注解<strong>@Autowired和@Resource</strong>来注入对象，被注入的对象必须被下边的四个注解之一标注：</p>
-<ul>
-<li><strong>@Controller</strong></li>
-<li><strong>@Service</strong></li>
-<li><strong>@Repository</strong></li>
-<li><strong>@Component</strong></li>
-</ul>
-<a id="more"></a>
-<p>在Spring配置文件中配置 <code>&lt;context:annotation-config/&gt;</code>元素开启注解。还有一个概念是<strong>DI（依赖注入）</strong>，和控制反转是同一个概念的不同角度的描述，即应用程序在运行时依赖IOC容器来动态注入对象需要的外部资源（对象等）。</p>
-<p>Spring是一个<strong>轻量级的IOC和AOP容器</strong>框架。是为Java应用程序提供基础服务的一套框架，目的是用于简化企业应用程序的开发，它使得开发者只需要关心业务需求。</p>
-<p>Spring的<strong>核心模块</strong>如下所示：</p>
-<ul>
-<li><strong>Spring Core：</strong>是核心类库，提供IOC服务；</li>
-<li><strong>Spring Context：</strong>提供框架式的Bean访问方式，以及企业级功能（JNDI、定时任务等）；</li>
-<li><strong>Spring AOP：</strong>提供AOP服务；</li>
-<li><strong>Spring DAO：</strong>对JDBC进行了抽象，简化了数据访问异常等处理；</li>
-<li><strong>Spring ORM：</strong>对现有的ORM持久层框架进行了支持；</li>
-<li><strong>Spring Web：</strong>提供了基本的面向Web的综合特性；</li>
-<li><strong>Spring MVC：</strong>提供面向Web应用的Model-View-Controller实现。</li>
-</ul>
-<h3 id="Spring的优点有哪些呢？"><a href="#Spring的优点有哪些呢？" class="headerlink" title="Spring的优点有哪些呢？"></a>Spring的优点有哪些呢？</h3><ul>
-<li>Spring的<strong>依赖注入</strong>将对象之间的依赖关系交给了框架来处理，减小了各个组件之间的耦合性；</li>
-<li><strong>AOP面向切面编程</strong>，可以将通用的任务抽取出来，复用性更高；</li>
-<li>Spring对于其余<strong>主流框架都提供了很好的支持</strong>，代码的侵入性很低。</li>
-</ul>
-<h3 id="Spring中的AOP面向切面编程"><a href="#Spring中的AOP面向切面编程" class="headerlink" title="Spring中的AOP面向切面编程"></a>Spring中的AOP面向切面编程</h3><p><strong>AOP，</strong>面向切面编程是指当需要在某一个方法之前或者之后做一些额外的操作，比如说日志记录，权限判断，异常统计等，可以利用AOP<strong>将功能代码从业务逻辑代码中分离出来。</strong></p>
-<p><strong>AOP中有如下的操作术语：</strong></p>
-<ul>
-<li><strong>Joinpoint(连接点)：</strong> 类里面可以被增强的方法，这些方法称为连接点</li>
-<li><strong>Pointcut(切入点)：</strong>所谓切入点是指我们要对哪些Joinpoint进行拦截的定义</li>
-<li><strong>Advice(通知/增强)：</strong>所谓通知是指拦截到Joinpoint之后所要做的事情就是通知。</li>
-<li><strong>Aspect(切面)：</strong>是切入点和通知（引介）的结合</li>
-<li><strong>Introduction(引介)：</strong>引介是一种特殊的通知在不修改类代码的前提下，Introduction可以在运行期为类动态地添加一些方法或属性</li>
-<li><strong>Target(目标对象)：</strong>代（dai）理的目标对象(要增强的类)</li>
-<li><strong>Weaving(织入)：</strong>是把增强应用到目标的过程，把advice 应用到 target的过程</li>
-<li><strong>Proxy（代(dai)理）：</strong>一个类被AOP织入增强后，就产生一个结果代（dai）理类</li>
-</ul>
-<p><strong>切入点就是在类里边可以有很多方法被增强</strong>，比如实际操作中，只是增强了个别方法，则定义实际被增强的某个方法为切入点；<strong>通知/增强 就是指增强的逻辑</strong>，比如扩展日志功能，这个日志功能称为增强；<strong>切面</strong>就是把增强应用到具体方法上面的过程称为切面。</p>
-<h3 id="Spring中AOP主要有两种实现方式："><a href="#Spring中AOP主要有两种实现方式：" class="headerlink" title="Spring中AOP主要有两种实现方式："></a>Spring中AOP主要有两种实现方式：</h3><ul>
-<li><strong>使用JDK动态代（dai）理实现</strong>，使用java.lang.reflection.Proxy类来处理</li>
-<li><strong>使用cglib来实现</strong></li>
-</ul>
-<h4 id="两种实现方式的不同之处："><a href="#两种实现方式的不同之处：" class="headerlink" title="两种实现方式的不同之处："></a>两种实现方式的不同之处：</h4><p><strong>JDK动态代理</strong>，只能对实现了接口的类生成代理，而不是针对类，该目标类型实现的接口都将被代理。原理是通过在运行期间创建一个接口的实现类来完成对目标对象的代理。<strong>实现步骤大概如下：</strong></p>
-<ul>
-<li>定义一个实现接口InvocationHandler的类</li>
-<li>通过构造函数，注入被代理类</li>
-<li>实现invoke（ Object proxy, Method method, Object[ ] args）方法</li>
-<li>在主函数中获得被代理类的类加载器</li>
-<li>使用Proxy.newProxyInstance( )产生一个代理对象</li>
-<li>通过代理对象调用各种方法</li>
-</ul>
-<p>JDK动态代理的实例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//定义一个People作为被代理的类</span></span><br><span class="line">        IPeople ple = <span class="keyword">new</span> People();</span><br><span class="line">        <span class="comment">//定义一个Handler</span></span><br><span class="line">        InvocationHandler handler = <span class="keyword">new</span> MyHandle(ple);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得类加载器</span></span><br><span class="line">        ClassLoader cl = ple.getClass().getClassLoader();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//动态产生一个代理，以下两种方法都可以</span></span><br><span class="line">        IPeople p = (IPeople) Proxy.newProxyInstance(cl, ple.getClass().getInterfaces(), handler);</span><br><span class="line">        <span class="comment">//或者 IPeople p = (IPeople) Proxy.newProxyInstance(cl, new Class[]&#123;IPeople.class&#125;, handler);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行被代理的方法</span></span><br><span class="line">        p.func();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHandle</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//被代理的实例</span></span><br><span class="line">    Object obj = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我要代理谁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyHandle</span><span class="params">(Object obj)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        Object result = method.invoke(<span class="keyword">this</span>.obj, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实际被代理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是fun方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是func方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>cglib主要针对类实现代理</strong>，<strong>对是否实现接口无要求</strong>。原理是对指定的类生成一个子类，覆盖其中的方法，因为是继承，所以被代理的类或方法不可以声明为final类型。<strong>实现步骤大概如下：</strong></p>
-<ul>
-<li>定义一个实现了MethodInterceptor接口的类</li>
-<li>实现其 intercept()方法，在其中调用proxy.invokeSuper()</li>
-</ul>
-<h4 id="Spring-AOP对这两种代（dai）理方式的选择："><a href="#Spring-AOP对这两种代（dai）理方式的选择：" class="headerlink" title="Spring AOP对这两种代（dai）理方式的选择："></a>Spring AOP对这两种代（dai）理方式的选择：</h4><ul>
-<li>如果目标对象实现了接口，默认情况下会采用JDK的动态代（dai）理实现AOP，也可以强制使用cglib实现AOP；</li>
-<li>如果目标对象没有实现接口，必须采用cglib库，Spring会自动在JDK动态代（dai）理和cglib之间转换。</li>
-</ul>
-<h3 id="IOC容器的初始化过程"><a href="#IOC容器的初始化过程" class="headerlink" title="IOC容器的初始化过程"></a>IOC容器的初始化过程</h3><p>IOC容器的初始化主要包括<strong>Resource定位，载入和注册</strong>三个步骤，接下来我们依次介绍。</p>
-<ul>
-<li><strong>Resource资源定位：</strong><br>Resouce定位是指BeanDefinition的资源定位，也就是IOC容器找数据的过程。Spring中使用外部资源来描述一个Bean对象，IOC容器第一步就是需要定位Resource外部资源。由ResourceLoader通过统一的Resource接口来完成定位。</li>
-<li><strong>BeanDefinition的载入：</strong><br>载入过程就是把定义好的Bean表示成IOC容器内部的数据结构，即BeanDefinition。在配置文件中每一个Bean都对应着一个BeanDefinition对象。<br>通过BeanDefinitionReader读取，解析Resource定位的资源，将用户定义好的Bean表示成IOC容器的内部数据结构BeanDefinition。<br>在IOC容器内部维护着一个BeanDefinitionMap的数据结构，通过BeanDefinitionMap，IOC容器可以对Bean进行更好的管理。</li>
-<li><strong>BeanDefinition的注册：</strong><br>注册就是将前面的BeanDefition保存到Map中的过程，通过BeanDefinitionRegistry接口来实现注册。</li>
-</ul>
-<h4 id="依赖注入的发生时刻"><a href="#依赖注入的发生时刻" class="headerlink" title="依赖注入的发生时刻"></a>依赖注入的发生时刻</h4><p><strong>IOC容器的初始化过程就是对Bean定义资源的定位、载入和注册</strong>，此时容器对Bean的依赖注入并没有发生。接下来，我们看下<strong>依赖注入的发生时刻吧。</strong></p>
-<p>ApplicationContext默认会在容器启动的时候创建我们配置好的各个Bean，我们的Bean配置如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=``<span class="string">&quot;oneBean&quot;</span>` `<span class="class"><span class="keyword">class</span>``</span>=``<span class="string">&quot;com.nowcoder.oneBean&quot;</span>``&gt;</span><br></pre></td></tr></table></figure>
-<p>这里边的隐藏属性是lazy-init，即上边的配置和下边的是一样的：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=``<span class="string">&quot;oneBean&quot;</span>` `<span class="class"><span class="keyword">class</span>``</span>=``<span class="string">&quot;com.nowcoder.oneBean&quot;</span>` `lazy-init=``<span class="string">&quot;false&quot;</span>``&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>lazy-init=false</strong>表示不开启延迟加载，在容器启动的时候即创建该Bean。对应的，我们还可以配置lazy-init=true表示开启延迟加载，那么该Bean的创建发生在应用程序<strong>第一次向容器索取Bean</strong>时，通过getBean()方法的调用完成。</p>
-<h4 id="BeanFactory和FactoryBean的区别"><a href="#BeanFactory和FactoryBean的区别" class="headerlink" title="BeanFactory和FactoryBean的区别"></a>BeanFactory和FactoryBean的区别</h4><ul>
-<li><strong>BeanFactory</strong>：Bean工厂，是一个工厂(Factory)， 是Spring IOC容器的最顶层接口，它的作用是<strong>管理Bean，即实例化、定位、配置</strong>应用程序中的对象及建立这些对象间的依赖。</li>
-<li><strong>FactoryBean</strong>：工厂Bean，<strong>是一个Bean，作用是产生其他Bean实例</strong>，需要提供一个工厂方法，该方法用来返回其他Bean实例。</li>
-</ul>
-<h4 id="BeanFactory和ApplicationContext有什么区别？"><a href="#BeanFactory和ApplicationContext有什么区别？" class="headerlink" title="BeanFactory和ApplicationContext有什么区别？"></a>BeanFactory和ApplicationContext有什么区别？</h4><p>BeanFactory是Spring里面最顶层的接口，包含了各种Bean的定义，读取Bean配置文档，管理Bean的加载、实例化，控制Bean的生命周期，维护Bean之间的依赖关系。</p>
-<p><strong>ApplicationContext</strong>接口是BeanFactory的派生，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：</p>
-<ul>
-<li>继承了MessageSource，支持国际化。</li>
-<li>提供了统一的资源文件访问方式。</li>
-<li>提供在Listener中注册Bean的事件。</li>
-<li>提供同时加载多个配置文件的功能。</li>
-<li>载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。</li>
-</ul>
-<p><strong>ApplicationContext 三种常见的实现方式:</strong></p>
-<ul>
-<li><strong>FileSystemXmlApplicationContext</strong>：此容器从一个XML文件中加载Bean的定义，XML Bean 配置文件的全路径名必须提供给它的构造函数。</li>
-<li><strong>ClassPathXmlApplicationContext</strong>：此容器也从一个XML文件中加载Bean的定义，需要正确设置classpath因为这个容器将在classpath里找Bean配置。</li>
-<li><strong>WebXmlApplicationContext</strong>：此容器加载一个XML文件，定义了一个WEB应用的所有Bean。</li>
-</ul>
-<p><strong>在创建Bean和内存占用方面的区别：</strong></p>
-<ul>
-<li><strong>BeanFactory采用的是延迟加载形式来注入Bean的</strong>，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，就不能发现一些存在于<strong>Spring配置</strong>中的问题。如果Bean的某一个属性没有注入，BeanFactory加载后，直至第一次使用调用getBean方法才会抛出异常。</li>
-<li><strong>ApplicationContext，它是在容器启动时，一次性创建了所有的Bean</strong>。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 ApplicationContext启动后预载入所有的单实例Bean，通过预载入单实例Bean ,确保当需要的时候，可以直接获取。</li>
-<li>相对于基本的BeanFactory，ApplicationContext不足之处是占用内存空间。当应用程序配置Bean较多时，程序启动较慢，因为其一次性创建了所有的Bean。</li>
-</ul>
-<h4 id="BeanFactory和ApplicationContext的优缺点："><a href="#BeanFactory和ApplicationContext的优缺点：" class="headerlink" title="BeanFactory和ApplicationContext的优缺点："></a>BeanFactory和ApplicationContext的优缺点：</h4><p><strong>BeanFactory的优缺点：</strong></p>
-<p><strong>优点</strong>：应用启动的时候占用资源很少，对资源要求较高的应用，比较有优势；</p>
-<p><strong>缺点</strong>：运行速度会相对来说慢一些。而且有可能会出现空指针异常的错误，而且通过Bean工厂创建的Bean生命周期会简单一些。</p>
-<p><strong>ApplicationContext的优缺点：</strong></p>
-<p><strong>优点</strong>：所有的Bean在启动的时候都进行了加载，系统运行的速度快；在系统启动的时候，可以发现系统中的配置问题。</p>
-<p><strong>缺点</strong>：把费时的操作放到系统启动中完成，所有的对象都可以预加载，缺点就是内存占用较大。</p>
-<h3 id="Spring中Bean的作用域"><a href="#Spring中Bean的作用域" class="headerlink" title="Spring中Bean的作用域"></a>Spring中Bean的作用域</h3><p>Spring框架支持以下五种Bean的作用域：</p>
-<ul>
-<li><strong>singleton</strong> : Bean在每个Spring IOC 容器中只有一个实例，默认作用域。</li>
-<li><strong>prototype</strong>：一个Bean的定义可以有多个实例。</li>
-<li><strong>request</strong>：每次http请求都会创建一个Bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
-<li><strong>session</strong>：在一个HTTP Session中，一个Bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
-<li><strong>global-session</strong>：在一个全局的HTTP Session中，一个Bean对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
-</ul>
-<h4 id="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"><a href="#Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？" class="headerlink" title="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"></a>Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？</h4><p><strong>单例Bean和线程安全与否没有必然的关系</strong>。多个线程在多个<strong>工作内存和主内存交互</strong>的时候会出现不一致的地方，那么就不是线程安全的。大部分的Spring Bean并<strong>没有可变的状态</strong>(比如Service类和DAO类)，所以一定程度上可以说Spring的单例Bean是线程安全的。如果你的Bean有多种状态的话（比如 View Model 对象），就需要自行保证线程安全。在一般情况下，<strong>只有无状态的Bean才可以在多线程环境下共享。</strong></p>
-<h4 id="循环依赖："><a href="#循环依赖：" class="headerlink" title="循环依赖："></a>循环依赖：</h4><p>“<strong>如果A对象创建的过程需要使用到B对象，但是B对象创建的时候也需要A对象，也就是构成了循环依赖的现象，那么Spring会如何解决？</strong>”</p>
-<p>这是一种<strong>构造器循环依赖，通过构造器注入构成的循环依赖，此依赖是无法解决的，只能抛出BeanCurrentlyInCreationException异常表示循环依赖。</strong></p>
-<h4 id="Spring事务"><a href="#Spring事务" class="headerlink" title="Spring事务"></a>Spring事务</h4><p>Spring支持编程式事务管理和声明式事务管理两种方式：</p>
-<ul>
-<li><strong>编程式事务管理</strong>：使用TransactionTemplate实现。</li>
-<li><strong>声明式事务管理</strong>：建立在AOP之上的。其本质是通过AOP功能，对方法前后进行拦截，将事务处理的功能编织到拦截的方法中，也就是在目标方法开始之前加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务</li>
-</ul>
-<p><strong>声明式事务的优点：</strong></p>
-<p>就是不需要在业务逻辑代码中掺杂事务管理的代码，只需在配置文件中做相关的事务规则声明或通过@Transactional注解的方式，便可以将事务规则应用到业务逻辑中。</p>
-<p><strong>事务选择：</strong></p>
-<p>声明式事务管理要优于编程式事务管理，这正是Spring倡导的<strong>非侵入式的开发</strong>方式，使业务代码不受污染，只要<strong>加上注解</strong>就可以获得完全的事务支持。唯一不足之处是声明式事务的最细粒度只能作用到方法级别，无法做到像编程式事务那样可以作用到代码块级别。</p>
-<h4 id="事务的传播行为"><a href="#事务的传播行为" class="headerlink" title="事务的传播行为"></a>事务的传播行为</h4><ul>
-<li><strong>PROPAGATION_REQUIRED</strong>：如果当前没有事务，就创建一个新事务，如果当前存在事务，就加入该事务，<strong>该设置是最常用的设置。</strong></li>
-<li>PROPAGATION_SUPPORTS：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就以非事务执行。</li>
-<li>PROPAGATION_MANDATORY：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就抛出异常。</li>
-<li>PROPAGATION_REQUIRES_NEW：创建新事务，无论当前存不存在事务，都创建新事务。</li>
-<li>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</li>
-<li>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。</li>
-<li>PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则按REQUIRED属性执行。</li>
-</ul>
-<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><ul>
-<li>读未提交</li>
-<li>读已提交</li>
-<li>可重复读</li>
-<li>串行（序列化）</li>
-</ul>
-<h3 id="SpringMVC的消息处理机制"><a href="#SpringMVC的消息处理机制" class="headerlink" title="SpringMVC的消息处理机制"></a>SpringMVC的消息处理机制</h3><p> SpringMVC是一种轻量级的Web层框架，是一个基于请求驱动的Web框架，使用了<strong>“前端控制器（DispatcherServlet）”模型</strong>来进行设计，再根据请求映射规则分发给相应的页面控制器进行处理。消息处理依次经过的组件如下：</p>
-<p><strong>DispatcherServlet、HandlerMapping、HandlerAdapter，返回一个ModelAndView逻辑视图名、ViewResolver、View</strong></p>
-<p><strong>具体流程可以概括为</strong>：通过前端控制器DispatcherServlet来接收并且分发请求，然后通过HandlerMapping和HandlerAdapter找到具体可以处理该请求的Handler，经过逻辑处理，返回一个ModelAndView，经过ViewResolver处理，最后生成了一个View视图返回给了客户端。可以参考如下的示意图：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210424084138.png" alt="图片说明"></p>
-<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p>Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件<strong>一站式解决方案</strong>，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了<strong>各种启动器starter</strong>，开发者能快速上手。</p>
-<p>SpringBoot的优点包括可以独立运行，简化了配置，可以实现<strong>自动配置</strong>，无代码生成以及XML配置，并且可以进行应用监控。</p>
-<p><strong>注解 @EnableAutoConfiguration, @Configuration, @ConditionalOnClass 就是自动配置</strong>的核心，实现了SpringBoot项目的自动配置。</p>
-<h4 id="SpringBoot的核心注解"><a href="#SpringBoot的核心注解" class="headerlink" title="SpringBoot的核心注解"></a>SpringBoot的核心注解</h4><p>启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解，主要组合包含了以下 3 个注解：</p>
-<ul>
-<li>@<strong>SpringBootConfiguration</strong>：组合了 @Configuration 注解，实现配置文件的功能。</li>
-<li>@<strong>EnableAutoConfiguration</strong>：打开自动配置的功能，也可以关闭某个自动配置的选项。如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。</li>
-<li>@<strong>ComponentScan</strong>：Spring组件扫描。</li>
-</ul>
-<h4 id="SpringBoot项目启动分析"><a href="#SpringBoot项目启动分析" class="headerlink" title="SpringBoot项目启动分析"></a>SpringBoot项目启动分析</h4><p>Application类是通过<strong>SpringApplication</strong>类的静态run方法来启动应用的。打开这个静态方法，该静态方法真正执行的是两部分：<strong>new SpringApplication( )并且执行对象run()方法。</strong></p>
-<h4 id="轻量级和重量级的划分"><a href="#轻量级和重量级的划分" class="headerlink" title="轻量级和重量级的划分"></a>轻量级和重量级的划分</h4><ol>
-<li>主要看它使用了多少服务，使用的服务越多，容器为普通的java对象做的工作就越多，必然会影响到应用的发布时间，或者运行性能。</li>
-<li>对于spring容器，他提供了很多服务，但默认是关闭的，应用需要某种服务，需要指明使用服务，如果服务很少，如只使用了spring核心服务，就认为此时应用属于轻量级的，如果使用了大部分的服务，这时就属于重量级的。</li>
-<li>目前EJB容器就重量级。因为他默认为应用提供了Ejb规范中的所有功能，所以属于重量级。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
