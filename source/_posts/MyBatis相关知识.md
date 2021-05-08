@@ -68,7 +68,7 @@ Mapper中常见的标签如下：
 
 **Dao接口即Mapper接口**。接口的全限名，就是映射文件中的namespace的值。接口的方法名，就是映射文件中Mapper的Statement的id值。接口方法内的参数，就是传递给SQL的参数。
 
-Mapper接口是没有实现类的，当调用接口方法时，接口**全限名+方法名**拼接字符串作为key值，可唯一定位一个**MapperStatement**。在MyBatis中，每一个<select>、<insert>、<update>、<delete>标签，都会被解析为一个**MapperStatement对象**。
+Mapper接口是没有实现类的，当调用接口方法时，接口**全限名+方法名**拼接字符串作为key值，可唯一定位一个**MapperStatement**。在MyBatis中，每一个`<select>`、`<insert>`、`<update>`、`<delete>`标签，都会被解析为一个**MapperStatement对象**。
 
 Mapper接口的工作原理**是JDK动态代（dai）理**，MyBatis运行时会使用JDK动态代（dai）理为Mapper接口生成代（dai）理对象proxy，代（dai）理对象会拦截接口方法，转而执行MapperStatement所代表的SQL，然后将SQL执行结果返回。
 
@@ -85,9 +85,9 @@ Mapper接口的工作原理**是JDK动态代（dai）理**，MyBatis运行时会
 
 yBatis中我们**能用#号就尽量不要使用$符号**，它们的区别主要体现在下边几点：
 
-- \#符号将传入的数据都当做一个字符串，会对自动传入的数据加一个双引号
-- $符号将传入的数据**直接显示**在生成的SQL语句中。
-- \#符号**存在预编译的过程**，对问号赋值，防止**SQL注入**。
+- `#`符号将传入的数据都当做一个字符串，会对自动传入的数据加一个双引号
+- `$`符号将传入的数据**直接显示**在生成的SQL语句中。
+- `#`符号**存在预编译的过程**，对问号赋值，防止**SQL注入**。
 - `$`符号是**直译**的方式，一般用在**order by ${列名}**语句中。
 
 ### MyBatis的缓存机制
