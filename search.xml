@@ -242,9 +242,9 @@
 </ul>
 <h3 id="和-有什么区别"><a href="#和-有什么区别" class="headerlink" title="#和$有什么区别"></a>#和$有什么区别</h3><p>yBatis中我们<strong>能用#号就尽量不要使用$符号</strong>，它们的区别主要体现在下边几点：</p>
 <ul>
-<li>#符号将传入的数据都当做一个字符串，会对自动传入的数据加一个双引号</li>
-<li>$符号将传入的数据<strong>直接显示</strong>在生成的SQL语句中。</li>
-<li>#符号<strong>存在预编译的过程</strong>，对问号赋值，防止<strong>SQL注入</strong>。</li>
+<li><code>#</code>符号将传入的数据都当做一个字符串，会对自动传入的数据加一个双引号</li>
+<li><code>$</code>符号将传入的数据<strong>直接显示</strong>在生成的SQL语句中。</li>
+<li><code>#</code>符号<strong>存在预编译的过程</strong>，对问号赋值，防止<strong>SQL注入</strong>。</li>
 <li><code>$</code>符号是<strong>直译</strong>的方式，一般用在<strong>order by ${列名}</strong>语句中。</li>
 </ul>
 <h3 id="MyBatis的缓存机制"><a href="#MyBatis的缓存机制" class="headerlink" title="MyBatis的缓存机制"></a>MyBatis的缓存机制</h3><p>MyBatis的缓存机制分为一级和二级缓存，分别介绍如下：</p>
@@ -558,6 +558,39 @@
       </tags>
   </entry>
   <entry>
+    <title>最长递增子序列的二分搜索解法</title>
+    <url>/2021/04/28/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="最长递增子序列的二分搜索解法"><a href="#最长递增子序列的二分搜索解法" class="headerlink" title="最长递增子序列的二分搜索解法"></a>最长递增子序列的二分搜索解法</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给你一个整数数组 <code>nums</code> ，找到其中最长严格递增子序列的长度。</p>
+<p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，<code>[3,6,2,7]</code> 是数组 <code>[0,3,1,6,2,2,7]</code> 的子序列。</p>
+<a id="more"></a> 
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [10,9,2,5,3,7,101,18]</span><br><span class="line">输出：4</span><br><span class="line">解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [0,1,0,3,2,3]</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [7,7,7,7,7,7,7]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><p>该解法与windows上蜘蛛纸牌的规则类似。</p>
+<p>首先，给一排扑克牌，我们从左到右把扑克牌分成若干个分组。</p>
+<p><strong>处理分组时的规则如下：</strong></p>
+<ol>
+<li>只能把点数小的牌放到点数大于等于的牌上；</li>
+<li>如果当前牌的点数较大，没有合适的分组可以放入的话就单独划分一个新的分组；</li>
+<li>如果有多个分组可以放入的话，则放入最左边的分组（为了使分组顶端的牌保持有序）。</li>
+</ol>
+<p>按照以上规则对数组进行分组的话，最后的分组数即为最长递增子序列的长度，数学证明我目前不会，等看懂了再进行补充。</p>
+<p>我们只需要根据以上规则进行程序编写，通过二分查找来找到要放的分组位置，最后划分出的分组数即为最长递增子序列的长度。</p>
+<p>样例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建N个分组,只需要保存分组最后放入的数的值</span></span><br><span class="line">        <span class="keyword">int</span>[] group = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="comment">//初始化分组数</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//处理每一个数字</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i)&#123;</span><br><span class="line">            <span class="comment">//当前数字的值</span></span><br><span class="line">            <span class="keyword">int</span> cur = nums[i];</span><br><span class="line">            <span class="comment">//搜索区间</span></span><br><span class="line">            <span class="keyword">int</span> left = <span class="number">0</span>, right = count;</span><br><span class="line">            <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">                <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(group[mid] &lt; cur)&#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    right = mid;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//若没有合适的分组则新建分组</span></span><br><span class="line">            <span class="keyword">if</span>(left == count)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            group[left] = cur;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>二分搜索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>最小覆盖子串</title>
     <url>/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</url>
     <content><![CDATA[<h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWluaW11bS13aW5kb3ctc3Vic3RyaW5nLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
@@ -589,39 +622,6 @@
         <tag>leetcode</tag>
         <tag>算法</tag>
         <tag>滑动窗口</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最长递增子序列的二分搜索解法</title>
-    <url>/2021/04/28/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95/</url>
-    <content><![CDATA[<h1 id="最长递增子序列的二分搜索解法"><a href="#最长递增子序列的二分搜索解法" class="headerlink" title="最长递增子序列的二分搜索解法"></a>最长递增子序列的二分搜索解法</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给你一个整数数组 <code>nums</code> ，找到其中最长严格递增子序列的长度。</p>
-<p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，<code>[3,6,2,7]</code> 是数组 <code>[0,3,1,6,2,2,7]</code> 的子序列。</p>
-<a id="more"></a> 
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [10,9,2,5,3,7,101,18]</span><br><span class="line">输出：4</span><br><span class="line">解释：最长递增子序列是 [2,3,7,101]，因此长度为 4 。</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [0,1,0,3,2,3]</span><br><span class="line">输出：4</span><br></pre></td></tr></table></figure>
-<p><strong>示例 3：</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [7,7,7,7,7,7,7]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><p>该解法与windows上蜘蛛纸牌的规则类似。</p>
-<p>首先，给一排扑克牌，我们从左到右把扑克牌分成若干个分组。</p>
-<p><strong>处理分组时的规则如下：</strong></p>
-<ol>
-<li>只能把点数小的牌放到点数大于等于的牌上；</li>
-<li>如果当前牌的点数较大，没有合适的分组可以放入的话就单独划分一个新的分组；</li>
-<li>如果有多个分组可以放入的话，则放入最左边的分组（为了使分组顶端的牌保持有序）。</li>
-</ol>
-<p>按照以上规则对数组进行分组的话，最后的分组数即为最长递增子序列的长度，数学证明我目前不会，等看懂了再进行补充。</p>
-<p>我们只需要根据以上规则进行程序编写，通过二分查找来找到要放的分组位置，最后划分出的分组数即为最长递增子序列的长度。</p>
-<p>样例代码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">lengthOfLIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建N个分组,只需要保存分组最后放入的数的值</span></span><br><span class="line">        <span class="keyword">int</span>[] group = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        <span class="comment">//初始化分组数</span></span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//处理每一个数字</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; ++i)&#123;</span><br><span class="line">            <span class="comment">//当前数字的值</span></span><br><span class="line">            <span class="keyword">int</span> cur = nums[i];</span><br><span class="line">            <span class="comment">//搜索区间</span></span><br><span class="line">            <span class="keyword">int</span> left = <span class="number">0</span>, right = count;</span><br><span class="line">            <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">                <span class="keyword">int</span> mid = left + (right - left)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(group[mid] &lt; cur)&#123;</span><br><span class="line">                    left = mid + <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    right = mid;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//若没有合适的分组则新建分组</span></span><br><span class="line">            <span class="keyword">if</span>(left == count)&#123;</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            group[left] = cur;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>二分搜索</tag>
       </tags>
   </entry>
   <entry>
