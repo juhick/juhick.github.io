@@ -132,37 +132,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LRU算法设计</title>
-    <url>/2021/05/07/LRU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h1 id="LRU缓存算法设计"><a href="#LRU缓存算法设计" class="headerlink" title="LRU缓存算法设计"></a>LRU缓存算法设计</h1><h2 id="机制简单介绍"><a href="#机制简单介绍" class="headerlink" title="机制简单介绍"></a>机制简单介绍</h2><p>每次放入缓存中的数据会到队列头，如果满了会将队列尾部的删除，每次访问的也放到队列头，也就是根据访问的时序来进行淘汰。</p>
-<a id="more"></a>
-<h2 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h2><p><code>LRUCache</code>数据结构需要满足以下几点：</p>
-<ol>
-<li>其中的元素必须有时序，用来区分最近使用和久未使用的数据，容量满了之后要删除最久未使用的那个元素来腾位置。</li>
-<li>能够迅速地判断<code>key</code>是否存在，并且得到对应的<code>val</code></li>
-<li>每次访问某个<code>key</code>时，需要将这个元素变为最近使用的，也就是该数据结构需要支持在任意位置快速插入和删除元素</li>
-</ol>
-<p>满足以上条件的数据结构为<code>LinkedHashMap</code>，根据该结构对以上的条件进行分析：</p>
-<ol>
-<li>如果默认从链表尾部添加元素，那么显然越靠近尾部的元素就越是最近使用地，越靠近头部的元素就是越久未使用的。</li>
-<li>对于某个<code>key</code>，可以通过哈希表快速定位到链表中的节点，从未取得对应的<code>val</code></li>
-<li>链表支持在任意位置快速插入和删除</li>
-</ol>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="自己实现双向链表"><a href="#自己实现双向链表" class="headerlink" title="自己实现双向链表"></a>自己实现双向链表</h3><p>自定义双向链表：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head, tail;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DoubleList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev = tail.prev;</span><br><span class="line">        x.next = tail;</span><br><span class="line">        tail.prev.next = x;</span><br><span class="line">        tail.prev = x;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev.next = x.next;</span><br><span class="line">        x.next.prev = x.prev;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">removeFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next == tail)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node first = head.next;</span><br><span class="line">        remove(first);</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> size; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> key, value;</span><br><span class="line">    <span class="keyword">public</span> Node next, prev;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        key = k;</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>自定义LRU缓存数据结构：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DoubleList cache;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cap = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> DoubleList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将某个Key设置为最近使用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line"></span><br><span class="line">        cache.remove(node);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加最近使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addRecently</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        Node node = <span class="keyword">new</span> Node(key, val);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">        map.put(key, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除一个Key</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteKey</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line">        cache.remove(node);</span><br><span class="line">        map.remove(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除最久未使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteLeastRecently</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Node deletedNode = cache.removeFirst();</span><br><span class="line">        <span class="keyword">int</span> deletedKey = deletedNode.key;</span><br><span class="line">        map.remove(deletedKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素提升为最近使用的</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> map.get(key).value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">            deleteKey(key);</span><br><span class="line">            addRecently(key, value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cap == cache.size())&#123;</span><br><span class="line">            deleteLeastRecently();</span><br><span class="line">        &#125;</span><br><span class="line">        addRecently(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="使用自带的哈希链表"><a href="#使用自带的哈希链表" class="headerlink" title="使用自带的哈希链表"></a>使用自带的哈希链表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    Map&lt;Integer, Integer&gt; cache = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将key变为最近使用</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cache.containsKey(key))&#123;</span><br><span class="line">            <span class="comment">//修改key的值</span></span><br><span class="line">            cache.put(key, value);</span><br><span class="line">            <span class="comment">//将key变为最近使用</span></span><br><span class="line">            makeRecently(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cache.size() &gt; cap)&#123;</span><br><span class="line">            <span class="keyword">int</span> oldestKey = cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &#125;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = cache.get(key);</span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>LRU</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LFU算法设计</title>
     <url>/2021/05/07/LFU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h1 id="LFU算法设计"><a href="#LFU算法设计" class="headerlink" title="LFU算法设计"></a>LFU算法设计</h1><h2 id="机制简介"><a href="#机制简介" class="headerlink" title="机制简介"></a>机制简介</h2><p>根据访问频度进行淘汰的缓存淘汰机制，每次淘汰那些使用次数最少的数据。</p>
@@ -197,6 +166,37 @@
       <tags>
         <tag>leetcode</tag>
         <tag>LFU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LRU算法设计</title>
+    <url>/2021/05/07/LRU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="LRU缓存算法设计"><a href="#LRU缓存算法设计" class="headerlink" title="LRU缓存算法设计"></a>LRU缓存算法设计</h1><h2 id="机制简单介绍"><a href="#机制简单介绍" class="headerlink" title="机制简单介绍"></a>机制简单介绍</h2><p>每次放入缓存中的数据会到队列头，如果满了会将队列尾部的删除，每次访问的也放到队列头，也就是根据访问的时序来进行淘汰。</p>
+<a id="more"></a>
+<h2 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h2><p><code>LRUCache</code>数据结构需要满足以下几点：</p>
+<ol>
+<li>其中的元素必须有时序，用来区分最近使用和久未使用的数据，容量满了之后要删除最久未使用的那个元素来腾位置。</li>
+<li>能够迅速地判断<code>key</code>是否存在，并且得到对应的<code>val</code></li>
+<li>每次访问某个<code>key</code>时，需要将这个元素变为最近使用的，也就是该数据结构需要支持在任意位置快速插入和删除元素</li>
+</ol>
+<p>满足以上条件的数据结构为<code>LinkedHashMap</code>，根据该结构对以上的条件进行分析：</p>
+<ol>
+<li>如果默认从链表尾部添加元素，那么显然越靠近尾部的元素就越是最近使用地，越靠近头部的元素就是越久未使用的。</li>
+<li>对于某个<code>key</code>，可以通过哈希表快速定位到链表中的节点，从未取得对应的<code>val</code></li>
+<li>链表支持在任意位置快速插入和删除</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="自己实现双向链表"><a href="#自己实现双向链表" class="headerlink" title="自己实现双向链表"></a>自己实现双向链表</h3><p>自定义双向链表：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head, tail;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DoubleList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev = tail.prev;</span><br><span class="line">        x.next = tail;</span><br><span class="line">        tail.prev.next = x;</span><br><span class="line">        tail.prev = x;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev.next = x.next;</span><br><span class="line">        x.next.prev = x.prev;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">removeFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next == tail)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node first = head.next;</span><br><span class="line">        remove(first);</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> size; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> key, value;</span><br><span class="line">    <span class="keyword">public</span> Node next, prev;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        key = k;</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义LRU缓存数据结构：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DoubleList cache;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cap = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> DoubleList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将某个Key设置为最近使用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line"></span><br><span class="line">        cache.remove(node);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加最近使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addRecently</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        Node node = <span class="keyword">new</span> Node(key, val);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">        map.put(key, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除一个Key</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteKey</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line">        cache.remove(node);</span><br><span class="line">        map.remove(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除最久未使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteLeastRecently</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Node deletedNode = cache.removeFirst();</span><br><span class="line">        <span class="keyword">int</span> deletedKey = deletedNode.key;</span><br><span class="line">        map.remove(deletedKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素提升为最近使用的</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> map.get(key).value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">            deleteKey(key);</span><br><span class="line">            addRecently(key, value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cap == cache.size())&#123;</span><br><span class="line">            deleteLeastRecently();</span><br><span class="line">        &#125;</span><br><span class="line">        addRecently(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="使用自带的哈希链表"><a href="#使用自带的哈希链表" class="headerlink" title="使用自带的哈希链表"></a>使用自带的哈希链表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    Map&lt;Integer, Integer&gt; cache = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将key变为最近使用</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cache.containsKey(key))&#123;</span><br><span class="line">            <span class="comment">//修改key的值</span></span><br><span class="line">            cache.put(key, value);</span><br><span class="line">            <span class="comment">//将key变为最近使用</span></span><br><span class="line">            makeRecently(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cache.size() &gt; cap)&#123;</span><br><span class="line">            <span class="keyword">int</span> oldestKey = cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &#125;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = cache.get(key);</span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>LRU</tag>
       </tags>
   </entry>
   <entry>
@@ -271,40 +271,6 @@
       <tags>
         <tag>面试</tag>
         <tag>MyBatis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
-    <url>/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/</url>
-    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
-<a id="more"></a>
-<p>点击用户里的设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
-<p>点击开发者选项</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
-<p>点击个人token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
-<p>点击生成新的token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
-<p>只需要选择repo选项即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
-<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
-<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
-<p>安装完成后设置Github图床</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
-<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
-<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
-<p>进行如下图所示的设置即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
-<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
-<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
-]]></content>
-      <tags>
-        <tag>个人博客</tag>
-        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
@@ -453,6 +419,84 @@
       </tags>
   </entry>
   <entry>
+    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
+    <url>/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
+<a id="more"></a>
+<p>点击用户里的设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
+<p>点击开发者选项</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
+<p>点击个人token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
+<p>点击生成新的token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
+<p>只需要选择repo选项即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
+<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
+<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
+<p>安装完成后设置Github图床</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
+<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
+<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
+<p>进行如下图所示的设置即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
+<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
+<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
+]]></content>
+      <tags>
+        <tag>个人博客</tag>
+        <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>从前序与中序遍历序列构造二叉树</title>
+    <url>/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a>从前序与中序遍历序列构造二叉树</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29uc3RydWN0LWJpbmFyeS10cmVlLWZyb20tcHJlb3JkZXItYW5kLWlub3JkZXItdHJhdmVyc2FsLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>根据一棵树的前序遍历与中序遍历构造二叉树。</p>
+<a id="more"></a>
+<p><strong>注意:</strong></p>
+<p>你可以假设树中没有重复的元素。</p>
+<p>例如，给出</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">前序遍历 preorder &#x3D; [3,9,20,15,7]</span><br><span class="line">中序遍历 inorder &#x3D; [9,3,15,20,7]</span><br></pre></td></tr></table></figure>
+<p>返回如下的二叉树：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h3><p>对于任意一颗树而言，前序遍历的形式总是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]</span><br></pre></td></tr></table></figure>
+<p>即根节点总是前序遍历中的第一个节点。而中序遍历的形式总是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]</span><br></pre></td></tr></table></figure>
+<p>前序遍历序列的第一个必定为当前树的树根。每次选前序遍历的第一个作为树根，找到其在中序遍历中的位置，然后就可以获取到左右子树的长度。</p>
+<p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
+<p>具体实现如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> build(preorder, <span class="number">0</span>, preorder.size() - <span class="number">1</span>, inorder, <span class="number">0</span>, inorder.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorder, <span class="keyword">int</span> preStart, <span class="keyword">int</span> preEnd, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorder, <span class="keyword">int</span> inStart, <span class="keyword">int</span> inEnd)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preStart &gt; preEnd)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> rootVal = preorder[preStart];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = inStart; i &lt;= inEnd; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(inorder[i] == rootVal)&#123;</span><br><span class="line">                index = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftSize = index - inStart;</span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> TreeNode(rootVal);</span><br><span class="line"></span><br><span class="line">        root-&gt;left = build(preorder, preStart + <span class="number">1</span>, preStart + leftSize, inorder, inStart, index - <span class="number">1</span>);</span><br><span class="line">        root-&gt;right = build(preorder, preStart + leftSize + <span class="number">1</span>, preEnd, inorder, index + <span class="number">1</span>, inEnd);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="方法二：迭代"><a href="#方法二：迭代" class="headerlink" title="方法二：迭代"></a>方法二：迭代</h3><blockquote>
+<p>对于前序遍历中的任意两个连续节点 <em>u</em> 和 <em>v</em>，根据前序遍历的流程，我们可以知道 <em>u</em> 和<em>v</em> 只有两种可能的关系：</p>
+<ul>
+<li><em>v</em> 是 <em>u</em> 的左儿子。这是因为在遍历到 <em>u</em> 之后，下一个遍历的节点就是 <em>u</em> 的左儿子，即 <em>v</em>；</li>
+<li><em>u</em> 没有左儿子，并且 <em>v</em> 是 <em>u</em> 的某个祖先节点（或者 <em>u</em> 本身）的右儿子。如果 <em>u</em> 没有左儿子，那么下一个遍历的节点就是 <em>u</em> 的右儿子。如果 <em>u</em> 没有右儿子，我们就会向上回溯，直到遇到第一个有右儿子（且 <em>u</em> 不在它的右儿子的子树中）的节点 <em>u~a~</em>，那么 <em>v</em> 就是 <em>u~a~</em> 的右儿子。</li>
+</ul>
+</blockquote>
+<p> 因为前序遍历是根-&gt;左孩子-&gt;右孩子的顺序，所以在树中会向左一直访问到左孩子直到没有左孩子往上再访问右孩子。而中序遍历则是左孩子-&gt;根-&gt;右孩子的顺序，所以第一个访问的就是最左边的左孩子，再依次访问根和右孩子。因此，我们在前序遍历中找到中序的第一个，再往前回退，前序回退时中序往后走，若值仍相等，则说明这一个是前一个的左孩子，然后一直往下走，直到值不同时出现右孩子应在的位置。</p>
+<blockquote>
+<p>我们用一个栈 <code>stack</code> 来维护「当前节点的所有还没有考虑过右儿子的祖先节点」，栈顶就是当前节点。也就是说，只有在栈中的节点才可能连接一个新的右儿子。同时，我们用一个指针 <code>index</code> 指向中序遍历的某个位置，初始值为 <code>0</code>。<code>index</code> 对应的节点是「当前节点不断往左走达到的最终节点」，这也是符合中序遍历的。</p>
+</blockquote>
+<p>具体代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preorder.size() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; stk;</span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> TreeNode(preorder[<span class="number">0</span>]);</span><br><span class="line">        stk.push(root);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; preorder.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> preVal = preorder[i];</span><br><span class="line">            TreeNode* node = stk.top();</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;val != inorder[index])&#123;</span><br><span class="line">                node-&gt;left = <span class="keyword">new</span> TreeNode(preVal);</span><br><span class="line">                stk.push(node-&gt;left);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(!stk.empty() &amp;&amp; stk.top()-&gt;val == inorder[index])&#123;</span><br><span class="line">                    node = stk.top();</span><br><span class="line">                    stk.pop();</span><br><span class="line">                    index++;</span><br><span class="line">                &#125;</span><br><span class="line">                node-&gt;right = <span class="keyword">new</span> TreeNode(preVal);</span><br><span class="line">                stk.push(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二叉树的层次遍历</title>
     <url>/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</url>
     <content><![CDATA[<h1 id="二叉树的层次遍历"><a href="#二叉树的层次遍历" class="headerlink" title="二叉树的层次遍历"></a>二叉树的层次遍历</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmluYXJ5LXRyZWUtbGV2ZWwtb3JkZXItdHJhdmVyc2FsLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
@@ -530,50 +574,6 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       <tags>
         <tag>leetcode</tag>
         <tag>位运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>从前序与中序遍历序列构造二叉树</title>
-    <url>/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a>从前序与中序遍历序列构造二叉树</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29uc3RydWN0LWJpbmFyeS10cmVlLWZyb20tcHJlb3JkZXItYW5kLWlub3JkZXItdHJhdmVyc2FsLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>根据一棵树的前序遍历与中序遍历构造二叉树。</p>
-<a id="more"></a>
-<p><strong>注意:</strong></p>
-<p>你可以假设树中没有重复的元素。</p>
-<p>例如，给出</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">前序遍历 preorder &#x3D; [3,9,20,15,7]</span><br><span class="line">中序遍历 inorder &#x3D; [9,3,15,20,7]</span><br></pre></td></tr></table></figure>
-<p>返回如下的二叉树：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h3><p>对于任意一颗树而言，前序遍历的形式总是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]</span><br></pre></td></tr></table></figure>
-<p>即根节点总是前序遍历中的第一个节点。而中序遍历的形式总是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]</span><br></pre></td></tr></table></figure>
-<p>前序遍历序列的第一个必定为当前树的树根。每次选前序遍历的第一个作为树根，找到其在中序遍历中的位置，然后就可以获取到左右子树的长度。</p>
-<p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
-<p>具体实现如下：</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> build(preorder, <span class="number">0</span>, preorder.size() - <span class="number">1</span>, inorder, <span class="number">0</span>, inorder.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorder, <span class="keyword">int</span> preStart, <span class="keyword">int</span> preEnd, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; inorder, <span class="keyword">int</span> inStart, <span class="keyword">int</span> inEnd)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preStart &gt; preEnd)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> rootVal = preorder[preStart];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = inStart; i &lt;= inEnd; ++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(inorder[i] == rootVal)&#123;</span><br><span class="line">                index = i;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> leftSize = index - inStart;</span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> TreeNode(rootVal);</span><br><span class="line"></span><br><span class="line">        root-&gt;left = build(preorder, preStart + <span class="number">1</span>, preStart + leftSize, inorder, inStart, index - <span class="number">1</span>);</span><br><span class="line">        root-&gt;right = build(preorder, preStart + leftSize + <span class="number">1</span>, preEnd, inorder, index + <span class="number">1</span>, inEnd);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="方法二：迭代"><a href="#方法二：迭代" class="headerlink" title="方法二：迭代"></a>方法二：迭代</h3><blockquote>
-<p>对于前序遍历中的任意两个连续节点 <em>u</em> 和 <em>v</em>，根据前序遍历的流程，我们可以知道 <em>u</em> 和<em>v</em> 只有两种可能的关系：</p>
-<ul>
-<li><em>v</em> 是 <em>u</em> 的左儿子。这是因为在遍历到 <em>u</em> 之后，下一个遍历的节点就是 <em>u</em> 的左儿子，即 <em>v</em>；</li>
-<li><em>u</em> 没有左儿子，并且 <em>v</em> 是 <em>u</em> 的某个祖先节点（或者 <em>u</em> 本身）的右儿子。如果 <em>u</em> 没有左儿子，那么下一个遍历的节点就是 <em>u</em> 的右儿子。如果 <em>u</em> 没有右儿子，我们就会向上回溯，直到遇到第一个有右儿子（且 <em>u</em> 不在它的右儿子的子树中）的节点 <em>u~a~</em>，那么 <em>v</em> 就是 <em>u~a~</em> 的右儿子。</li>
-</ul>
-</blockquote>
-<p> 因为前序遍历是根-&gt;左孩子-&gt;右孩子的顺序，所以在树中会向左一直访问到左孩子直到没有左孩子往上再访问右孩子。而中序遍历则是左孩子-&gt;根-&gt;右孩子的顺序，所以第一个访问的就是最左边的左孩子，再依次访问根和右孩子。因此，我们在前序遍历中找到中序的第一个，再往前回退，前序回退时中序往后走，若值仍相等，则说明这一个是前一个的左孩子，然后一直往下走，直到值不同时出现右孩子应在的位置。</p>
-<blockquote>
-<p>我们用一个栈 <code>stack</code> 来维护「当前节点的所有还没有考虑过右儿子的祖先节点」，栈顶就是当前节点。也就是说，只有在栈中的节点才可能连接一个新的右儿子。同时，我们用一个指针 <code>index</code> 指向中序遍历的某个位置，初始值为 <code>0</code>。<code>index</code> 对应的节点是「当前节点不断往左走达到的最终节点」，这也是符合中序遍历的。</p>
-</blockquote>
-<p>具体代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(preorder.size() == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; stk;</span><br><span class="line">        TreeNode* root = <span class="keyword">new</span> TreeNode(preorder[<span class="number">0</span>]);</span><br><span class="line">        stk.push(root);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; preorder.size(); ++i)&#123;</span><br><span class="line">            <span class="keyword">int</span> preVal = preorder[i];</span><br><span class="line">            TreeNode* node = stk.top();</span><br><span class="line">            <span class="keyword">if</span>(node-&gt;val != inorder[index])&#123;</span><br><span class="line">                node-&gt;left = <span class="keyword">new</span> TreeNode(preVal);</span><br><span class="line">                stk.push(node-&gt;left);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(!stk.empty() &amp;&amp; stk.top()-&gt;val == inorder[index])&#123;</span><br><span class="line">                    node = stk.top();</span><br><span class="line">                    stk.pop();</span><br><span class="line">                    index++;</span><br><span class="line">                &#125;</span><br><span class="line">                node-&gt;right = <span class="keyword">new</span> TreeNode(preVal);</span><br><span class="line">                stk.push(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-        <category>树</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -665,6 +665,47 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       <tags>
         <tag>leetcode</tag>
         <tag>二分搜索</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>滑动窗口的最大值</title>
+    <url>/2021/05/12/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
+    <content><![CDATA[<h1 id="滑动窗口的最大值"><a href="#滑动窗口的最大值" class="headerlink" title="滑动窗口的最大值"></a>滑动窗口的最大值</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc2xpZGluZy13aW5kb3ctbWF4aW11bS8=">原题链接<i class="fa fa-external-link-alt"></i></span></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个整数数组 <code>nums</code>，有一个大小为 <code>k</code> 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 <code>k</code> 个数字。滑动窗口每次只向右移动一位。</p>
+<p>返回滑动窗口中的最大值。</p>
+<a id="more"></a>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [1,3,-1,-3,5,3,6,7], k &#x3D; 3</span><br><span class="line">输出：[3,3,5,5,6,7]</span><br><span class="line">解释：</span><br><span class="line">滑动窗口的位置                最大值</span><br><span class="line">---------------               -----</span><br><span class="line">[1  3  -1] -3  5  3  6  7       3</span><br><span class="line"> 1 [3  -1  -3] 5  3  6  7       3</span><br><span class="line"> 1  3 [-1  -3  5] 3  6  7       5</span><br><span class="line"> 1  3  -1 [-3  5  3] 6  7       5</span><br><span class="line"> 1  3  -1  -3 [5  3  6] 7       6</span><br><span class="line"> 1  3  -1  -3  5 [3  6  7]      7</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [1], k &#x3D; 1</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [1,-1], k &#x3D; 1</span><br><span class="line">输出：[1,-1]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [9,11], k &#x3D; 2</span><br><span class="line">输出：[11]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 5：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [4,-2], k &#x3D; 2</span><br><span class="line">输出：[4]</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 105</code></li>
+<li><code>-104 &lt;= nums[i] &lt;= 104</code></li>
+<li><code>1 &lt;= k &lt;= nums.length</code></li>
+</ul>
+<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><ol>
+<li>首先，最简单也是最暴力的，每次进行扫描，并判断出最大值，但是时间复杂度太高，达到<code>O(nk)</code></li>
+<li>我们考虑对扩大和缩小窗口进行优化，使得每次获得最大值的操作的时间复杂度为<code>O(1)</code></li>
+<li>由此我们想到可以维护一个数据结构使得获取最大值的操作尽可能地简单，这里可以采用单调队列结构</li>
+<li>每次扩张窗口时从队列尾部进行判断，将比当前值小的数出队，直到队列为空或者队尾元素比当前值大，然后当前值入栈，这样队列里的元素就呈递减排列，并且越靠近队头插入时间越早。</li>
+<li>由上可知，我们每次获取最大值时直接获取队头元素即可，并且缩小窗口时，只需要判断删除的那个值是否是队头元素即可，是的话就队头元素出队。</li>
+<li>为了能够方便地从两端都进行插入和删除，采用双端队列进行单调队列的实现。</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        Deque&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length - k + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i &lt; k - <span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">while</span>(!q.isEmpty() &amp;&amp; q.getLast() &lt; nums[i])&#123;</span><br><span class="line">                    q.pollLast();</span><br><span class="line">                &#125;</span><br><span class="line">                q.addLast(nums[i]);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">while</span>(!q.isEmpty() &amp;&amp; q.getLast() &lt; nums[i])&#123;</span><br><span class="line">                    q.pollLast();</span><br><span class="line">                &#125;</span><br><span class="line">                q.addLast(nums[i]);</span><br><span class="line">                res[t++] = q.getFirst();</span><br><span class="line">                <span class="keyword">if</span>(nums[i - k + <span class="number">1</span>] == q.getFirst())&#123;</span><br><span class="line">                    q.pollFirst();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>优先队列</tag>
       </tags>
   </entry>
   <entry>
@@ -925,6 +966,173 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       </tags>
   </entry>
   <entry>
+    <title>mysql相关知识</title>
+    <url>/2021/04/23/mysql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h3><p>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可<strong>快速访问数据库表</strong>中的特定信息，就像一本书的目录一样，可以加快查询速度。InnoDB 存储引擎的索引模型底层实现<strong>数据结构为B+树</strong>，所有数据都是存储在 B+ 树中的。</p>
+<a id="more"></a>
+<h4 id="为什么底层数据结构使用B-树，而不是B树"><a href="#为什么底层数据结构使用B-树，而不是B树" class="headerlink" title="为什么底层数据结构使用B+树，而不是B树"></a>为什么底层数据结构使用B+树，而不是B树</h4><ul>
+<li>B+树是B树的变种，B+树的非叶子节点只用来保存索引，不存储数据，所有的数据都保存在叶子节点；而B树的非叶子节点也会保存数据。这样就使得B+树的查询效率更加稳定，均为从根节点到叶子节点的路径。</li>
+<li>B+树的内部结点并没有指向关键字具体信息的指针，因此其内部结点相对B 树更小，同样空间可以读入更多的节点，所以B+树的磁盘读写代价更低。</li>
+</ul>
+<h4 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h4><p><strong>主键索引</strong>就是一种聚簇索引，其索引树的叶子节点中存的是<strong>整行数据</strong>，表中行的物理顺序与键值的逻辑（索引）顺序相同。一个表只能包含一个聚集索引。因为索引（目录）只能按照一种方法进行排序。</p>
+<p><strong>非聚簇索引（普通索引</strong>）的叶子节点内容是<strong>主键的值</strong>。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</p>
+<h4 id="MySQL回表"><a href="#MySQL回表" class="headerlink" title="MySQL回表"></a>MySQL回表</h4><ul>
+<li>如果语句是 select * from User where id=3，即主键查询方式，则只需要搜索 主键索引树。</li>
+<li>如果语句是 select <em> from User where uid=23，即普通索引查询方式，则需要先搜索 普通索引树，得到其对应的主键值为 3，再到主键索引树搜索一次。这个过程称为<em>*回表。</em></em></li>
+</ul>
+<h4 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h4><p>如果在普通索引树上的查询已经直接提供了结果，不需要回表操作，这样的普通索引叫做覆盖索引。覆盖索引的使用可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
+<h4 id="索引的最左前缀原则"><a href="#索引的最左前缀原则" class="headerlink" title="索引的最左前缀原则"></a>索引的最左前缀原则</h4><p>在联合索引的情况下，不需要索引的全部定义，只要满足最左前缀，就可以利用索引来加快查询速度。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。最左前缀原则的利用也可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
+<h4 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4><p>在MySQL5.6之前，只能从根据最左前缀查询到ID开始一个个回表。到主键索引上找出数据行，再对比字段值。MySQL5.6引入的索引下推优化，（联合索引前提）可以在索引遍历过程中，对索引中包含的其余字段先做判断，直接过滤掉不满足条件的记录，减少回表次数，提升查询效率。</p>
+<h3 id="哪些列上适合创建索引？创建索引有哪些开销？"><a href="#哪些列上适合创建索引？创建索引有哪些开销？" class="headerlink" title="哪些列上适合创建索引？创建索引有哪些开销？"></a>哪些列上适合创建索引？创建索引有哪些开销？</h3><p>经常需要作为条件查询的列上适合创建索引，并且该列上的数据也必须有一定的区分度。创建索引需要维护，在插入数据的时候会重新维护各个索引树（<strong>数据页的分裂与合并</strong>），对性能造成影响。</p>
+<h4 id="自增主键："><a href="#自增主键：" class="headerlink" title="自增主键："></a>自增主键：</h4><p>为了在插入数据的时候不需要调整主键索引树的结构，强烈建议在建立表的时候使用自增主键。主键的顺序按照数据记录的插入顺序排列，自动有序。</p>
+<h3 id="MySQL常见的存储引擎"><a href="#MySQL常见的存储引擎" class="headerlink" title="MySQL常见的存储引擎"></a>MySQL常见的存储引擎</h3><p>MySQL中最常见的存储引擎有InnoDB和MyISAM，它们的主要区别如下：</p>
+<ul>
+<li>MyISAM不支持事务；InnoDB是事务类型的存储引擎。</li>
+<li>MyISAM只支持表级锁；InnoDB支持行级锁和表级锁，默认为行级锁。</li>
+<li>MyISAM引擎不支持外键；InnoDB支持外键。</li>
+<li>对于count(*)查询来说MyISAM更有优势，因为其保存了行数。</li>
+<li>InnoDB是为处理巨大数据量时的最大性能设计的存储引擎。</li>
+<li>MyISAM支持全文索引（FULLTEXT）；InnoDB不支持。</li>
+</ul>
+<p>最主要的区别就是MyISAM表不支持事务、不支持行级锁、不支持外键。 InnoDB表支持事务、支持行级锁、支持外键。</p>
+<p>MySQL的基本逻辑架构图:</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423144917.png" alt="图片说明"></p>
+<p>由MySQL的逻辑架构图我们可以看出，逻辑架构包括<strong>Server层和存储引擎层</strong>。其中Server层包括连接器，分析器，优化器以及执行器；存储引擎层包括多种支持的存储引擎。各个逻辑部件的作用如下：</p>
+<ul>
+<li><strong>连接器：</strong>验证客户端权限，建立和断开MySQL连接</li>
+<li><strong>分析器：</strong>进行SQL语句的语法分析</li>
+<li><strong>优化器：</strong>选择索引，生成具体的SQL语句执行计划</li>
+<li><strong>执行器：</strong>操作存储引擎，执行SQL，返回执行结果</li>
+<li><strong>存储引擎层：</strong>各个不同的存储引擎都提供了一些读写接口来操作数据库</li>
+</ul>
+<p>在MySQL5.5.5版本之后，<strong>InnoDB已经成为了其默认的存储引擎</strong>。</p>
+<p>除了InnoDB以及MyISAM存储引擎外，常见的考察存储引擎还有<strong>Memory，使用Memory作为存储引擎的表也可以叫做内存表</strong>，将数据存储在了内存中，所以适合做临时表来使用，在索引结构上支持B+树索引和Hash索引。</p>
+<h3 id="MySQL中的where、group-by、having关键字"><a href="#MySQL中的where、group-by、having关键字" class="headerlink" title="MySQL中的where、group by、having关键字"></a>MySQL中的where、group by、having关键字</h3><ul>
+<li>where子句用来筛选from子句中指定的操作所产生的的行</li>
+<li>group by 子句用来分组where子句的输出</li>
+<li>having子句用来从分组的结果中筛选行</li>
+</ul>
+<p><strong>having和where的区别：</strong></p>
+<ul>
+<li>语法类似，where搜索条件在进行分组操作之前应用；having搜索条件在进行分组操作之后应用</li>
+<li>having可以包含聚合函数sum、avg、max等</li>
+<li>having子句限制的是组，而不是行</li>
+</ul>
+<p><strong>当同时含有where子句、group by 子句 、having子句及聚集函数时，执行顺序如下：</strong></p>
+<ul>
+<li>执行where子句查找符合条件的数据</li>
+<li>使用group by子句对数据进行分组</li>
+<li>对group by子句形成的组运行聚集函数计算每一组的值</li>
+<li>最后用having子句去掉不符合条件的组</li>
+</ul>
+<h3 id="MySQL的日志模块binlog和redo-log"><a href="#MySQL的日志模块binlog和redo-log" class="headerlink" title="MySQL的日志模块binlog和redo log"></a>MySQL的日志模块binlog和redo log</h3><p>在MySQL的使用中，更新操作也是很频繁的，如果每一次更新操作都根据条件找到对应的记录，然后将记录更新，再写回磁盘，那么<strong>IO成本以及查找记录的成本</strong>都很高。所以，出现了日志模块，即我们的update更新操作是<strong>先写日志，在合适的时间才会去写磁盘</strong>，日志更新完毕就将执行结果返回给了客户端。</p>
+<p>MySQL中的日志模块主要有<strong>redo log（重做日志）和binlog（归档日志）。</strong></p>
+<h4 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h4><p>redo log是<strong>InnoDB引擎特有</strong>的日志模块，redo log是物理日志，记录了某个数据页上做了哪些修改。InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么redo log总共就可以记录 4GB的操作。从头开始写，写到末尾就又回到开头循环写。</p>
+<p>InnoDB的redo log保证了数据库发生异常重启之后，之前提交的记录不会丢失，这个能力称为crash-safe。</p>
+<h4 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h4><p>binlog是<strong>Server层自带</strong>的日志模块，binlog是逻辑日志，记录本次修改的原始逻辑，说白了就是SQL语句。binlog是追加写的形式，可以写多个文件，不会覆盖之前的日志。通过mysqlbinlog可以解析查看binlog日志。binlog日志文件的格式：statement，row，mixed。</p>
+<ul>
+<li><strong>statement格式</strong>的binlog记录的是完整的SQL语句，优点是日志文件小，性能较好，缺点也很明显，那就是准确性差，遇到SQL语句中有now()等函数会导致不准确</li>
+<li><strong>row格式</strong>的binlog中记录的是数据行的实际数据的变更，优点就是数据记录准确，缺点就是日志文件较大。</li>
+<li><strong>mixed格式</strong>的binlog是前面两者的混合模式</li>
+</ul>
+<p>业界目前推荐使用的是 row 模式，因为很多情况下对准确性的要求是排在第一位的。</p>
+<p>在更新数据库的时候，通过redo log和binlog的<strong>两阶段提交</strong>，可以确保数据库异常崩溃之后数据的正确恢复。</p>
+<p>在对数据库误操作之后，可以通过<strong>备份库+binlog</strong>将数据库状态恢复到“任意“时刻。</p>
+<h4 id="为什么MySQL会突然变慢一下"><a href="#为什么MySQL会突然变慢一下" class="headerlink" title="为什么MySQL会突然变慢一下"></a>为什么MySQL会突然变慢一下</h4><p>当内存数据页和磁盘数据页内容不一致的时候，这个内存页就是“脏页”。内存数据写入到磁盘后，内存和磁盘上的数据页的内容就一致了，这个时候的内存页就是”干净页“。</p>
+<p>前面我们介绍了更新数据库的时候是<strong>先写日志</strong>，当合适的机会（空闲）出现的时候才会<strong>更新磁盘</strong>。但是<strong>当redo log 写满了，要 flush 脏页</strong>，也就是把内存里的数据写入磁盘，会导致MySQL执行速度突然变慢一瞬间。</p>
+<h3 id="MySQL事务的特性"><a href="#MySQL事务的特性" class="headerlink" title="MySQL事务的特性"></a>MySQL事务的特性</h3><p>事务是单个逻辑工作单元执行的<strong>一系列操作</strong>，是一个不可分割的工作单位。满足如下的四大特性：</p>
+<ul>
+<li><strong>原子性（Atomicity）：</strong>事务作为一个整体被执行 ，要么全部执行，要么全部不执行；</li>
+<li><strong>一致性（Consistency）：</strong>保证数据库状态从一个一致状态转变为另一个一致状态；</li>
+<li><strong>隔离性（Isolation）：</strong>多个事务并发执行时，一个事务的执行不应影响其他事务的执行；</li>
+<li><strong>持久性（Durability）：</strong>一个事务一旦提交，对数据库的修改应该永久保存</li>
+</ul>
+<h4 id="不做控制的话，多个事务并发操作数据库会产生哪些问题？"><a href="#不做控制的话，多个事务并发操作数据库会产生哪些问题？" class="headerlink" title="不做控制的话，多个事务并发操作数据库会产生哪些问题？"></a>不做控制的话，多个事务并发操作数据库会产生哪些问题？</h4><ul>
+<li><p><strong>丢失更新：</strong><br>两个不同事务同时获得相同数据，然后在各自事务中同时修改了该数据，那么先提交的事务更新会被后提交事务的更新给覆盖掉，这种情况先提交的事务所做的更新就被覆盖，导致数据更新丢失。</p>
+</li>
+<li><p><strong>脏读：</strong><br>事务A读取了事务B未提交的数据，由于事务B回滚，导致了事务A的数据不一致，结果事务A出现了脏读；</p>
+</li>
+<li><p><strong>不可重复读：</strong><br>一个事务在自己没有更新数据库数据的情况，同一个查询操作执行两次或多次得到的结果数值不同，因为别的事务更新了该数据，并且提交了事务。</p>
+</li>
+<li><p><strong>幻读：</strong><br>事务A读的时候读出了N条记录，事务B在事务A执行的过程中增加 了1条，事务A再读的时候就变成了N+1条，这种情况就叫做幻读。</p>
+</li>
+</ul>
+<p><strong>注意：</strong>幻读是指一种结构上的改变，比如说条数发生了改变；不可重复读是指读出的数值发生了改变。</p>
+<h4 id="MySQL数据库事务的隔离级别"><a href="#MySQL数据库事务的隔离级别" class="headerlink" title="MySQL数据库事务的隔离级别"></a>MySQL数据库事务的隔离级别</h4><p>为了避免数据库事务操作中的问题，MySQL定义了4个事务隔离级别，不同的隔离级别对事务的处理不同。</p>
+<ul>
+<li><p><strong>读未提交(Read Uncommitted)：</strong><br>允许脏读取。如果一个事务已经开始写数据，则另外一个数据则不允许同时进行写操作，但允许其他事务读此行数据。</p>
+</li>
+<li><p><strong>读已提交(Read Committed)：</strong><br>允许不可重复读取，但不允许脏读取。读取数据的事务允许其他事务继续访问该行数据，但是未提交的写事务将会禁止其他事务访问该行。</p>
+</li>
+<li><p><strong>可重复读(Repeatable Read)：</strong><br>禁止不可重复读取和脏读取，但是有时可能出现幻读。读取数据的事务将会禁止写事务(但允许读事务)，写事务则禁止任何其他事务。</p>
+</li>
+<li><p><strong>序列化(Serializable)：</strong><br>提供严格的事务隔离。它要求事务序列化执行，事务只能一个接着一个地执行，但不能并发执行。</p>
+</li>
+</ul>
+<p>事务的隔离级别越高，对数据的完整性和一致性保证越佳，但是对并发操作的影响也越大。MySQL事务默认隔离级别是可重复读。</p>
+<h3 id="MySQL中的锁机制"><a href="#MySQL中的锁机制" class="headerlink" title="MySQL中的锁机制"></a>MySQL中的锁机制</h3><p>MySQL数据库的锁分为<strong>表级锁和行级锁</strong>。从数据库的角度看，行级锁又可以分为<strong>独占锁和共享锁</strong>。</p>
+<p><strong>独占锁（排他锁），也称X锁（Exclusive Lock）：</strong></p>
+<p>独占锁锁定的资源只允许进行锁定操作的程序使用，其它任何对它的操作均不会被接受。执行数据更新命令，<strong>即INSERT、UPDATE 或DELETE 命令时，MySQL会自动使用独占锁</strong>。但当对象上有其它锁存在时，无法对其加独占锁。独占锁一直到事务结束才能被释放。</p>
+<p>在select命令中使用独占锁的SQL语句为：<strong>select … for update;</strong></p>
+<p><strong>共享锁，也叫S锁（Shared Lock）：</strong></p>
+<p>共享锁顾名思义，那就是其锁定的资源可以被其它用户读取，但其它用户不能修改。如果在select查询语句中要手动加入共享锁，那么对应的SQL语句为：<strong>select … lock in share mode</strong></p>
+<p>一个事务在一行数据上加入了独占锁，那么其余事务不可以在该数据行上加入任何锁。也就是说加过排他锁的数据行在其他事务中是不能修改数据的，也不能通过<strong>for update和lock in share mode锁</strong>的方式查询数据，但<strong>可以直接通过select …from…查询数据</strong>，因为普通查询没有任何锁机制。</p>
+<h4 id="MySQL中的死锁"><a href="#MySQL中的死锁" class="headerlink" title="MySQL中的死锁"></a>MySQL中的死锁</h4><p>MySQL中的死锁主要是<strong>多个事务使用行级锁对某行数据加锁造成的</strong>，上一小节说了MyISAM不支持行级锁，所以MySQL中的死锁主要是在说InnoDB存储引擎的死锁。</p>
+<h4 id="如何解决死锁"><a href="#如何解决死锁" class="headerlink" title="如何解决死锁"></a>如何解决死锁</h4><p>我们可以在业务上和数据库设置上来解决MySQL死锁。分别介绍如下：</p>
+<p><strong>业务逻辑上的死锁解决方案：</strong></p>
+<ul>
+<li>指定锁的获取顺序</li>
+<li>大事务拆分成各个小事务</li>
+<li>在同一个事务中，一次锁定尽量多的资源，减少死锁概率</li>
+<li>给表建立合适的索引以及降低事务的隔离级别等</li>
+</ul>
+<p><strong>数据库的设置来解决死锁：</strong></p>
+<ul>
+<li>通过参数 innodb_lock_wait_timeout 根据实际业务场景来<strong>设置超时时间</strong>，InnoDB引擎默认值是50s。</li>
+<li><strong>发起死锁检测</strong>，发现死锁后，<strong>主动回滚</strong>死锁链条中的某一个事务，让其他事务得以继续执行。将参数 innodb_deadlock_detect 设置为 on，表示开启这个逻辑（默认是开启状态）。</li>
+</ul>
+<h4 id="行级锁什么时候会锁住整个表"><a href="#行级锁什么时候会锁住整个表" class="headerlink" title="行级锁什么时候会锁住整个表"></a>行级锁什么时候会锁住整个表</h4><p>InnoDB行级锁是通过锁索引记录实现的，如果更新的列没建索引是会锁住整个表的。</p>
+<h4 id="悲观锁与乐观锁："><a href="#悲观锁与乐观锁：" class="headerlink" title="悲观锁与乐观锁："></a>悲观锁与乐观锁：</h4><p><strong>悲观锁：</strong>利用数据库的锁机制实现，在整个数据处理过程中都加入了锁，以保持排他性。</p>
+<p><strong>乐观锁：</strong>乐观锁可以利用CAS实现，在<strong>操作数据</strong>的时候进行一个比较，按照<strong>当前事务中的数据和数据库表中的该数据是否一致</strong>来决定是否要执行本次操作。</p>
+<h4 id="乐观锁的ABA问题及如何解决"><a href="#乐观锁的ABA问题及如何解决" class="headerlink" title="乐观锁的ABA问题及如何解决"></a>乐观锁的ABA问题及如何解决</h4><p>ABA问题是指在当前事务读取该行数据时是A，经过别的事务修改成B，但是在当前事务要更新数据的时候，该行数据又被别的事务修改为A，事实上数据行是发生过改变的，存在并发问题。</p>
+<p>ABA问题可以通过<strong>基于数据版本（Version）记录机制</strong>来解决。也就是为数据增加一个版本标识。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。根据当前事务的数据版本号和数据库中数据的版本号对比来决定是否更新数据。</p>
+<p>与给当前数据增加一个数据版本类似，我们也可以增加基于时间戳机制来解决ABA问题，通过时间戳来记录当前数据行变化。</p>
+<h3 id="SQL优化或者MySQL故障排查"><a href="#SQL优化或者MySQL故障排查" class="headerlink" title="SQL优化或者MySQL故障排查"></a>SQL优化或者MySQL故障排查</h3><p>一般情况下，我们遇到一个SQL异常的时候，比如说执行时间超时等，可以通过<strong>explain</strong>查看当前SQL语句的执行情况。explain +SQL语句可以查看当前的SQL语句使用的索引以及其扫描了多少行数据。也可以使用下边的语句来查看数据表的一些信息：</p>
+<ul>
+<li><strong>show create table TableXX；</strong>查看当前表TableXX的建表语句</li>
+<li><strong>show index from TableXX；</strong>查看当前表TableXX上的索引</li>
+</ul>
+<p>查看了数据表的信息，一般情况下我们可以通过建立索引来提高查询速度，或者修改SQL语句，利用索引下推或者最左前缀原则等来加快查询速度。</p>
+<h3 id="MySQL建表的约束条件有哪些"><a href="#MySQL建表的约束条件有哪些" class="headerlink" title="MySQL建表的约束条件有哪些"></a>MySQL建表的约束条件有哪些</h3><p>约束条件是我们建表的时候对数据库表做的一个限制条件。MySQL建表时候一般有如下的五个约束条件：</p>
+<ul>
+<li><strong>主键约束</strong>（Primary Key Constraint） 唯一性，非空性</li>
+<li><strong>唯一约束</strong> （Unique Constraint）唯一性，可以空，但只能有一个</li>
+<li><strong>检查约束</strong> (Check Constraint) 对该列数据的范围、格式的限制</li>
+<li><strong>默认约束</strong> (Default Constraint) 该数据的默认值</li>
+<li><strong>外键约束</strong> (Foreign Key Constraint) 需要建立两表间的关系并引用主表的列</li>
+</ul>
+<h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><p>回滚日志（undo log）：在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
+<h3 id="MVCC的实现方式"><a href="#MVCC的实现方式" class="headerlink" title="MVCC的实现方式"></a>MVCC的实现方式</h3><ol>
+<li>InnoDB实现MVCC，多个版本的数据可以共存，主要是依靠数据的隐藏列(也可以称之为标记位)和undo log。 </li>
+<li>其中数据的隐藏列包括了该行数据的版本号、删除时间、指向undo log的指针等等；</li>
+<li>当读取数据时，MySQL可以通过隐藏列判断是否需要回滚并找到回滚需要的undo log，从而实现MVCC</li>
+</ol>
+<h3 id="事务如何实现MVCC"><a href="#事务如何实现MVCC" class="headerlink" title="事务如何实现MVCC"></a>事务如何实现MVCC</h3><ol>
+<li>事务是如何实现的MVCC呢?   1. 每个事务都有一个事务ID，叫做transaction id(严格递增)  。</li>
+<li>事务在启动时，找到已提交的最大事务ID记为up_limit_id。   </li>
+<li>事务在更新一条语句时，比如id=1改为了id=2。会把id=1和该行之前的row trx_id写到undo log里，并且在数据页上把id的值改为2,并且把修改这条语句的transaction id记在该行行头。</li>
+</ol>
+<h3 id="limit分页查询"><a href="#limit分页查询" class="headerlink" title="limit分页查询"></a>limit分页查询</h3><p>分页sql格式是：<strong>select <em> from table limit (start-1)</em>pageSize, pageSize;</strong> 其中<strong>start</strong>是页码，<strong>pageSize</strong>是每页显示的条数。</p>
+<h3 id="order-by是怎么工作的"><a href="#order-by是怎么工作的" class="headerlink" title="order by是怎么工作的"></a>order by是怎么工作的</h3>]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jvm内存机制</title>
     <url>/2021/04/22/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h1 id="JVM内存机制"><a href="#JVM内存机制" class="headerlink" title="JVM内存机制"></a>JVM内存机制</h1><h3 id="JVM中的内存是怎么划分的？"><a href="#JVM中的内存是怎么划分的？" class="headerlink" title="JVM中的内存是怎么划分的？"></a>JVM中的内存是怎么划分的？</h3><p>JVM中的内存主要划分为5个区域，即<strong>方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈</strong>。下边是Java虚拟机运行时数据区示意图：</p>
@@ -1131,173 +1339,6 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
         <tag>面试</tag>
         <tag>Java</tag>
         <tag>Jvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql相关知识</title>
-    <url>/2021/04/23/mysql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h3><p>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可<strong>快速访问数据库表</strong>中的特定信息，就像一本书的目录一样，可以加快查询速度。InnoDB 存储引擎的索引模型底层实现<strong>数据结构为B+树</strong>，所有数据都是存储在 B+ 树中的。</p>
-<a id="more"></a>
-<h4 id="为什么底层数据结构使用B-树，而不是B树"><a href="#为什么底层数据结构使用B-树，而不是B树" class="headerlink" title="为什么底层数据结构使用B+树，而不是B树"></a>为什么底层数据结构使用B+树，而不是B树</h4><ul>
-<li>B+树是B树的变种，B+树的非叶子节点只用来保存索引，不存储数据，所有的数据都保存在叶子节点；而B树的非叶子节点也会保存数据。这样就使得B+树的查询效率更加稳定，均为从根节点到叶子节点的路径。</li>
-<li>B+树的内部结点并没有指向关键字具体信息的指针，因此其内部结点相对B 树更小，同样空间可以读入更多的节点，所以B+树的磁盘读写代价更低。</li>
-</ul>
-<h4 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h4><p><strong>主键索引</strong>就是一种聚簇索引，其索引树的叶子节点中存的是<strong>整行数据</strong>，表中行的物理顺序与键值的逻辑（索引）顺序相同。一个表只能包含一个聚集索引。因为索引（目录）只能按照一种方法进行排序。</p>
-<p><strong>非聚簇索引（普通索引</strong>）的叶子节点内容是<strong>主键的值</strong>。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</p>
-<h4 id="MySQL回表"><a href="#MySQL回表" class="headerlink" title="MySQL回表"></a>MySQL回表</h4><ul>
-<li>如果语句是 select * from User where id=3，即主键查询方式，则只需要搜索 主键索引树。</li>
-<li>如果语句是 select <em> from User where uid=23，即普通索引查询方式，则需要先搜索 普通索引树，得到其对应的主键值为 3，再到主键索引树搜索一次。这个过程称为<em>*回表。</em></em></li>
-</ul>
-<h4 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h4><p>如果在普通索引树上的查询已经直接提供了结果，不需要回表操作，这样的普通索引叫做覆盖索引。覆盖索引的使用可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
-<h4 id="索引的最左前缀原则"><a href="#索引的最左前缀原则" class="headerlink" title="索引的最左前缀原则"></a>索引的最左前缀原则</h4><p>在联合索引的情况下，不需要索引的全部定义，只要满足最左前缀，就可以利用索引来加快查询速度。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。最左前缀原则的利用也可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
-<h4 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4><p>在MySQL5.6之前，只能从根据最左前缀查询到ID开始一个个回表。到主键索引上找出数据行，再对比字段值。MySQL5.6引入的索引下推优化，（联合索引前提）可以在索引遍历过程中，对索引中包含的其余字段先做判断，直接过滤掉不满足条件的记录，减少回表次数，提升查询效率。</p>
-<h3 id="哪些列上适合创建索引？创建索引有哪些开销？"><a href="#哪些列上适合创建索引？创建索引有哪些开销？" class="headerlink" title="哪些列上适合创建索引？创建索引有哪些开销？"></a>哪些列上适合创建索引？创建索引有哪些开销？</h3><p>经常需要作为条件查询的列上适合创建索引，并且该列上的数据也必须有一定的区分度。创建索引需要维护，在插入数据的时候会重新维护各个索引树（<strong>数据页的分裂与合并</strong>），对性能造成影响。</p>
-<h4 id="自增主键："><a href="#自增主键：" class="headerlink" title="自增主键："></a>自增主键：</h4><p>为了在插入数据的时候不需要调整主键索引树的结构，强烈建议在建立表的时候使用自增主键。主键的顺序按照数据记录的插入顺序排列，自动有序。</p>
-<h3 id="MySQL常见的存储引擎"><a href="#MySQL常见的存储引擎" class="headerlink" title="MySQL常见的存储引擎"></a>MySQL常见的存储引擎</h3><p>MySQL中最常见的存储引擎有InnoDB和MyISAM，它们的主要区别如下：</p>
-<ul>
-<li>MyISAM不支持事务；InnoDB是事务类型的存储引擎。</li>
-<li>MyISAM只支持表级锁；InnoDB支持行级锁和表级锁，默认为行级锁。</li>
-<li>MyISAM引擎不支持外键；InnoDB支持外键。</li>
-<li>对于count(*)查询来说MyISAM更有优势，因为其保存了行数。</li>
-<li>InnoDB是为处理巨大数据量时的最大性能设计的存储引擎。</li>
-<li>MyISAM支持全文索引（FULLTEXT）；InnoDB不支持。</li>
-</ul>
-<p>最主要的区别就是MyISAM表不支持事务、不支持行级锁、不支持外键。 InnoDB表支持事务、支持行级锁、支持外键。</p>
-<p>MySQL的基本逻辑架构图:</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423144917.png" alt="图片说明"></p>
-<p>由MySQL的逻辑架构图我们可以看出，逻辑架构包括<strong>Server层和存储引擎层</strong>。其中Server层包括连接器，分析器，优化器以及执行器；存储引擎层包括多种支持的存储引擎。各个逻辑部件的作用如下：</p>
-<ul>
-<li><strong>连接器：</strong>验证客户端权限，建立和断开MySQL连接</li>
-<li><strong>分析器：</strong>进行SQL语句的语法分析</li>
-<li><strong>优化器：</strong>选择索引，生成具体的SQL语句执行计划</li>
-<li><strong>执行器：</strong>操作存储引擎，执行SQL，返回执行结果</li>
-<li><strong>存储引擎层：</strong>各个不同的存储引擎都提供了一些读写接口来操作数据库</li>
-</ul>
-<p>在MySQL5.5.5版本之后，<strong>InnoDB已经成为了其默认的存储引擎</strong>。</p>
-<p>除了InnoDB以及MyISAM存储引擎外，常见的考察存储引擎还有<strong>Memory，使用Memory作为存储引擎的表也可以叫做内存表</strong>，将数据存储在了内存中，所以适合做临时表来使用，在索引结构上支持B+树索引和Hash索引。</p>
-<h3 id="MySQL中的where、group-by、having关键字"><a href="#MySQL中的where、group-by、having关键字" class="headerlink" title="MySQL中的where、group by、having关键字"></a>MySQL中的where、group by、having关键字</h3><ul>
-<li>where子句用来筛选from子句中指定的操作所产生的的行</li>
-<li>group by 子句用来分组where子句的输出</li>
-<li>having子句用来从分组的结果中筛选行</li>
-</ul>
-<p><strong>having和where的区别：</strong></p>
-<ul>
-<li>语法类似，where搜索条件在进行分组操作之前应用；having搜索条件在进行分组操作之后应用</li>
-<li>having可以包含聚合函数sum、avg、max等</li>
-<li>having子句限制的是组，而不是行</li>
-</ul>
-<p><strong>当同时含有where子句、group by 子句 、having子句及聚集函数时，执行顺序如下：</strong></p>
-<ul>
-<li>执行where子句查找符合条件的数据</li>
-<li>使用group by子句对数据进行分组</li>
-<li>对group by子句形成的组运行聚集函数计算每一组的值</li>
-<li>最后用having子句去掉不符合条件的组</li>
-</ul>
-<h3 id="MySQL的日志模块binlog和redo-log"><a href="#MySQL的日志模块binlog和redo-log" class="headerlink" title="MySQL的日志模块binlog和redo log"></a>MySQL的日志模块binlog和redo log</h3><p>在MySQL的使用中，更新操作也是很频繁的，如果每一次更新操作都根据条件找到对应的记录，然后将记录更新，再写回磁盘，那么<strong>IO成本以及查找记录的成本</strong>都很高。所以，出现了日志模块，即我们的update更新操作是<strong>先写日志，在合适的时间才会去写磁盘</strong>，日志更新完毕就将执行结果返回给了客户端。</p>
-<p>MySQL中的日志模块主要有<strong>redo log（重做日志）和binlog（归档日志）。</strong></p>
-<h4 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h4><p>redo log是<strong>InnoDB引擎特有</strong>的日志模块，redo log是物理日志，记录了某个数据页上做了哪些修改。InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么redo log总共就可以记录 4GB的操作。从头开始写，写到末尾就又回到开头循环写。</p>
-<p>InnoDB的redo log保证了数据库发生异常重启之后，之前提交的记录不会丢失，这个能力称为crash-safe。</p>
-<h4 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h4><p>binlog是<strong>Server层自带</strong>的日志模块，binlog是逻辑日志，记录本次修改的原始逻辑，说白了就是SQL语句。binlog是追加写的形式，可以写多个文件，不会覆盖之前的日志。通过mysqlbinlog可以解析查看binlog日志。binlog日志文件的格式：statement，row，mixed。</p>
-<ul>
-<li><strong>statement格式</strong>的binlog记录的是完整的SQL语句，优点是日志文件小，性能较好，缺点也很明显，那就是准确性差，遇到SQL语句中有now()等函数会导致不准确</li>
-<li><strong>row格式</strong>的binlog中记录的是数据行的实际数据的变更，优点就是数据记录准确，缺点就是日志文件较大。</li>
-<li><strong>mixed格式</strong>的binlog是前面两者的混合模式</li>
-</ul>
-<p>业界目前推荐使用的是 row 模式，因为很多情况下对准确性的要求是排在第一位的。</p>
-<p>在更新数据库的时候，通过redo log和binlog的<strong>两阶段提交</strong>，可以确保数据库异常崩溃之后数据的正确恢复。</p>
-<p>在对数据库误操作之后，可以通过<strong>备份库+binlog</strong>将数据库状态恢复到“任意“时刻。</p>
-<h4 id="为什么MySQL会突然变慢一下"><a href="#为什么MySQL会突然变慢一下" class="headerlink" title="为什么MySQL会突然变慢一下"></a>为什么MySQL会突然变慢一下</h4><p>当内存数据页和磁盘数据页内容不一致的时候，这个内存页就是“脏页”。内存数据写入到磁盘后，内存和磁盘上的数据页的内容就一致了，这个时候的内存页就是”干净页“。</p>
-<p>前面我们介绍了更新数据库的时候是<strong>先写日志</strong>，当合适的机会（空闲）出现的时候才会<strong>更新磁盘</strong>。但是<strong>当redo log 写满了，要 flush 脏页</strong>，也就是把内存里的数据写入磁盘，会导致MySQL执行速度突然变慢一瞬间。</p>
-<h3 id="MySQL事务的特性"><a href="#MySQL事务的特性" class="headerlink" title="MySQL事务的特性"></a>MySQL事务的特性</h3><p>事务是单个逻辑工作单元执行的<strong>一系列操作</strong>，是一个不可分割的工作单位。满足如下的四大特性：</p>
-<ul>
-<li><strong>原子性（Atomicity）：</strong>事务作为一个整体被执行 ，要么全部执行，要么全部不执行；</li>
-<li><strong>一致性（Consistency）：</strong>保证数据库状态从一个一致状态转变为另一个一致状态；</li>
-<li><strong>隔离性（Isolation）：</strong>多个事务并发执行时，一个事务的执行不应影响其他事务的执行；</li>
-<li><strong>持久性（Durability）：</strong>一个事务一旦提交，对数据库的修改应该永久保存</li>
-</ul>
-<h4 id="不做控制的话，多个事务并发操作数据库会产生哪些问题？"><a href="#不做控制的话，多个事务并发操作数据库会产生哪些问题？" class="headerlink" title="不做控制的话，多个事务并发操作数据库会产生哪些问题？"></a>不做控制的话，多个事务并发操作数据库会产生哪些问题？</h4><ul>
-<li><p><strong>丢失更新：</strong><br>两个不同事务同时获得相同数据，然后在各自事务中同时修改了该数据，那么先提交的事务更新会被后提交事务的更新给覆盖掉，这种情况先提交的事务所做的更新就被覆盖，导致数据更新丢失。</p>
-</li>
-<li><p><strong>脏读：</strong><br>事务A读取了事务B未提交的数据，由于事务B回滚，导致了事务A的数据不一致，结果事务A出现了脏读；</p>
-</li>
-<li><p><strong>不可重复读：</strong><br>一个事务在自己没有更新数据库数据的情况，同一个查询操作执行两次或多次得到的结果数值不同，因为别的事务更新了该数据，并且提交了事务。</p>
-</li>
-<li><p><strong>幻读：</strong><br>事务A读的时候读出了N条记录，事务B在事务A执行的过程中增加 了1条，事务A再读的时候就变成了N+1条，这种情况就叫做幻读。</p>
-</li>
-</ul>
-<p><strong>注意：</strong>幻读是指一种结构上的改变，比如说条数发生了改变；不可重复读是指读出的数值发生了改变。</p>
-<h4 id="MySQL数据库事务的隔离级别"><a href="#MySQL数据库事务的隔离级别" class="headerlink" title="MySQL数据库事务的隔离级别"></a>MySQL数据库事务的隔离级别</h4><p>为了避免数据库事务操作中的问题，MySQL定义了4个事务隔离级别，不同的隔离级别对事务的处理不同。</p>
-<ul>
-<li><p><strong>读未提交(Read Uncommitted)：</strong><br>允许脏读取。如果一个事务已经开始写数据，则另外一个数据则不允许同时进行写操作，但允许其他事务读此行数据。</p>
-</li>
-<li><p><strong>读已提交(Read Committed)：</strong><br>允许不可重复读取，但不允许脏读取。读取数据的事务允许其他事务继续访问该行数据，但是未提交的写事务将会禁止其他事务访问该行。</p>
-</li>
-<li><p><strong>可重复读(Repeatable Read)：</strong><br>禁止不可重复读取和脏读取，但是有时可能出现幻读。读取数据的事务将会禁止写事务(但允许读事务)，写事务则禁止任何其他事务。</p>
-</li>
-<li><p><strong>序列化(Serializable)：</strong><br>提供严格的事务隔离。它要求事务序列化执行，事务只能一个接着一个地执行，但不能并发执行。</p>
-</li>
-</ul>
-<p>事务的隔离级别越高，对数据的完整性和一致性保证越佳，但是对并发操作的影响也越大。MySQL事务默认隔离级别是可重复读。</p>
-<h3 id="MySQL中的锁机制"><a href="#MySQL中的锁机制" class="headerlink" title="MySQL中的锁机制"></a>MySQL中的锁机制</h3><p>MySQL数据库的锁分为<strong>表级锁和行级锁</strong>。从数据库的角度看，行级锁又可以分为<strong>独占锁和共享锁</strong>。</p>
-<p><strong>独占锁（排他锁），也称X锁（Exclusive Lock）：</strong></p>
-<p>独占锁锁定的资源只允许进行锁定操作的程序使用，其它任何对它的操作均不会被接受。执行数据更新命令，<strong>即INSERT、UPDATE 或DELETE 命令时，MySQL会自动使用独占锁</strong>。但当对象上有其它锁存在时，无法对其加独占锁。独占锁一直到事务结束才能被释放。</p>
-<p>在select命令中使用独占锁的SQL语句为：<strong>select … for update;</strong></p>
-<p><strong>共享锁，也叫S锁（Shared Lock）：</strong></p>
-<p>共享锁顾名思义，那就是其锁定的资源可以被其它用户读取，但其它用户不能修改。如果在select查询语句中要手动加入共享锁，那么对应的SQL语句为：<strong>select … lock in share mode</strong></p>
-<p>一个事务在一行数据上加入了独占锁，那么其余事务不可以在该数据行上加入任何锁。也就是说加过排他锁的数据行在其他事务中是不能修改数据的，也不能通过<strong>for update和lock in share mode锁</strong>的方式查询数据，但<strong>可以直接通过select …from…查询数据</strong>，因为普通查询没有任何锁机制。</p>
-<h4 id="MySQL中的死锁"><a href="#MySQL中的死锁" class="headerlink" title="MySQL中的死锁"></a>MySQL中的死锁</h4><p>MySQL中的死锁主要是<strong>多个事务使用行级锁对某行数据加锁造成的</strong>，上一小节说了MyISAM不支持行级锁，所以MySQL中的死锁主要是在说InnoDB存储引擎的死锁。</p>
-<h4 id="如何解决死锁"><a href="#如何解决死锁" class="headerlink" title="如何解决死锁"></a>如何解决死锁</h4><p>我们可以在业务上和数据库设置上来解决MySQL死锁。分别介绍如下：</p>
-<p><strong>业务逻辑上的死锁解决方案：</strong></p>
-<ul>
-<li>指定锁的获取顺序</li>
-<li>大事务拆分成各个小事务</li>
-<li>在同一个事务中，一次锁定尽量多的资源，减少死锁概率</li>
-<li>给表建立合适的索引以及降低事务的隔离级别等</li>
-</ul>
-<p><strong>数据库的设置来解决死锁：</strong></p>
-<ul>
-<li>通过参数 innodb_lock_wait_timeout 根据实际业务场景来<strong>设置超时时间</strong>，InnoDB引擎默认值是50s。</li>
-<li><strong>发起死锁检测</strong>，发现死锁后，<strong>主动回滚</strong>死锁链条中的某一个事务，让其他事务得以继续执行。将参数 innodb_deadlock_detect 设置为 on，表示开启这个逻辑（默认是开启状态）。</li>
-</ul>
-<h4 id="行级锁什么时候会锁住整个表"><a href="#行级锁什么时候会锁住整个表" class="headerlink" title="行级锁什么时候会锁住整个表"></a>行级锁什么时候会锁住整个表</h4><p>InnoDB行级锁是通过锁索引记录实现的，如果更新的列没建索引是会锁住整个表的。</p>
-<h4 id="悲观锁与乐观锁："><a href="#悲观锁与乐观锁：" class="headerlink" title="悲观锁与乐观锁："></a>悲观锁与乐观锁：</h4><p><strong>悲观锁：</strong>利用数据库的锁机制实现，在整个数据处理过程中都加入了锁，以保持排他性。</p>
-<p><strong>乐观锁：</strong>乐观锁可以利用CAS实现，在<strong>操作数据</strong>的时候进行一个比较，按照<strong>当前事务中的数据和数据库表中的该数据是否一致</strong>来决定是否要执行本次操作。</p>
-<h4 id="乐观锁的ABA问题及如何解决"><a href="#乐观锁的ABA问题及如何解决" class="headerlink" title="乐观锁的ABA问题及如何解决"></a>乐观锁的ABA问题及如何解决</h4><p>ABA问题是指在当前事务读取该行数据时是A，经过别的事务修改成B，但是在当前事务要更新数据的时候，该行数据又被别的事务修改为A，事实上数据行是发生过改变的，存在并发问题。</p>
-<p>ABA问题可以通过<strong>基于数据版本（Version）记录机制</strong>来解决。也就是为数据增加一个版本标识。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。根据当前事务的数据版本号和数据库中数据的版本号对比来决定是否更新数据。</p>
-<p>与给当前数据增加一个数据版本类似，我们也可以增加基于时间戳机制来解决ABA问题，通过时间戳来记录当前数据行变化。</p>
-<h3 id="SQL优化或者MySQL故障排查"><a href="#SQL优化或者MySQL故障排查" class="headerlink" title="SQL优化或者MySQL故障排查"></a>SQL优化或者MySQL故障排查</h3><p>一般情况下，我们遇到一个SQL异常的时候，比如说执行时间超时等，可以通过<strong>explain</strong>查看当前SQL语句的执行情况。explain +SQL语句可以查看当前的SQL语句使用的索引以及其扫描了多少行数据。也可以使用下边的语句来查看数据表的一些信息：</p>
-<ul>
-<li><strong>show create table TableXX；</strong>查看当前表TableXX的建表语句</li>
-<li><strong>show index from TableXX；</strong>查看当前表TableXX上的索引</li>
-</ul>
-<p>查看了数据表的信息，一般情况下我们可以通过建立索引来提高查询速度，或者修改SQL语句，利用索引下推或者最左前缀原则等来加快查询速度。</p>
-<h3 id="MySQL建表的约束条件有哪些"><a href="#MySQL建表的约束条件有哪些" class="headerlink" title="MySQL建表的约束条件有哪些"></a>MySQL建表的约束条件有哪些</h3><p>约束条件是我们建表的时候对数据库表做的一个限制条件。MySQL建表时候一般有如下的五个约束条件：</p>
-<ul>
-<li><strong>主键约束</strong>（Primary Key Constraint） 唯一性，非空性</li>
-<li><strong>唯一约束</strong> （Unique Constraint）唯一性，可以空，但只能有一个</li>
-<li><strong>检查约束</strong> (Check Constraint) 对该列数据的范围、格式的限制</li>
-<li><strong>默认约束</strong> (Default Constraint) 该数据的默认值</li>
-<li><strong>外键约束</strong> (Foreign Key Constraint) 需要建立两表间的关系并引用主表的列</li>
-</ul>
-<h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><p>回滚日志（undo log）：在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
-<h3 id="MVCC的实现方式"><a href="#MVCC的实现方式" class="headerlink" title="MVCC的实现方式"></a>MVCC的实现方式</h3><ol>
-<li>InnoDB实现MVCC，多个版本的数据可以共存，主要是依靠数据的隐藏列(也可以称之为标记位)和undo log。 </li>
-<li>其中数据的隐藏列包括了该行数据的版本号、删除时间、指向undo log的指针等等；</li>
-<li>当读取数据时，MySQL可以通过隐藏列判断是否需要回滚并找到回滚需要的undo log，从而实现MVCC</li>
-</ol>
-<h3 id="事务如何实现MVCC"><a href="#事务如何实现MVCC" class="headerlink" title="事务如何实现MVCC"></a>事务如何实现MVCC</h3><ol>
-<li>事务是如何实现的MVCC呢?   1. 每个事务都有一个事务ID，叫做transaction id(严格递增)  。</li>
-<li>事务在启动时，找到已提交的最大事务ID记为up_limit_id。   </li>
-<li>事务在更新一条语句时，比如id=1改为了id=2。会把id=1和该行之前的row trx_id写到undo log里，并且在数据页上把id的值改为2,并且把修改这条语句的transaction id记在该行行头。</li>
-</ol>
-<h3 id="limit分页查询"><a href="#limit分页查询" class="headerlink" title="limit分页查询"></a>limit分页查询</h3><p>分页sql格式是：<strong>select <em> from table limit (start-1)</em>pageSize, pageSize;</strong> 其中<strong>start</strong>是页码，<strong>pageSize</strong>是每页显示的条数。</p>
-<h3 id="order-by是怎么工作的"><a href="#order-by是怎么工作的" class="headerlink" title="order by是怎么工作的"></a>order by是怎么工作的</h3>]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
