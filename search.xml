@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Kafka相关知识</title>
-    <url>//Kafka%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86</url>
+    <url>/2021/04/24/Kafka%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h3 id="消息队列Kafka"><a href="#消息队列Kafka" class="headerlink" title="消息队列Kafka"></a>消息队列Kafka</h3><p>Kafka是一个消息队列，可以实现发布订阅模式，在异步通信或者生产者和消费者需要解耦合的场景中经常使用，可以对数据流进行处理等。</p>
 <a id="more"></a>
 <p><strong>Kafka的特性如下所示：</strong></p>
@@ -133,7 +133,7 @@
   </entry>
   <entry>
     <title>MyBatis相关知识</title>
-    <url>//MyBatis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86</url>
+    <url>/2021/04/24/MyBatis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h3 id="MyBatis是什么"><a href="#MyBatis是什么" class="headerlink" title="MyBatis是什么"></a>MyBatis是什么</h3><p>MyBatis是一个<strong>半ORM（对象关系映射）框架</strong>，内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。通过直接编写原生态SQL，可以严格控制SQL语句的执行性能，灵活度高(<strong>支持动态SQL语句</strong>)。</p>
 <p>MyBatis <strong>使用XML或注解来配置和映射原生信息</strong>，将 POJO映射成数据库中的记录，避免了JDBC代码手动设置参数以及获取结果集的繁琐步骤。</p>
 <p>MyBatis<strong>通过xml文件或注解的方式将要执行的各种 statement 配置起来</strong>，并通过Java对象和 statement中SQL的动态参数进行映射生成最终执行的SQL语句，最后由MyBatis框架执行SQL语句，并将结果映射为Java对象并返回。</p>
@@ -206,42 +206,8 @@
       </tags>
   </entry>
   <entry>
-    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
-    <url>//PicGo+Github+Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A</url>
-    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
-<a id="more"></a>
-<p>点击用户里的设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
-<p>点击开发者选项</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
-<p>点击个人token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
-<p>点击生成新的token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
-<p>只需要选择repo选项即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
-<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
-<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
-<p>安装完成后设置Github图床</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
-<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
-<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
-<p>进行如下图所示的设置即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
-<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
-<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
-]]></content>
-      <tags>
-        <tag>个人博客</tag>
-        <tag>图床</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis相关知识</title>
-    <url>//Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86</url>
+    <url>/2021/04/24/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h3 id="Redis有了解么"><a href="#Redis有了解么" class="headerlink" title="Redis有了解么"></a>Redis有了解么</h3><p><strong>redis（Remote Dictionary Server远程字典服务）</strong>，是一款高性能的(key/value)分布式<strong>内存数据库</strong>，基于<strong>内存运行</strong>并支持<strong>持久化</strong>的NoSQL数据库。因为数据都在内存中，所以运行速度快。redis支持丰富的数据类型并且支持事务，事务中的所有命令会被序列化、按顺序执行，在执行的过程中不会被其他客户端发送来的命令打断。</p>
 <a id="more"></a>
 <h4 id="redis相比memcached有什么优势？"><a href="#redis相比memcached有什么优势？" class="headerlink" title="redis相比memcached有什么优势？"></a>redis相比memcached有什么优势？</h4><ul>
@@ -386,7 +352,7 @@
   </entry>
   <entry>
     <title>二叉树的层次遍历</title>
-    <url>//%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86</url>
+    <url>/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/</url>
     <content><![CDATA[<h1 id="二叉树的层次遍历"><a href="#二叉树的层次遍历" class="headerlink" title="二叉树的层次遍历"></a>二叉树的层次遍历</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvYmluYXJ5LXRyZWUtbGV2ZWwtb3JkZXItdHJhdmVyc2FsLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="相关题目"><a href="#相关题目" class="headerlink" title="相关题目"></a>相关题目</h2><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29uZy1zaGFuZy1kYW8teGlhLWRhLXlpbi1lci1jaGEtc2h1LWxjb2Yv">从上到下打印二叉树<i class="fa fa-external-link-alt"></i></span></p>
 <p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29uZy1zaGFuZy1kYW8teGlhLWRhLXlpbi1lci1jaGEtc2h1LWlpLWxjb2Yv">从上到下打印二叉树 II<i class="fa fa-external-link-alt"></i></span></p>
@@ -423,7 +389,7 @@
   </entry>
   <entry>
     <title>从前序与中序遍历序列构造二叉树</title>
-    <url>//%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91</url>
+    <url>/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/</url>
     <content><![CDATA[<h1 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a>从前序与中序遍历序列构造二叉树</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY29uc3RydWN0LWJpbmFyeS10cmVlLWZyb20tcHJlb3JkZXItYW5kLWlub3JkZXItdHJhdmVyc2FsLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>根据一棵树的前序遍历与中序遍历构造二叉树。</p>
 <a id="more"></a>
@@ -467,7 +433,7 @@
   </entry>
   <entry>
     <title>排序算法</title>
-    <url>//%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95</url>
+    <url>/2021/04/24/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<h1 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h1><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>每次找出数组中最小的元素，将它与数组的第一个元素交换。再次，在剩下的元素中找到最小的元素，将它与数组的第二个元素交换。如此往复，直至将整个数组排序。</p>
 <a id="more"></a>
 <p>示例代码：</p>
@@ -491,7 +457,7 @@
   </entry>
   <entry>
     <title>最小覆盖子串</title>
-    <url>//%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2</url>
+    <url>/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/</url>
     <content><![CDATA[<h1 id="最小覆盖子串"><a href="#最小覆盖子串" class="headerlink" title="最小覆盖子串"></a>最小覆盖子串</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWluaW11bS13aW5kb3ctc3Vic3RyaW5nLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个字符串 <code>s</code> 、一个字符串 <code>t</code> 。返回 <code>s</code> 中涵盖 <code>t</code> 所有字符的最小子串。如果 <code>s</code> 中不存在涵盖 <code>t</code> 所有字符的子串，则返回空字符串 <code>&quot;&quot;</code> 。</p>
 <p><strong>注意：</strong>如果 <code>s</code> 中存在这样的子串，我们保证它是唯一的答案。</p>
@@ -525,7 +491,7 @@
   </entry>
   <entry>
     <title>最长递增子序列的二分搜索解法</title>
-    <url>//%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95</url>
+    <url>/2021/04/28/%E6%9C%80%E9%95%BF%E9%80%92%E5%A2%9E%E5%AD%90%E5%BA%8F%E5%88%97%E7%9A%84%E4%BA%8C%E5%88%86%E6%90%9C%E7%B4%A2%E8%A7%A3%E6%B3%95/</url>
     <content><![CDATA[<h1 id="最长递增子序列的二分搜索解法"><a href="#最长递增子序列的二分搜索解法" class="headerlink" title="最长递增子序列的二分搜索解法"></a>最长递增子序列的二分搜索解法</h1><h2 id="题目描述："><a href="#题目描述：" class="headerlink" title="题目描述："></a>题目描述：</h2><p>给你一个整数数组 <code>nums</code> ，找到其中最长严格递增子序列的长度。</p>
 <p>子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。例如，<code>[3,6,2,7]</code> 是数组 <code>[0,3,1,6,2,2,7]</code> 的子序列。</p>
 <a id="more"></a> 
@@ -558,7 +524,7 @@
   </entry>
   <entry>
     <title>面试技巧总结</title>
-    <url>//%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93</url>
+    <url>/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h1 id="面试技巧总结"><a href="#面试技巧总结" class="headerlink" title="面试技巧总结"></a>面试技巧总结</h1><h2 id="央视新闻微博发的面试技巧"><a href="#央视新闻微博发的面试技巧" class="headerlink" title="央视新闻微博发的面试技巧"></a>央视新闻微博发的面试技巧</h2><a id="more"></a>
 <p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212021.jpg" alt="微信图片_20210408211903"></p>
 <p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210408212034.jpg" alt="微信图片_20210408211909"></p>
@@ -578,40 +544,42 @@
       </tags>
   </entry>
   <entry>
-    <title>验证二叉搜索树</title>
-    <url>//%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91</url>
-    <content><![CDATA[<h1 id="验证二叉搜索树"><a href="#验证二叉搜索树" class="headerlink" title="验证二叉搜索树"></a>验证二叉搜索树</h1><p><a href="[验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/">原题链接</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
-<p>假设一个二叉搜索树具有如下特征：</p>
-<ul>
-<li>节点的左子树只包含<strong>小于</strong>当前节点的数。</li>
-<li>节点的右子树只包含<strong>大于</strong>当前节点的数。</li>
-<li>所有左子树和右子树自身必须也是二叉搜索树。</li>
-</ul>
+    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
+    <url>/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
 <a id="more"></a>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    2</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   3</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    5</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   4</span><br><span class="line">     &#x2F; \</span><br><span class="line">    3   6</span><br><span class="line">输出: false</span><br><span class="line">解释: 输入为: [5,1,4,null,null,3,6]。</span><br><span class="line">     根节点的值为 5 ，但是其右子节点值为 4 。</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="解法一：递归"><a href="#解法一：递归" class="headerlink" title="解法一：递归"></a>解法一：递归</h3><h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>由二叉搜索树的性质知，每个结点左子树的值都小于该结点，右子树的值都大于该结点，因此，每个结点的左右子树的值分别在两个固定的开区间内，我们可以递归判断每个节点的左右子树的值是否满足区间要求，从而最终判断出树是否是二叉搜索树。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> check(root, LONG_MIN, LONG_MAX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(TreeNode* root, <span class="keyword">long</span> <span class="keyword">long</span> low, <span class="keyword">long</span> <span class="keyword">long</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &lt;= low || root-&gt;val &gt;= high)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> check(root-&gt;left, low, root-&gt;val) &amp;&amp; check(root-&gt;right, root-&gt;val, high);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="解法二：中序遍历"><a href="#解法二：中序遍历" class="headerlink" title="解法二：中序遍历"></a>解法二：中序遍历</h3><h4 id="主要思路-1"><a href="#主要思路-1" class="headerlink" title="主要思路"></a>主要思路</h4><p>二叉搜索树的中序遍历顺序是升序序列，因此我们可以对数进行中序遍历，如果其符合升序顺序，则代表是二叉搜索树。</p>
-<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; stk;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> inorder = (<span class="keyword">long</span> <span class="keyword">long</span>)INT_MIN - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!stk.empty() || root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                stk.push(root);</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            root = stk.top();</span><br><span class="line">            stk.pop();</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;val &lt;= inorder)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            inorder = root-&gt;val;</span><br><span class="line">            root = root-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>ps: 该题需要注意要使用long long，int的范围是不够的</p>
+<p>点击用户里的设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
+<p>点击开发者选项</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
+<p>点击个人token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
+<p>点击生成新的token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
+<p>只需要选择repo选项即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
+<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
+<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
+<p>安装完成后设置Github图床</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
+<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
+<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
+<p>进行如下图所示的设置即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
+<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
+<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
 ]]></content>
-      <categories>
-        <category>leetcode</category>
-        <category>树</category>
-      </categories>
       <tags>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>数据结构</tag>
+        <tag>个人博客</tag>
+        <tag>图床</tag>
       </tags>
   </entry>
   <entry>
     <title>K个一组翻转链表</title>
-    <url>//K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8</url>
+    <url>/2021/05/12/K%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/</url>
     <content><![CDATA[<h1 id="K个一组翻转链表"><a href="#K个一组翻转链表" class="headerlink" title="K个一组翻转链表"></a>K个一组翻转链表</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvcmV2ZXJzZS1ub2Rlcy1pbi1rLWdyb3VwLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个链表，每 <em>k</em> 个节点一组进行翻转，请你返回翻转后的链表。</p>
 <p><em>k</em> 是一个正整数，它的值小于或等于链表的长度。</p>
@@ -655,8 +623,71 @@
       </tags>
   </entry>
   <entry>
+    <title>LRU算法设计</title>
+    <url>/2021/05/07/LRU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="LRU缓存算法设计"><a href="#LRU缓存算法设计" class="headerlink" title="LRU缓存算法设计"></a>LRU缓存算法设计</h1><h2 id="机制简单介绍"><a href="#机制简单介绍" class="headerlink" title="机制简单介绍"></a>机制简单介绍</h2><p>每次放入缓存中的数据会到队列头，如果满了会将队列尾部的删除，每次访问的也放到队列头，也就是根据访问的时序来进行淘汰。</p>
+<a id="more"></a>
+<h2 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h2><p><code>LRUCache</code>数据结构需要满足以下几点：</p>
+<ol>
+<li>其中的元素必须有时序，用来区分最近使用和久未使用的数据，容量满了之后要删除最久未使用的那个元素来腾位置。</li>
+<li>能够迅速地判断<code>key</code>是否存在，并且得到对应的<code>val</code></li>
+<li>每次访问某个<code>key</code>时，需要将这个元素变为最近使用的，也就是该数据结构需要支持在任意位置快速插入和删除元素</li>
+</ol>
+<p>满足以上条件的数据结构为<code>LinkedHashMap</code>，根据该结构对以上的条件进行分析：</p>
+<ol>
+<li>如果默认从链表尾部添加元素，那么显然越靠近尾部的元素就越是最近使用地，越靠近头部的元素就是越久未使用的。</li>
+<li>对于某个<code>key</code>，可以通过哈希表快速定位到链表中的节点，从未取得对应的<code>val</code></li>
+<li>链表支持在任意位置快速插入和删除</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="自己实现双向链表"><a href="#自己实现双向链表" class="headerlink" title="自己实现双向链表"></a>自己实现双向链表</h3><p>自定义双向链表：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head, tail;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DoubleList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev = tail.prev;</span><br><span class="line">        x.next = tail;</span><br><span class="line">        tail.prev.next = x;</span><br><span class="line">        tail.prev = x;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev.next = x.next;</span><br><span class="line">        x.next.prev = x.prev;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">removeFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next == tail)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node first = head.next;</span><br><span class="line">        remove(first);</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> size; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> key, value;</span><br><span class="line">    <span class="keyword">public</span> Node next, prev;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        key = k;</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义LRU缓存数据结构：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DoubleList cache;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cap = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> DoubleList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将某个Key设置为最近使用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line"></span><br><span class="line">        cache.remove(node);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加最近使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addRecently</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        Node node = <span class="keyword">new</span> Node(key, val);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">        map.put(key, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除一个Key</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteKey</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line">        cache.remove(node);</span><br><span class="line">        map.remove(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除最久未使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteLeastRecently</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Node deletedNode = cache.removeFirst();</span><br><span class="line">        <span class="keyword">int</span> deletedKey = deletedNode.key;</span><br><span class="line">        map.remove(deletedKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素提升为最近使用的</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> map.get(key).value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">            deleteKey(key);</span><br><span class="line">            addRecently(key, value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cap == cache.size())&#123;</span><br><span class="line">            deleteLeastRecently();</span><br><span class="line">        &#125;</span><br><span class="line">        addRecently(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="使用自带的哈希链表"><a href="#使用自带的哈希链表" class="headerlink" title="使用自带的哈希链表"></a>使用自带的哈希链表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    Map&lt;Integer, Integer&gt; cache = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将key变为最近使用</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cache.containsKey(key))&#123;</span><br><span class="line">            <span class="comment">//修改key的值</span></span><br><span class="line">            cache.put(key, value);</span><br><span class="line">            <span class="comment">//将key变为最近使用</span></span><br><span class="line">            makeRecently(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cache.size() &gt; cap)&#123;</span><br><span class="line">            <span class="keyword">int</span> oldestKey = cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &#125;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = cache.get(key);</span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>LRU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>验证二叉搜索树</title>
+    <url>/2021/04/09/%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="验证二叉搜索树"><a href="#验证二叉搜索树" class="headerlink" title="验证二叉搜索树"></a>验证二叉搜索树</h1><p><a href="[验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/">原题链接</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
+<p>假设一个二叉搜索树具有如下特征：</p>
+<ul>
+<li>节点的左子树只包含<strong>小于</strong>当前节点的数。</li>
+<li>节点的右子树只包含<strong>大于</strong>当前节点的数。</li>
+<li>所有左子树和右子树自身必须也是二叉搜索树。</li>
+</ul>
+<a id="more"></a>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    2</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   3</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    5</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   4</span><br><span class="line">     &#x2F; \</span><br><span class="line">    3   6</span><br><span class="line">输出: false</span><br><span class="line">解释: 输入为: [5,1,4,null,null,3,6]。</span><br><span class="line">     根节点的值为 5 ，但是其右子节点值为 4 。</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="解法一：递归"><a href="#解法一：递归" class="headerlink" title="解法一：递归"></a>解法一：递归</h3><h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>由二叉搜索树的性质知，每个结点左子树的值都小于该结点，右子树的值都大于该结点，因此，每个结点的左右子树的值分别在两个固定的开区间内，我们可以递归判断每个节点的左右子树的值是否满足区间要求，从而最终判断出树是否是二叉搜索树。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> check(root, LONG_MIN, LONG_MAX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(TreeNode* root, <span class="keyword">long</span> <span class="keyword">long</span> low, <span class="keyword">long</span> <span class="keyword">long</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &lt;= low || root-&gt;val &gt;= high)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> check(root-&gt;left, low, root-&gt;val) &amp;&amp; check(root-&gt;right, root-&gt;val, high);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解法二：中序遍历"><a href="#解法二：中序遍历" class="headerlink" title="解法二：中序遍历"></a>解法二：中序遍历</h3><h4 id="主要思路-1"><a href="#主要思路-1" class="headerlink" title="主要思路"></a>主要思路</h4><p>二叉搜索树的中序遍历顺序是升序序列，因此我们可以对数进行中序遍历，如果其符合升序顺序，则代表是二叉搜索树。</p>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; stk;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> inorder = (<span class="keyword">long</span> <span class="keyword">long</span>)INT_MIN - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!stk.empty() || root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                stk.push(root);</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            root = stk.top();</span><br><span class="line">            stk.pop();</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;val &lt;= inorder)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            inorder = root-&gt;val;</span><br><span class="line">            root = root-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>ps: 该题需要注意要使用long long，int的范围是不够的</p>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+        <category>树</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LFU算法设计</title>
-    <url>//LFU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1</url>
+    <url>/2021/05/07/LFU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h1 id="LFU算法设计"><a href="#LFU算法设计" class="headerlink" title="LFU算法设计"></a>LFU算法设计</h1><h2 id="机制简介"><a href="#机制简介" class="headerlink" title="机制简介"></a>机制简介</h2><p>根据访问频度进行淘汰的缓存淘汰机制，每次淘汰那些使用次数最少的数据。</p>
 <p>当遇到多个访问次数相同时，删除最早插入的那个。</p>
 <a id="more"></a>
@@ -692,39 +723,8 @@
       </tags>
   </entry>
   <entry>
-    <title>LRU算法设计</title>
-    <url>//LRU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1</url>
-    <content><![CDATA[<h1 id="LRU缓存算法设计"><a href="#LRU缓存算法设计" class="headerlink" title="LRU缓存算法设计"></a>LRU缓存算法设计</h1><h2 id="机制简单介绍"><a href="#机制简单介绍" class="headerlink" title="机制简单介绍"></a>机制简单介绍</h2><p>每次放入缓存中的数据会到队列头，如果满了会将队列尾部的删除，每次访问的也放到队列头，也就是根据访问的时序来进行淘汰。</p>
-<a id="more"></a>
-<h2 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h2><p><code>LRUCache</code>数据结构需要满足以下几点：</p>
-<ol>
-<li>其中的元素必须有时序，用来区分最近使用和久未使用的数据，容量满了之后要删除最久未使用的那个元素来腾位置。</li>
-<li>能够迅速地判断<code>key</code>是否存在，并且得到对应的<code>val</code></li>
-<li>每次访问某个<code>key</code>时，需要将这个元素变为最近使用的，也就是该数据结构需要支持在任意位置快速插入和删除元素</li>
-</ol>
-<p>满足以上条件的数据结构为<code>LinkedHashMap</code>，根据该结构对以上的条件进行分析：</p>
-<ol>
-<li>如果默认从链表尾部添加元素，那么显然越靠近尾部的元素就越是最近使用地，越靠近头部的元素就是越久未使用的。</li>
-<li>对于某个<code>key</code>，可以通过哈希表快速定位到链表中的节点，从未取得对应的<code>val</code></li>
-<li>链表支持在任意位置快速插入和删除</li>
-</ol>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="自己实现双向链表"><a href="#自己实现双向链表" class="headerlink" title="自己实现双向链表"></a>自己实现双向链表</h3><p>自定义双向链表：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head, tail;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DoubleList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev = tail.prev;</span><br><span class="line">        x.next = tail;</span><br><span class="line">        tail.prev.next = x;</span><br><span class="line">        tail.prev = x;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev.next = x.next;</span><br><span class="line">        x.next.prev = x.prev;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">removeFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next == tail)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node first = head.next;</span><br><span class="line">        remove(first);</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> size; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> key, value;</span><br><span class="line">    <span class="keyword">public</span> Node next, prev;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        key = k;</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>自定义LRU缓存数据结构：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DoubleList cache;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cap = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> DoubleList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将某个Key设置为最近使用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line"></span><br><span class="line">        cache.remove(node);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加最近使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addRecently</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        Node node = <span class="keyword">new</span> Node(key, val);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">        map.put(key, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除一个Key</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteKey</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line">        cache.remove(node);</span><br><span class="line">        map.remove(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除最久未使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteLeastRecently</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Node deletedNode = cache.removeFirst();</span><br><span class="line">        <span class="keyword">int</span> deletedKey = deletedNode.key;</span><br><span class="line">        map.remove(deletedKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素提升为最近使用的</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> map.get(key).value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">            deleteKey(key);</span><br><span class="line">            addRecently(key, value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cap == cache.size())&#123;</span><br><span class="line">            deleteLeastRecently();</span><br><span class="line">        &#125;</span><br><span class="line">        addRecently(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="使用自带的哈希链表"><a href="#使用自带的哈希链表" class="headerlink" title="使用自带的哈希链表"></a>使用自带的哈希链表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    Map&lt;Integer, Integer&gt; cache = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将key变为最近使用</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cache.containsKey(key))&#123;</span><br><span class="line">            <span class="comment">//修改key的值</span></span><br><span class="line">            cache.put(key, value);</span><br><span class="line">            <span class="comment">//将key变为最近使用</span></span><br><span class="line">            makeRecently(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cache.size() &gt; cap)&#123;</span><br><span class="line">            <span class="keyword">int</span> oldestKey = cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &#125;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = cache.get(key);</span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>LRU</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>子数组异或查询</title>
-    <url>//%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2</url>
+    <url>/2021/05/12/%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2/</url>
     <content><![CDATA[<h1 id="子数组异或查询"><a href="#子数组异或查询" class="headerlink" title="子数组异或查询"></a>子数组异或查询</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMveG9yLXF1ZXJpZXMtb2YtYS1zdWJhcnJheS8=">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一个正整数数组 <code>arr</code>，现给你一个对应的查询数组 <code>queries</code>，其中 <code>queries[i] = [Li, Ri]</code>。</p>
 <p>对于每个查询 <code>i</code>，请你计算从 <code>Li</code> 到 <code>Ri</code> 的 <strong>XOR</strong> 值（即 <code>arr[Li] xor arr[Li+1] xor ... xor arr[Ri]</code>）作为本次查询的结果。</p>
@@ -767,7 +767,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
   </entry>
   <entry>
     <title>括号生成</title>
-    <url>//%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90</url>
+    <url>/2021/05/13/%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/</url>
     <content><![CDATA[<h1 id="括号生成"><a href="#括号生成" class="headerlink" title="括号生成"></a>括号生成</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZ2VuZXJhdGUtcGFyZW50aGVzZXMv">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>数字 <code>n</code> 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 <strong>有效的</strong> 括号组合。</p>
 <a id="more"></a>
@@ -796,13 +796,8 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       </tags>
   </entry>
   <entry>
-    <title>测试</title>
-    <url>/2021/05/15/%E6%B5%8B%E8%AF%95/</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
     <title>滑动窗口的最大值</title>
-    <url>//%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC</url>
+    <url>/2021/05/12/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
     <content><![CDATA[<h1 id="滑动窗口的最大值"><a href="#滑动窗口的最大值" class="headerlink" title="滑动窗口的最大值"></a>滑动窗口的最大值</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc2xpZGluZy13aW5kb3ctbWF4aW11bS8=">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个整数数组 <code>nums</code>，有一个大小为 <code>k</code> 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 <code>k</code> 个数字。滑动窗口每次只向右移动一位。</p>
 <p>返回滑动窗口中的最大值。</p>
@@ -843,7 +838,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
   </entry>
   <entry>
     <title>解码异或后的排列</title>
-    <url>//%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97</url>
+    <url>/2021/05/11/%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97/</url>
     <content><![CDATA[<h1 id="解码异或后的排列"><a href="#解码异或后的排列" class="headerlink" title="解码异或后的排列"></a>解码异或后的排列</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZGVjb2RlLXhvcmVkLXBlcm11dGF0aW9uLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个整数数组 <code>perm</code> ，它是前 <code>n</code> 个正整数的排列，且 <code>n</code> 是个 <strong>奇数</strong> 。</p>
 <p>它被加密成另一个长度为 <code>n - 1</code> 的整数数组 <code>encoded</code> ，满足 <code>encoded[i] = perm[i] XOR perm[i + 1]</code> 。比方说，如果 <code>perm = [1,3,2]</code> ，那么 <code>encoded = [2,1]</code> 。</p>
@@ -874,8 +869,328 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       </tags>
   </entry>
   <entry>
+    <title>mysql相关知识</title>
+    <url>/2021/04/23/mysql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h3><p>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可<strong>快速访问数据库表</strong>中的特定信息，就像一本书的目录一样，可以加快查询速度。InnoDB 存储引擎的索引模型底层实现<strong>数据结构为B+树</strong>，所有数据都是存储在 B+ 树中的。</p>
+<a id="more"></a>
+<h4 id="为什么底层数据结构使用B-树，而不是B树"><a href="#为什么底层数据结构使用B-树，而不是B树" class="headerlink" title="为什么底层数据结构使用B+树，而不是B树"></a>为什么底层数据结构使用B+树，而不是B树</h4><ul>
+<li>B+树是B树的变种，B+树的非叶子节点只用来保存索引，不存储数据，所有的数据都保存在叶子节点；而B树的非叶子节点也会保存数据。这样就使得B+树的查询效率更加稳定，均为从根节点到叶子节点的路径。</li>
+<li>B+树的内部结点并没有指向关键字具体信息的指针，因此其内部结点相对B 树更小，同样空间可以读入更多的节点，所以B+树的磁盘读写代价更低。</li>
+</ul>
+<h4 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h4><p><strong>主键索引</strong>就是一种聚簇索引，其索引树的叶子节点中存的是<strong>整行数据</strong>，表中行的物理顺序与键值的逻辑（索引）顺序相同。一个表只能包含一个聚集索引。因为索引（目录）只能按照一种方法进行排序。</p>
+<p><strong>非聚簇索引（普通索引</strong>）的叶子节点内容是<strong>主键的值</strong>。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</p>
+<h4 id="MySQL回表"><a href="#MySQL回表" class="headerlink" title="MySQL回表"></a>MySQL回表</h4><ul>
+<li>如果语句是 select * from User where id=3，即主键查询方式，则只需要搜索 主键索引树。</li>
+<li>如果语句是 select <em> from User where uid=23，即普通索引查询方式，则需要先搜索 普通索引树，得到其对应的主键值为 3，再到主键索引树搜索一次。这个过程称为<em>*回表。</em></em></li>
+</ul>
+<h4 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h4><p>如果在普通索引树上的查询已经直接提供了结果，不需要回表操作，这样的普通索引叫做覆盖索引。覆盖索引的使用可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
+<h4 id="索引的最左前缀原则"><a href="#索引的最左前缀原则" class="headerlink" title="索引的最左前缀原则"></a>索引的最左前缀原则</h4><p>在联合索引的情况下，不需要索引的全部定义，只要满足最左前缀，就可以利用索引来加快查询速度。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。最左前缀原则的利用也可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
+<h4 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4><p>在MySQL5.6之前，只能从根据最左前缀查询到ID开始一个个回表。到主键索引上找出数据行，再对比字段值。MySQL5.6引入的索引下推优化，（联合索引前提）可以在索引遍历过程中，对索引中包含的其余字段先做判断，直接过滤掉不满足条件的记录，减少回表次数，提升查询效率。</p>
+<h3 id="哪些列上适合创建索引？创建索引有哪些开销？"><a href="#哪些列上适合创建索引？创建索引有哪些开销？" class="headerlink" title="哪些列上适合创建索引？创建索引有哪些开销？"></a>哪些列上适合创建索引？创建索引有哪些开销？</h3><p>经常需要作为条件查询的列上适合创建索引，并且该列上的数据也必须有一定的区分度。创建索引需要维护，在插入数据的时候会重新维护各个索引树（<strong>数据页的分裂与合并</strong>），对性能造成影响。</p>
+<h4 id="自增主键："><a href="#自增主键：" class="headerlink" title="自增主键："></a>自增主键：</h4><p>为了在插入数据的时候不需要调整主键索引树的结构，强烈建议在建立表的时候使用自增主键。主键的顺序按照数据记录的插入顺序排列，自动有序。</p>
+<h3 id="MySQL常见的存储引擎"><a href="#MySQL常见的存储引擎" class="headerlink" title="MySQL常见的存储引擎"></a>MySQL常见的存储引擎</h3><p>MySQL中最常见的存储引擎有InnoDB和MyISAM，它们的主要区别如下：</p>
+<ul>
+<li>MyISAM不支持事务；InnoDB是事务类型的存储引擎。</li>
+<li>MyISAM只支持表级锁；InnoDB支持行级锁和表级锁，默认为行级锁。</li>
+<li>MyISAM引擎不支持外键；InnoDB支持外键。</li>
+<li>对于count(*)查询来说MyISAM更有优势，因为其保存了行数。</li>
+<li>InnoDB是为处理巨大数据量时的最大性能设计的存储引擎。</li>
+<li>MyISAM支持全文索引（FULLTEXT）；InnoDB不支持。</li>
+</ul>
+<p>最主要的区别就是MyISAM表不支持事务、不支持行级锁、不支持外键。 InnoDB表支持事务、支持行级锁、支持外键。</p>
+<p>MySQL的基本逻辑架构图:</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423144917.png" alt="图片说明"></p>
+<p>由MySQL的逻辑架构图我们可以看出，逻辑架构包括<strong>Server层和存储引擎层</strong>。其中Server层包括连接器，分析器，优化器以及执行器；存储引擎层包括多种支持的存储引擎。各个逻辑部件的作用如下：</p>
+<ul>
+<li><strong>连接器：</strong>验证客户端权限，建立和断开MySQL连接</li>
+<li><strong>分析器：</strong>进行SQL语句的语法分析</li>
+<li><strong>优化器：</strong>选择索引，生成具体的SQL语句执行计划</li>
+<li><strong>执行器：</strong>操作存储引擎，执行SQL，返回执行结果</li>
+<li><strong>存储引擎层：</strong>各个不同的存储引擎都提供了一些读写接口来操作数据库</li>
+</ul>
+<p>在MySQL5.5.5版本之后，<strong>InnoDB已经成为了其默认的存储引擎</strong>。</p>
+<p>除了InnoDB以及MyISAM存储引擎外，常见的考察存储引擎还有<strong>Memory，使用Memory作为存储引擎的表也可以叫做内存表</strong>，将数据存储在了内存中，所以适合做临时表来使用，在索引结构上支持B+树索引和Hash索引。</p>
+<h3 id="MySQL中的where、group-by、having关键字"><a href="#MySQL中的where、group-by、having关键字" class="headerlink" title="MySQL中的where、group by、having关键字"></a>MySQL中的where、group by、having关键字</h3><ul>
+<li>where子句用来筛选from子句中指定的操作所产生的的行</li>
+<li>group by 子句用来分组where子句的输出</li>
+<li>having子句用来从分组的结果中筛选行</li>
+</ul>
+<p><strong>having和where的区别：</strong></p>
+<ul>
+<li>语法类似，where搜索条件在进行分组操作之前应用；having搜索条件在进行分组操作之后应用</li>
+<li>having可以包含聚合函数sum、avg、max等</li>
+<li>having子句限制的是组，而不是行</li>
+</ul>
+<p><strong>当同时含有where子句、group by 子句 、having子句及聚集函数时，执行顺序如下：</strong></p>
+<ul>
+<li>执行where子句查找符合条件的数据</li>
+<li>使用group by子句对数据进行分组</li>
+<li>对group by子句形成的组运行聚集函数计算每一组的值</li>
+<li>最后用having子句去掉不符合条件的组</li>
+</ul>
+<h3 id="MySQL的日志模块binlog和redo-log"><a href="#MySQL的日志模块binlog和redo-log" class="headerlink" title="MySQL的日志模块binlog和redo log"></a>MySQL的日志模块binlog和redo log</h3><p>在MySQL的使用中，更新操作也是很频繁的，如果每一次更新操作都根据条件找到对应的记录，然后将记录更新，再写回磁盘，那么<strong>IO成本以及查找记录的成本</strong>都很高。所以，出现了日志模块，即我们的update更新操作是<strong>先写日志，在合适的时间才会去写磁盘</strong>，日志更新完毕就将执行结果返回给了客户端。</p>
+<p>MySQL中的日志模块主要有<strong>redo log（重做日志）和binlog（归档日志）。</strong></p>
+<h4 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h4><p>redo log是<strong>InnoDB引擎特有</strong>的日志模块，redo log是物理日志，记录了某个数据页上做了哪些修改。InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么redo log总共就可以记录 4GB的操作。从头开始写，写到末尾就又回到开头循环写。</p>
+<p>InnoDB的redo log保证了数据库发生异常重启之后，之前提交的记录不会丢失，这个能力称为crash-safe。</p>
+<h4 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h4><p>binlog是<strong>Server层自带</strong>的日志模块，binlog是逻辑日志，记录本次修改的原始逻辑，说白了就是SQL语句。binlog是追加写的形式，可以写多个文件，不会覆盖之前的日志。通过mysqlbinlog可以解析查看binlog日志。binlog日志文件的格式：statement，row，mixed。</p>
+<ul>
+<li><strong>statement格式</strong>的binlog记录的是完整的SQL语句，优点是日志文件小，性能较好，缺点也很明显，那就是准确性差，遇到SQL语句中有now()等函数会导致不准确</li>
+<li><strong>row格式</strong>的binlog中记录的是数据行的实际数据的变更，优点就是数据记录准确，缺点就是日志文件较大。</li>
+<li><strong>mixed格式</strong>的binlog是前面两者的混合模式</li>
+</ul>
+<p>业界目前推荐使用的是 row 模式，因为很多情况下对准确性的要求是排在第一位的。</p>
+<p>在更新数据库的时候，通过redo log和binlog的<strong>两阶段提交</strong>，可以确保数据库异常崩溃之后数据的正确恢复。</p>
+<p>在对数据库误操作之后，可以通过<strong>备份库+binlog</strong>将数据库状态恢复到“任意“时刻。</p>
+<h4 id="为什么MySQL会突然变慢一下"><a href="#为什么MySQL会突然变慢一下" class="headerlink" title="为什么MySQL会突然变慢一下"></a>为什么MySQL会突然变慢一下</h4><p>当内存数据页和磁盘数据页内容不一致的时候，这个内存页就是“脏页”。内存数据写入到磁盘后，内存和磁盘上的数据页的内容就一致了，这个时候的内存页就是”干净页“。</p>
+<p>前面我们介绍了更新数据库的时候是<strong>先写日志</strong>，当合适的机会（空闲）出现的时候才会<strong>更新磁盘</strong>。但是<strong>当redo log 写满了，要 flush 脏页</strong>，也就是把内存里的数据写入磁盘，会导致MySQL执行速度突然变慢一瞬间。</p>
+<h3 id="MySQL事务的特性"><a href="#MySQL事务的特性" class="headerlink" title="MySQL事务的特性"></a>MySQL事务的特性</h3><p>事务是单个逻辑工作单元执行的<strong>一系列操作</strong>，是一个不可分割的工作单位。满足如下的四大特性：</p>
+<ul>
+<li><strong>原子性（Atomicity）：</strong>事务作为一个整体被执行 ，要么全部执行，要么全部不执行；</li>
+<li><strong>一致性（Consistency）：</strong>保证数据库状态从一个一致状态转变为另一个一致状态；</li>
+<li><strong>隔离性（Isolation）：</strong>多个事务并发执行时，一个事务的执行不应影响其他事务的执行；</li>
+<li><strong>持久性（Durability）：</strong>一个事务一旦提交，对数据库的修改应该永久保存</li>
+</ul>
+<h4 id="不做控制的话，多个事务并发操作数据库会产生哪些问题？"><a href="#不做控制的话，多个事务并发操作数据库会产生哪些问题？" class="headerlink" title="不做控制的话，多个事务并发操作数据库会产生哪些问题？"></a>不做控制的话，多个事务并发操作数据库会产生哪些问题？</h4><ul>
+<li><p><strong>丢失更新：</strong><br>两个不同事务同时获得相同数据，然后在各自事务中同时修改了该数据，那么先提交的事务更新会被后提交事务的更新给覆盖掉，这种情况先提交的事务所做的更新就被覆盖，导致数据更新丢失。</p>
+</li>
+<li><p><strong>脏读：</strong><br>事务A读取了事务B未提交的数据，由于事务B回滚，导致了事务A的数据不一致，结果事务A出现了脏读；</p>
+</li>
+<li><p><strong>不可重复读：</strong><br>一个事务在自己没有更新数据库数据的情况，同一个查询操作执行两次或多次得到的结果数值不同，因为别的事务更新了该数据，并且提交了事务。</p>
+</li>
+<li><p><strong>幻读：</strong><br>事务A读的时候读出了N条记录，事务B在事务A执行的过程中增加 了1条，事务A再读的时候就变成了N+1条，这种情况就叫做幻读。</p>
+</li>
+</ul>
+<p><strong>注意：</strong>幻读是指一种结构上的改变，比如说条数发生了改变；不可重复读是指读出的数值发生了改变。</p>
+<h4 id="MySQL数据库事务的隔离级别"><a href="#MySQL数据库事务的隔离级别" class="headerlink" title="MySQL数据库事务的隔离级别"></a>MySQL数据库事务的隔离级别</h4><p>为了避免数据库事务操作中的问题，MySQL定义了4个事务隔离级别，不同的隔离级别对事务的处理不同。</p>
+<ul>
+<li><p><strong>读未提交(Read Uncommitted)：</strong><br>允许脏读取。如果一个事务已经开始写数据，则另外一个数据则不允许同时进行写操作，但允许其他事务读此行数据。</p>
+</li>
+<li><p><strong>读已提交(Read Committed)：</strong><br>允许不可重复读取，但不允许脏读取。读取数据的事务允许其他事务继续访问该行数据，但是未提交的写事务将会禁止其他事务访问该行。</p>
+</li>
+<li><p><strong>可重复读(Repeatable Read)：</strong><br>禁止不可重复读取和脏读取，但是有时可能出现幻读。读取数据的事务将会禁止写事务(但允许读事务)，写事务则禁止任何其他事务。</p>
+</li>
+<li><p><strong>序列化(Serializable)：</strong><br>提供严格的事务隔离。它要求事务序列化执行，事务只能一个接着一个地执行，但不能并发执行。</p>
+</li>
+</ul>
+<p>事务的隔离级别越高，对数据的完整性和一致性保证越佳，但是对并发操作的影响也越大。MySQL事务默认隔离级别是可重复读。</p>
+<h3 id="MySQL中的锁机制"><a href="#MySQL中的锁机制" class="headerlink" title="MySQL中的锁机制"></a>MySQL中的锁机制</h3><p>MySQL数据库的锁分为<strong>表级锁和行级锁</strong>。从数据库的角度看，行级锁又可以分为<strong>独占锁和共享锁</strong>。</p>
+<p><strong>独占锁（排他锁），也称X锁（Exclusive Lock）：</strong></p>
+<p>独占锁锁定的资源只允许进行锁定操作的程序使用，其它任何对它的操作均不会被接受。执行数据更新命令，<strong>即INSERT、UPDATE 或DELETE 命令时，MySQL会自动使用独占锁</strong>。但当对象上有其它锁存在时，无法对其加独占锁。独占锁一直到事务结束才能被释放。</p>
+<p>在select命令中使用独占锁的SQL语句为：<strong>select … for update;</strong></p>
+<p><strong>共享锁，也叫S锁（Shared Lock）：</strong></p>
+<p>共享锁顾名思义，那就是其锁定的资源可以被其它用户读取，但其它用户不能修改。如果在select查询语句中要手动加入共享锁，那么对应的SQL语句为：<strong>select … lock in share mode</strong></p>
+<p>一个事务在一行数据上加入了独占锁，那么其余事务不可以在该数据行上加入任何锁。也就是说加过排他锁的数据行在其他事务中是不能修改数据的，也不能通过<strong>for update和lock in share mode锁</strong>的方式查询数据，但<strong>可以直接通过select …from…查询数据</strong>，因为普通查询没有任何锁机制。</p>
+<h4 id="MySQL中的死锁"><a href="#MySQL中的死锁" class="headerlink" title="MySQL中的死锁"></a>MySQL中的死锁</h4><p>MySQL中的死锁主要是<strong>多个事务使用行级锁对某行数据加锁造成的</strong>，上一小节说了MyISAM不支持行级锁，所以MySQL中的死锁主要是在说InnoDB存储引擎的死锁。</p>
+<h4 id="如何解决死锁"><a href="#如何解决死锁" class="headerlink" title="如何解决死锁"></a>如何解决死锁</h4><p>我们可以在业务上和数据库设置上来解决MySQL死锁。分别介绍如下：</p>
+<p><strong>业务逻辑上的死锁解决方案：</strong></p>
+<ul>
+<li>指定锁的获取顺序</li>
+<li>大事务拆分成各个小事务</li>
+<li>在同一个事务中，一次锁定尽量多的资源，减少死锁概率</li>
+<li>给表建立合适的索引以及降低事务的隔离级别等</li>
+</ul>
+<p><strong>数据库的设置来解决死锁：</strong></p>
+<ul>
+<li>通过参数 innodb_lock_wait_timeout 根据实际业务场景来<strong>设置超时时间</strong>，InnoDB引擎默认值是50s。</li>
+<li><strong>发起死锁检测</strong>，发现死锁后，<strong>主动回滚</strong>死锁链条中的某一个事务，让其他事务得以继续执行。将参数 innodb_deadlock_detect 设置为 on，表示开启这个逻辑（默认是开启状态）。</li>
+</ul>
+<h4 id="行级锁什么时候会锁住整个表"><a href="#行级锁什么时候会锁住整个表" class="headerlink" title="行级锁什么时候会锁住整个表"></a>行级锁什么时候会锁住整个表</h4><p>InnoDB行级锁是通过锁索引记录实现的，如果更新的列没建索引是会锁住整个表的。</p>
+<h4 id="悲观锁与乐观锁："><a href="#悲观锁与乐观锁：" class="headerlink" title="悲观锁与乐观锁："></a>悲观锁与乐观锁：</h4><p><strong>悲观锁：</strong>利用数据库的锁机制实现，在整个数据处理过程中都加入了锁，以保持排他性。</p>
+<p><strong>乐观锁：</strong>乐观锁可以利用CAS实现，在<strong>操作数据</strong>的时候进行一个比较，按照<strong>当前事务中的数据和数据库表中的该数据是否一致</strong>来决定是否要执行本次操作。</p>
+<h4 id="乐观锁的ABA问题及如何解决"><a href="#乐观锁的ABA问题及如何解决" class="headerlink" title="乐观锁的ABA问题及如何解决"></a>乐观锁的ABA问题及如何解决</h4><p>ABA问题是指在当前事务读取该行数据时是A，经过别的事务修改成B，但是在当前事务要更新数据的时候，该行数据又被别的事务修改为A，事实上数据行是发生过改变的，存在并发问题。</p>
+<p>ABA问题可以通过<strong>基于数据版本（Version）记录机制</strong>来解决。也就是为数据增加一个版本标识。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。根据当前事务的数据版本号和数据库中数据的版本号对比来决定是否更新数据。</p>
+<p>与给当前数据增加一个数据版本类似，我们也可以增加基于时间戳机制来解决ABA问题，通过时间戳来记录当前数据行变化。</p>
+<h3 id="SQL优化或者MySQL故障排查"><a href="#SQL优化或者MySQL故障排查" class="headerlink" title="SQL优化或者MySQL故障排查"></a>SQL优化或者MySQL故障排查</h3><p>一般情况下，我们遇到一个SQL异常的时候，比如说执行时间超时等，可以通过<strong>explain</strong>查看当前SQL语句的执行情况。explain +SQL语句可以查看当前的SQL语句使用的索引以及其扫描了多少行数据。也可以使用下边的语句来查看数据表的一些信息：</p>
+<ul>
+<li><strong>show create table TableXX；</strong>查看当前表TableXX的建表语句</li>
+<li><strong>show index from TableXX；</strong>查看当前表TableXX上的索引</li>
+</ul>
+<p>查看了数据表的信息，一般情况下我们可以通过建立索引来提高查询速度，或者修改SQL语句，利用索引下推或者最左前缀原则等来加快查询速度。</p>
+<h3 id="MySQL建表的约束条件有哪些"><a href="#MySQL建表的约束条件有哪些" class="headerlink" title="MySQL建表的约束条件有哪些"></a>MySQL建表的约束条件有哪些</h3><p>约束条件是我们建表的时候对数据库表做的一个限制条件。MySQL建表时候一般有如下的五个约束条件：</p>
+<ul>
+<li><strong>主键约束</strong>（Primary Key Constraint） 唯一性，非空性</li>
+<li><strong>唯一约束</strong> （Unique Constraint）唯一性，可以空，但只能有一个</li>
+<li><strong>检查约束</strong> (Check Constraint) 对该列数据的范围、格式的限制</li>
+<li><strong>默认约束</strong> (Default Constraint) 该数据的默认值</li>
+<li><strong>外键约束</strong> (Foreign Key Constraint) 需要建立两表间的关系并引用主表的列</li>
+</ul>
+<h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><p>回滚日志（undo log）：在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
+<h3 id="MVCC的实现方式"><a href="#MVCC的实现方式" class="headerlink" title="MVCC的实现方式"></a>MVCC的实现方式</h3><ol>
+<li>InnoDB实现MVCC，多个版本的数据可以共存，主要是依靠数据的隐藏列(也可以称之为标记位)和undo log。 </li>
+<li>其中数据的隐藏列包括了该行数据的版本号、删除时间、指向undo log的指针等等；</li>
+<li>当读取数据时，MySQL可以通过隐藏列判断是否需要回滚并找到回滚需要的undo log，从而实现MVCC</li>
+</ol>
+<h3 id="事务如何实现MVCC"><a href="#事务如何实现MVCC" class="headerlink" title="事务如何实现MVCC"></a>事务如何实现MVCC</h3><ol>
+<li>事务是如何实现的MVCC呢?   1. 每个事务都有一个事务ID，叫做transaction id(严格递增)  。</li>
+<li>事务在启动时，找到已提交的最大事务ID记为up_limit_id。   </li>
+<li>事务在更新一条语句时，比如id=1改为了id=2。会把id=1和该行之前的row trx_id写到undo log里，并且在数据页上把id的值改为2,并且把修改这条语句的transaction id记在该行行头。</li>
+</ol>
+<h3 id="limit分页查询"><a href="#limit分页查询" class="headerlink" title="limit分页查询"></a>limit分页查询</h3><p>分页sql格式是：<strong>select <em> from table limit (start-1)</em>pageSize, pageSize;</strong> 其中<strong>start</strong>是页码，<strong>pageSize</strong>是每页显示的条数。</p>
+<h3 id="order-by是怎么工作的"><a href="#order-by是怎么工作的" class="headerlink" title="order by是怎么工作的"></a>order by是怎么工作的</h3>]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>设计模式相关知识</title>
+    <url>/2021/04/23/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h3 id="设计模式的六大原则："><a href="#设计模式的六大原则：" class="headerlink" title="设计模式的六大原则："></a>设计模式的六大原则：</h3><a id="more"></a>
+<h4 id="单一职责原则（Single-responsibility，-SRP）："><a href="#单一职责原则（Single-responsibility，-SRP）：" class="headerlink" title="单一职责原则（Single responsibility， SRP）："></a>单一职责原则（Single responsibility， SRP）：</h4><p>单一职责规定了一个类应该只有一个发生变化的原因。如果一个类承担了多个职责，则会导致多个职责耦合在一起。但部分职责发生变化的时候，可能会导致其余职责跟着受到影响，也就是说我们的程序耦合性太强，不利于变化。</p>
+<p><strong>那么，单一职责有哪些优点呢？</strong></p>
+<ul>
+<li>降低了类的复杂度，每一个类都有清晰明确的职责。</li>
+<li>程序的可读性和可维护性都得到了提高。</li>
+<li>降低业务逻辑变化导致的风险，一个接口的修改只对相应的实现类有影响，对其他接口无影响。</li>
+</ul>
+<h4 id="里氏替换原则（Liskov-Substitution-Principle，LSP）："><a href="#里氏替换原则（Liskov-Substitution-Principle，LSP）：" class="headerlink" title="里氏替换原则（Liskov Substitution Principle，LSP）："></a>里氏替换原则（Liskov Substitution Principle，LSP）：</h4><p>里氏替换是指所有父类可以出现的地方，子类就都可以出现，使用子类来替换父类，调用方不需要关心目前传递的父类还是子类。</p>
+<p>通过里氏替换原则，我们可以将子类对象做为父类对象来使用，屏蔽了不同子类对象之间的差异，写出通用的代码，做出通用的编程，以适应需求的不断变化。里氏替换之后，父类的对象就可以根据当前赋值给它的子类对象的特性以不同的方式运作。</p>
+<p><strong>那么，里氏替换原则有哪些优点呢？</strong></p>
+<p>里氏替换原则可以增强程序的健壮性，子类可以任意增加和缩减，我们都不需要修改接口参数。在实际开发中，实现了传递不同的子类来完成不同的业务逻辑。</p>
+<h4 id="依赖倒置原则（Dependence-Inversion-Principle，DIP）"><a href="#依赖倒置原则（Dependence-Inversion-Principle，DIP）" class="headerlink" title="依赖倒置原则（Dependence Inversion Principle，DIP）"></a>依赖倒置原则（Dependence Inversion Principle，DIP）</h4><p>依赖倒置原则是指高层模块不应该依赖于底层模块，抽象不应该依赖细节，细节应该依赖抽象。在Java中，接口和抽象类都是抽象，而其实现类就是细节。也就是说，我们应该做到面向接口编程，而非面向实现编程。</p>
+<p><strong>那么，依赖导致原则的好处有哪些呢？</strong></p>
+<ul>
+<li>依赖倒置通过抽象(接口或抽象类)使各个类或模块的独立，实现模块间的松耦合。</li>
+<li>面向接口编程可以使得当需求变化的时候，程序改动的工作量不至于太大。</li>
+</ul>
+<h4 id="接口隔离原则-Interface-Segregation-Principle-ISP-："><a href="#接口隔离原则-Interface-Segregation-Principle-ISP-：" class="headerlink" title="接口隔离原则(Interface Segregation Principle, ISP)："></a>接口隔离原则(Interface Segregation Principle, ISP)：</h4><p>接口隔离原则是指客户端不应该依赖它不需要的接口，一个类对另一个类的依赖应该建立在最小的接口上。</p>
+<p><strong>接口隔离原则的使用原则：</strong></p>
+<ul>
+<li>根据接口隔离原则拆分接口时，首先必须满足单一职责原则。</li>
+<li>接口需要高内聚，提高接口，类和模块的处理能力，减少对外的交互。</li>
+<li>定制服务，单独为一个个体提供优良服务(只提供访问者需要的方法)。</li>
+<li>接口设计要有限度，接口设计的太小，容易造成开发难度增加或者可维护性降低。</li>
+</ul>
+<h4 id="迪米特法则-Law-of-Demeter，LoD-："><a href="#迪米特法则-Law-of-Demeter，LoD-：" class="headerlink" title="迪米特法则(Law of Demeter，LoD)："></a>迪米特法则(Law of Demeter，LoD)：</h4><p>迪米特法则也叫最少知识原则，是指一个对象应该对其依赖的对象有最少的了解。该类不需要知道其依赖类的具体实现，只需要依赖类给其提供一个公开对外的public方法即可，其余一概不需要了解。</p>
+<p>迪米特法则的核心就是解耦合，减弱类间的各个耦合，提高类的复用率。</p>
+<h4 id="开闭原则（Open-Close-Principle，OCP）："><a href="#开闭原则（Open-Close-Principle，OCP）：" class="headerlink" title="开闭原则（Open Close Principle，OCP）："></a>开闭原则（Open Close Principle，OCP）：</h4><p>开闭原则是指一个软件实体如类，模块和函数应该对扩展开放，对修改关闭。也就是说，通过开闭原则，我们可以通过扩展行为来实现新的功能，而不是通过修改已有的代码。开闭原则可以帮助我们构建一个稳定，灵活的软件系统。</p>
+<h4 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h4><ul>
+<li><strong>单一职责原则：类或者接口要实现职责单一</strong></li>
+<li><strong>里氏替换原则：使用子类来替换父类，做出通用的编程</strong></li>
+<li><strong>依赖倒置原则：面向接口编程</strong></li>
+<li><strong>接口隔离原则：接口的设计需要精简单一</strong></li>
+<li><strong>迪米特法则：降低依赖之间耦合</strong></li>
+<li><strong>开闭原则：对扩展开放，对修改关闭</strong></li>
+</ul>
+<h3 id="单例模式（创建型模式）"><a href="#单例模式（创建型模式）" class="headerlink" title="单例模式（创建型模式）"></a>单例模式（创建型模式）</h3><p>单例模式是指在一个系统中，一个类有且只有一个对象实例。</p>
+<p><strong>单例模式的实现：</strong>单例模式从创建方式上又分为饿汉式和懒汉式两种。</p>
+<p>饿汉式的单例模式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/23&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Single s = <span class="keyword">new</span> Single();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>饿汉式的单例模式在程序初始化的时候即创建了对象，在需要的时候可以直接返回该对象实例。</p>
+<p>懒汉式的单例模式：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/23&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Single s = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">            s = <span class="keyword">new</span> Single();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>加入synchronized内部锁来解决多线程环境下的线程安全问题，代码实现如下所示：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Single s = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> ==s)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Single.class)&#123;&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">                    s = <span class="keyword">new</span> Single();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Instance instance = new Instance()都发生了啥？</strong></p>
+<p>具体步骤如下三步所示：</p>
+<ul>
+<li>在堆内存上分配对象的内存空间</li>
+<li>在堆内存上初始化对象</li>
+<li>设置instance指向刚分配的内存地址</li>
+</ul>
+<p>第二步和第三步可能会发生重排序，导致引用型变量指向了一个不为null但是也不完整的对象。所以，在多线程下上述的代码会返回一个不完整的对象。我们需要加入一个<strong>volatile</strong>关键字来禁止指令重排序。</p>
+<p><strong>完整的多线程环境下的单例模式的实现代码如下</strong>:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/23&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Single s = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Single.class)&#123;&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">                    s = <span class="keyword">new</span> Single();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>单例模式的优点：</strong>单例模式保证了一个类在一个系统中有且只有一个对象实例，减少了系统内存和性能的开销。</p>
+<p><strong>单例模式的使用场景：</strong>创建一个对象需要消耗太多的资源或者在一个系统中不适合创建多个对象实例的情况下，我们可以采用单例模式设计实现。</p>
+<h3 id="工厂方法模式（创建型模式）"><a href="#工厂方法模式（创建型模式）" class="headerlink" title="工厂方法模式（创建型模式）"></a>工厂方法模式（创建型模式）</h3><p>工厂方法模式是一种常见的设计模式。工厂方法模式定义了一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法模式使一个类的实例化延迟到其子类。</p>
+<p><strong>工厂方法模式的类图：</strong></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423193638.png" alt="图片说明"></p>
+<p>其中，Product和ConcreteProduct分别表示抽象产品类和具体产品类。Creator和ConcreteCreator则分别表示抽象创建类和具体创建类。抽象创建类Creator中定义了创建产品的方法createProduct。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">        Creator creator = <span class="keyword">new</span> ConcreteCreator();</span><br><span class="line"></span><br><span class="line">        Product product = creator.createProduct(ConcreteProduct.class);</span><br><span class="line"></span><br><span class="line">        product.method1();</span><br><span class="line">        product.method2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteProduct</span> <span class="keyword">extends</span> <span class="title">Product</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Creator</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> &lt;T extends Product&gt; <span class="function">T <span class="title">createProduct</span><span class="params">(Class&lt;T&gt; c)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteCreator</span> <span class="keyword">extends</span> <span class="title">Creator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T extends Product&gt; <span class="function">T <span class="title">createProduct</span><span class="params">(Class&lt;T&gt; c)</span> </span>&#123;</span><br><span class="line">        Product product = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            product = (Product) Class.forName(c.getName()).newInstance();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (ClassNotFoundException | InstantiationException | IllegalAccessException e)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (T)product;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>那么，工厂方法模式的优点有哪些呢？</strong></p>
+<ul>
+<li>工厂方法模式具有很好的封装性。客户端不需要知道创建对象的过程，只需要知道要创建的是哪个具体的产品即可。</li>
+<li>工厂方法模式对扩展开放。当新增一个产品种类的时候，我们只需要传入新增产品类对象给具体工厂，即可返回新增的产品对象。</li>
+</ul>
+<p><strong>工厂方法模式的使用场景：</strong></p>
+<ul>
+<li>工厂方法模式的作用就是创建指定的对象，可以做为new一个对象的替代方式。但是需要考虑是否有必要使用工厂方法模式来创建对象。</li>
+<li>当需要灵活，可扩展的创建多个对象的场景时，可以使用工厂方法模式。</li>
+</ul>
+<h3 id="模板方法模式（行为型模式）"><a href="#模板方法模式（行为型模式）" class="headerlink" title="模板方法模式（行为型模式）"></a>模板方法模式（行为型模式）</h3><p>模板方法模式也是一个常见的模式。模板方法模式定义了一个框架，将一些步骤延迟到其子类中实现，子类可以在不改变框架的前提下重新定义某些特定的执行步骤。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423195257.png" alt="图片说明"></p>
+<p>AbstractClass是一个抽象模板，它的方法分为模板方法和基本方法。</p>
+<ul>
+<li>基本方法：是抽象方法，由子类实现，并且在模板方法中被调用。</li>
+<li>模板方法：可以有一个或者几个，一般是具体的方法，实现对基本方法的调度，完成确定的业务逻辑，确定一个框架。</li>
+</ul>
+<p>ConcreteClass1和ConcreteClass2属于具体模板类，实现抽象模板所定义的抽象方法，并且拥有父类模板中的模板方法。</p>
+<p>接下来，我们给出一个模板方法模式的Demo：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">        Dog dog = <span class="keyword">new</span> Dog();</span><br><span class="line">        Cat cat = <span class="keyword">new</span> Cat();</span><br><span class="line"></span><br><span class="line">        dog.start();</span><br><span class="line">        cat.start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;</span><br><span class="line">        eat();</span><br><span class="line">        run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小狗，我在吃东西...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小狗，我在跑步...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        washHand();</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小猫，我在吃东西...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小猫，我在跑步...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">washHand</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小猫，我在洗手...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>那么，模板方法模式的优点有哪些呢？</strong></p>
+<ul>
+<li>封装不变部分，扩展可变部分</li>
+<li>提取公共部分代码，便于维护</li>
+<li>行为由父类控制，子类实现</li>
+</ul>
+<p>模板方法模式就是在模板方法中调用基本方法来确定整个算法的执行框架。</p>
+<h3 id="抽象工厂模式（创建型模式）"><a href="#抽象工厂模式（创建型模式）" class="headerlink" title="抽象工厂模式（创建型模式）"></a>抽象工厂模式（创建型模式）</h3><p>抽象工厂模式为创建一组相关或相互依赖的对象提供一个接口，而且无须指定它们的具体类。抽象工厂模式是工厂方法模式的升级版本，在有多个业务品种、业务分类时，通过抽象工厂模式产生需要的对象是一种非常好的解决方式。</p>
+<p><strong>抽象工厂模式和工厂方法模式的区别：</strong></p>
+<p>如果产品单一，适合使用工厂模式。但是如果有多个业务品种、业务分类时，需要使用抽象工厂模式。也就是说，工厂模式针对的是一个产品等级结构 ，抽象工厂模式针对的是面向多个产品等级结构的。</p>
+<h3 id="代理模式（结构型模式）"><a href="#代理模式（结构型模式）" class="headerlink" title="代理模式（结构型模式）"></a>代理模式（结构型模式）</h3><p>代理模式为其他对象提供一种代理以控制对这个对象的访问。将原类进行封装，客户端不能直接找到原类，必须通过代理角色。即代理是原类的一个替身，客户端要找原类，必须找代理才可以搞定。明星和经纪人的关系就是一种代理模式。</p>
+<p>代理模式又分为静态代理和动态代理。动态代理在实现阶段不用关心代理谁，而在运行阶段才指定代理哪一个对象。相对来说，自己写代理类的方式就是静态代理。</p>
+<h3 id="策略模式（行为型模式）"><a href="#策略模式（行为型模式）" class="headerlink" title="策略模式（行为型模式）"></a>策略模式（行为型模式）</h3><p>在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。我们创建表示各种策略的对象和一个行为随着策略对象改变而改变的 context 对象。策略对象改变 context 对象的执行算法。</p>
+<p><strong>意图：</strong>定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。</p>
+<p><strong>主要解决：</strong>在有多种算法相似的情况下，使用 if…else 所带来的复杂和难以维护。</p>
+<p><strong>何时使用：</strong>一个系统有许多许多类，而区分它们的只是他们直接的行为。</p>
+<p><strong>如何解决：</strong>将这些算法封装成一个一个的类，任意地替换。</p>
+<p><strong>关键代码：</strong>实现同一个接口。</p>
+<p><strong>优点：</strong> 1、算法可以自由切换。 2、避免使用多重条件判断。 3、扩展性良好。</p>
+<p><strong>缺点：</strong> 1、策略类会增多。 2、所有策略类都需要对外暴露。</p>
+<p><strong>注意事项：</strong>如果一个系统的策略多于四个，就需要考虑使用混合模式，解决策略类膨胀的问题。</p>
+<p>类图如下：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423201323.jpeg" alt="策略模式的 UML 图"></p>
+<h3 id="责任链模式（行为型模式）"><a href="#责任链模式（行为型模式）" class="headerlink" title="责任链模式（行为型模式）"></a>责任链模式（行为型模式）</h3><p>责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么它会把相同的请求传给下一个接收者，依此类推。</p>
+<p><strong>意图：</strong>避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止。</p>
+<p><strong>主要解决：</strong>职责链上的处理者负责处理请求，客户只需要将请求发送到职责链上即可，无须关心请求的处理细节和请求的传递，所以职责链将请求的发送者和请求的处理者解耦了。</p>
+<p><strong>何时使用：</strong>在处理消息的时候以过滤很多道。</p>
+<p><strong>如何解决：</strong>拦截的类都实现统一接口。</p>
+<p><strong>关键代码：</strong>Handler 里面聚合它自己，在 HandlerRequest 里判断是否合适，如果没达到条件则向下传递，向谁传递之前 set 进去。</p>
+<p><strong>优点：</strong> 1、降低耦合度。它将请求的发送者和接收者解耦。 2、简化了对象。使得对象不需要知道链的结构。 3、增强给对象指派职责的灵活性。通过改变链内的成员或者调动它们的次序，允许动态地新增或者删除责任。 4、增加新的请求处理类很方便。</p>
+<p><strong>缺点：</strong> 1、不能保证请求一定被接收。 2、系统性能将受到一定影响，而且在进行代码调试时不太方便，可能会造成循环调用。 3、可能不容易观察运行时的特征，有碍于除错。</p>
+<h3 id="观察者模式（行为型模式）"><a href="#观察者模式（行为型模式）" class="headerlink" title="观察者模式（行为型模式）"></a>观察者模式（行为型模式）</h3><p>当对象间存在一对多关系时，则使用观察者模式（Observer Pattern）。比如，当一个对象被修改时，则会自动通知依赖它的对象。观察者模式属于行为型模式。</p>
+<p><strong>意图：</strong>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。</p>
+<p><strong>主要解决：</strong>一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。</p>
+<p><strong>何时使用：</strong>一个对象（目标对象）的状态发生改变，所有的依赖对象（观察者对象）都将得到通知，进行广播通知。</p>
+<p><strong>如何解决：</strong>使用面向对象技术，可以将这种依赖关系弱化。</p>
+<p><strong>关键代码：</strong>在抽象类里有一个 ArrayList 存放观察者们。</p>
+<p><strong>优点：</strong> 1、观察者和被观察者是抽象耦合的。 2、建立一套触发机制。</p>
+<p><strong>缺点：</strong> 1、如果一个被观察者对象有很多的直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间。 2、如果在观察者和观察目标之间有循环依赖的话，观察目标会触发它们之间进行循环调用，可能导致系统崩溃。 3、观察者模式没有相应的机制让观察者知道所观察的目标对象是怎么发生变化的，而仅仅只是知道观察目标发生了变化。</p>
+<p><strong>注意事项：</strong> 1、JAVA 中已经有了对观察者模式的支持类。 2、避免循环引用。 3、如果顺序执行，某一观察者错误会导致系统卡壳，一般采用异步方式。</p>
+<h3 id="适配器模式（结构型模式）"><a href="#适配器模式（结构型模式）" class="headerlink" title="适配器模式（结构型模式）"></a>适配器模式（结构型模式）</h3><p>适配器模式（Adapter Pattern）是作为两个不兼容的接口之间的桥梁，它结合了两个独立接口的功能。</p>
+<p>这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再将读卡器插入笔记本，这样就可以通过笔记本来读取内存卡。</p>
+<p><strong>意图：</strong>将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
+<p><strong>主要解决：</strong>主要解决在软件系统中，常常要将一些”现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。</p>
+<p><strong>何时使用：</strong> 1、系统需要使用现有的类，而此类的接口不符合系统的需要。 2、想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些源类不一定有一致的接口。 3、通过接口转换，将一个类插入另一个类系中。（比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现飞的接口。）</p>
+<p><strong>如何解决：</strong>继承或依赖（推荐）。</p>
+<p><strong>关键代码：</strong>适配器继承或依赖已有的对象，实现想要的目标接口。</p>
+<p><strong>优点：</strong> 1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。</p>
+<p><strong>缺点：</strong> 1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</p>
+<h3 id="装饰器模式（结构型模式）"><a href="#装饰器模式（结构型模式）" class="headerlink" title="装饰器模式（结构型模式）"></a>装饰器模式（结构型模式）</h3><p>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p>
+<p>这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。</p>
+<p><strong>意图：</strong>动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活。</p>
+<p><strong>主要解决：</strong>一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。</p>
+<p><strong>何时使用：</strong>在不想增加很多子类的情况下扩展类。</p>
+<p><strong>如何解决：</strong>将具体功能职责划分，同时继承装饰者模式。</p>
+<p><strong>关键代码：</strong> 1、Component 类充当抽象角色，不应该具体实现。 2、修饰类引用和继承 Component 类，具体扩展类重写父类方法。</p>
+<p><strong>优点：</strong>装饰类和被装饰类可以独立发展，不会相互耦合，装饰模式是继承的一个替代模式，装饰模式可以动态扩展一个实现类的功能。</p>
+<p><strong>缺点：</strong>多层装饰比较复杂。</p>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>jvm内存机制</title>
-    <url>//jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6</url>
+    <url>/2021/04/22/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h1 id="JVM内存机制"><a href="#JVM内存机制" class="headerlink" title="JVM内存机制"></a>JVM内存机制</h1><h3 id="JVM中的内存是怎么划分的？"><a href="#JVM中的内存是怎么划分的？" class="headerlink" title="JVM中的内存是怎么划分的？"></a>JVM中的内存是怎么划分的？</h3><p>JVM中的内存主要划分为5个区域，即<strong>方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈</strong>。下边是Java虚拟机运行时数据区示意图：</p>
 <p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422155921.png" alt="图片说明"></p>
 <a id="more"></a>
@@ -1084,7 +1399,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
   </entry>
   <entry>
     <title>Spring相关知识</title>
-    <url>//Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86</url>
+    <url>/2021/04/23/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-的控制反转（IOC）"><a href="#Spring-的控制反转（IOC）" class="headerlink" title="Spring 的控制反转（IOC）"></a>Spring 的控制反转（IOC）</h3><p>IOC也叫<strong>控制反转，将对象间的依赖关系交给Spring容器</strong>，使用配置文件来创建所依赖的对象，由<strong>主动</strong>创建对象改为了<strong>被动</strong>方式，实现解耦合。</p>
 <p>可以通过注解<strong>@Autowired和@Resource</strong>来注入对象，被注入的对象必须被下边的四个注解之一标注：</p>
 <ul>
@@ -1255,328 +1570,8 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       </tags>
   </entry>
   <entry>
-    <title>mysql相关知识</title>
-    <url>//mysql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86</url>
-    <content><![CDATA[<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h3 id="MySQL索引"><a href="#MySQL索引" class="headerlink" title="MySQL索引"></a>MySQL索引</h3><p>索引是对数据库表中一列或多列的值进行排序的一种结构，使用索引可<strong>快速访问数据库表</strong>中的特定信息，就像一本书的目录一样，可以加快查询速度。InnoDB 存储引擎的索引模型底层实现<strong>数据结构为B+树</strong>，所有数据都是存储在 B+ 树中的。</p>
-<a id="more"></a>
-<h4 id="为什么底层数据结构使用B-树，而不是B树"><a href="#为什么底层数据结构使用B-树，而不是B树" class="headerlink" title="为什么底层数据结构使用B+树，而不是B树"></a>为什么底层数据结构使用B+树，而不是B树</h4><ul>
-<li>B+树是B树的变种，B+树的非叶子节点只用来保存索引，不存储数据，所有的数据都保存在叶子节点；而B树的非叶子节点也会保存数据。这样就使得B+树的查询效率更加稳定，均为从根节点到叶子节点的路径。</li>
-<li>B+树的内部结点并没有指向关键字具体信息的指针，因此其内部结点相对B 树更小，同样空间可以读入更多的节点，所以B+树的磁盘读写代价更低。</li>
-</ul>
-<h4 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h4><p><strong>主键索引</strong>就是一种聚簇索引，其索引树的叶子节点中存的是<strong>整行数据</strong>，表中行的物理顺序与键值的逻辑（索引）顺序相同。一个表只能包含一个聚集索引。因为索引（目录）只能按照一种方法进行排序。</p>
-<p><strong>非聚簇索引（普通索引</strong>）的叶子节点内容是<strong>主键的值</strong>。在 InnoDB 里，非主键索引也被称为二级索引（secondary index）。</p>
-<h4 id="MySQL回表"><a href="#MySQL回表" class="headerlink" title="MySQL回表"></a>MySQL回表</h4><ul>
-<li>如果语句是 select * from User where id=3，即主键查询方式，则只需要搜索 主键索引树。</li>
-<li>如果语句是 select <em> from User where uid=23，即普通索引查询方式，则需要先搜索 普通索引树，得到其对应的主键值为 3，再到主键索引树搜索一次。这个过程称为<em>*回表。</em></em></li>
-</ul>
-<h4 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h4><p>如果在普通索引树上的查询已经直接提供了结果，不需要回表操作，这样的普通索引叫做覆盖索引。覆盖索引的使用可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
-<h4 id="索引的最左前缀原则"><a href="#索引的最左前缀原则" class="headerlink" title="索引的最左前缀原则"></a>索引的最左前缀原则</h4><p>在联合索引的情况下，不需要索引的全部定义，只要满足最左前缀，就可以利用索引来加快查询速度。这个最左前缀可以是联合索引的最左 N 个字段，也可以是字符串索引的最左 M 个字符。最左前缀原则的利用也可以显著提高查询效率，是常见的MySQL性能优化手段。</p>
-<h4 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4><p>在MySQL5.6之前，只能从根据最左前缀查询到ID开始一个个回表。到主键索引上找出数据行，再对比字段值。MySQL5.6引入的索引下推优化，（联合索引前提）可以在索引遍历过程中，对索引中包含的其余字段先做判断，直接过滤掉不满足条件的记录，减少回表次数，提升查询效率。</p>
-<h3 id="哪些列上适合创建索引？创建索引有哪些开销？"><a href="#哪些列上适合创建索引？创建索引有哪些开销？" class="headerlink" title="哪些列上适合创建索引？创建索引有哪些开销？"></a>哪些列上适合创建索引？创建索引有哪些开销？</h3><p>经常需要作为条件查询的列上适合创建索引，并且该列上的数据也必须有一定的区分度。创建索引需要维护，在插入数据的时候会重新维护各个索引树（<strong>数据页的分裂与合并</strong>），对性能造成影响。</p>
-<h4 id="自增主键："><a href="#自增主键：" class="headerlink" title="自增主键："></a>自增主键：</h4><p>为了在插入数据的时候不需要调整主键索引树的结构，强烈建议在建立表的时候使用自增主键。主键的顺序按照数据记录的插入顺序排列，自动有序。</p>
-<h3 id="MySQL常见的存储引擎"><a href="#MySQL常见的存储引擎" class="headerlink" title="MySQL常见的存储引擎"></a>MySQL常见的存储引擎</h3><p>MySQL中最常见的存储引擎有InnoDB和MyISAM，它们的主要区别如下：</p>
-<ul>
-<li>MyISAM不支持事务；InnoDB是事务类型的存储引擎。</li>
-<li>MyISAM只支持表级锁；InnoDB支持行级锁和表级锁，默认为行级锁。</li>
-<li>MyISAM引擎不支持外键；InnoDB支持外键。</li>
-<li>对于count(*)查询来说MyISAM更有优势，因为其保存了行数。</li>
-<li>InnoDB是为处理巨大数据量时的最大性能设计的存储引擎。</li>
-<li>MyISAM支持全文索引（FULLTEXT）；InnoDB不支持。</li>
-</ul>
-<p>最主要的区别就是MyISAM表不支持事务、不支持行级锁、不支持外键。 InnoDB表支持事务、支持行级锁、支持外键。</p>
-<p>MySQL的基本逻辑架构图:</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423144917.png" alt="图片说明"></p>
-<p>由MySQL的逻辑架构图我们可以看出，逻辑架构包括<strong>Server层和存储引擎层</strong>。其中Server层包括连接器，分析器，优化器以及执行器；存储引擎层包括多种支持的存储引擎。各个逻辑部件的作用如下：</p>
-<ul>
-<li><strong>连接器：</strong>验证客户端权限，建立和断开MySQL连接</li>
-<li><strong>分析器：</strong>进行SQL语句的语法分析</li>
-<li><strong>优化器：</strong>选择索引，生成具体的SQL语句执行计划</li>
-<li><strong>执行器：</strong>操作存储引擎，执行SQL，返回执行结果</li>
-<li><strong>存储引擎层：</strong>各个不同的存储引擎都提供了一些读写接口来操作数据库</li>
-</ul>
-<p>在MySQL5.5.5版本之后，<strong>InnoDB已经成为了其默认的存储引擎</strong>。</p>
-<p>除了InnoDB以及MyISAM存储引擎外，常见的考察存储引擎还有<strong>Memory，使用Memory作为存储引擎的表也可以叫做内存表</strong>，将数据存储在了内存中，所以适合做临时表来使用，在索引结构上支持B+树索引和Hash索引。</p>
-<h3 id="MySQL中的where、group-by、having关键字"><a href="#MySQL中的where、group-by、having关键字" class="headerlink" title="MySQL中的where、group by、having关键字"></a>MySQL中的where、group by、having关键字</h3><ul>
-<li>where子句用来筛选from子句中指定的操作所产生的的行</li>
-<li>group by 子句用来分组where子句的输出</li>
-<li>having子句用来从分组的结果中筛选行</li>
-</ul>
-<p><strong>having和where的区别：</strong></p>
-<ul>
-<li>语法类似，where搜索条件在进行分组操作之前应用；having搜索条件在进行分组操作之后应用</li>
-<li>having可以包含聚合函数sum、avg、max等</li>
-<li>having子句限制的是组，而不是行</li>
-</ul>
-<p><strong>当同时含有where子句、group by 子句 、having子句及聚集函数时，执行顺序如下：</strong></p>
-<ul>
-<li>执行where子句查找符合条件的数据</li>
-<li>使用group by子句对数据进行分组</li>
-<li>对group by子句形成的组运行聚集函数计算每一组的值</li>
-<li>最后用having子句去掉不符合条件的组</li>
-</ul>
-<h3 id="MySQL的日志模块binlog和redo-log"><a href="#MySQL的日志模块binlog和redo-log" class="headerlink" title="MySQL的日志模块binlog和redo log"></a>MySQL的日志模块binlog和redo log</h3><p>在MySQL的使用中，更新操作也是很频繁的，如果每一次更新操作都根据条件找到对应的记录，然后将记录更新，再写回磁盘，那么<strong>IO成本以及查找记录的成本</strong>都很高。所以，出现了日志模块，即我们的update更新操作是<strong>先写日志，在合适的时间才会去写磁盘</strong>，日志更新完毕就将执行结果返回给了客户端。</p>
-<p>MySQL中的日志模块主要有<strong>redo log（重做日志）和binlog（归档日志）。</strong></p>
-<h4 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h4><p>redo log是<strong>InnoDB引擎特有</strong>的日志模块，redo log是物理日志，记录了某个数据页上做了哪些修改。InnoDB的redo log是固定大小的，比如可以配置为一组4个文件，每个文件的大小是1GB，那么redo log总共就可以记录 4GB的操作。从头开始写，写到末尾就又回到开头循环写。</p>
-<p>InnoDB的redo log保证了数据库发生异常重启之后，之前提交的记录不会丢失，这个能力称为crash-safe。</p>
-<h4 id="binlog"><a href="#binlog" class="headerlink" title="binlog"></a>binlog</h4><p>binlog是<strong>Server层自带</strong>的日志模块，binlog是逻辑日志，记录本次修改的原始逻辑，说白了就是SQL语句。binlog是追加写的形式，可以写多个文件，不会覆盖之前的日志。通过mysqlbinlog可以解析查看binlog日志。binlog日志文件的格式：statement，row，mixed。</p>
-<ul>
-<li><strong>statement格式</strong>的binlog记录的是完整的SQL语句，优点是日志文件小，性能较好，缺点也很明显，那就是准确性差，遇到SQL语句中有now()等函数会导致不准确</li>
-<li><strong>row格式</strong>的binlog中记录的是数据行的实际数据的变更，优点就是数据记录准确，缺点就是日志文件较大。</li>
-<li><strong>mixed格式</strong>的binlog是前面两者的混合模式</li>
-</ul>
-<p>业界目前推荐使用的是 row 模式，因为很多情况下对准确性的要求是排在第一位的。</p>
-<p>在更新数据库的时候，通过redo log和binlog的<strong>两阶段提交</strong>，可以确保数据库异常崩溃之后数据的正确恢复。</p>
-<p>在对数据库误操作之后，可以通过<strong>备份库+binlog</strong>将数据库状态恢复到“任意“时刻。</p>
-<h4 id="为什么MySQL会突然变慢一下"><a href="#为什么MySQL会突然变慢一下" class="headerlink" title="为什么MySQL会突然变慢一下"></a>为什么MySQL会突然变慢一下</h4><p>当内存数据页和磁盘数据页内容不一致的时候，这个内存页就是“脏页”。内存数据写入到磁盘后，内存和磁盘上的数据页的内容就一致了，这个时候的内存页就是”干净页“。</p>
-<p>前面我们介绍了更新数据库的时候是<strong>先写日志</strong>，当合适的机会（空闲）出现的时候才会<strong>更新磁盘</strong>。但是<strong>当redo log 写满了，要 flush 脏页</strong>，也就是把内存里的数据写入磁盘，会导致MySQL执行速度突然变慢一瞬间。</p>
-<h3 id="MySQL事务的特性"><a href="#MySQL事务的特性" class="headerlink" title="MySQL事务的特性"></a>MySQL事务的特性</h3><p>事务是单个逻辑工作单元执行的<strong>一系列操作</strong>，是一个不可分割的工作单位。满足如下的四大特性：</p>
-<ul>
-<li><strong>原子性（Atomicity）：</strong>事务作为一个整体被执行 ，要么全部执行，要么全部不执行；</li>
-<li><strong>一致性（Consistency）：</strong>保证数据库状态从一个一致状态转变为另一个一致状态；</li>
-<li><strong>隔离性（Isolation）：</strong>多个事务并发执行时，一个事务的执行不应影响其他事务的执行；</li>
-<li><strong>持久性（Durability）：</strong>一个事务一旦提交，对数据库的修改应该永久保存</li>
-</ul>
-<h4 id="不做控制的话，多个事务并发操作数据库会产生哪些问题？"><a href="#不做控制的话，多个事务并发操作数据库会产生哪些问题？" class="headerlink" title="不做控制的话，多个事务并发操作数据库会产生哪些问题？"></a>不做控制的话，多个事务并发操作数据库会产生哪些问题？</h4><ul>
-<li><p><strong>丢失更新：</strong><br>两个不同事务同时获得相同数据，然后在各自事务中同时修改了该数据，那么先提交的事务更新会被后提交事务的更新给覆盖掉，这种情况先提交的事务所做的更新就被覆盖，导致数据更新丢失。</p>
-</li>
-<li><p><strong>脏读：</strong><br>事务A读取了事务B未提交的数据，由于事务B回滚，导致了事务A的数据不一致，结果事务A出现了脏读；</p>
-</li>
-<li><p><strong>不可重复读：</strong><br>一个事务在自己没有更新数据库数据的情况，同一个查询操作执行两次或多次得到的结果数值不同，因为别的事务更新了该数据，并且提交了事务。</p>
-</li>
-<li><p><strong>幻读：</strong><br>事务A读的时候读出了N条记录，事务B在事务A执行的过程中增加 了1条，事务A再读的时候就变成了N+1条，这种情况就叫做幻读。</p>
-</li>
-</ul>
-<p><strong>注意：</strong>幻读是指一种结构上的改变，比如说条数发生了改变；不可重复读是指读出的数值发生了改变。</p>
-<h4 id="MySQL数据库事务的隔离级别"><a href="#MySQL数据库事务的隔离级别" class="headerlink" title="MySQL数据库事务的隔离级别"></a>MySQL数据库事务的隔离级别</h4><p>为了避免数据库事务操作中的问题，MySQL定义了4个事务隔离级别，不同的隔离级别对事务的处理不同。</p>
-<ul>
-<li><p><strong>读未提交(Read Uncommitted)：</strong><br>允许脏读取。如果一个事务已经开始写数据，则另外一个数据则不允许同时进行写操作，但允许其他事务读此行数据。</p>
-</li>
-<li><p><strong>读已提交(Read Committed)：</strong><br>允许不可重复读取，但不允许脏读取。读取数据的事务允许其他事务继续访问该行数据，但是未提交的写事务将会禁止其他事务访问该行。</p>
-</li>
-<li><p><strong>可重复读(Repeatable Read)：</strong><br>禁止不可重复读取和脏读取，但是有时可能出现幻读。读取数据的事务将会禁止写事务(但允许读事务)，写事务则禁止任何其他事务。</p>
-</li>
-<li><p><strong>序列化(Serializable)：</strong><br>提供严格的事务隔离。它要求事务序列化执行，事务只能一个接着一个地执行，但不能并发执行。</p>
-</li>
-</ul>
-<p>事务的隔离级别越高，对数据的完整性和一致性保证越佳，但是对并发操作的影响也越大。MySQL事务默认隔离级别是可重复读。</p>
-<h3 id="MySQL中的锁机制"><a href="#MySQL中的锁机制" class="headerlink" title="MySQL中的锁机制"></a>MySQL中的锁机制</h3><p>MySQL数据库的锁分为<strong>表级锁和行级锁</strong>。从数据库的角度看，行级锁又可以分为<strong>独占锁和共享锁</strong>。</p>
-<p><strong>独占锁（排他锁），也称X锁（Exclusive Lock）：</strong></p>
-<p>独占锁锁定的资源只允许进行锁定操作的程序使用，其它任何对它的操作均不会被接受。执行数据更新命令，<strong>即INSERT、UPDATE 或DELETE 命令时，MySQL会自动使用独占锁</strong>。但当对象上有其它锁存在时，无法对其加独占锁。独占锁一直到事务结束才能被释放。</p>
-<p>在select命令中使用独占锁的SQL语句为：<strong>select … for update;</strong></p>
-<p><strong>共享锁，也叫S锁（Shared Lock）：</strong></p>
-<p>共享锁顾名思义，那就是其锁定的资源可以被其它用户读取，但其它用户不能修改。如果在select查询语句中要手动加入共享锁，那么对应的SQL语句为：<strong>select … lock in share mode</strong></p>
-<p>一个事务在一行数据上加入了独占锁，那么其余事务不可以在该数据行上加入任何锁。也就是说加过排他锁的数据行在其他事务中是不能修改数据的，也不能通过<strong>for update和lock in share mode锁</strong>的方式查询数据，但<strong>可以直接通过select …from…查询数据</strong>，因为普通查询没有任何锁机制。</p>
-<h4 id="MySQL中的死锁"><a href="#MySQL中的死锁" class="headerlink" title="MySQL中的死锁"></a>MySQL中的死锁</h4><p>MySQL中的死锁主要是<strong>多个事务使用行级锁对某行数据加锁造成的</strong>，上一小节说了MyISAM不支持行级锁，所以MySQL中的死锁主要是在说InnoDB存储引擎的死锁。</p>
-<h4 id="如何解决死锁"><a href="#如何解决死锁" class="headerlink" title="如何解决死锁"></a>如何解决死锁</h4><p>我们可以在业务上和数据库设置上来解决MySQL死锁。分别介绍如下：</p>
-<p><strong>业务逻辑上的死锁解决方案：</strong></p>
-<ul>
-<li>指定锁的获取顺序</li>
-<li>大事务拆分成各个小事务</li>
-<li>在同一个事务中，一次锁定尽量多的资源，减少死锁概率</li>
-<li>给表建立合适的索引以及降低事务的隔离级别等</li>
-</ul>
-<p><strong>数据库的设置来解决死锁：</strong></p>
-<ul>
-<li>通过参数 innodb_lock_wait_timeout 根据实际业务场景来<strong>设置超时时间</strong>，InnoDB引擎默认值是50s。</li>
-<li><strong>发起死锁检测</strong>，发现死锁后，<strong>主动回滚</strong>死锁链条中的某一个事务，让其他事务得以继续执行。将参数 innodb_deadlock_detect 设置为 on，表示开启这个逻辑（默认是开启状态）。</li>
-</ul>
-<h4 id="行级锁什么时候会锁住整个表"><a href="#行级锁什么时候会锁住整个表" class="headerlink" title="行级锁什么时候会锁住整个表"></a>行级锁什么时候会锁住整个表</h4><p>InnoDB行级锁是通过锁索引记录实现的，如果更新的列没建索引是会锁住整个表的。</p>
-<h4 id="悲观锁与乐观锁："><a href="#悲观锁与乐观锁：" class="headerlink" title="悲观锁与乐观锁："></a>悲观锁与乐观锁：</h4><p><strong>悲观锁：</strong>利用数据库的锁机制实现，在整个数据处理过程中都加入了锁，以保持排他性。</p>
-<p><strong>乐观锁：</strong>乐观锁可以利用CAS实现，在<strong>操作数据</strong>的时候进行一个比较，按照<strong>当前事务中的数据和数据库表中的该数据是否一致</strong>来决定是否要执行本次操作。</p>
-<h4 id="乐观锁的ABA问题及如何解决"><a href="#乐观锁的ABA问题及如何解决" class="headerlink" title="乐观锁的ABA问题及如何解决"></a>乐观锁的ABA问题及如何解决</h4><p>ABA问题是指在当前事务读取该行数据时是A，经过别的事务修改成B，但是在当前事务要更新数据的时候，该行数据又被别的事务修改为A，事实上数据行是发生过改变的，存在并发问题。</p>
-<p>ABA问题可以通过<strong>基于数据版本（Version）记录机制</strong>来解决。也就是为数据增加一个版本标识。读取出数据时，将此版本号一同读出，之后更新时，对此版本号加一。根据当前事务的数据版本号和数据库中数据的版本号对比来决定是否更新数据。</p>
-<p>与给当前数据增加一个数据版本类似，我们也可以增加基于时间戳机制来解决ABA问题，通过时间戳来记录当前数据行变化。</p>
-<h3 id="SQL优化或者MySQL故障排查"><a href="#SQL优化或者MySQL故障排查" class="headerlink" title="SQL优化或者MySQL故障排查"></a>SQL优化或者MySQL故障排查</h3><p>一般情况下，我们遇到一个SQL异常的时候，比如说执行时间超时等，可以通过<strong>explain</strong>查看当前SQL语句的执行情况。explain +SQL语句可以查看当前的SQL语句使用的索引以及其扫描了多少行数据。也可以使用下边的语句来查看数据表的一些信息：</p>
-<ul>
-<li><strong>show create table TableXX；</strong>查看当前表TableXX的建表语句</li>
-<li><strong>show index from TableXX；</strong>查看当前表TableXX上的索引</li>
-</ul>
-<p>查看了数据表的信息，一般情况下我们可以通过建立索引来提高查询速度，或者修改SQL语句，利用索引下推或者最左前缀原则等来加快查询速度。</p>
-<h3 id="MySQL建表的约束条件有哪些"><a href="#MySQL建表的约束条件有哪些" class="headerlink" title="MySQL建表的约束条件有哪些"></a>MySQL建表的约束条件有哪些</h3><p>约束条件是我们建表的时候对数据库表做的一个限制条件。MySQL建表时候一般有如下的五个约束条件：</p>
-<ul>
-<li><strong>主键约束</strong>（Primary Key Constraint） 唯一性，非空性</li>
-<li><strong>唯一约束</strong> （Unique Constraint）唯一性，可以空，但只能有一个</li>
-<li><strong>检查约束</strong> (Check Constraint) 对该列数据的范围、格式的限制</li>
-<li><strong>默认约束</strong> (Default Constraint) 该数据的默认值</li>
-<li><strong>外键约束</strong> (Foreign Key Constraint) 需要建立两表间的关系并引用主表的列</li>
-</ul>
-<h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><p>回滚日志（undo log）：在 MySQL 中，实际上每条记录在更新的时候都会同时记录一条回滚操作。记录上的最新值，通过回滚操作，都可以得到前一个状态的值。</p>
-<h3 id="MVCC的实现方式"><a href="#MVCC的实现方式" class="headerlink" title="MVCC的实现方式"></a>MVCC的实现方式</h3><ol>
-<li>InnoDB实现MVCC，多个版本的数据可以共存，主要是依靠数据的隐藏列(也可以称之为标记位)和undo log。 </li>
-<li>其中数据的隐藏列包括了该行数据的版本号、删除时间、指向undo log的指针等等；</li>
-<li>当读取数据时，MySQL可以通过隐藏列判断是否需要回滚并找到回滚需要的undo log，从而实现MVCC</li>
-</ol>
-<h3 id="事务如何实现MVCC"><a href="#事务如何实现MVCC" class="headerlink" title="事务如何实现MVCC"></a>事务如何实现MVCC</h3><ol>
-<li>事务是如何实现的MVCC呢?   1. 每个事务都有一个事务ID，叫做transaction id(严格递增)  。</li>
-<li>事务在启动时，找到已提交的最大事务ID记为up_limit_id。   </li>
-<li>事务在更新一条语句时，比如id=1改为了id=2。会把id=1和该行之前的row trx_id写到undo log里，并且在数据页上把id的值改为2,并且把修改这条语句的transaction id记在该行行头。</li>
-</ol>
-<h3 id="limit分页查询"><a href="#limit分页查询" class="headerlink" title="limit分页查询"></a>limit分页查询</h3><p>分页sql格式是：<strong>select <em> from table limit (start-1)</em>pageSize, pageSize;</strong> 其中<strong>start</strong>是页码，<strong>pageSize</strong>是每页显示的条数。</p>
-<h3 id="order-by是怎么工作的"><a href="#order-by是怎么工作的" class="headerlink" title="order by是怎么工作的"></a>order by是怎么工作的</h3>]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>设计模式相关知识</title>
-    <url>//%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86</url>
-    <content><![CDATA[<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h3 id="设计模式的六大原则："><a href="#设计模式的六大原则：" class="headerlink" title="设计模式的六大原则："></a>设计模式的六大原则：</h3><a id="more"></a>
-<h4 id="单一职责原则（Single-responsibility，-SRP）："><a href="#单一职责原则（Single-responsibility，-SRP）：" class="headerlink" title="单一职责原则（Single responsibility， SRP）："></a>单一职责原则（Single responsibility， SRP）：</h4><p>单一职责规定了一个类应该只有一个发生变化的原因。如果一个类承担了多个职责，则会导致多个职责耦合在一起。但部分职责发生变化的时候，可能会导致其余职责跟着受到影响，也就是说我们的程序耦合性太强，不利于变化。</p>
-<p><strong>那么，单一职责有哪些优点呢？</strong></p>
-<ul>
-<li>降低了类的复杂度，每一个类都有清晰明确的职责。</li>
-<li>程序的可读性和可维护性都得到了提高。</li>
-<li>降低业务逻辑变化导致的风险，一个接口的修改只对相应的实现类有影响，对其他接口无影响。</li>
-</ul>
-<h4 id="里氏替换原则（Liskov-Substitution-Principle，LSP）："><a href="#里氏替换原则（Liskov-Substitution-Principle，LSP）：" class="headerlink" title="里氏替换原则（Liskov Substitution Principle，LSP）："></a>里氏替换原则（Liskov Substitution Principle，LSP）：</h4><p>里氏替换是指所有父类可以出现的地方，子类就都可以出现，使用子类来替换父类，调用方不需要关心目前传递的父类还是子类。</p>
-<p>通过里氏替换原则，我们可以将子类对象做为父类对象来使用，屏蔽了不同子类对象之间的差异，写出通用的代码，做出通用的编程，以适应需求的不断变化。里氏替换之后，父类的对象就可以根据当前赋值给它的子类对象的特性以不同的方式运作。</p>
-<p><strong>那么，里氏替换原则有哪些优点呢？</strong></p>
-<p>里氏替换原则可以增强程序的健壮性，子类可以任意增加和缩减，我们都不需要修改接口参数。在实际开发中，实现了传递不同的子类来完成不同的业务逻辑。</p>
-<h4 id="依赖倒置原则（Dependence-Inversion-Principle，DIP）"><a href="#依赖倒置原则（Dependence-Inversion-Principle，DIP）" class="headerlink" title="依赖倒置原则（Dependence Inversion Principle，DIP）"></a>依赖倒置原则（Dependence Inversion Principle，DIP）</h4><p>依赖倒置原则是指高层模块不应该依赖于底层模块，抽象不应该依赖细节，细节应该依赖抽象。在Java中，接口和抽象类都是抽象，而其实现类就是细节。也就是说，我们应该做到面向接口编程，而非面向实现编程。</p>
-<p><strong>那么，依赖导致原则的好处有哪些呢？</strong></p>
-<ul>
-<li>依赖倒置通过抽象(接口或抽象类)使各个类或模块的独立，实现模块间的松耦合。</li>
-<li>面向接口编程可以使得当需求变化的时候，程序改动的工作量不至于太大。</li>
-</ul>
-<h4 id="接口隔离原则-Interface-Segregation-Principle-ISP-："><a href="#接口隔离原则-Interface-Segregation-Principle-ISP-：" class="headerlink" title="接口隔离原则(Interface Segregation Principle, ISP)："></a>接口隔离原则(Interface Segregation Principle, ISP)：</h4><p>接口隔离原则是指客户端不应该依赖它不需要的接口，一个类对另一个类的依赖应该建立在最小的接口上。</p>
-<p><strong>接口隔离原则的使用原则：</strong></p>
-<ul>
-<li>根据接口隔离原则拆分接口时，首先必须满足单一职责原则。</li>
-<li>接口需要高内聚，提高接口，类和模块的处理能力，减少对外的交互。</li>
-<li>定制服务，单独为一个个体提供优良服务(只提供访问者需要的方法)。</li>
-<li>接口设计要有限度，接口设计的太小，容易造成开发难度增加或者可维护性降低。</li>
-</ul>
-<h4 id="迪米特法则-Law-of-Demeter，LoD-："><a href="#迪米特法则-Law-of-Demeter，LoD-：" class="headerlink" title="迪米特法则(Law of Demeter，LoD)："></a>迪米特法则(Law of Demeter，LoD)：</h4><p>迪米特法则也叫最少知识原则，是指一个对象应该对其依赖的对象有最少的了解。该类不需要知道其依赖类的具体实现，只需要依赖类给其提供一个公开对外的public方法即可，其余一概不需要了解。</p>
-<p>迪米特法则的核心就是解耦合，减弱类间的各个耦合，提高类的复用率。</p>
-<h4 id="开闭原则（Open-Close-Principle，OCP）："><a href="#开闭原则（Open-Close-Principle，OCP）：" class="headerlink" title="开闭原则（Open Close Principle，OCP）："></a>开闭原则（Open Close Principle，OCP）：</h4><p>开闭原则是指一个软件实体如类，模块和函数应该对扩展开放，对修改关闭。也就是说，通过开闭原则，我们可以通过扩展行为来实现新的功能，而不是通过修改已有的代码。开闭原则可以帮助我们构建一个稳定，灵活的软件系统。</p>
-<h4 id="简单总结"><a href="#简单总结" class="headerlink" title="简单总结"></a>简单总结</h4><ul>
-<li><strong>单一职责原则：类或者接口要实现职责单一</strong></li>
-<li><strong>里氏替换原则：使用子类来替换父类，做出通用的编程</strong></li>
-<li><strong>依赖倒置原则：面向接口编程</strong></li>
-<li><strong>接口隔离原则：接口的设计需要精简单一</strong></li>
-<li><strong>迪米特法则：降低依赖之间耦合</strong></li>
-<li><strong>开闭原则：对扩展开放，对修改关闭</strong></li>
-</ul>
-<h3 id="单例模式（创建型模式）"><a href="#单例模式（创建型模式）" class="headerlink" title="单例模式（创建型模式）"></a>单例模式（创建型模式）</h3><p>单例模式是指在一个系统中，一个类有且只有一个对象实例。</p>
-<p><strong>单例模式的实现：</strong>单例模式从创建方式上又分为饿汉式和懒汉式两种。</p>
-<p>饿汉式的单例模式：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/23&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Single s = <span class="keyword">new</span> Single();</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>饿汉式的单例模式在程序初始化的时候即创建了对象，在需要的时候可以直接返回该对象实例。</p>
-<p>懒汉式的单例模式：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/23&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Single s = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">            s = <span class="keyword">new</span> Single();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>加入synchronized内部锁来解决多线程环境下的线程安全问题，代码实现如下所示：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Single s = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> ==s)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Single.class)&#123;&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">                    s = <span class="keyword">new</span> Single();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>Instance instance = new Instance()都发生了啥？</strong></p>
-<p>具体步骤如下三步所示：</p>
-<ul>
-<li>在堆内存上分配对象的内存空间</li>
-<li>在堆内存上初始化对象</li>
-<li>设置instance指向刚分配的内存地址</li>
-</ul>
-<p>第二步和第三步可能会发生重排序，导致引用型变量指向了一个不为null但是也不完整的对象。所以，在多线程下上述的代码会返回一个不完整的对象。我们需要加入一个<strong>volatile</strong>关键字来禁止指令重排序。</p>
-<p><strong>完整的多线程环境下的单例模式的实现代码如下</strong>:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/23&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Single</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> Single s = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Single</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Single <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Single.class)&#123;&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">null</span> == s)&#123;</span><br><span class="line">                    s = <span class="keyword">new</span> Single();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;&#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>单例模式的优点：</strong>单例模式保证了一个类在一个系统中有且只有一个对象实例，减少了系统内存和性能的开销。</p>
-<p><strong>单例模式的使用场景：</strong>创建一个对象需要消耗太多的资源或者在一个系统中不适合创建多个对象实例的情况下，我们可以采用单例模式设计实现。</p>
-<h3 id="工厂方法模式（创建型模式）"><a href="#工厂方法模式（创建型模式）" class="headerlink" title="工厂方法模式（创建型模式）"></a>工厂方法模式（创建型模式）</h3><p>工厂方法模式是一种常见的设计模式。工厂方法模式定义了一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法模式使一个类的实例化延迟到其子类。</p>
-<p><strong>工厂方法模式的类图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423193638.png" alt="图片说明"></p>
-<p>其中，Product和ConcreteProduct分别表示抽象产品类和具体产品类。Creator和ConcreteCreator则分别表示抽象创建类和具体创建类。抽象创建类Creator中定义了创建产品的方法createProduct。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">        Creator creator = <span class="keyword">new</span> ConcreteCreator();</span><br><span class="line"></span><br><span class="line">        Product product = creator.createProduct(ConcreteProduct.class);</span><br><span class="line"></span><br><span class="line">        product.method1();</span><br><span class="line">        product.method2();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteProduct</span> <span class="keyword">extends</span> <span class="title">Product</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">method2</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Creator</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">abstract</span> &lt;T extends Product&gt; <span class="function">T <span class="title">createProduct</span><span class="params">(Class&lt;T&gt; c)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ConcreteCreator</span> <span class="keyword">extends</span> <span class="title">Creator</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T extends Product&gt; <span class="function">T <span class="title">createProduct</span><span class="params">(Class&lt;T&gt; c)</span> </span>&#123;</span><br><span class="line">        Product product = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            product = (Product) Class.forName(c.getName()).newInstance();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (ClassNotFoundException | InstantiationException | IllegalAccessException e)&#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (T)product;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>那么，工厂方法模式的优点有哪些呢？</strong></p>
-<ul>
-<li>工厂方法模式具有很好的封装性。客户端不需要知道创建对象的过程，只需要知道要创建的是哪个具体的产品即可。</li>
-<li>工厂方法模式对扩展开放。当新增一个产品种类的时候，我们只需要传入新增产品类对象给具体工厂，即可返回新增的产品对象。</li>
-</ul>
-<p><strong>工厂方法模式的使用场景：</strong></p>
-<ul>
-<li>工厂方法模式的作用就是创建指定的对象，可以做为new一个对象的替代方式。但是需要考虑是否有必要使用工厂方法模式来创建对象。</li>
-<li>当需要灵活，可扩展的创建多个对象的场景时，可以使用工厂方法模式。</li>
-</ul>
-<h3 id="模板方法模式（行为型模式）"><a href="#模板方法模式（行为型模式）" class="headerlink" title="模板方法模式（行为型模式）"></a>模板方法模式（行为型模式）</h3><p>模板方法模式也是一个常见的模式。模板方法模式定义了一个框架，将一些步骤延迟到其子类中实现，子类可以在不改变框架的前提下重新定义某些特定的执行步骤。</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423195257.png" alt="图片说明"></p>
-<p>AbstractClass是一个抽象模板，它的方法分为模板方法和基本方法。</p>
-<ul>
-<li>基本方法：是抽象方法，由子类实现，并且在模板方法中被调用。</li>
-<li>模板方法：可以有一个或者几个，一般是具体的方法，实现对基本方法的调度，完成确定的业务逻辑，确定一个框架。</li>
-</ul>
-<p>ConcreteClass1和ConcreteClass2属于具体模板类，实现抽象模板所定义的抽象方法，并且拥有父类模板中的模板方法。</p>
-<p>接下来，我们给出一个模板方法模式的Demo：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</span><br><span class="line">        Dog dog = <span class="keyword">new</span> Dog();</span><br><span class="line">        Cat cat = <span class="keyword">new</span> Cat();</span><br><span class="line"></span><br><span class="line">        dog.start();</span><br><span class="line">        cat.start();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">start</span><span class="params">()</span></span>&#123;</span><br><span class="line">        eat();</span><br><span class="line">        run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小狗，我在吃东西...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小狗，我在跑步...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">extends</span> <span class="title">Animal</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">eat</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        washHand();</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小猫，我在吃东西...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小猫，我在跑步...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">washHand</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;我是小猫，我在洗手...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>那么，模板方法模式的优点有哪些呢？</strong></p>
-<ul>
-<li>封装不变部分，扩展可变部分</li>
-<li>提取公共部分代码，便于维护</li>
-<li>行为由父类控制，子类实现</li>
-</ul>
-<p>模板方法模式就是在模板方法中调用基本方法来确定整个算法的执行框架。</p>
-<h3 id="抽象工厂模式（创建型模式）"><a href="#抽象工厂模式（创建型模式）" class="headerlink" title="抽象工厂模式（创建型模式）"></a>抽象工厂模式（创建型模式）</h3><p>抽象工厂模式为创建一组相关或相互依赖的对象提供一个接口，而且无须指定它们的具体类。抽象工厂模式是工厂方法模式的升级版本，在有多个业务品种、业务分类时，通过抽象工厂模式产生需要的对象是一种非常好的解决方式。</p>
-<p><strong>抽象工厂模式和工厂方法模式的区别：</strong></p>
-<p>如果产品单一，适合使用工厂模式。但是如果有多个业务品种、业务分类时，需要使用抽象工厂模式。也就是说，工厂模式针对的是一个产品等级结构 ，抽象工厂模式针对的是面向多个产品等级结构的。</p>
-<h3 id="代理模式（结构型模式）"><a href="#代理模式（结构型模式）" class="headerlink" title="代理模式（结构型模式）"></a>代理模式（结构型模式）</h3><p>代理模式为其他对象提供一种代理以控制对这个对象的访问。将原类进行封装，客户端不能直接找到原类，必须通过代理角色。即代理是原类的一个替身，客户端要找原类，必须找代理才可以搞定。明星和经纪人的关系就是一种代理模式。</p>
-<p>代理模式又分为静态代理和动态代理。动态代理在实现阶段不用关心代理谁，而在运行阶段才指定代理哪一个对象。相对来说，自己写代理类的方式就是静态代理。</p>
-<h3 id="策略模式（行为型模式）"><a href="#策略模式（行为型模式）" class="headerlink" title="策略模式（行为型模式）"></a>策略模式（行为型模式）</h3><p>在策略模式（Strategy Pattern）中，一个类的行为或其算法可以在运行时更改。我们创建表示各种策略的对象和一个行为随着策略对象改变而改变的 context 对象。策略对象改变 context 对象的执行算法。</p>
-<p><strong>意图：</strong>定义一系列的算法,把它们一个个封装起来, 并且使它们可相互替换。</p>
-<p><strong>主要解决：</strong>在有多种算法相似的情况下，使用 if…else 所带来的复杂和难以维护。</p>
-<p><strong>何时使用：</strong>一个系统有许多许多类，而区分它们的只是他们直接的行为。</p>
-<p><strong>如何解决：</strong>将这些算法封装成一个一个的类，任意地替换。</p>
-<p><strong>关键代码：</strong>实现同一个接口。</p>
-<p><strong>优点：</strong> 1、算法可以自由切换。 2、避免使用多重条件判断。 3、扩展性良好。</p>
-<p><strong>缺点：</strong> 1、策略类会增多。 2、所有策略类都需要对外暴露。</p>
-<p><strong>注意事项：</strong>如果一个系统的策略多于四个，就需要考虑使用混合模式，解决策略类膨胀的问题。</p>
-<p>类图如下：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423201323.jpeg" alt="策略模式的 UML 图"></p>
-<h3 id="责任链模式（行为型模式）"><a href="#责任链模式（行为型模式）" class="headerlink" title="责任链模式（行为型模式）"></a>责任链模式（行为型模式）</h3><p>责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么它会把相同的请求传给下一个接收者，依此类推。</p>
-<p><strong>意图：</strong>避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止。</p>
-<p><strong>主要解决：</strong>职责链上的处理者负责处理请求，客户只需要将请求发送到职责链上即可，无须关心请求的处理细节和请求的传递，所以职责链将请求的发送者和请求的处理者解耦了。</p>
-<p><strong>何时使用：</strong>在处理消息的时候以过滤很多道。</p>
-<p><strong>如何解决：</strong>拦截的类都实现统一接口。</p>
-<p><strong>关键代码：</strong>Handler 里面聚合它自己，在 HandlerRequest 里判断是否合适，如果没达到条件则向下传递，向谁传递之前 set 进去。</p>
-<p><strong>优点：</strong> 1、降低耦合度。它将请求的发送者和接收者解耦。 2、简化了对象。使得对象不需要知道链的结构。 3、增强给对象指派职责的灵活性。通过改变链内的成员或者调动它们的次序，允许动态地新增或者删除责任。 4、增加新的请求处理类很方便。</p>
-<p><strong>缺点：</strong> 1、不能保证请求一定被接收。 2、系统性能将受到一定影响，而且在进行代码调试时不太方便，可能会造成循环调用。 3、可能不容易观察运行时的特征，有碍于除错。</p>
-<h3 id="观察者模式（行为型模式）"><a href="#观察者模式（行为型模式）" class="headerlink" title="观察者模式（行为型模式）"></a>观察者模式（行为型模式）</h3><p>当对象间存在一对多关系时，则使用观察者模式（Observer Pattern）。比如，当一个对象被修改时，则会自动通知依赖它的对象。观察者模式属于行为型模式。</p>
-<p><strong>意图：</strong>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。</p>
-<p><strong>主要解决：</strong>一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。</p>
-<p><strong>何时使用：</strong>一个对象（目标对象）的状态发生改变，所有的依赖对象（观察者对象）都将得到通知，进行广播通知。</p>
-<p><strong>如何解决：</strong>使用面向对象技术，可以将这种依赖关系弱化。</p>
-<p><strong>关键代码：</strong>在抽象类里有一个 ArrayList 存放观察者们。</p>
-<p><strong>优点：</strong> 1、观察者和被观察者是抽象耦合的。 2、建立一套触发机制。</p>
-<p><strong>缺点：</strong> 1、如果一个被观察者对象有很多的直接和间接的观察者的话，将所有的观察者都通知到会花费很多时间。 2、如果在观察者和观察目标之间有循环依赖的话，观察目标会触发它们之间进行循环调用，可能导致系统崩溃。 3、观察者模式没有相应的机制让观察者知道所观察的目标对象是怎么发生变化的，而仅仅只是知道观察目标发生了变化。</p>
-<p><strong>注意事项：</strong> 1、JAVA 中已经有了对观察者模式的支持类。 2、避免循环引用。 3、如果顺序执行，某一观察者错误会导致系统卡壳，一般采用异步方式。</p>
-<h3 id="适配器模式（结构型模式）"><a href="#适配器模式（结构型模式）" class="headerlink" title="适配器模式（结构型模式）"></a>适配器模式（结构型模式）</h3><p>适配器模式（Adapter Pattern）是作为两个不兼容的接口之间的桥梁，它结合了两个独立接口的功能。</p>
-<p>这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。举个真实的例子，读卡器是作为内存卡和笔记本之间的适配器。您将内存卡插入读卡器，再将读卡器插入笔记本，这样就可以通过笔记本来读取内存卡。</p>
-<p><strong>意图：</strong>将一个类的接口转换成客户希望的另外一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。</p>
-<p><strong>主要解决：</strong>主要解决在软件系统中，常常要将一些”现存的对象”放到新的环境中，而新环境要求的接口是现对象不能满足的。</p>
-<p><strong>何时使用：</strong> 1、系统需要使用现有的类，而此类的接口不符合系统的需要。 2、想要建立一个可以重复使用的类，用于与一些彼此之间没有太大关联的一些类，包括一些可能在将来引进的类一起工作，这些源类不一定有一致的接口。 3、通过接口转换，将一个类插入另一个类系中。（比如老虎和飞禽，现在多了一个飞虎，在不增加实体的需求下，增加一个适配器，在里面包容一个虎对象，实现飞的接口。）</p>
-<p><strong>如何解决：</strong>继承或依赖（推荐）。</p>
-<p><strong>关键代码：</strong>适配器继承或依赖已有的对象，实现想要的目标接口。</p>
-<p><strong>优点：</strong> 1、可以让任何两个没有关联的类一起运行。 2、提高了类的复用。 3、增加了类的透明度。 4、灵活性好。</p>
-<p><strong>缺点：</strong> 1、过多地使用适配器，会让系统非常零乱，不易整体进行把握。比如，明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行重构。 2.由于 JAVA 至多继承一个类，所以至多只能适配一个适配者类，而且目标类必须是抽象类。</p>
-<h3 id="装饰器模式（结构型模式）"><a href="#装饰器模式（结构型模式）" class="headerlink" title="装饰器模式（结构型模式）"></a>装饰器模式（结构型模式）</h3><p>装饰器模式（Decorator Pattern）允许向一个现有的对象添加新的功能，同时又不改变其结构。这种类型的设计模式属于结构型模式，它是作为现有的类的一个包装。</p>
-<p>这种模式创建了一个装饰类，用来包装原有的类，并在保持类方法签名完整性的前提下，提供了额外的功能。</p>
-<p><strong>意图：</strong>动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活。</p>
-<p><strong>主要解决：</strong>一般的，我们为了扩展一个类经常使用继承方式实现，由于继承为类引入静态特征，并且随着扩展功能的增多，子类会很膨胀。</p>
-<p><strong>何时使用：</strong>在不想增加很多子类的情况下扩展类。</p>
-<p><strong>如何解决：</strong>将具体功能职责划分，同时继承装饰者模式。</p>
-<p><strong>关键代码：</strong> 1、Component 类充当抽象角色，不应该具体实现。 2、修饰类引用和继承 Component 类，具体扩展类重写父类方法。</p>
-<p><strong>优点：</strong>装饰类和被装饰类可以独立发展，不会相互耦合，装饰模式是继承的一个替代模式，装饰模式可以动态扩展一个实现类的功能。</p>
-<p><strong>缺点：</strong>多层装饰比较复杂。</p>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-        <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Java进阶部分</title>
-    <url>//Java%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86</url>
+    <url>/2021/04/22/Java%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/</url>
     <content><![CDATA[<h3 id="Java进阶"><a href="#Java进阶" class="headerlink" title="Java进阶"></a>Java进阶</h3><p>从Java5.0开始，JDK中提供了<strong>java.util.concurrent（简称JUC ）包</strong>，在此包中增加了并发编程中常用的工具类，用于定义线程的自定义子系统，包括线程池、异步IO 和轻量级任务框架等。</p>
 <a id="more"></a>
 <h4 id="进程和线程的区别：（重点掌握）"><a href="#进程和线程的区别：（重点掌握）" class="headerlink" title="进程和线程的区别：（重点掌握）"></a>进程和线程的区别：（重点掌握）</h4><ul>
@@ -1918,7 +1913,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
   </entry>
   <entry>
     <title>计算机网络相关知识</title>
-    <url>//%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86</url>
+    <url>/2021/04/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><h3 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h3><ol>
 <li>处理时延</li>
 <li>排队时延</li>
@@ -2320,7 +2315,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
   </entry>
   <entry>
     <title>Java基础部分</title>
-    <url>//Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86</url>
+    <url>/2021/04/22/Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/</url>
     <content><![CDATA[<h3 id="JAVA基础"><a href="#JAVA基础" class="headerlink" title="JAVA基础"></a>JAVA基础</h3><h4 id="面向对象的特性"><a href="#面向对象的特性" class="headerlink" title="面向对象的特性"></a>面向对象的特性</h4><ol>
 <li><p>封装：将事物封装成一个类，<strong>减少耦合，隐藏细节</strong>。保留特定的接口与外界联系，当接口内部发生改变时，不会影响外部调用。<br>比如将类的属性私有化，只有<strong>通过公共的get/set方法才能进行访问</strong>，在get/set方法中我们可以对<strong>内部逻辑进行封装处理</strong>，外部的调用方法不必关心我们的处理逻辑。</p>
 </li>
