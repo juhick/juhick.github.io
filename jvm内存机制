@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="JVM内存机制JVM中的内存是怎么划分的？JVM中的内存主要划分为5个区域，即方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈。下边是Java虚拟机运行时数据区示意图：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jvm内存机制">
+<meta property="og:url" content="https://blog.qinhaiqi.com/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6">
+<meta property="og:site_name" content="曾许人间第一流">
+<meta property="og:description" content="JVM内存机制JVM中的内存是怎么划分的？JVM中的内存主要划分为5个区域，即方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈。下边是Java虚拟机运行时数据区示意图：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422155921.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422170158.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175509.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175610.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422180817.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422182047.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422193203.png">
+<meta property="article:published_time" content="2021-04-22T07:45:13.000Z">
+<meta property="article:modified_time" content="2021-05-15T09:13:41.981Z">
+<meta property="article:author" content="juhick">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Jvm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422155921.png">
+
+<link rel="canonical" href="https://blog.qinhaiqi.com/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>jvm内存机制 | 曾许人间第一流</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="曾许人间第一流" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">曾许人间第一流</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">个人记录</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p1aGljay9qdWhpY2suZ2l0aHViLmlv" title="Follow me on GitHub" aria-label="Follow me on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="juhick">
+      <meta itemprop="description" content="须知少日拏云志，曾许人间第一流">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="曾许人间第一流">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jvm内存机制
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-22 15:45:13" itemprop="dateCreated datePublished" datetime="2021-04-22T15:45:13+08:00">2021-04-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-15 17:13:41" itemprop="dateModified" datetime="2021-05-15T17:13:41+08:00">2021-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9D%A2%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">面试</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="JVM内存机制"><a href="#JVM内存机制" class="headerlink" title="JVM内存机制"></a>JVM内存机制</h1><h3 id="JVM中的内存是怎么划分的？"><a href="#JVM中的内存是怎么划分的？" class="headerlink" title="JVM中的内存是怎么划分的？"></a>JVM中的内存是怎么划分的？</h3><p>JVM中的内存主要划分为5个区域，即<strong>方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈</strong>。下边是Java虚拟机运行时数据区示意图：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422155921.png" alt="图片说明"></p>
+<a id="more"></a>
+<p><strong>方法区：</strong>方法区是一个<strong>线程之间共享</strong>的区域。<strong>常量，静态变量以及JIT编译后的代码都在方法区。主要用于存储已被虚拟机加载的类信息</strong>，也可以称为“永久代”，垃圾回收效果一般，通过-XX：MaxPermSize控制上限。</p>
+<p><strong>堆内存：</strong>堆内存是<strong>垃圾回收</strong>的主要场所，也是线程之间共享的区域，主要用来<strong>存储创建的对象实例</strong>，通过-Xmx 和-Xms 可以控制大小。</p>
+<p><strong>虚拟机栈（栈内存）：</strong>栈内存中主要保存<strong>局部变量、基本数据类型变量</strong>以及<strong>堆内存中某个对象的引用变量</strong>。每个方法在执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表，操作数栈，动态链接，方法出口等信息。栈中的栈帧随着方法的进入和退出有条不紊的执行着出栈和入栈的操作。</p>
+<p><strong>程序计数器：</strong> 程序计数器是当前线程执行的<strong>字节码的位置指示器</strong>。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令，是内存区域中唯一一个在虚拟机规范中<strong>没有规定任何OutOfMemoryError情况</strong>的区域。</p>
+<p><strong>本地方法栈：</strong> 主要是为JVM提供使用native方法的服务。</p>
+<h3 id="对象创建过程中的内存分配"><a href="#对象创建过程中的内存分配" class="headerlink" title="对象创建过程中的内存分配"></a>对象创建过程中的内存分配</h3><p>一般情况下我们通过new指令来创建对象，当虚拟机遇到一条new指令的时候，会去检查这个指令的参数是否能在常量池中定位到某个类的符号引用，并且检查这个符号引用代表的类是否已经被加载，解析和初始化。如果没有，那么会执行类加载过程。</p>
+<p>通过执行类的加载，验证，准备，解析，初始化步骤，完成了类的加载，这个时候会为该对象进行内存分配，也就是把一块确定大小的内存从Java堆中划分出来，在<strong>分配的内存</strong>上完成对象的创建工作。</p>
+<p><strong>对象的内存分配有两种方式，即指针碰撞和空闲列表方式。</strong></p>
+<p><strong>指针碰撞方式：</strong></p>
+<p>假设Java堆中的内存是绝对规整的，用过的内存在一边，未使用的内存在另一边，中间有一个指示指针，那么所有的内存分配就是把那个指针向空闲空间那边挪动一段与对象大小相等的距离。</p>
+<p><strong>空闲列表方式：</strong></p>
+<p>如果Java堆内存中不是规整的，已使用和未使用的内存相互交错，那么虚拟机就必须维护一个列表用来记录哪块内存是可用的，在分配的时候找到一块足够大的空间分配对象实例，并且需要更新列表上的记录。</p>
+<p>Java <strong>堆内存是否规整</strong>是由所使用的垃圾收集器<strong>是否拥有压缩整理功能来决定</strong>的</p>
+<h4 id="内存分配是如何保证线程安全的"><a href="#内存分配是如何保证线程安全的" class="headerlink" title="内存分配是如何保证线程安全的"></a>内存分配是如何保证线程安全的</h4><ul>
+<li>对分配内存空间的动作进行同步处理，通过“<strong>CAS + 失败重试</strong>”的方式保证更新指针操作的原子性</li>
+<li>把分配内存的动作按照线程划分在不同的空间之中，即给每一个线程都预先分配一小段的内存，称为<strong>本地线程分配缓存（TLAB）</strong>，只有TLAB用完并分配新的TLAB时，才需要进行同步锁定。 虚拟机是否使用TLAB，可以通过<strong>-XX: +/-UserTLAB</strong>参数来设定</li>
+</ul>
+<h3 id="对象被访问时是如何找到的"><a href="#对象被访问时是如何找到的" class="headerlink" title="对象被访问时是如何找到的"></a>对象被访问时是如何找到的</h3><p>当创建一个对象的时候，在栈内存中会有一个引用变量，指向堆内存中的某个具体的对象实例。</p>
+<p>Java虚拟机规范中并<strong>没有规定这个引用变量应该以何种方式去定位和访问堆内存中的具体对象</strong>。目前常见的对象访问方式有两种，即句柄访问方式和直接指针访问方式，分别介绍如下。</p>
+<p><strong>句柄访问方式：</strong></p>
+<p>在JVM的堆内存中划分出一块内存来作为句柄池，引用变量中存储的就是对象的句柄地址，句柄中包含了对象实例数据与类型数据各自的具体地址信息。在内存垃圾收集之后，对象会移动，但是引用reference中存储的是稳定的句柄地址，但是句柄地址方式不直接，访问速度较慢。</p>
+<p><strong>直接指针访问方式：</strong></p>
+<p>引用变量中存储的就是对象的直接地址，通过指针直接访问对象。直接指针的访问方式节省了一次指针定位的时间开销，速度较快。Sun HotSpot使用了直接指针方式进行对象的访问。</p>
+<h3 id="内存分配和垃圾回收"><a href="#内存分配和垃圾回收" class="headerlink" title="内存分配和垃圾回收"></a>内存分配和垃圾回收</h3><p>JVM的内存可以分为<strong>堆内存和非堆内存</strong>。堆内存分为<strong>年轻代和老年代</strong>。年轻代又可以进一步划分为<strong>一个Eden（伊甸）区和两个Survivor（幸存）区</strong>组成。如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422170158.png" alt="图片说明"></p>
+<h4 id="JVM堆内存的分配："><a href="#JVM堆内存的分配：" class="headerlink" title="JVM堆内存的分配："></a>JVM堆内存的分配：</h4><p>JVM初始分配的堆内存由<strong>-Xms</strong>指定，默认是物理内存的1/64。JVM最大分配的堆内存由<strong>-Xmx</strong>指定，默认是物理内存的1/4。</p>
+<p>默认空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制。空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制。因此我们一般设置-Xms和-Xmx相等以避免在每次GC 后调整堆的大小。</p>
+<p>通过参数<strong>-Xmn2G</strong> 可以设置年轻代大小为2G。通过<strong>-XX:SurvivorRatio</strong>可以设置年轻代中Eden区与Survivor区的比值，设置为8，则表示年轻代中Eden区与一块Survivor的比例为8：1。注意年轻代中有两块Survivor区域。</p>
+<h4 id="JVM非堆内存的分配："><a href="#JVM非堆内存的分配：" class="headerlink" title="JVM非堆内存的分配："></a>JVM非堆内存的分配：</h4><p>JVM使用<strong>-XX:PermSize</strong> 设置非堆内存初始值，默认是物理内存的1/64。由<strong>-XX:MaxPermSize</strong>设置最大非堆内存的大小，默认是物理内存的1/4。</p>
+<h4 id="堆内存上对象的分配与回收"><a href="#堆内存上对象的分配与回收" class="headerlink" title="堆内存上对象的分配与回收"></a>堆内存上对象的分配与回收</h4><p>我们创建的对象会优先在Eden分配，如果是大对象（很长的字符串数组）则可以直接进入老年代。虚拟机提供一个<strong>-XX:PretenureSizeThreshold参数</strong>，令大于这个参数值的对象直接在老年代中分配，避免在Eden区和两个Survivor区发生大量的内存拷贝。</p>
+<p>另外，<strong>长期存活的对象将进入老年代</strong>，每一次<strong>MinorGC（年轻代GC）</strong>，对象年龄就大一岁，默认15岁晋升到老年代，通过<strong>-XX:MaxTenuringThreshold设置晋升年龄。</strong></p>
+<p><strong>堆内存上的对象回收也叫做垃圾回收，那么垃圾回收什么时候开始呢？</strong></p>
+<p>垃圾回收主要是完成<strong>清理对象，整理内存</strong>的工作。上面说到GC经常发生的区域是堆区，堆区还可以细分为新生代、老年代。新生代还分为一个Eden区和两个Survivor区。垃圾回收分为年轻代区域发生的Minor GC和老年代区域发生的Full GC，分别介绍如下。</p>
+<p><strong>Minor GC（年轻代GC）:</strong><br>对象优先在Eden中分配，当Eden中没有足够空间时，虚拟机将发生一次Minor GC，因为Java大多数对象都是朝生夕灭，所以Minor GC非常频繁，而且速度也很快。</p>
+<p><strong>Full GC（老年代GC）:</strong><br>Full GC是指发生在老年代的GC，当老年代没有足够的空间时即发生Full GC，发生Full GC一般都会有一次Minor GC。</p>
+<p><strong>动态对象年龄判定：</strong></p>
+<p>如果Survivor空间中相同年龄所有对象的大小总和大于Survivor空间的一半，那么<strong>年龄大于等于该对象年龄的对象即可晋升</strong>到老年代，不必要等到-XX:MaxTenuringThreshold。</p>
+<p><strong>空间分配担保：</strong></p>
+<p>发生Minor GC时，虚拟机会检测之前每次晋升到老年代的平均大小是否大于老年代的剩余空间大小。如果大于，则进行一次<strong>Full GC（老年代GC）</strong>，如果小于，则查看<strong>HandlePromotionFailure设置是否允许担保失败</strong>，如果允许，那只会进行一次<strong>Minor GC</strong>，如果不允许，则改为进行一次<strong>Full GC</strong>。</p>
+<h3 id="JVM如何判定一个对象是否应该被回收"><a href="#JVM如何判定一个对象是否应该被回收" class="headerlink" title="JVM如何判定一个对象是否应该被回收"></a>JVM如何判定一个对象是否应该被回收</h3><p>判断一个对象是否应该被回收，主要是看其是否还有引用。判断对象是否存在引用关系的方法包括<strong>引用计数法以及root根搜索方法</strong>。</p>
+<p><strong>引用计数法：</strong></p>
+<p>是一种比较古老的回收算法。原理是此对象有一个引用，即增加一个计数，删除一个引用则减少一个计数。垃圾回收时，只需要收集计数为0的对象。此算法最致命的是<strong>无法处理循环引用</strong>的问题。</p>
+<p><strong>root根搜索方法：</strong></p>
+<p>root搜索方法的基本思路就是通过一系列可以做为root的对象作为起始点，从这些节点开始向下搜索。当一个对象到root节点没有任何引用链接时，则证明此对象是可以被回收的。以下对象会被认为是root对象：</p>
+<ul>
+<li><strong>栈内存中引用的对象</strong></li>
+<li><strong>方法区中静态引用和常量引用指向的对象</strong></li>
+<li>被启动类（bootstrap加载器）加载的类和创建的对象</li>
+<li>Native方法中JNI引用的对象。</li>
+</ul>
+<h4 id="什么是对象的引用？"><a href="#什么是对象的引用？" class="headerlink" title="什么是对象的引用？"></a>什么是对象的引用？</h4><p>如果reference类型的数据中存储的数值代表的是另外一块内存的起始地址，就称为<strong>这块内存代表一个引用</strong>。JDK1.2以后将引用分为<strong>强引用，软引用，弱引用和虚引用四种。</strong></p>
+<ul>
+<li><strong>强引用：</strong>普通存在， P p = new P()，只要强引用存在，垃圾收集器永远不会回收掉被引用的对象。</li>
+<li><strong>软引用：</strong>通过SoftReference类来实现软引用，在内存不足的时候会将这些软引用回收掉。</li>
+<li><strong>弱引用：</strong>通过WeakReference类来实现弱引用，每次垃圾回收的时候肯定会回收掉弱引用。</li>
+<li><strong>虚引用：</strong>也称为幽灵引用或者幻影引用，通过PhantomReference类实现。设置虚引用只是为了对象被回收时候收到一个系统通知。</li>
+</ul>
+<h3 id="JVM垃圾回收算法有哪些？"><a href="#JVM垃圾回收算法有哪些？" class="headerlink" title="JVM垃圾回收算法有哪些？"></a>JVM垃圾回收算法有哪些？</h3><p>HotSpot 虚拟机采用了<strong>root根搜索方法</strong>来进行内存回收，常见的回收算法有<strong>标记-清除算法，复制算法和标记整理算法。</strong></p>
+<p><strong>标记-清除算法（Mark-Sweep）：</strong></p>
+<p>标记-清除算法执行分两阶段。第一阶段从引用根节点开始标记所有被引用的对象，第二阶段遍历整个堆，把未标记的对象清除。此算法需要暂停整个应用，并且会产生内存碎片。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175509.png" alt="图片说明"></p>
+<p><strong>复制算法：</strong></p>
+<p>复制算法把内存空间划为两个相等的区域，每次只使用其中一个区域。垃圾回收时，遍历当前使用区域，把正在使用中的对象复制到另外一个区域中。复制算法每次只处理正在使用中的对象，因此复制成本比较小，同时复制过去以后还能进行相应的内存整理，不会出现“碎片”问题。当然，此算法的缺点也是很明显的，就是需要两倍内存空间。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175610.png" alt="图片说明"></p>
+<p><strong>标记-整理算法：</strong></p>
+<p>标记-整理算法结合了<strong>“标记-清除”和“复制”</strong>两个算法的优点。也是分两阶段，第一阶段从根节点开始标记所有被引用对象，第二阶段遍历整个堆，清除未标记对象并且把存活对象“压缩”到堆的其中一块，按顺序排放。此算法避免了“标记-清除”的碎片问题，同时也避免了“复制”算法的空间问题。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422180817.png" alt="图片说明"></p>
+<p>年轻代垃圾回收一般采用复制算法，老年代垃圾回收一般采用标记-清除和标记-整理算法</p>
+<h3 id="JVM中的垃圾收集器"><a href="#JVM中的垃圾收集器" class="headerlink" title="JVM中的垃圾收集器"></a>JVM中的垃圾收集器</h3><p>JVM中的垃圾收集器主要包括7种，即<strong>Serial，Serial Old，ParNew，Parallel Scavenge，Parallel Old以及CMS，G1收集器</strong>。如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422182047.png" alt="图片说明"></p>
+<p><strong>Serial收集器：</strong></p>
+<p>Serial收集器是<strong>一个单线程的垃圾收集器</strong>，并且在执行垃圾回收的时候需要 <strong>Stop The World</strong>。虚拟机运行在<strong>Client模式</strong>下的默认新生代收集器。Serial收集器的优点是简单高效，对于限定在单个CPU环境来说，Serial收集器没有多线程交互的开销。</p>
+<p><strong>Serial Old收集器：</strong></p>
+<p>Serial Old是Serial收集器的老年代版本，也是<strong>一个单线程收集器</strong>。主要也是给在Client模式下的虚拟机使用。在Server模式下存在主要是做为CMS垃圾收集器的后备预案，<strong>当CMS并发收集发生Concurrent Mode Failure时使用。</strong></p>
+<p><strong>ParNew收集器：</strong></p>
+<p>ParNew是Serial收集器的<strong>多线程</strong>版本，新生代是并行的（多线程的），老年代是串行的（单线程的），新生代采用复制算法，老年代采用标记整理算法。可以使用参数：<strong>-XX：UseParNewGC使用该收集器，使用 -XX：ParallelGCThreads可以限制线程数量。</strong></p>
+<p><strong>Parallel Scavenge垃圾收集器：</strong></p>
+<p>Parallel Scavenge是一种新生代收集器，使用复制算法的收集器，而且是<strong>并行的多线程收集器。</strong>Parallel收集器特点是更加关注吞吐量（吞吐量就是cpu用于运行用户代码的时间与cpu总消耗时间的比值）。可以通过<strong>-XX:MaxGCPauseMillis参数控制最大垃圾收集停顿时间；通过-XX:GCTimeRatio参数直接设置吞吐量大小；通过-XX:+UseAdaptiveSizePolicy参数可以打开GC自适应调节策略，</strong>该参数打开之后虚拟机会根据系统的运行情况收集性能监控信息，动态调整虚拟机参数以提供最合适的停顿时间或者最大的吞吐量。<strong>自适应调节策略</strong>是Parallel Scavenge收集器和ParNew的主要区别之一。</p>
+<p><strong>Parallel Old收集器：</strong></p>
+<p>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和标记-整理算法。</p>
+<p><strong>CMS（Concurrent Mark Sweep）收集器</strong>：</p>
+<p>CMS收集器是<strong>一种以获取最短回收停顿时间为目标</strong>的收集器。CMS收集器是基于<strong>标记-清除算法</strong>实现的，是一种老年代收集器，通常与<strong>ParNew</strong>一起使用。</p>
+<p><strong>CMS的垃圾收集过程分为4步：</strong></p>
+<ul>
+<li><strong>初始标记</strong>：需要“Stop the World”，初始标记仅仅只是标记一下GC Root能直接关联到的对象，速度很快。</li>
+<li><strong>并发标记</strong>：是主要标记过程，这个标记过程是和用户线程并发执行的。</li>
+<li><strong>重新标记</strong>：需要“Stop the World”，为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录（停顿时间比初始标记长，但比并发标记短得多）。</li>
+<li><strong>并发清除</strong>：和用户线程并发执行的，基于标记结果来清理对象。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422193203.png" alt="图片说明"></p>
+<p><strong>如果在重新标记之前刚好发生了一次MinorGC，会不会导致重新标记阶段Stop the World时间太长？</strong></p>
+<p>不会的，在并发标记阶段其实还包括了一次并发的<strong>预清理阶段</strong>，虚拟机会主动<strong>等待年轻代发生垃圾回收</strong>，这样可以将重新标记对象引用关系的步骤放在并发标记阶段，有效降低重新标记阶段Stop The World的时间。</p>
+<h4 id="CMS垃圾回收器的优点："><a href="#CMS垃圾回收器的优点：" class="headerlink" title="CMS垃圾回收器的优点："></a>CMS垃圾回收器的优点：</h4><p>CMS以降低垃圾回收的停顿时间为目的，很显然其具有并发收集、停顿时间低的优点。</p>
+<h4 id="CMS垃圾回收器的缺点："><a href="#CMS垃圾回收器的缺点：" class="headerlink" title="CMS垃圾回收器的缺点："></a>CMS垃圾回收器的缺点：</h4><ul>
+<li><strong>对CPU资源非常敏感</strong>，因为并发标记和并发清理阶段和用户线程一起运行，当CPU数变小时，性能容易出现问题。</li>
+<li>收集过程中会产生<strong>浮动垃圾</strong>，所以不可以在老年代内存不够用了才进行垃圾回收，必须提前进行垃圾收集。通过参数<strong>-XX:CMSInitiatingOccupancyFraction</strong>的值来控制内存使用百分比。如果该值设置的太高，那么在CMS运行期间预留的内存可能无法满足程序所需，会出现<strong>Concurrent Mode Failure失败，之后会临时使用Serial Old收集器做为老年代收集器</strong>，会产生更长时间的停顿。</li>
+<li><strong>标记-清除方式会产生内存碎片</strong>，可以使用参数<strong>-XX：UseCMSCompactAtFullCollection</strong>来控制是否开启内存整理（无法并发，默认是开启的）。参数<strong>-XX:CMSFullGCsBeforeCompaction</strong>用于设置执行多少次不压缩的Full GC后进行一次带压缩的内存碎片整理（默认值是0）。</li>
+</ul>
+<p><strong>浮动垃圾：</strong></p>
+<p>由于在应用运行的同时进行垃圾回收，所以有些垃圾可能在垃圾回收进行完成时产生，这样就造成了<strong>“Floating Garbage（浮动垃圾）”</strong>，这些垃圾需要在下次垃圾回收周期时才能回收掉。所以，<strong>并发收集器一般需要20%的预留空间</strong>用于这些浮动垃圾。</p>
+<p><strong>G1（Garbage-First）收集器：</strong></p>
+<p>G1收集器将新生代和老年代取消了，取而代之的是<strong>将堆划分为若干的区域</strong>，仍然属于分代收集器，区域的一部分包含新生代，新生代采用复制算法，老年代采用标记-整理算法。</p>
+<p>通过<strong>将JVM堆分为一个个的区域（region）</strong>,G1收集器可以避免在Java堆中进行全区域的垃圾收集。G1跟踪各个region里面的垃圾堆积的价值大小（回收所获得的空间大小以及回收所需时间的比值），在后台维护一个优先列表，每次<strong>根据回收时间来优先回收价值最大的region。</strong></p>
+<p><strong>G1收集器的特点：</strong></p>
+<ul>
+<li><strong>并行与并发</strong>：G1能充分利用多CPU，多核环境下的硬件优势，来缩短Stop the World，是并发的收集器。</li>
+<li><strong>分代收集</strong>：G1不需要其他收集器就能独立管理整个GC堆，能够采用不同的方式去处理新建对象、存活一段时间的对象和熬过多次GC的对象。</li>
+<li><strong>空间整合</strong>：G1从整体来看是基于标记-整理算法，从局部（两个Region）上看基于复制算法实现，G1运作期间不会产生内存空间碎片。</li>
+<li><strong>可预测的停顿</strong>：能够建立可以预测的停顿时间模型，预测停顿时间。</li>
+</ul>
+<p><strong>和CMS收集器类似，G1收集器的垃圾回收工作也分为了四个阶段：</strong></p>
+<ul>
+<li>初始标记</li>
+<li>并发标记</li>
+<li>最终标记</li>
+<li>筛选回收</li>
+</ul>
+<p>其中，筛选回收阶段首先对各个Region的回收价值和成本进行计算，根据用户期望的GC停顿时间来制定回收计划。</p>
+<p><strong>CMS也确实是我们服务中最常使用的垃圾收集器</strong>。利用CMS并发标记和清理的特性，<strong>可以有效降低用户的停顿时间，对于服务的稳定性有一个非常显著的提升</strong>。</p>
+<h3 id="JVM常用内存调优命令："><a href="#JVM常用内存调优命令：" class="headerlink" title="JVM常用内存调优命令："></a>JVM常用内存调优命令：</h3><p>JVM在内存调优方面，提供了几个常用的命令，分别为<strong>jps，jinfo，jstack，jmap以及jstat命令</strong>。分别介绍如下：</p>
+<ul>
+<li><strong>jps：</strong>主要用来输出JVM中运行的进程状态信息，一般使用jps命令来查看进程的状态信息，包括JVM启动参数等。</li>
+<li><strong>jinfo：</strong>主要用来观察进程运行环境参数等信息。</li>
+<li><strong>jstack：</strong>主要用来查看某个Java进程内的线程堆栈信息。jstack pid 可以看到当前进程中各个线程的状态信息，包括其持有的锁和等待的锁。</li>
+<li><strong>jmap：</strong>用来查看堆内存使用状况。jmap -heap pid可以看到当前进程的堆信息和使用的GC收集器，包括年轻代和老年代的大小分配等</li>
+<li><strong>jstat：</strong>进行实时命令行的监控，包括堆信息以及实时GC信息等。可以使用jstat -gcutil pid1000来每隔一秒来查看当前的GC信息。</li>
+</ul>
+<p><strong>jps</strong> 用于显示当前所有java进程pid，jps经常使用的参数如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-q：仅输出VM标识符，不包括<span class="class"><span class="keyword">class</span> <span class="title">name</span>,<span class="title">jar</span> <span class="title">name</span>,<span class="title">arguments</span> <span class="title">in</span> <span class="title">main</span> <span class="title">method</span> </span></span><br><span class="line"><span class="class">-<span class="title">m</span>：输出<span class="title">main</span> <span class="title">method</span>的参数 </span></span><br><span class="line"><span class="class">-<span class="title">l</span>：输出完全的包名，应用主类名，<span class="title">jar</span>的完全路径名 </span></span><br><span class="line"><span class="class">-<span class="title">v</span>：输出<span class="title">jvm</span>参数 </span></span><br></pre></td></tr></table></figure>
+<p><strong>jinfo</strong> 可以观察进程运行环境参数，通过jinfo pid可以查看指定进程的运行环境参数.</p>
+<p><strong>jstack</strong> 用于显示jvm中当前所有线程的运行情况和线程当前状态，一般使用的参数为-l，表示长列表，并且打印锁的相关附加信息。jstack的输出中还可以看到每一个线程当前所处的状态以及其当前所占用的锁和等待的锁，还可以检测是否存在死锁。</p>
+<p><strong>jmap</strong> 用来打印内存映射以及查看堆内存细节等，一般情况下使用-heap参数来打印堆内存的概要信息，GC使用的算法以及堆的一些配置等信息。</p>
+<p><strong>jstat</strong> 一般用来观察GC情况，并且进行实时的分析与监控，可以使用的参数如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-<span class="class"><span class="keyword">class</span> 显示<span class="title">ClassLoad</span>的相关信息</span></span><br><span class="line"><span class="class">-<span class="title">compiler</span> 显示<span class="title">JIT</span>编译的相关信息</span></span><br><span class="line"><span class="class">-<span class="title">gc</span> 显示和<span class="title">gc</span>相关的堆信息</span></span><br><span class="line"><span class="class">-<span class="title">gccapacity</span> 显示各个代的容量以及使用情况</span></span><br><span class="line"><span class="class">-<span class="title">gcmetacapacity</span> 显示<span class="title">metaspace</span>的大小</span></span><br><span class="line"><span class="class">-<span class="title">gcnew</span> 显示新生代信息</span></span><br><span class="line"><span class="class">-<span class="title">gcnewcapacity</span> 显示新生代大小和使用情况</span></span><br><span class="line"><span class="class">-<span class="title">gcold</span> 显示老年代和永久代的信息</span></span><br><span class="line"><span class="class">-<span class="title">gcoldcapacity</span> 显示老年代的大小</span></span><br><span class="line"><span class="class">-<span class="title">gcutil</span>　　 显示垃圾收集信息</span></span><br><span class="line"><span class="class">-<span class="title">gccause</span> 显示垃圾回收的相关信息（通-<span class="title">gcutil</span>）,同时显示最后一次或当前正在发生的垃圾回收的诱因</span></span><br><span class="line"><span class="class">-<span class="title">printcompilation</span> 输出<span class="title">JIT</span>编译的方法信息</span></span><br></pre></td></tr></table></figure>
+<h4 id="如何排查一个线上的服务异常？"><a href="#如何排查一个线上的服务异常？" class="headerlink" title="如何排查一个线上的服务异常？"></a>如何排查一个线上的服务异常？</h4><ul>
+<li>首先查看当前进程的JVM启动参数，查看内存设置是否存在明显问题。</li>
+<li>查看GC日志，看GC频率和时间是否明显异常。</li>
+<li>查看当前进程的状态信息top -Hp pid，包括线程个数等信息。</li>
+<li>jstack pid查看当前的线程状态，是否存在死锁等关键信息。</li>
+<li>jstat -gcutil pid查看当前进程的GC情况。</li>
+<li>jmap -heap pid查看当前进程的堆信息，包括使用的垃圾收集器等信息。</li>
+<li>用jvisiual工具打开dump二进制文件，分析是什么对象导致了内存泄漏，定位到代码处，进行code review。</li>
+</ul>
+<p>一般情况下，我们在测试环境上线新服务的时候，应该重点关注并且查看当前新服务的内存使用以及回收情况，避免新服务中出现内存异常导致服务崩溃的现象发生。</p>
+<h3 id="JDK8中在内存管理上的变化"><a href="#JDK8中在内存管理上的变化" class="headerlink" title="JDK8中在内存管理上的变化"></a>JDK8中在内存管理上的变化</h3><p>JDK8中出现了<strong>元空间代替了永久代</strong>。元空间和永久代类似，都是对JVM规范中方法区的实现。区别在于元空间并不在虚拟机中，而是使用<strong>本地内存，</strong>默认情况下元空间的大小仅受本地内存限制，也可以通过<strong>-XX：MetaspaceSize指定元空间大小。</strong></p>
+<h4 id="为什么要使用元空间代替永久代"><a href="#为什么要使用元空间代替永久代" class="headerlink" title="为什么要使用元空间代替永久代"></a>为什么要使用元空间代替永久代</h4><p>类和方法的信息等比较难确定大小，因此对于永久代的大小指定比较困难，指定的太小容易出现永久代溢出的问题。而使用元空间则使用了本地内存，减少了这种情况。</p>
+<h3 id="JAVA中的类加载机制"><a href="#JAVA中的类加载机制" class="headerlink" title="JAVA中的类加载机制"></a>JAVA中的类加载机制</h3><p>Java中的类加载机制指虚拟机<strong>把描述类的数据从 Class 文件加载到内存</strong>，并对数据进行<strong>校验、转换、解析和初始化</strong>，最终形成可以被虚拟机直接使用的 Java 类型。</p>
+<p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括了：<strong>加载、验证、准备、解析、初始化、使用、卸载七个阶段</strong>。类加载机制的保持则包括前面五个阶段。</p>
+<ul>
+<li><strong>加载：</strong></li>
+</ul>
+<p>加载是指<strong>将类的.class文件中的二进制数据读入到内存中，将其放在运行时数据区的方法区内，然后在堆区创建一个java.lang.Class对象，用来封装类在方法区内的数据结构。</strong></p>
+<ul>
+<li><strong>验证：</strong></li>
+</ul>
+<p>验证的作用是确保被加载的类的正确性，包括文件格式验证，元数据验证，字节码验证以及符号引用验证。</p>
+<ul>
+<li><strong>准备：</strong></li>
+</ul>
+<p>准备阶段为类的静态变量分配内存，并将其初始化为默认值。假设一个类变量的定义为public static int val = 3;那么变量val在准备阶段过后的初始值不是3而是0。</p>
+<ul>
+<li><strong>解析：</strong></li>
+</ul>
+<p>解析阶段将类中<strong>符号引用转换为直接引用</strong>。符号引用以一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能够无歧义的定位到目标即可。</p>
+<ul>
+<li><strong>初始化：</strong></li>
+</ul>
+<p>初始化阶段<strong>为类的静态变量赋予正确的初始值</strong>，JVM负责对类进行初始化，主要对类变量进行初始化。</p>
+<h4 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h4><ul>
+<li><strong>启动类加载器（Bootstrap ClassLoader）：</strong></li>
+</ul>
+<p>启动类加载器负责加载存放在JDK\jre\lib(JDK代表JDK的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的类。</p>
+<ul>
+<li><strong>扩展类加载器（ExtClassLoader）：</strong></li>
+</ul>
+<p>扩展类加载器负责加载JDK\jre\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中的所有类库（如javax.*开头的类）。</p>
+<ul>
+<li><strong>应用类加载器（AppClassLoader）：</strong></li>
+</ul>
+<p>应用类加载器负责加载用户类路径（ClassPath）所指定的类，开发者可以直接使用该类加载器。</p>
+<h4 id="类加载器的职责："><a href="#类加载器的职责：" class="headerlink" title="类加载器的职责："></a>类加载器的职责：</h4><ul>
+<li><strong>全盘负责：</strong></li>
+</ul>
+<p>当一个类加载器负责加载某个Class时，该Class所依赖的和引用的其他Class也将由该类加载器负责载入，除非显式使用另外一个类加载器来载入。</p>
+<ul>
+<li><strong>父类委托：</strong></li>
+</ul>
+<p>类加载机制会先让父类加载器试图加载该类，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类。</p>
+<p>父类委托机制是为了<strong>防止内存中出现多份同样的字节码，</strong>保证java程序安全稳定运行。</p>
+<ul>
+<li><strong>缓存机制：</strong></li>
+</ul>
+<p>缓存机制将会保证所有加载过的Class都会被缓存，当程序中需要使用某个Class时，先从缓存区寻找该Class，只有缓存区不存在，系统才会读取该类对应的二进制数据，并将其转换成Class对象，存入缓存区。这就是为什么修改了Class后，必须重启JVM，程序的修改才会生效。</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如果觉得对您有帮助，可以打赏一下哦！</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="juhick 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="juhick 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>juhick
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.qinhaiqi.com/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6" title="jvm内存机制">https://blog.qinhaiqi.com/jvm内存机制</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag"># 面试</a>
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Jvm/" rel="tag"># Jvm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Java%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86" rel="prev" title="Java进阶部分">
+      <i class="fa fa-chevron-left"></i> Java进阶部分
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/mysql%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86" rel="next" title="mysql相关知识">
+      mysql相关知识 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">JVM内存机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E6%98%AF%E6%80%8E%E4%B9%88%E5%88%92%E5%88%86%E7%9A%84%EF%BC%9F"><span class="nav-number">1.0.1.</span> <span class="nav-text">JVM中的内存是怎么划分的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D"><span class="nav-number">1.0.2.</span> <span class="nav-text">对象创建过程中的内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%98%AF%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">内存分配是如何保证线程安全的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E8%A2%AB%E8%AE%BF%E9%97%AE%E6%97%B6%E6%98%AF%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E7%9A%84"><span class="nav-number">1.0.3.</span> <span class="nav-text">对象被访问时是如何找到的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">1.0.4.</span> <span class="nav-text">内存分配和垃圾回收</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM%E5%A0%86%E5%86%85%E5%AD%98%E7%9A%84%E5%88%86%E9%85%8D%EF%BC%9A"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">JVM堆内存的分配：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM%E9%9D%9E%E5%A0%86%E5%86%85%E5%AD%98%E7%9A%84%E5%88%86%E9%85%8D%EF%BC%9A"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">JVM非堆内存的分配：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E4%B8%8A%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6"><span class="nav-number">1.0.4.3.</span> <span class="nav-text">堆内存上对象的分配与回收</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E5%A6%82%E4%BD%95%E5%88%A4%E5%AE%9A%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%BA%94%E8%AF%A5%E8%A2%AB%E5%9B%9E%E6%94%B6"><span class="nav-number">1.0.5.</span> <span class="nav-text">JVM如何判定一个对象是否应该被回收</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%95%E7%94%A8%EF%BC%9F"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">什么是对象的引用？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">1.0.6.</span> <span class="nav-text">JVM垃圾回收算法有哪些？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E4%B8%AD%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">1.0.7.</span> <span class="nav-text">JVM中的垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CMS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E7%9A%84%E4%BC%98%E7%82%B9%EF%BC%9A"><span class="nav-number">1.0.7.1.</span> <span class="nav-text">CMS垃圾回收器的优点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CMS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E7%9A%84%E7%BC%BA%E7%82%B9%EF%BC%9A"><span class="nav-number">1.0.7.2.</span> <span class="nav-text">CMS垃圾回收器的缺点：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM%E5%B8%B8%E7%94%A8%E5%86%85%E5%AD%98%E8%B0%83%E4%BC%98%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="nav-number">1.0.8.</span> <span class="nav-text">JVM常用内存调优命令：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8E%92%E6%9F%A5%E4%B8%80%E4%B8%AA%E7%BA%BF%E4%B8%8A%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%BC%82%E5%B8%B8%EF%BC%9F"><span class="nav-number">1.0.8.1.</span> <span class="nav-text">如何排查一个线上的服务异常？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK8%E4%B8%AD%E5%9C%A8%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%E4%B8%8A%E7%9A%84%E5%8F%98%E5%8C%96"><span class="nav-number">1.0.9.</span> <span class="nav-text">JDK8中在内存管理上的变化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E5%85%83%E7%A9%BA%E9%97%B4%E4%BB%A3%E6%9B%BF%E6%B0%B8%E4%B9%85%E4%BB%A3"><span class="nav-number">1.0.9.1.</span> <span class="nav-text">为什么要使用元空间代替永久代</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JAVA%E4%B8%AD%E7%9A%84%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">1.0.10.</span> <span class="nav-text">JAVA中的类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.0.10.1.</span> <span class="nav-text">类加载器的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E7%9A%84%E8%81%8C%E8%B4%A3%EF%BC%9A"><span class="nav-number">1.0.10.2.</span> <span class="nav-text">类加载器的职责：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="juhick"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">juhick</p>
+  <div class="site-description" itemprop="description">须知少日拏云志，曾许人间第一流</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2p1aGljaw==" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;juhick"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">juhick</span>
+</div>
+  <div class="powered-by">由 <span class="exturl theme-link" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl theme-link" data-url="aHR0cHM6Ly9waXNjZXMudGhlbWUtbmV4dC5vcmc=">NexT.Pisces</span> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/canvas_lines.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'd1d427beff57ea9d6ccf',
+      clientSecret: '1f8d7756b71843bee4f1cf51de48f825a7620e7c',
+      repo        : 'juhick.github.io',
+      owner       : 'juhick',
+      admin       : ['juhick'],
+      id          : 'cc1625dc9905d108d8d70303bf3a3f68',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
