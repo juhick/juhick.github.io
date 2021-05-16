@@ -206,6 +206,40 @@
       </tags>
   </entry>
   <entry>
+    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
+    <url>/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
+<a id="more"></a>
+<p>点击用户里的设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
+<p>点击开发者选项</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
+<p>点击个人token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
+<p>点击生成新的token</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
+<p>只需要选择repo选项即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
+<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
+<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
+<p>安装完成后设置Github图床</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
+<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
+<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
+<p>进行如下图所示的设置即可</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
+<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
+<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
+]]></content>
+      <tags>
+        <tag>个人博客</tag>
+        <tag>图床</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis相关知识</title>
     <url>/2021/04/24/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
     <content><![CDATA[<h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h3 id="Redis有了解么"><a href="#Redis有了解么" class="headerlink" title="Redis有了解么"></a>Redis有了解么</h3><p><strong>redis（Remote Dictionary Server远程字典服务）</strong>，是一款高性能的(key/value)分布式<strong>内存数据库</strong>，基于<strong>内存运行</strong>并支持<strong>持久化</strong>的NoSQL数据库。因为数据都在内存中，所以运行速度快。redis支持丰富的数据类型并且支持事务，事务中的所有命令会被序列化、按顺序执行，在执行的过程中不会被其他客户端发送来的命令打断。</p>
@@ -544,37 +578,35 @@
       </tags>
   </entry>
   <entry>
-    <title>PicGo+Github+Typora实现笔记图片上传到github图床</title>
-    <url>/2021/04/03/PicGo-Github-Typora%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E5%88%B0github%E5%9B%BE%E5%BA%8A/</url>
-    <content><![CDATA[<h1 id="PicGo-Github-Typora实现笔记图片上传到github图床"><a href="#PicGo-Github-Typora实现笔记图片上传到github图床" class="headerlink" title="PicGo+Github+Typora实现笔记图片上传到github图床"></a>PicGo+Github+Typora实现笔记图片上传到github图床</h1><h2 id="GIthub新建仓库并获取Token"><a href="#GIthub新建仓库并获取Token" class="headerlink" title="GIthub新建仓库并获取Token"></a>GIthub新建仓库并获取Token</h2><p>首先创建一个公有库，因为若是私有库的话在外部是访问不到图片的</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000450.png" alt=""></p>
+    <title>验证二叉搜索树</title>
+    <url>/2021/04/09/%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
+    <content><![CDATA[<h1 id="验证二叉搜索树"><a href="#验证二叉搜索树" class="headerlink" title="验证二叉搜索树"></a>验证二叉搜索树</h1><p><a href="[验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/">原题链接</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
+<p>假设一个二叉搜索树具有如下特征：</p>
+<ul>
+<li>节点的左子树只包含<strong>小于</strong>当前节点的数。</li>
+<li>节点的右子树只包含<strong>大于</strong>当前节点的数。</li>
+<li>所有左子树和右子树自身必须也是二叉搜索树。</li>
+</ul>
 <a id="more"></a>
-<p>点击用户里的设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000600.png" alt=""></p>
-<p>点击开发者选项</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000643.png" alt=""></p>
-<p>点击个人token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000755.png" alt=""></p>
-<p>点击生成新的token</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000836.png" alt=""></p>
-<p>只需要选择repo选项即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000905.png" alt=""></p>
-<p>将token保存下来，因为只有这一次机会可以复制，不要错过！！！</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404000941.png" alt=""></p>
-<h2 id="设置PicGo"><a href="#设置PicGo" class="headerlink" title="设置PicGo"></a>设置PicGo</h2><p>然后下载<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL01vbHVuZXJmaW5uL1BpY0dvL3JlbGVhc2Vz">PicGo<i class="fa fa-external-link-alt"></i></span>，选择适合自己的版本即可</p>
-<p>安装完成后设置Github图床</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001032.png" alt=""></p>
-<p>然后就可以测试是否可以上传了，因为某些原因(你懂的)，直接上传可能会失败，可以配置代理，就不再赘述，自行摸索。</p>
-<h2 id="配置Typora"><a href="#配置Typora" class="headerlink" title="配置Typora"></a>配置Typora</h2><p>打开偏好设置</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001441.png" alt=""></p>
-<p>进行如下图所示的设置即可</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210404001554.png" alt=""></p>
-<p><del>但由于未知原因，我直接在Typora内插入时会失败，只能通过PicGo客户端上传，之后解决的话再修改</del></p>
-<p>发现了是因为网的原因有的图片在本地删除了云端还保存着，将冗余图片删除即可</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    2</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   3</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    5</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   4</span><br><span class="line">     &#x2F; \</span><br><span class="line">    3   6</span><br><span class="line">输出: false</span><br><span class="line">解释: 输入为: [5,1,4,null,null,3,6]。</span><br><span class="line">     根节点的值为 5 ，但是其右子节点值为 4 。</span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="解法一：递归"><a href="#解法一：递归" class="headerlink" title="解法一：递归"></a>解法一：递归</h3><h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>由二叉搜索树的性质知，每个结点左子树的值都小于该结点，右子树的值都大于该结点，因此，每个结点的左右子树的值分别在两个固定的开区间内，我们可以递归判断每个节点的左右子树的值是否满足区间要求，从而最终判断出树是否是二叉搜索树。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> check(root, LONG_MIN, LONG_MAX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(TreeNode* root, <span class="keyword">long</span> <span class="keyword">long</span> low, <span class="keyword">long</span> <span class="keyword">long</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &lt;= low || root-&gt;val &gt;= high)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> check(root-&gt;left, low, root-&gt;val) &amp;&amp; check(root-&gt;right, root-&gt;val, high);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="解法二：中序遍历"><a href="#解法二：中序遍历" class="headerlink" title="解法二：中序遍历"></a>解法二：中序遍历</h3><h4 id="主要思路-1"><a href="#主要思路-1" class="headerlink" title="主要思路"></a>主要思路</h4><p>二叉搜索树的中序遍历顺序是升序序列，因此我们可以对数进行中序遍历，如果其符合升序顺序，则代表是二叉搜索树。</p>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; stk;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> inorder = (<span class="keyword">long</span> <span class="keyword">long</span>)INT_MIN - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!stk.empty() || root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                stk.push(root);</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            root = stk.top();</span><br><span class="line">            stk.pop();</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;val &lt;= inorder)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            inorder = root-&gt;val;</span><br><span class="line">            root = root-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>ps: 该题需要注意要使用long long，int的范围是不够的</p>
 ]]></content>
+      <categories>
+        <category>leetcode</category>
+        <category>树</category>
+      </categories>
       <tags>
-        <tag>个人博客</tag>
-        <tag>图床</tag>
+        <tag>leetcode</tag>
+        <tag>树</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -623,69 +655,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LRU算法设计</title>
-    <url>/2021/05/07/LRU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h1 id="LRU缓存算法设计"><a href="#LRU缓存算法设计" class="headerlink" title="LRU缓存算法设计"></a>LRU缓存算法设计</h1><h2 id="机制简单介绍"><a href="#机制简单介绍" class="headerlink" title="机制简单介绍"></a>机制简单介绍</h2><p>每次放入缓存中的数据会到队列头，如果满了会将队列尾部的删除，每次访问的也放到队列头，也就是根据访问的时序来进行淘汰。</p>
-<a id="more"></a>
-<h2 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h2><p><code>LRUCache</code>数据结构需要满足以下几点：</p>
-<ol>
-<li>其中的元素必须有时序，用来区分最近使用和久未使用的数据，容量满了之后要删除最久未使用的那个元素来腾位置。</li>
-<li>能够迅速地判断<code>key</code>是否存在，并且得到对应的<code>val</code></li>
-<li>每次访问某个<code>key</code>时，需要将这个元素变为最近使用的，也就是该数据结构需要支持在任意位置快速插入和删除元素</li>
-</ol>
-<p>满足以上条件的数据结构为<code>LinkedHashMap</code>，根据该结构对以上的条件进行分析：</p>
-<ol>
-<li>如果默认从链表尾部添加元素，那么显然越靠近尾部的元素就越是最近使用地，越靠近头部的元素就是越久未使用的。</li>
-<li>对于某个<code>key</code>，可以通过哈希表快速定位到链表中的节点，从未取得对应的<code>val</code></li>
-<li>链表支持在任意位置快速插入和删除</li>
-</ol>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="自己实现双向链表"><a href="#自己实现双向链表" class="headerlink" title="自己实现双向链表"></a>自己实现双向链表</h3><p>自定义双向链表：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head, tail;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DoubleList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev = tail.prev;</span><br><span class="line">        x.next = tail;</span><br><span class="line">        tail.prev.next = x;</span><br><span class="line">        tail.prev = x;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev.next = x.next;</span><br><span class="line">        x.next.prev = x.prev;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">removeFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next == tail)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node first = head.next;</span><br><span class="line">        remove(first);</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> size; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> key, value;</span><br><span class="line">    <span class="keyword">public</span> Node next, prev;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        key = k;</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>自定义LRU缓存数据结构：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DoubleList cache;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cap = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> DoubleList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将某个Key设置为最近使用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line"></span><br><span class="line">        cache.remove(node);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加最近使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addRecently</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        Node node = <span class="keyword">new</span> Node(key, val);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">        map.put(key, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除一个Key</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteKey</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line">        cache.remove(node);</span><br><span class="line">        map.remove(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除最久未使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteLeastRecently</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Node deletedNode = cache.removeFirst();</span><br><span class="line">        <span class="keyword">int</span> deletedKey = deletedNode.key;</span><br><span class="line">        map.remove(deletedKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素提升为最近使用的</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> map.get(key).value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">            deleteKey(key);</span><br><span class="line">            addRecently(key, value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cap == cache.size())&#123;</span><br><span class="line">            deleteLeastRecently();</span><br><span class="line">        &#125;</span><br><span class="line">        addRecently(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="使用自带的哈希链表"><a href="#使用自带的哈希链表" class="headerlink" title="使用自带的哈希链表"></a>使用自带的哈希链表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    Map&lt;Integer, Integer&gt; cache = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将key变为最近使用</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cache.containsKey(key))&#123;</span><br><span class="line">            <span class="comment">//修改key的值</span></span><br><span class="line">            cache.put(key, value);</span><br><span class="line">            <span class="comment">//将key变为最近使用</span></span><br><span class="line">            makeRecently(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cache.size() &gt; cap)&#123;</span><br><span class="line">            <span class="keyword">int</span> oldestKey = cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &#125;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = cache.get(key);</span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>LRU</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>验证二叉搜索树</title>
-    <url>/2021/04/09/%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/</url>
-    <content><![CDATA[<h1 id="验证二叉搜索树"><a href="#验证二叉搜索树" class="headerlink" title="验证二叉搜索树"></a>验证二叉搜索树</h1><p><a href="[验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/">原题链接</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
-<p>假设一个二叉搜索树具有如下特征：</p>
-<ul>
-<li>节点的左子树只包含<strong>小于</strong>当前节点的数。</li>
-<li>节点的右子树只包含<strong>大于</strong>当前节点的数。</li>
-<li>所有左子树和右子树自身必须也是二叉搜索树。</li>
-</ul>
-<a id="more"></a>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    2</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   3</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入:</span><br><span class="line">    5</span><br><span class="line">   &#x2F; \</span><br><span class="line">  1   4</span><br><span class="line">     &#x2F; \</span><br><span class="line">    3   6</span><br><span class="line">输出: false</span><br><span class="line">解释: 输入为: [5,1,4,null,null,3,6]。</span><br><span class="line">     根节点的值为 5 ，但是其右子节点值为 4 。</span><br></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="解法一：递归"><a href="#解法一：递归" class="headerlink" title="解法一：递归"></a>解法一：递归</h3><h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>由二叉搜索树的性质知，每个结点左子树的值都小于该结点，右子树的值都大于该结点，因此，每个结点的左右子树的值分别在两个固定的开区间内，我们可以递归判断每个节点的左右子树的值是否满足区间要求，从而最终判断出树是否是二叉搜索树。</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> check(root, LONG_MIN, LONG_MAX);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">check</span><span class="params">(TreeNode* root, <span class="keyword">long</span> <span class="keyword">long</span> low, <span class="keyword">long</span> <span class="keyword">long</span> high)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &lt;= low || root-&gt;val &gt;= high)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> check(root-&gt;left, low, root-&gt;val) &amp;&amp; check(root-&gt;right, root-&gt;val, high);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="解法二：中序遍历"><a href="#解法二：中序遍历" class="headerlink" title="解法二：中序遍历"></a>解法二：中序遍历</h3><h4 id="主要思路-1"><a href="#主要思路-1" class="headerlink" title="主要思路"></a>主要思路</h4><p>二叉搜索树的中序遍历顺序是升序序列，因此我们可以对数进行中序遍历，如果其符合升序顺序，则代表是二叉搜索树。</p>
-<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; stk;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> inorder = (<span class="keyword">long</span> <span class="keyword">long</span>)INT_MIN - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!stk.empty() || root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(root != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">                stk.push(root);</span><br><span class="line">                root = root-&gt;left;</span><br><span class="line">            &#125;</span><br><span class="line">            root = stk.top();</span><br><span class="line">            stk.pop();</span><br><span class="line">            <span class="keyword">if</span>(root-&gt;val &lt;= inorder)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            inorder = root-&gt;val;</span><br><span class="line">            root = root-&gt;right;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>ps: 该题需要注意要使用long long，int的范围是不够的</p>
-]]></content>
-      <categories>
-        <category>leetcode</category>
-        <category>树</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>树</tag>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LFU算法设计</title>
     <url>/2021/05/07/LFU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h1 id="LFU算法设计"><a href="#LFU算法设计" class="headerlink" title="LFU算法设计"></a>LFU算法设计</h1><h2 id="机制简介"><a href="#机制简介" class="headerlink" title="机制简介"></a>机制简介</h2><p>根据访问频度进行淘汰的缓存淘汰机制，每次淘汰那些使用次数最少的数据。</p>
@@ -720,6 +689,37 @@
       <tags>
         <tag>leetcode</tag>
         <tag>LFU</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LRU算法设计</title>
+    <url>/2021/05/07/LRU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h1 id="LRU缓存算法设计"><a href="#LRU缓存算法设计" class="headerlink" title="LRU缓存算法设计"></a>LRU缓存算法设计</h1><h2 id="机制简单介绍"><a href="#机制简单介绍" class="headerlink" title="机制简单介绍"></a>机制简单介绍</h2><p>每次放入缓存中的数据会到队列头，如果满了会将队列尾部的删除，每次访问的也放到队列头，也就是根据访问的时序来进行淘汰。</p>
+<a id="more"></a>
+<h2 id="代码设计"><a href="#代码设计" class="headerlink" title="代码设计"></a>代码设计</h2><p><code>LRUCache</code>数据结构需要满足以下几点：</p>
+<ol>
+<li>其中的元素必须有时序，用来区分最近使用和久未使用的数据，容量满了之后要删除最久未使用的那个元素来腾位置。</li>
+<li>能够迅速地判断<code>key</code>是否存在，并且得到对应的<code>val</code></li>
+<li>每次访问某个<code>key</code>时，需要将这个元素变为最近使用的，也就是该数据结构需要支持在任意位置快速插入和删除元素</li>
+</ol>
+<p>满足以上条件的数据结构为<code>LinkedHashMap</code>，根据该结构对以上的条件进行分析：</p>
+<ol>
+<li>如果默认从链表尾部添加元素，那么显然越靠近尾部的元素就越是最近使用地，越靠近头部的元素就是越久未使用的。</li>
+<li>对于某个<code>key</code>，可以通过哈希表快速定位到链表中的节点，从未取得对应的<code>val</code></li>
+<li>链表支持在任意位置快速插入和删除</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="自己实现双向链表"><a href="#自己实现双向链表" class="headerlink" title="自己实现双向链表"></a>自己实现双向链表</h3><p>自定义双向链表：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DoubleList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node head, tail;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DoubleList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.next = head;</span><br><span class="line">        size = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addLast</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev = tail.prev;</span><br><span class="line">        x.next = tail;</span><br><span class="line">        tail.prev.next = x;</span><br><span class="line">        tail.prev = x;</span><br><span class="line">        size++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(Node x)</span></span>&#123;</span><br><span class="line">        x.prev.next = x.next;</span><br><span class="line">        x.next.prev = x.prev;</span><br><span class="line">        size--;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">removeFirst</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head.next == tail)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Node first = head.next;</span><br><span class="line">        remove(first);</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> size; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> key, value;</span><br><span class="line">    <span class="keyword">public</span> Node next, prev;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        key = k;</span><br><span class="line">        value = v;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义LRU缓存数据结构：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer, Node&gt; map;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> DoubleList cache;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.cap = capacity;</span><br><span class="line">        map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        cache = <span class="keyword">new</span> DoubleList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将某个Key设置为最近使用</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line"></span><br><span class="line">        cache.remove(node);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加最近使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addRecently</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> val)</span></span>&#123;</span><br><span class="line">        Node node = <span class="keyword">new</span> Node(key, val);</span><br><span class="line">        cache.addLast(node);</span><br><span class="line">        map.put(key, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除一个Key</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteKey</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        Node node = map.get(key);</span><br><span class="line">        cache.remove(node);</span><br><span class="line">        map.remove(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//删除最久未使用的元素</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">deleteLeastRecently</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Node deletedNode = cache.removeFirst();</span><br><span class="line">        <span class="keyword">int</span> deletedKey = deletedNode.key;</span><br><span class="line">        map.remove(deletedKey);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!map.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将元素提升为最近使用的</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> map.get(key).value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(map.containsKey(key))&#123;</span><br><span class="line">            deleteKey(key);</span><br><span class="line">            addRecently(key, value);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cap == cache.size())&#123;</span><br><span class="line">            deleteLeastRecently();</span><br><span class="line">        &#125;</span><br><span class="line">        addRecently(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="使用自带的哈希链表"><a href="#使用自带的哈希链表" class="headerlink" title="使用自带的哈希链表"></a>使用自带的哈希链表</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    Map&lt;Integer, Integer&gt; cache = <span class="keyword">new</span> LinkedHashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span></span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!cache.containsKey(key))&#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将key变为最近使用</span></span><br><span class="line">        makeRecently(key);</span><br><span class="line">        <span class="keyword">return</span> cache.get(key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(cache.containsKey(key))&#123;</span><br><span class="line">            <span class="comment">//修改key的值</span></span><br><span class="line">            cache.put(key, value);</span><br><span class="line">            <span class="comment">//将key变为最近使用</span></span><br><span class="line">            makeRecently(key);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(cache.size() &gt; cap)&#123;</span><br><span class="line">            <span class="keyword">int</span> oldestKey = cache.keySet().iterator().next();</span><br><span class="line">            cache.remove(oldestKey);</span><br><span class="line">        &#125;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeRecently</span><span class="params">(<span class="keyword">int</span> key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val = cache.get(key);</span><br><span class="line">        cache.remove(key);</span><br><span class="line">        cache.put(key, val);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>LRU</tag>
       </tags>
   </entry>
   <entry>
@@ -796,6 +796,57 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       </tags>
   </entry>
   <entry>
+    <title>数组中两个数的最大异或值</title>
+    <url>/2021/05/16/%E6%95%B0%E7%BB%84%E4%B8%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%80%BC/</url>
+    <content><![CDATA[<p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWF4aW11bS14b3Itb2YtdHdvLW51bWJlcnMtaW4tYW4tYXJyYXkv">题目链接<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数数组 <code>nums</code> ，返回 <code>nums[i] XOR nums[j]</code> 的最大运算结果，其中 <code>0 ≤ i ≤ j &lt; n</code> 。</p>
+<p><strong>进阶：</strong>你可以在 <code>O(n)</code> 的时间解决这个问题吗？</p>
+<a id="more"></a>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [3,10,5,25,2,8]</span><br><span class="line">输出：28</span><br><span class="line">解释：最大运算结果是 5 XOR 25 &#x3D; 28.</span><br></pre></td></tr></table></figure>
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [0]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [2,4]</span><br><span class="line">输出：6</span><br></pre></td></tr></table></figure>
+<p><strong>示例 4：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [8,10,2]</span><br><span class="line">输出：10</span><br></pre></td></tr></table></figure>
+<p><strong>示例 5：</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：nums &#x3D; [14,70,53,83,49,91,36,80,92,51,66,70]</span><br><span class="line">输出：127</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 2 * 104</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 231 - 1</code></li>
+</ul>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>假设从数组中选择了元素$a_i$和$a_j$（$i \neq j$），异或值<code>x</code>的计算方法是</p>
+<script type="math/tex; mode=display">
+x = a_i \oplus a_j</script><p>最简单的方法就是直接一个二重循环枚举i和j，然后依次计算异或值并且与当前最大值进行比较，但是这样的时间复杂度为$O(n^2)$，需要对采用更高效的算法。</p>
+<p>根据位异或运算的性质，$x = a_i \oplus a_j$等价于$a_j = x \oplus a_i$。我们可以根据该等式变换从高位到低位确定x的每一位，从而最终得出x的值。该方法的精妙之处：</p>
+<ul>
+<li>由于数组中的元素都在 $[0, 2^{31})$ 的范围内，那么我们可以将每一个数表示为一个长度为31位的二进制数（如果不满31位，在最高位之前补上若干个前导0即可）；</li>
+<li>这31个二进制位从低位到高位依次编号为 $0, 1, \cdots, 30$。我们从最高位第 30 个二进制位开始，依次确定 <code>x</code> 的每一位是 0 还是 1；</li>
+<li>由于我们需要找出最大的<code>x</code>，因此在枚举每一位时，我们先判断<code>x</code>的这一位是否能取到1。如果能，我们取这一位为1，否则我们取这一位为0。</li>
+</ul>
+<p>「判断<code>x</code>的某一位是否能取到 1」这一步骤并不容易。下面介绍两种判断的方法。</p>
+<h2 id="方法一：哈希表"><a href="#方法一：哈希表" class="headerlink" title="方法一：哈希表"></a>方法一：哈希表</h2><h3 id="思路与算法"><a href="#思路与算法" class="headerlink" title="思路与算法"></a>思路与算法</h3><p>假设我们已经确定了<code>x</code>最高的若干个二进制位，当前正在确定第<code>k</code>个二进制位，根据之前的分析，我们希望第<code>k</code>个二进制位能够取到1。</p>
+<p>我们用$pre^k(x)$表示$x$从最高位第30个二进制位开始，到第$k$个二进制位为止的数，那么$a_j = x \oplus a_i$蕴含着：</p>
+<script type="math/tex; mode=display">
+pre^k(a_j) = pre^k(x) \oplus pre^k(a_i)</script><p>由于$pre^k(x)$对于我们来说是已知的，因此我们将所有的$pre^k(a_j)$放入哈希表中，随后枚举$i$并计算$pre^k(x) \oplus pre^k(a_i)$。如果其出现在哈希表中，那么说明第$k$个二进制位能够取到1，否则第$k$个二进制位只能为0。</p>
+<h3 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h3><p>计算$pre^k(x)$可以使用右移运算$&gt;&gt;$。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 最高位的二进制位编号为 30</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HIGH_BIT = <span class="number">30</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findMaximumXOR</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = HIGH_BIT; k &gt;= <span class="number">0</span>; --k) &#123;</span><br><span class="line">            Set&lt;Integer&gt; seen = <span class="keyword">new</span> HashSet&lt;Integer&gt;();</span><br><span class="line">            <span class="comment">// 将所有的 pre^k(a_j) 放入哈希表中</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">                <span class="comment">// 如果只想保留从最高位开始到第 k 个二进制位为止的部分</span></span><br><span class="line">                <span class="comment">// 只需将其右移 k 位</span></span><br><span class="line">                seen.add(num &gt;&gt; k);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 目前 x 包含从最高位开始到第 k+1 个二进制位为止的部分</span></span><br><span class="line">            <span class="comment">// 我们将 x 的第 k 个二进制位置为 1，即为 x = x*2+1</span></span><br><span class="line">            <span class="keyword">int</span> xNext = x * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 枚举 i</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">                <span class="keyword">if</span> (seen.contains(xNext ^ (num &gt;&gt; k))) &#123;</span><br><span class="line">                    found = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (found) &#123;</span><br><span class="line">                x = xNext;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 如果没有找到满足等式的 a_i 和 a_j，那么 x 的第 k 个二进制位只能为 0</span></span><br><span class="line">                <span class="comment">// 即为 x = x*2</span></span><br><span class="line">                x = xNext - <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li>时间复杂度：$O(n \log C)$，其中<code>n</code>是数组 $\textit{nums}$ 的长度，<code>C</code>是数组中的元素范围，在本题中 $C &lt; 2^{31}$。枚举答案<code>x</code>的每一个二进制位的时间复杂度为 $O(\log C)$，在每一次枚举的过程中，我们需要$O(n)$的时间进行判断，因此总时间复杂度为$O(n \log C)$。</li>
+<li>空间复杂度：$O(n)$，即为哈希表需要使用的空间。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>滑动窗口的最大值</title>
     <url>/2021/05/12/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/</url>
     <content><![CDATA[<h1 id="滑动窗口的最大值"><a href="#滑动窗口的最大值" class="headerlink" title="滑动窗口的最大值"></a>滑动窗口的最大值</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvc2xpZGluZy13aW5kb3ctbWF4aW11bS8=">原题链接<i class="fa fa-external-link-alt"></i></span></p>
@@ -837,6 +888,142 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       </tags>
   </entry>
   <entry>
+    <title>计算机中信息的表示和处理</title>
+    <url>/2021/05/15/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="信息存储"><a href="#信息存储" class="headerlink" title="信息存储"></a>信息存储</h1><p>大部分计算机使用8位的块，或叫作<strong>字节（byte）</strong>，来作为最小的可寻址的存储器单位，而不是访问存储器中单独的位。机器级程序将存储器视为一个非常大的字节数组，称为<strong>虚拟存储器（virtual memory）</strong>。存储器的每个字节都由一个唯一的数字来标识，称为<strong>它的地址（address）</strong>，所有可能地址的集合就称为<strong>虚拟地址空间（virtual address space）</strong>。</p>
+<p>编译器和运行时系统的一个任务就是将这个存储器空间划分为更可管理的单元=，来存放不同的<strong>程序对象（program object）</strong>，也就是，程序数据、指令和控制信息。</p>
+<a id="more"></a>
+<h2 id="十六进制表示法"><a href="#十六进制表示法" class="headerlink" title="十六进制表示法"></a>十六进制表示法</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>十六进制数字</th>
+<th>十进制值</th>
+<th>二进制值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>0010</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>0011</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>0100</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>6</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>A</td>
+<td>10</td>
+<td>1010</td>
+</tr>
+<tr>
+<td>B</td>
+<td>11</td>
+<td>1011</td>
+</tr>
+<tr>
+<td>C</td>
+<td>12</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13</td>
+<td>1101</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14</td>
+<td>1110</td>
+</tr>
+<tr>
+<td>F</td>
+<td>15</td>
+<td>1111</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>一个字节的值域：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+& 二进制：00000000_2 \sim 11111111_2 \\
+& 十进制：0_{10} \sim 255_{10} \\
+& 十六进制：00_{16} \sim FF_{16}
+\end{aligned}</script><h3 id="十六进制转二进制"><a href="#十六进制转二进制" class="headerlink" title="十六进制转二进制"></a>十六进制转二进制</h3><p>将每个十六进制数字展开成四位二进制然后拼接</p>
+<p>例：转化 <code>0x173A4C</code></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+& 十六进制 & &\ 1\ &      &\ 7\ &   &\ 3\ &    &\ A\ &    &\ 4\ &   &\ C\ &\\
+& 二进制 &   &\ 0001\ & &\ 0111\ & &\ 0011\ & &\ 1010\ & &\ 0100\ & &\ 1100\ &
+\end{aligned}</script><h3 id="二进制转十六进制"><a href="#二进制转十六进制" class="headerlink" title="二进制转十六进制"></a>二进制转十六进制</h3><p>从后往前每四位二进制转化为一位十六进制数字</p>
+<p>如果怕总数不是四的倍数，最左边的一组可以少于四位，前面用零补足</p>
+<p>例：转化<code>1111001010110110110011</code></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&二进制&&\ 11&&\ 1100&&\ 1010&&\ 1101&&\ 1011&&\ 0011&  \\
+&十六进制&&\ 3&&\ C&&\ A&&\ D&&\ B&&\ 3&
+\end{aligned}</script><h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><p>每台计算机都有一个<strong>字长（word size）</strong>，对于一个字长为<code>n</code>位的机器来说，虚拟地址的范围为$0\sim2^n-1$,程序最多访问$2^n$字节。</p>
+<p>今天的计算机基本是32位和64位的。</p>
+<h2 id="寻址和字节顺序"><a href="#寻址和字节顺序" class="headerlink" title="寻址和字节顺序"></a>寻址和字节顺序</h2><h3 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h3><p>在几乎所有的机器中，多字节对象都被存储为连续的字节序列，对象的地址所使用字节序列中最小的地址。</p>
+<h3 id="字节序列排序"><a href="#字节序列排序" class="headerlink" title="字节序列排序"></a>字节序列排序</h3><ol>
+<li><strong>小端法（little endian）</strong>：最低有效字节在最前面</li>
+<li><strong>大端法（big endian）</strong>：最高有效字节在最前面</li>
+</ol>
+]]></content>
+      <categories>
+        <category>计算机系统</category>
+      </categories>
+      <tags>
+        <tag>信息表示</tag>
+        <tag>信息处理</tag>
+        <tag>计算机系统</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解码异或后的排列</title>
     <url>/2021/05/11/%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97/</url>
     <content><![CDATA[<h1 id="解码异或后的排列"><a href="#解码异或后的排列" class="headerlink" title="解码异或后的排列"></a>解码异或后的排列</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZGVjb2RlLXhvcmVkLXBlcm11dGF0aW9uLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
@@ -866,6 +1053,387 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       <tags>
         <tag>leetcode</tag>
         <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring相关知识</title>
+    <url>/2021/04/23/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-的控制反转（IOC）"><a href="#Spring-的控制反转（IOC）" class="headerlink" title="Spring 的控制反转（IOC）"></a>Spring 的控制反转（IOC）</h3><p>IOC也叫<strong>控制反转，将对象间的依赖关系交给Spring容器</strong>，使用配置文件来创建所依赖的对象，由<strong>主动</strong>创建对象改为了<strong>被动</strong>方式，实现解耦合。</p>
+<p>可以通过注解<strong>@Autowired和@Resource</strong>来注入对象，被注入的对象必须被下边的四个注解之一标注：</p>
+<ul>
+<li><strong>@Controller</strong></li>
+<li><strong>@Service</strong></li>
+<li><strong>@Repository</strong></li>
+<li><strong>@Component</strong></li>
+</ul>
+<a id="more"></a>
+<p>在Spring配置文件中配置 <code>&lt;context:annotation-config/&gt;</code>元素开启注解。还有一个概念是<strong>DI（依赖注入）</strong>，和控制反转是同一个概念的不同角度的描述，即应用程序在运行时依赖IOC容器来动态注入对象需要的外部资源（对象等）。</p>
+<p>Spring是一个<strong>轻量级的IOC和AOP容器</strong>框架。是为Java应用程序提供基础服务的一套框架，目的是用于简化企业应用程序的开发，它使得开发者只需要关心业务需求。</p>
+<p>Spring的<strong>核心模块</strong>如下所示：</p>
+<ul>
+<li><strong>Spring Core：</strong>是核心类库，提供IOC服务；</li>
+<li><strong>Spring Context：</strong>提供框架式的Bean访问方式，以及企业级功能（JNDI、定时任务等）；</li>
+<li><strong>Spring AOP：</strong>提供AOP服务；</li>
+<li><strong>Spring DAO：</strong>对JDBC进行了抽象，简化了数据访问异常等处理；</li>
+<li><strong>Spring ORM：</strong>对现有的ORM持久层框架进行了支持；</li>
+<li><strong>Spring Web：</strong>提供了基本的面向Web的综合特性；</li>
+<li><strong>Spring MVC：</strong>提供面向Web应用的Model-View-Controller实现。</li>
+</ul>
+<h3 id="Spring的优点有哪些呢？"><a href="#Spring的优点有哪些呢？" class="headerlink" title="Spring的优点有哪些呢？"></a>Spring的优点有哪些呢？</h3><ul>
+<li>Spring的<strong>依赖注入</strong>将对象之间的依赖关系交给了框架来处理，减小了各个组件之间的耦合性；</li>
+<li><strong>AOP面向切面编程</strong>，可以将通用的任务抽取出来，复用性更高；</li>
+<li>Spring对于其余<strong>主流框架都提供了很好的支持</strong>，代码的侵入性很低。</li>
+</ul>
+<h3 id="Spring中的AOP面向切面编程"><a href="#Spring中的AOP面向切面编程" class="headerlink" title="Spring中的AOP面向切面编程"></a>Spring中的AOP面向切面编程</h3><p><strong>AOP，</strong>面向切面编程是指当需要在某一个方法之前或者之后做一些额外的操作，比如说日志记录，权限判断，异常统计等，可以利用AOP<strong>将功能代码从业务逻辑代码中分离出来。</strong></p>
+<p><strong>AOP中有如下的操作术语：</strong></p>
+<ul>
+<li><strong>Joinpoint(连接点)：</strong> 类里面可以被增强的方法，这些方法称为连接点</li>
+<li><strong>Pointcut(切入点)：</strong>所谓切入点是指我们要对哪些Joinpoint进行拦截的定义</li>
+<li><strong>Advice(通知/增强)：</strong>所谓通知是指拦截到Joinpoint之后所要做的事情就是通知。</li>
+<li><strong>Aspect(切面)：</strong>是切入点和通知（引介）的结合</li>
+<li><strong>Introduction(引介)：</strong>引介是一种特殊的通知在不修改类代码的前提下，Introduction可以在运行期为类动态地添加一些方法或属性</li>
+<li><strong>Target(目标对象)：</strong>代（dai）理的目标对象(要增强的类)</li>
+<li><strong>Weaving(织入)：</strong>是把增强应用到目标的过程，把advice 应用到 target的过程</li>
+<li><strong>Proxy（代(dai)理）：</strong>一个类被AOP织入增强后，就产生一个结果代（dai）理类</li>
+</ul>
+<p><strong>切入点就是在类里边可以有很多方法被增强</strong>，比如实际操作中，只是增强了个别方法，则定义实际被增强的某个方法为切入点；<strong>通知/增强 就是指增强的逻辑</strong>，比如扩展日志功能，这个日志功能称为增强；<strong>切面</strong>就是把增强应用到具体方法上面的过程称为切面。</p>
+<h3 id="Spring中AOP主要有两种实现方式："><a href="#Spring中AOP主要有两种实现方式：" class="headerlink" title="Spring中AOP主要有两种实现方式："></a>Spring中AOP主要有两种实现方式：</h3><ul>
+<li><strong>使用JDK动态代（dai）理实现</strong>，使用java.lang.reflection.Proxy类来处理</li>
+<li><strong>使用cglib来实现</strong></li>
+</ul>
+<h4 id="两种实现方式的不同之处："><a href="#两种实现方式的不同之处：" class="headerlink" title="两种实现方式的不同之处："></a>两种实现方式的不同之处：</h4><p><strong>JDK动态代理</strong>，只能对实现了接口的类生成代理，而不是针对类，该目标类型实现的接口都将被代理。原理是通过在运行期间创建一个接口的实现类来完成对目标对象的代理。<strong>实现步骤大概如下：</strong></p>
+<ul>
+<li>定义一个实现接口InvocationHandler的类</li>
+<li>通过构造函数，注入被代理类</li>
+<li>实现invoke（ Object proxy, Method method, Object[ ] args）方法</li>
+<li>在主函数中获得被代理类的类加载器</li>
+<li>使用Proxy.newProxyInstance( )产生一个代理对象</li>
+<li>通过代理对象调用各种方法</li>
+</ul>
+<p>JDK动态代理的实例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//定义一个People作为被代理的类</span></span><br><span class="line">        IPeople ple = <span class="keyword">new</span> People();</span><br><span class="line">        <span class="comment">//定义一个Handler</span></span><br><span class="line">        InvocationHandler handler = <span class="keyword">new</span> MyHandle(ple);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得类加载器</span></span><br><span class="line">        ClassLoader cl = ple.getClass().getClassLoader();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//动态产生一个代理，以下两种方法都可以</span></span><br><span class="line">        IPeople p = (IPeople) Proxy.newProxyInstance(cl, ple.getClass().getInterfaces(), handler);</span><br><span class="line">        <span class="comment">//或者 IPeople p = (IPeople) Proxy.newProxyInstance(cl, new Class[]&#123;IPeople.class&#125;, handler);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行被代理的方法</span></span><br><span class="line">        p.func();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHandle</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//被代理的实例</span></span><br><span class="line">    Object obj = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我要代理谁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyHandle</span><span class="params">(Object obj)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        Object result = method.invoke(<span class="keyword">this</span>.obj, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实际被代理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是fun方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是func方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>cglib主要针对类实现代理</strong>，<strong>对是否实现接口无要求</strong>。原理是对指定的类生成一个子类，覆盖其中的方法，因为是继承，所以被代理的类或方法不可以声明为final类型。<strong>实现步骤大概如下：</strong></p>
+<ul>
+<li>定义一个实现了MethodInterceptor接口的类</li>
+<li>实现其 intercept()方法，在其中调用proxy.invokeSuper()</li>
+</ul>
+<h4 id="Spring-AOP对这两种代（dai）理方式的选择："><a href="#Spring-AOP对这两种代（dai）理方式的选择：" class="headerlink" title="Spring AOP对这两种代（dai）理方式的选择："></a>Spring AOP对这两种代（dai）理方式的选择：</h4><ul>
+<li>如果目标对象实现了接口，默认情况下会采用JDK的动态代（dai）理实现AOP，也可以强制使用cglib实现AOP；</li>
+<li>如果目标对象没有实现接口，必须采用cglib库，Spring会自动在JDK动态代（dai）理和cglib之间转换。</li>
+</ul>
+<h3 id="IOC容器的初始化过程"><a href="#IOC容器的初始化过程" class="headerlink" title="IOC容器的初始化过程"></a>IOC容器的初始化过程</h3><p>IOC容器的初始化主要包括<strong>Resource定位，载入和注册</strong>三个步骤，接下来我们依次介绍。</p>
+<ul>
+<li><strong>Resource资源定位：</strong><br>Resouce定位是指BeanDefinition的资源定位，也就是IOC容器找数据的过程。Spring中使用外部资源来描述一个Bean对象，IOC容器第一步就是需要定位Resource外部资源。由ResourceLoader通过统一的Resource接口来完成定位。</li>
+<li><strong>BeanDefinition的载入：</strong><br>载入过程就是把定义好的Bean表示成IOC容器内部的数据结构，即BeanDefinition。在配置文件中每一个Bean都对应着一个BeanDefinition对象。<br>通过BeanDefinitionReader读取，解析Resource定位的资源，将用户定义好的Bean表示成IOC容器的内部数据结构BeanDefinition。<br>在IOC容器内部维护着一个BeanDefinitionMap的数据结构，通过BeanDefinitionMap，IOC容器可以对Bean进行更好的管理。</li>
+<li><strong>BeanDefinition的注册：</strong><br>注册就是将前面的BeanDefition保存到Map中的过程，通过BeanDefinitionRegistry接口来实现注册。</li>
+</ul>
+<h4 id="依赖注入的发生时刻"><a href="#依赖注入的发生时刻" class="headerlink" title="依赖注入的发生时刻"></a>依赖注入的发生时刻</h4><p><strong>IOC容器的初始化过程就是对Bean定义资源的定位、载入和注册</strong>，此时容器对Bean的依赖注入并没有发生。接下来，我们看下<strong>依赖注入的发生时刻吧。</strong></p>
+<p>ApplicationContext默认会在容器启动的时候创建我们配置好的各个Bean，我们的Bean配置如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=<span class="string">&quot;oneBean&quot;</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.nowcoder.oneBean&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>这里边的隐藏属性是lazy-init，即上边的配置和下边的是一样的：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=<span class="string">&quot;oneBean&quot;</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.nowcoder.oneBean&quot;</span> lazy-init=<span class="string">&quot;false&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>lazy-init=false</strong>表示不开启延迟加载，在容器启动的时候即创建该Bean。对应的，我们还可以配置lazy-init=true表示开启延迟加载，那么该Bean的创建发生在应用程序<strong>第一次向容器索取Bean</strong>时，通过getBean()方法的调用完成。</p>
+<h4 id="BeanFactory和FactoryBean的区别"><a href="#BeanFactory和FactoryBean的区别" class="headerlink" title="BeanFactory和FactoryBean的区别"></a>BeanFactory和FactoryBean的区别</h4><ul>
+<li><strong>BeanFactory</strong>：Bean工厂，是一个工厂(Factory)， 是Spring IOC容器的最顶层接口，它的作用是<strong>管理Bean，即实例化、定位、配置</strong>应用程序中的对象及建立这些对象间的依赖。</li>
+<li><strong>FactoryBean</strong>：工厂Bean，<strong>是一个Bean，作用是产生其他Bean实例</strong>，需要提供一个工厂方法，该方法用来返回其他Bean实例。</li>
+</ul>
+<h4 id="BeanFactory和ApplicationContext有什么区别？"><a href="#BeanFactory和ApplicationContext有什么区别？" class="headerlink" title="BeanFactory和ApplicationContext有什么区别？"></a>BeanFactory和ApplicationContext有什么区别？</h4><p>BeanFactory是Spring里面最顶层的接口，包含了各种Bean的定义，读取Bean配置文档，管理Bean的加载、实例化，控制Bean的生命周期，维护Bean之间的依赖关系。</p>
+<p><strong>ApplicationContext</strong>接口是BeanFactory的派生，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：</p>
+<ul>
+<li>继承了MessageSource，支持国际化。</li>
+<li>提供了统一的资源文件访问方式。</li>
+<li>提供在Listener中注册Bean的事件。</li>
+<li>提供同时加载多个配置文件的功能。</li>
+<li>载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。</li>
+</ul>
+<p><strong>ApplicationContext 三种常见的实现方式:</strong></p>
+<ul>
+<li><strong>FileSystemXmlApplicationContext</strong>：此容器从一个XML文件中加载Bean的定义，XML Bean 配置文件的全路径名必须提供给它的构造函数。</li>
+<li><strong>ClassPathXmlApplicationContext</strong>：此容器也从一个XML文件中加载Bean的定义，需要正确设置classpath因为这个容器将在classpath里找Bean配置。</li>
+<li><strong>WebXmlApplicationContext</strong>：此容器加载一个XML文件，定义了一个WEB应用的所有Bean。</li>
+</ul>
+<p><strong>在创建Bean和内存占用方面的区别：</strong></p>
+<ul>
+<li><strong>BeanFactory采用的是延迟加载形式来注入Bean的</strong>，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，就不能发现一些存在于<strong>Spring配置</strong>中的问题。如果Bean的某一个属性没有注入，BeanFactory加载后，直至第一次使用调用getBean方法才会抛出异常。</li>
+<li><strong>ApplicationContext，它是在容器启动时，一次性创建了所有的Bean</strong>。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 ApplicationContext启动后预载入所有的单实例Bean，通过预载入单实例Bean ,确保当需要的时候，可以直接获取。</li>
+<li>相对于基本的BeanFactory，ApplicationContext不足之处是占用内存空间。当应用程序配置Bean较多时，程序启动较慢，因为其一次性创建了所有的Bean。</li>
+</ul>
+<h4 id="BeanFactory和ApplicationContext的优缺点："><a href="#BeanFactory和ApplicationContext的优缺点：" class="headerlink" title="BeanFactory和ApplicationContext的优缺点："></a>BeanFactory和ApplicationContext的优缺点：</h4><p><strong>BeanFactory的优缺点：</strong></p>
+<p><strong>优点</strong>：应用启动的时候占用资源很少，对资源要求较高的应用，比较有优势；</p>
+<p><strong>缺点</strong>：运行速度会相对来说慢一些。而且有可能会出现空指针异常的错误，而且通过Bean工厂创建的Bean生命周期会简单一些。</p>
+<p><strong>ApplicationContext的优缺点：</strong></p>
+<p><strong>优点</strong>：所有的Bean在启动的时候都进行了加载，系统运行的速度快；在系统启动的时候，可以发现系统中的配置问题。</p>
+<p><strong>缺点</strong>：把费时的操作放到系统启动中完成，所有的对象都可以预加载，缺点就是内存占用较大。</p>
+<h3 id="Spring中Bean的作用域"><a href="#Spring中Bean的作用域" class="headerlink" title="Spring中Bean的作用域"></a>Spring中Bean的作用域</h3><p>Spring框架支持以下五种Bean的作用域：</p>
+<ul>
+<li><strong>singleton</strong> : Bean在每个Spring IOC 容器中只有一个实例，默认作用域。</li>
+<li><strong>prototype</strong>：一个Bean的定义可以有多个实例。</li>
+<li><strong>request</strong>：每次http请求都会创建一个Bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
+<li><strong>session</strong>：在一个HTTP Session中，一个Bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
+<li><strong>global-session</strong>：在一个全局的HTTP Session中，一个Bean对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
+</ul>
+<h4 id="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"><a href="#Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？" class="headerlink" title="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"></a>Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？</h4><p><strong>单例Bean和线程安全与否没有必然的关系</strong>。多个线程在多个<strong>工作内存和主内存交互</strong>的时候会出现不一致的地方，那么就不是线程安全的。大部分的Spring Bean并<strong>没有可变的状态</strong>(比如Service类和DAO类)，所以一定程度上可以说Spring的单例Bean是线程安全的。如果你的Bean有多种状态的话（比如 View Model 对象），就需要自行保证线程安全。在一般情况下，<strong>只有无状态的Bean才可以在多线程环境下共享。</strong></p>
+<h4 id="循环依赖："><a href="#循环依赖：" class="headerlink" title="循环依赖："></a>循环依赖：</h4><p>“<strong>如果A对象创建的过程需要使用到B对象，但是B对象创建的时候也需要A对象，也就是构成了循环依赖的现象，那么Spring会如何解决？</strong>”</p>
+<p>这是一种<strong>构造器循环依赖，通过构造器注入构成的循环依赖，此依赖是无法解决的，只能抛出BeanCurrentlyInCreationException异常表示循环依赖。</strong></p>
+<h4 id="Spring事务"><a href="#Spring事务" class="headerlink" title="Spring事务"></a>Spring事务</h4><p>Spring支持编程式事务管理和声明式事务管理两种方式：</p>
+<ul>
+<li><strong>编程式事务管理</strong>：使用TransactionTemplate实现。</li>
+<li><strong>声明式事务管理</strong>：建立在AOP之上的。其本质是通过AOP功能，对方法前后进行拦截，将事务处理的功能编织到拦截的方法中，也就是在目标方法开始之前加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务</li>
+</ul>
+<p><strong>声明式事务的优点：</strong></p>
+<p>就是不需要在业务逻辑代码中掺杂事务管理的代码，只需在配置文件中做相关的事务规则声明或通过@Transactional注解的方式，便可以将事务规则应用到业务逻辑中。</p>
+<p><strong>事务选择：</strong></p>
+<p>声明式事务管理要优于编程式事务管理，这正是Spring倡导的<strong>非侵入式的开发</strong>方式，使业务代码不受污染，只要<strong>加上注解</strong>就可以获得完全的事务支持。唯一不足之处是声明式事务的最细粒度只能作用到方法级别，无法做到像编程式事务那样可以作用到代码块级别。</p>
+<h4 id="事务的传播行为"><a href="#事务的传播行为" class="headerlink" title="事务的传播行为"></a>事务的传播行为</h4><ul>
+<li><strong>PROPAGATION_REQUIRED</strong>：如果当前没有事务，就创建一个新事务，如果当前存在事务，就加入该事务，<strong>该设置是最常用的设置。</strong></li>
+<li>PROPAGATION_SUPPORTS：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就以非事务执行。</li>
+<li>PROPAGATION_MANDATORY：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就抛出异常。</li>
+<li>PROPAGATION_REQUIRES_NEW：创建新事务，无论当前存不存在事务，都创建新事务。</li>
+<li>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</li>
+<li>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。</li>
+<li>PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则按REQUIRED属性执行。</li>
+</ul>
+<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><ul>
+<li>读未提交</li>
+<li>读已提交</li>
+<li>可重复读</li>
+<li>串行（序列化）</li>
+</ul>
+<h3 id="SpringMVC的消息处理机制"><a href="#SpringMVC的消息处理机制" class="headerlink" title="SpringMVC的消息处理机制"></a>SpringMVC的消息处理机制</h3><p> SpringMVC是一种轻量级的Web层框架，是一个基于请求驱动的Web框架，使用了<strong>“前端控制器（DispatcherServlet）”模型</strong>来进行设计，再根据请求映射规则分发给相应的页面控制器进行处理。消息处理依次经过的组件如下：</p>
+<p><strong>DispatcherServlet、HandlerMapping、HandlerAdapter，返回一个ModelAndView逻辑视图名、ViewResolver、View</strong></p>
+<p><strong>具体流程可以概括为</strong>：通过前端控制器DispatcherServlet来接收并且分发请求，然后通过HandlerMapping和HandlerAdapter找到具体可以处理该请求的Handler，经过逻辑处理，返回一个ModelAndView，经过ViewResolver处理，最后生成了一个View视图返回给了客户端。可以参考如下的示意图：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210424084138.png" alt="图片说明"></p>
+<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p>Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件<strong>一站式解决方案</strong>，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了<strong>各种启动器starter</strong>，开发者能快速上手。</p>
+<p>SpringBoot的优点包括可以独立运行，简化了配置，可以实现<strong>自动配置</strong>，无代码生成以及XML配置，并且可以进行应用监控。</p>
+<p><strong>注解 @EnableAutoConfiguration, @Configuration, @ConditionalOnClass 就是自动配置</strong>的核心，实现了SpringBoot项目的自动配置。</p>
+<h4 id="SpringBoot的核心注解"><a href="#SpringBoot的核心注解" class="headerlink" title="SpringBoot的核心注解"></a>SpringBoot的核心注解</h4><p>启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解，主要组合包含了以下 3 个注解：</p>
+<ul>
+<li>@<strong>SpringBootConfiguration</strong>：组合了 @Configuration 注解，实现配置文件的功能。</li>
+<li>@<strong>EnableAutoConfiguration</strong>：打开自动配置的功能，也可以关闭某个自动配置的选项。如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。</li>
+<li>@<strong>ComponentScan</strong>：Spring组件扫描。</li>
+</ul>
+<h4 id="SpringBoot项目启动分析"><a href="#SpringBoot项目启动分析" class="headerlink" title="SpringBoot项目启动分析"></a>SpringBoot项目启动分析</h4><p>Application类是通过<strong>SpringApplication</strong>类的静态run方法来启动应用的。打开这个静态方法，该静态方法真正执行的是两部分：<strong>new SpringApplication( )并且执行对象run()方法。</strong></p>
+<h4 id="轻量级和重量级的划分"><a href="#轻量级和重量级的划分" class="headerlink" title="轻量级和重量级的划分"></a>轻量级和重量级的划分</h4><ol>
+<li>主要看它使用了多少服务，使用的服务越多，容器为普通的java对象做的工作就越多，必然会影响到应用的发布时间，或者运行性能。</li>
+<li>对于spring容器，他提供了很多服务，但默认是关闭的，应用需要某种服务，需要指明使用服务，如果服务很少，如只使用了spring核心服务，就认为此时应用属于轻量级的，如果使用了大部分的服务，这时就属于重量级的。</li>
+<li>目前EJB容器就重量级。因为他默认为应用提供了Ejb规范中的所有功能，所以属于重量级。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>jvm内存机制</title>
+    <url>/2021/04/22/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h1 id="JVM内存机制"><a href="#JVM内存机制" class="headerlink" title="JVM内存机制"></a>JVM内存机制</h1><h3 id="JVM中的内存是怎么划分的？"><a href="#JVM中的内存是怎么划分的？" class="headerlink" title="JVM中的内存是怎么划分的？"></a>JVM中的内存是怎么划分的？</h3><p>JVM中的内存主要划分为5个区域，即<strong>方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈</strong>。下边是Java虚拟机运行时数据区示意图：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422155921.png" alt="图片说明"></p>
+<a id="more"></a>
+<p><strong>方法区：</strong>方法区是一个<strong>线程之间共享</strong>的区域。<strong>常量，静态变量以及JIT编译后的代码都在方法区。主要用于存储已被虚拟机加载的类信息</strong>，也可以称为“永久代”，垃圾回收效果一般，通过-XX：MaxPermSize控制上限。</p>
+<p><strong>堆内存：</strong>堆内存是<strong>垃圾回收</strong>的主要场所，也是线程之间共享的区域，主要用来<strong>存储创建的对象实例</strong>，通过-Xmx 和-Xms 可以控制大小。</p>
+<p><strong>虚拟机栈（栈内存）：</strong>栈内存中主要保存<strong>局部变量、基本数据类型变量</strong>以及<strong>堆内存中某个对象的引用变量</strong>。每个方法在执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表，操作数栈，动态链接，方法出口等信息。栈中的栈帧随着方法的进入和退出有条不紊的执行着出栈和入栈的操作。</p>
+<p><strong>程序计数器：</strong> 程序计数器是当前线程执行的<strong>字节码的位置指示器</strong>。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令，是内存区域中唯一一个在虚拟机规范中<strong>没有规定任何OutOfMemoryError情况</strong>的区域。</p>
+<p><strong>本地方法栈：</strong> 主要是为JVM提供使用native方法的服务。</p>
+<h3 id="对象创建过程中的内存分配"><a href="#对象创建过程中的内存分配" class="headerlink" title="对象创建过程中的内存分配"></a>对象创建过程中的内存分配</h3><p>一般情况下我们通过new指令来创建对象，当虚拟机遇到一条new指令的时候，会去检查这个指令的参数是否能在常量池中定位到某个类的符号引用，并且检查这个符号引用代表的类是否已经被加载，解析和初始化。如果没有，那么会执行类加载过程。</p>
+<p>通过执行类的加载，验证，准备，解析，初始化步骤，完成了类的加载，这个时候会为该对象进行内存分配，也就是把一块确定大小的内存从Java堆中划分出来，在<strong>分配的内存</strong>上完成对象的创建工作。</p>
+<p><strong>对象的内存分配有两种方式，即指针碰撞和空闲列表方式。</strong></p>
+<p><strong>指针碰撞方式：</strong></p>
+<p>假设Java堆中的内存是绝对规整的，用过的内存在一边，未使用的内存在另一边，中间有一个指示指针，那么所有的内存分配就是把那个指针向空闲空间那边挪动一段与对象大小相等的距离。</p>
+<p><strong>空闲列表方式：</strong></p>
+<p>如果Java堆内存中不是规整的，已使用和未使用的内存相互交错，那么虚拟机就必须维护一个列表用来记录哪块内存是可用的，在分配的时候找到一块足够大的空间分配对象实例，并且需要更新列表上的记录。</p>
+<p>Java <strong>堆内存是否规整</strong>是由所使用的垃圾收集器<strong>是否拥有压缩整理功能来决定</strong>的</p>
+<h4 id="内存分配是如何保证线程安全的"><a href="#内存分配是如何保证线程安全的" class="headerlink" title="内存分配是如何保证线程安全的"></a>内存分配是如何保证线程安全的</h4><ul>
+<li>对分配内存空间的动作进行同步处理，通过“<strong>CAS + 失败重试</strong>”的方式保证更新指针操作的原子性</li>
+<li>把分配内存的动作按照线程划分在不同的空间之中，即给每一个线程都预先分配一小段的内存，称为<strong>本地线程分配缓存（TLAB）</strong>，只有TLAB用完并分配新的TLAB时，才需要进行同步锁定。 虚拟机是否使用TLAB，可以通过<strong>-XX: +/-UserTLAB</strong>参数来设定</li>
+</ul>
+<h3 id="对象被访问时是如何找到的"><a href="#对象被访问时是如何找到的" class="headerlink" title="对象被访问时是如何找到的"></a>对象被访问时是如何找到的</h3><p>当创建一个对象的时候，在栈内存中会有一个引用变量，指向堆内存中的某个具体的对象实例。</p>
+<p>Java虚拟机规范中并<strong>没有规定这个引用变量应该以何种方式去定位和访问堆内存中的具体对象</strong>。目前常见的对象访问方式有两种，即句柄访问方式和直接指针访问方式，分别介绍如下。</p>
+<p><strong>句柄访问方式：</strong></p>
+<p>在JVM的堆内存中划分出一块内存来作为句柄池，引用变量中存储的就是对象的句柄地址，句柄中包含了对象实例数据与类型数据各自的具体地址信息。在内存垃圾收集之后，对象会移动，但是引用reference中存储的是稳定的句柄地址，但是句柄地址方式不直接，访问速度较慢。</p>
+<p><strong>直接指针访问方式：</strong></p>
+<p>引用变量中存储的就是对象的直接地址，通过指针直接访问对象。直接指针的访问方式节省了一次指针定位的时间开销，速度较快。Sun HotSpot使用了直接指针方式进行对象的访问。</p>
+<h3 id="内存分配和垃圾回收"><a href="#内存分配和垃圾回收" class="headerlink" title="内存分配和垃圾回收"></a>内存分配和垃圾回收</h3><p>JVM的内存可以分为<strong>堆内存和非堆内存</strong>。堆内存分为<strong>年轻代和老年代</strong>。年轻代又可以进一步划分为<strong>一个Eden（伊甸）区和两个Survivor（幸存）区</strong>组成。如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422170158.png" alt="图片说明"></p>
+<h4 id="JVM堆内存的分配："><a href="#JVM堆内存的分配：" class="headerlink" title="JVM堆内存的分配："></a>JVM堆内存的分配：</h4><p>JVM初始分配的堆内存由<strong>-Xms</strong>指定，默认是物理内存的1/64。JVM最大分配的堆内存由<strong>-Xmx</strong>指定，默认是物理内存的1/4。</p>
+<p>默认空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制。空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制。因此我们一般设置-Xms和-Xmx相等以避免在每次GC 后调整堆的大小。</p>
+<p>通过参数<strong>-Xmn2G</strong> 可以设置年轻代大小为2G。通过<strong>-XX:SurvivorRatio</strong>可以设置年轻代中Eden区与Survivor区的比值，设置为8，则表示年轻代中Eden区与一块Survivor的比例为8：1。注意年轻代中有两块Survivor区域。</p>
+<h4 id="JVM非堆内存的分配："><a href="#JVM非堆内存的分配：" class="headerlink" title="JVM非堆内存的分配："></a>JVM非堆内存的分配：</h4><p>JVM使用<strong>-XX:PermSize</strong> 设置非堆内存初始值，默认是物理内存的1/64。由<strong>-XX:MaxPermSize</strong>设置最大非堆内存的大小，默认是物理内存的1/4。</p>
+<h4 id="堆内存上对象的分配与回收"><a href="#堆内存上对象的分配与回收" class="headerlink" title="堆内存上对象的分配与回收"></a>堆内存上对象的分配与回收</h4><p>我们创建的对象会优先在Eden分配，如果是大对象（很长的字符串数组）则可以直接进入老年代。虚拟机提供一个<strong>-XX:PretenureSizeThreshold参数</strong>，令大于这个参数值的对象直接在老年代中分配，避免在Eden区和两个Survivor区发生大量的内存拷贝。</p>
+<p>另外，<strong>长期存活的对象将进入老年代</strong>，每一次<strong>MinorGC（年轻代GC）</strong>，对象年龄就大一岁，默认15岁晋升到老年代，通过<strong>-XX:MaxTenuringThreshold设置晋升年龄。</strong></p>
+<p><strong>堆内存上的对象回收也叫做垃圾回收，那么垃圾回收什么时候开始呢？</strong></p>
+<p>垃圾回收主要是完成<strong>清理对象，整理内存</strong>的工作。上面说到GC经常发生的区域是堆区，堆区还可以细分为新生代、老年代。新生代还分为一个Eden区和两个Survivor区。垃圾回收分为年轻代区域发生的Minor GC和老年代区域发生的Full GC，分别介绍如下。</p>
+<p><strong>Minor GC（年轻代GC）:</strong><br>对象优先在Eden中分配，当Eden中没有足够空间时，虚拟机将发生一次Minor GC，因为Java大多数对象都是朝生夕灭，所以Minor GC非常频繁，而且速度也很快。</p>
+<p><strong>Full GC（老年代GC）:</strong><br>Full GC是指发生在老年代的GC，当老年代没有足够的空间时即发生Full GC，发生Full GC一般都会有一次Minor GC。</p>
+<p><strong>动态对象年龄判定：</strong></p>
+<p>如果Survivor空间中相同年龄所有对象的大小总和大于Survivor空间的一半，那么<strong>年龄大于等于该对象年龄的对象即可晋升</strong>到老年代，不必要等到-XX:MaxTenuringThreshold。</p>
+<p><strong>空间分配担保：</strong></p>
+<p>发生Minor GC时，虚拟机会检测之前每次晋升到老年代的平均大小是否大于老年代的剩余空间大小。如果大于，则进行一次<strong>Full GC（老年代GC）</strong>，如果小于，则查看<strong>HandlePromotionFailure设置是否允许担保失败</strong>，如果允许，那只会进行一次<strong>Minor GC</strong>，如果不允许，则改为进行一次<strong>Full GC</strong>。</p>
+<h3 id="JVM如何判定一个对象是否应该被回收"><a href="#JVM如何判定一个对象是否应该被回收" class="headerlink" title="JVM如何判定一个对象是否应该被回收"></a>JVM如何判定一个对象是否应该被回收</h3><p>判断一个对象是否应该被回收，主要是看其是否还有引用。判断对象是否存在引用关系的方法包括<strong>引用计数法以及root根搜索方法</strong>。</p>
+<p><strong>引用计数法：</strong></p>
+<p>是一种比较古老的回收算法。原理是此对象有一个引用，即增加一个计数，删除一个引用则减少一个计数。垃圾回收时，只需要收集计数为0的对象。此算法最致命的是<strong>无法处理循环引用</strong>的问题。</p>
+<p><strong>root根搜索方法：</strong></p>
+<p>root搜索方法的基本思路就是通过一系列可以做为root的对象作为起始点，从这些节点开始向下搜索。当一个对象到root节点没有任何引用链接时，则证明此对象是可以被回收的。以下对象会被认为是root对象：</p>
+<ul>
+<li><strong>栈内存中引用的对象</strong></li>
+<li><strong>方法区中静态引用和常量引用指向的对象</strong></li>
+<li>被启动类（bootstrap加载器）加载的类和创建的对象</li>
+<li>Native方法中JNI引用的对象。</li>
+</ul>
+<h4 id="什么是对象的引用？"><a href="#什么是对象的引用？" class="headerlink" title="什么是对象的引用？"></a>什么是对象的引用？</h4><p>如果reference类型的数据中存储的数值代表的是另外一块内存的起始地址，就称为<strong>这块内存代表一个引用</strong>。JDK1.2以后将引用分为<strong>强引用，软引用，弱引用和虚引用四种。</strong></p>
+<ul>
+<li><strong>强引用：</strong>普通存在， P p = new P()，只要强引用存在，垃圾收集器永远不会回收掉被引用的对象。</li>
+<li><strong>软引用：</strong>通过SoftReference类来实现软引用，在内存不足的时候会将这些软引用回收掉。</li>
+<li><strong>弱引用：</strong>通过WeakReference类来实现弱引用，每次垃圾回收的时候肯定会回收掉弱引用。</li>
+<li><strong>虚引用：</strong>也称为幽灵引用或者幻影引用，通过PhantomReference类实现。设置虚引用只是为了对象被回收时候收到一个系统通知。</li>
+</ul>
+<h3 id="JVM垃圾回收算法有哪些？"><a href="#JVM垃圾回收算法有哪些？" class="headerlink" title="JVM垃圾回收算法有哪些？"></a>JVM垃圾回收算法有哪些？</h3><p>HotSpot 虚拟机采用了<strong>root根搜索方法</strong>来进行内存回收，常见的回收算法有<strong>标记-清除算法，复制算法和标记整理算法。</strong></p>
+<p><strong>标记-清除算法（Mark-Sweep）：</strong></p>
+<p>标记-清除算法执行分两阶段。第一阶段从引用根节点开始标记所有被引用的对象，第二阶段遍历整个堆，把未标记的对象清除。此算法需要暂停整个应用，并且会产生内存碎片。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175509.png" alt="图片说明"></p>
+<p><strong>复制算法：</strong></p>
+<p>复制算法把内存空间划为两个相等的区域，每次只使用其中一个区域。垃圾回收时，遍历当前使用区域，把正在使用中的对象复制到另外一个区域中。复制算法每次只处理正在使用中的对象，因此复制成本比较小，同时复制过去以后还能进行相应的内存整理，不会出现“碎片”问题。当然，此算法的缺点也是很明显的，就是需要两倍内存空间。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175610.png" alt="图片说明"></p>
+<p><strong>标记-整理算法：</strong></p>
+<p>标记-整理算法结合了<strong>“标记-清除”和“复制”</strong>两个算法的优点。也是分两阶段，第一阶段从根节点开始标记所有被引用对象，第二阶段遍历整个堆，清除未标记对象并且把存活对象“压缩”到堆的其中一块，按顺序排放。此算法避免了“标记-清除”的碎片问题，同时也避免了“复制”算法的空间问题。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422180817.png" alt="图片说明"></p>
+<p>年轻代垃圾回收一般采用复制算法，老年代垃圾回收一般采用标记-清除和标记-整理算法</p>
+<h3 id="JVM中的垃圾收集器"><a href="#JVM中的垃圾收集器" class="headerlink" title="JVM中的垃圾收集器"></a>JVM中的垃圾收集器</h3><p>JVM中的垃圾收集器主要包括7种，即<strong>Serial，Serial Old，ParNew，Parallel Scavenge，Parallel Old以及CMS，G1收集器</strong>。如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422182047.png" alt="图片说明"></p>
+<p><strong>Serial收集器：</strong></p>
+<p>Serial收集器是<strong>一个单线程的垃圾收集器</strong>，并且在执行垃圾回收的时候需要 <strong>Stop The World</strong>。虚拟机运行在<strong>Client模式</strong>下的默认新生代收集器。Serial收集器的优点是简单高效，对于限定在单个CPU环境来说，Serial收集器没有多线程交互的开销。</p>
+<p><strong>Serial Old收集器：</strong></p>
+<p>Serial Old是Serial收集器的老年代版本，也是<strong>一个单线程收集器</strong>。主要也是给在Client模式下的虚拟机使用。在Server模式下存在主要是做为CMS垃圾收集器的后备预案，<strong>当CMS并发收集发生Concurrent Mode Failure时使用。</strong></p>
+<p><strong>ParNew收集器：</strong></p>
+<p>ParNew是Serial收集器的<strong>多线程</strong>版本，新生代是并行的（多线程的），老年代是串行的（单线程的），新生代采用复制算法，老年代采用标记整理算法。可以使用参数：<strong>-XX：UseParNewGC使用该收集器，使用 -XX：ParallelGCThreads可以限制线程数量。</strong></p>
+<p><strong>Parallel Scavenge垃圾收集器：</strong></p>
+<p>Parallel Scavenge是一种新生代收集器，使用复制算法的收集器，而且是<strong>并行的多线程收集器。</strong>Parallel收集器特点是更加关注吞吐量（吞吐量就是cpu用于运行用户代码的时间与cpu总消耗时间的比值）。可以通过<strong>-XX:MaxGCPauseMillis参数控制最大垃圾收集停顿时间；通过-XX:GCTimeRatio参数直接设置吞吐量大小；通过-XX:+UseAdaptiveSizePolicy参数可以打开GC自适应调节策略，</strong>该参数打开之后虚拟机会根据系统的运行情况收集性能监控信息，动态调整虚拟机参数以提供最合适的停顿时间或者最大的吞吐量。<strong>自适应调节策略</strong>是Parallel Scavenge收集器和ParNew的主要区别之一。</p>
+<p><strong>Parallel Old收集器：</strong></p>
+<p>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和标记-整理算法。</p>
+<p><strong>CMS（Concurrent Mark Sweep）收集器</strong>：</p>
+<p>CMS收集器是<strong>一种以获取最短回收停顿时间为目标</strong>的收集器。CMS收集器是基于<strong>标记-清除算法</strong>实现的，是一种老年代收集器，通常与<strong>ParNew</strong>一起使用。</p>
+<p><strong>CMS的垃圾收集过程分为4步：</strong></p>
+<ul>
+<li><strong>初始标记</strong>：需要“Stop the World”，初始标记仅仅只是标记一下GC Root能直接关联到的对象，速度很快。</li>
+<li><strong>并发标记</strong>：是主要标记过程，这个标记过程是和用户线程并发执行的。</li>
+<li><strong>重新标记</strong>：需要“Stop the World”，为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录（停顿时间比初始标记长，但比并发标记短得多）。</li>
+<li><strong>并发清除</strong>：和用户线程并发执行的，基于标记结果来清理对象。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422193203.png" alt="图片说明"></p>
+<p><strong>如果在重新标记之前刚好发生了一次MinorGC，会不会导致重新标记阶段Stop the World时间太长？</strong></p>
+<p>不会的，在并发标记阶段其实还包括了一次并发的<strong>预清理阶段</strong>，虚拟机会主动<strong>等待年轻代发生垃圾回收</strong>，这样可以将重新标记对象引用关系的步骤放在并发标记阶段，有效降低重新标记阶段Stop The World的时间。</p>
+<h4 id="CMS垃圾回收器的优点："><a href="#CMS垃圾回收器的优点：" class="headerlink" title="CMS垃圾回收器的优点："></a>CMS垃圾回收器的优点：</h4><p>CMS以降低垃圾回收的停顿时间为目的，很显然其具有并发收集、停顿时间低的优点。</p>
+<h4 id="CMS垃圾回收器的缺点："><a href="#CMS垃圾回收器的缺点：" class="headerlink" title="CMS垃圾回收器的缺点："></a>CMS垃圾回收器的缺点：</h4><ul>
+<li><strong>对CPU资源非常敏感</strong>，因为并发标记和并发清理阶段和用户线程一起运行，当CPU数变小时，性能容易出现问题。</li>
+<li>收集过程中会产生<strong>浮动垃圾</strong>，所以不可以在老年代内存不够用了才进行垃圾回收，必须提前进行垃圾收集。通过参数<strong>-XX:CMSInitiatingOccupancyFraction</strong>的值来控制内存使用百分比。如果该值设置的太高，那么在CMS运行期间预留的内存可能无法满足程序所需，会出现<strong>Concurrent Mode Failure失败，之后会临时使用Serial Old收集器做为老年代收集器</strong>，会产生更长时间的停顿。</li>
+<li><strong>标记-清除方式会产生内存碎片</strong>，可以使用参数<strong>-XX：UseCMSCompactAtFullCollection</strong>来控制是否开启内存整理（无法并发，默认是开启的）。参数<strong>-XX:CMSFullGCsBeforeCompaction</strong>用于设置执行多少次不压缩的Full GC后进行一次带压缩的内存碎片整理（默认值是0）。</li>
+</ul>
+<p><strong>浮动垃圾：</strong></p>
+<p>由于在应用运行的同时进行垃圾回收，所以有些垃圾可能在垃圾回收进行完成时产生，这样就造成了<strong>“Floating Garbage（浮动垃圾）”</strong>，这些垃圾需要在下次垃圾回收周期时才能回收掉。所以，<strong>并发收集器一般需要20%的预留空间</strong>用于这些浮动垃圾。</p>
+<p><strong>G1（Garbage-First）收集器：</strong></p>
+<p>G1收集器将新生代和老年代取消了，取而代之的是<strong>将堆划分为若干的区域</strong>，仍然属于分代收集器，区域的一部分包含新生代，新生代采用复制算法，老年代采用标记-整理算法。</p>
+<p>通过<strong>将JVM堆分为一个个的区域（region）</strong>,G1收集器可以避免在Java堆中进行全区域的垃圾收集。G1跟踪各个region里面的垃圾堆积的价值大小（回收所获得的空间大小以及回收所需时间的比值），在后台维护一个优先列表，每次<strong>根据回收时间来优先回收价值最大的region。</strong></p>
+<p><strong>G1收集器的特点：</strong></p>
+<ul>
+<li><strong>并行与并发</strong>：G1能充分利用多CPU，多核环境下的硬件优势，来缩短Stop the World，是并发的收集器。</li>
+<li><strong>分代收集</strong>：G1不需要其他收集器就能独立管理整个GC堆，能够采用不同的方式去处理新建对象、存活一段时间的对象和熬过多次GC的对象。</li>
+<li><strong>空间整合</strong>：G1从整体来看是基于标记-整理算法，从局部（两个Region）上看基于复制算法实现，G1运作期间不会产生内存空间碎片。</li>
+<li><strong>可预测的停顿</strong>：能够建立可以预测的停顿时间模型，预测停顿时间。</li>
+</ul>
+<p><strong>和CMS收集器类似，G1收集器的垃圾回收工作也分为了四个阶段：</strong></p>
+<ul>
+<li>初始标记</li>
+<li>并发标记</li>
+<li>最终标记</li>
+<li>筛选回收</li>
+</ul>
+<p>其中，筛选回收阶段首先对各个Region的回收价值和成本进行计算，根据用户期望的GC停顿时间来制定回收计划。</p>
+<p><strong>CMS也确实是我们服务中最常使用的垃圾收集器</strong>。利用CMS并发标记和清理的特性，<strong>可以有效降低用户的停顿时间，对于服务的稳定性有一个非常显著的提升</strong>。</p>
+<h3 id="JVM常用内存调优命令："><a href="#JVM常用内存调优命令：" class="headerlink" title="JVM常用内存调优命令："></a>JVM常用内存调优命令：</h3><p>JVM在内存调优方面，提供了几个常用的命令，分别为<strong>jps，jinfo，jstack，jmap以及jstat命令</strong>。分别介绍如下：</p>
+<ul>
+<li><strong>jps：</strong>主要用来输出JVM中运行的进程状态信息，一般使用jps命令来查看进程的状态信息，包括JVM启动参数等。</li>
+<li><strong>jinfo：</strong>主要用来观察进程运行环境参数等信息。</li>
+<li><strong>jstack：</strong>主要用来查看某个Java进程内的线程堆栈信息。jstack pid 可以看到当前进程中各个线程的状态信息，包括其持有的锁和等待的锁。</li>
+<li><strong>jmap：</strong>用来查看堆内存使用状况。jmap -heap pid可以看到当前进程的堆信息和使用的GC收集器，包括年轻代和老年代的大小分配等</li>
+<li><strong>jstat：</strong>进行实时命令行的监控，包括堆信息以及实时GC信息等。可以使用jstat -gcutil pid1000来每隔一秒来查看当前的GC信息。</li>
+</ul>
+<p><strong>jps</strong> 用于显示当前所有java进程pid，jps经常使用的参数如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">-q：仅输出VM标识符，不包括<span class="class"><span class="keyword">class</span> <span class="title">name</span>,<span class="title">jar</span> <span class="title">name</span>,<span class="title">arguments</span> <span class="title">in</span> <span class="title">main</span> <span class="title">method</span> </span></span><br><span class="line"><span class="class">-<span class="title">m</span>：输出<span class="title">main</span> <span class="title">method</span>的参数 </span></span><br><span class="line"><span class="class">-<span class="title">l</span>：输出完全的包名，应用主类名，<span class="title">jar</span>的完全路径名 </span></span><br><span class="line"><span class="class">-<span class="title">v</span>：输出<span class="title">jvm</span>参数 </span></span><br></pre></td></tr></table></figure>
+<p><strong>jinfo</strong> 可以观察进程运行环境参数，通过jinfo pid可以查看指定进程的运行环境参数.</p>
+<p><strong>jstack</strong> 用于显示jvm中当前所有线程的运行情况和线程当前状态，一般使用的参数为-l，表示长列表，并且打印锁的相关附加信息。jstack的输出中还可以看到每一个线程当前所处的状态以及其当前所占用的锁和等待的锁，还可以检测是否存在死锁。</p>
+<p><strong>jmap</strong> 用来打印内存映射以及查看堆内存细节等，一般情况下使用-heap参数来打印堆内存的概要信息，GC使用的算法以及堆的一些配置等信息。</p>
+<p><strong>jstat</strong> 一般用来观察GC情况，并且进行实时的分析与监控，可以使用的参数如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">-<span class="class"><span class="keyword">class</span> 显示<span class="title">ClassLoad</span>的相关信息</span></span><br><span class="line"><span class="class">-<span class="title">compiler</span> 显示<span class="title">JIT</span>编译的相关信息</span></span><br><span class="line"><span class="class">-<span class="title">gc</span> 显示和<span class="title">gc</span>相关的堆信息</span></span><br><span class="line"><span class="class">-<span class="title">gccapacity</span> 显示各个代的容量以及使用情况</span></span><br><span class="line"><span class="class">-<span class="title">gcmetacapacity</span> 显示<span class="title">metaspace</span>的大小</span></span><br><span class="line"><span class="class">-<span class="title">gcnew</span> 显示新生代信息</span></span><br><span class="line"><span class="class">-<span class="title">gcnewcapacity</span> 显示新生代大小和使用情况</span></span><br><span class="line"><span class="class">-<span class="title">gcold</span> 显示老年代和永久代的信息</span></span><br><span class="line"><span class="class">-<span class="title">gcoldcapacity</span> 显示老年代的大小</span></span><br><span class="line"><span class="class">-<span class="title">gcutil</span>　　 显示垃圾收集信息</span></span><br><span class="line"><span class="class">-<span class="title">gccause</span> 显示垃圾回收的相关信息（通-<span class="title">gcutil</span>）,同时显示最后一次或当前正在发生的垃圾回收的诱因</span></span><br><span class="line"><span class="class">-<span class="title">printcompilation</span> 输出<span class="title">JIT</span>编译的方法信息</span></span><br></pre></td></tr></table></figure>
+<h4 id="如何排查一个线上的服务异常？"><a href="#如何排查一个线上的服务异常？" class="headerlink" title="如何排查一个线上的服务异常？"></a>如何排查一个线上的服务异常？</h4><ul>
+<li>首先查看当前进程的JVM启动参数，查看内存设置是否存在明显问题。</li>
+<li>查看GC日志，看GC频率和时间是否明显异常。</li>
+<li>查看当前进程的状态信息top -Hp pid，包括线程个数等信息。</li>
+<li>jstack pid查看当前的线程状态，是否存在死锁等关键信息。</li>
+<li>jstat -gcutil pid查看当前进程的GC情况。</li>
+<li>jmap -heap pid查看当前进程的堆信息，包括使用的垃圾收集器等信息。</li>
+<li>用jvisiual工具打开dump二进制文件，分析是什么对象导致了内存泄漏，定位到代码处，进行code review。</li>
+</ul>
+<p>一般情况下，我们在测试环境上线新服务的时候，应该重点关注并且查看当前新服务的内存使用以及回收情况，避免新服务中出现内存异常导致服务崩溃的现象发生。</p>
+<h3 id="JDK8中在内存管理上的变化"><a href="#JDK8中在内存管理上的变化" class="headerlink" title="JDK8中在内存管理上的变化"></a>JDK8中在内存管理上的变化</h3><p>JDK8中出现了<strong>元空间代替了永久代</strong>。元空间和永久代类似，都是对JVM规范中方法区的实现。区别在于元空间并不在虚拟机中，而是使用<strong>本地内存，</strong>默认情况下元空间的大小仅受本地内存限制，也可以通过<strong>-XX：MetaspaceSize指定元空间大小。</strong></p>
+<h4 id="为什么要使用元空间代替永久代"><a href="#为什么要使用元空间代替永久代" class="headerlink" title="为什么要使用元空间代替永久代"></a>为什么要使用元空间代替永久代</h4><p>类和方法的信息等比较难确定大小，因此对于永久代的大小指定比较困难，指定的太小容易出现永久代溢出的问题。而使用元空间则使用了本地内存，减少了这种情况。</p>
+<h3 id="JAVA中的类加载机制"><a href="#JAVA中的类加载机制" class="headerlink" title="JAVA中的类加载机制"></a>JAVA中的类加载机制</h3><p>Java中的类加载机制指虚拟机<strong>把描述类的数据从 Class 文件加载到内存</strong>，并对数据进行<strong>校验、转换、解析和初始化</strong>，最终形成可以被虚拟机直接使用的 Java 类型。</p>
+<p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括了：<strong>加载、验证、准备、解析、初始化、使用、卸载七个阶段</strong>。类加载机制的保持则包括前面五个阶段。</p>
+<ul>
+<li><strong>加载：</strong></li>
+</ul>
+<p>加载是指<strong>将类的.class文件中的二进制数据读入到内存中，将其放在运行时数据区的方法区内，然后在堆区创建一个java.lang.Class对象，用来封装类在方法区内的数据结构。</strong></p>
+<ul>
+<li><strong>验证：</strong></li>
+</ul>
+<p>验证的作用是确保被加载的类的正确性，包括文件格式验证，元数据验证，字节码验证以及符号引用验证。</p>
+<ul>
+<li><strong>准备：</strong></li>
+</ul>
+<p>准备阶段为类的静态变量分配内存，并将其初始化为默认值。假设一个类变量的定义为public static int val = 3;那么变量val在准备阶段过后的初始值不是3而是0。</p>
+<ul>
+<li><strong>解析：</strong></li>
+</ul>
+<p>解析阶段将类中<strong>符号引用转换为直接引用</strong>。符号引用以一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能够无歧义的定位到目标即可。</p>
+<ul>
+<li><strong>初始化：</strong></li>
+</ul>
+<p>初始化阶段<strong>为类的静态变量赋予正确的初始值</strong>，JVM负责对类进行初始化，主要对类变量进行初始化。</p>
+<h4 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h4><ul>
+<li><strong>启动类加载器（Bootstrap ClassLoader）：</strong></li>
+</ul>
+<p>启动类加载器负责加载存放在JDK\jre\lib(JDK代表JDK的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的类。</p>
+<ul>
+<li><strong>扩展类加载器（ExtClassLoader）：</strong></li>
+</ul>
+<p>扩展类加载器负责加载JDK\jre\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中的所有类库（如javax.*开头的类）。</p>
+<ul>
+<li><strong>应用类加载器（AppClassLoader）：</strong></li>
+</ul>
+<p>应用类加载器负责加载用户类路径（ClassPath）所指定的类，开发者可以直接使用该类加载器。</p>
+<h4 id="类加载器的职责："><a href="#类加载器的职责：" class="headerlink" title="类加载器的职责："></a>类加载器的职责：</h4><ul>
+<li><strong>全盘负责：</strong></li>
+</ul>
+<p>当一个类加载器负责加载某个Class时，该Class所依赖的和引用的其他Class也将由该类加载器负责载入，除非显式使用另外一个类加载器来载入。</p>
+<ul>
+<li><strong>父类委托：</strong></li>
+</ul>
+<p>类加载机制会先让父类加载器试图加载该类，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类。</p>
+<p>父类委托机制是为了<strong>防止内存中出现多份同样的字节码，</strong>保证java程序安全稳定运行。</p>
+<ul>
+<li><strong>缓存机制：</strong></li>
+</ul>
+<p>缓存机制将会保证所有加载过的Class都会被缓存，当程序中需要使用某个Class时，先从缓存区寻找该Class，只有缓存区不存在，系统才会读取该类对应的二进制数据，并将其转换成Class对象，存入缓存区。这就是为什么修改了Class后，必须重启JVM，程序的修改才会生效。</p>
+]]></content>
+      <categories>
+        <category>面试</category>
+      </categories>
+      <tags>
+        <tag>面试</tag>
+        <tag>Java</tag>
+        <tag>Jvm</tag>
       </tags>
   </entry>
   <entry>
@@ -1186,387 +1754,6 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       <tags>
         <tag>面试</tag>
         <tag>设计模式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>jvm内存机制</title>
-    <url>/2021/04/22/jvm%E5%86%85%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<h1 id="JVM内存机制"><a href="#JVM内存机制" class="headerlink" title="JVM内存机制"></a>JVM内存机制</h1><h3 id="JVM中的内存是怎么划分的？"><a href="#JVM中的内存是怎么划分的？" class="headerlink" title="JVM中的内存是怎么划分的？"></a>JVM中的内存是怎么划分的？</h3><p>JVM中的内存主要划分为5个区域，即<strong>方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈</strong>。下边是Java虚拟机运行时数据区示意图：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422155921.png" alt="图片说明"></p>
-<a id="more"></a>
-<p><strong>方法区：</strong>方法区是一个<strong>线程之间共享</strong>的区域。<strong>常量，静态变量以及JIT编译后的代码都在方法区。主要用于存储已被虚拟机加载的类信息</strong>，也可以称为“永久代”，垃圾回收效果一般，通过-XX：MaxPermSize控制上限。</p>
-<p><strong>堆内存：</strong>堆内存是<strong>垃圾回收</strong>的主要场所，也是线程之间共享的区域，主要用来<strong>存储创建的对象实例</strong>，通过-Xmx 和-Xms 可以控制大小。</p>
-<p><strong>虚拟机栈（栈内存）：</strong>栈内存中主要保存<strong>局部变量、基本数据类型变量</strong>以及<strong>堆内存中某个对象的引用变量</strong>。每个方法在执行的同时都会创建一个栈帧（Stack Frame）用于存储局部变量表，操作数栈，动态链接，方法出口等信息。栈中的栈帧随着方法的进入和退出有条不紊的执行着出栈和入栈的操作。</p>
-<p><strong>程序计数器：</strong> 程序计数器是当前线程执行的<strong>字节码的位置指示器</strong>。字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令，是内存区域中唯一一个在虚拟机规范中<strong>没有规定任何OutOfMemoryError情况</strong>的区域。</p>
-<p><strong>本地方法栈：</strong> 主要是为JVM提供使用native方法的服务。</p>
-<h3 id="对象创建过程中的内存分配"><a href="#对象创建过程中的内存分配" class="headerlink" title="对象创建过程中的内存分配"></a>对象创建过程中的内存分配</h3><p>一般情况下我们通过new指令来创建对象，当虚拟机遇到一条new指令的时候，会去检查这个指令的参数是否能在常量池中定位到某个类的符号引用，并且检查这个符号引用代表的类是否已经被加载，解析和初始化。如果没有，那么会执行类加载过程。</p>
-<p>通过执行类的加载，验证，准备，解析，初始化步骤，完成了类的加载，这个时候会为该对象进行内存分配，也就是把一块确定大小的内存从Java堆中划分出来，在<strong>分配的内存</strong>上完成对象的创建工作。</p>
-<p><strong>对象的内存分配有两种方式，即指针碰撞和空闲列表方式。</strong></p>
-<p><strong>指针碰撞方式：</strong></p>
-<p>假设Java堆中的内存是绝对规整的，用过的内存在一边，未使用的内存在另一边，中间有一个指示指针，那么所有的内存分配就是把那个指针向空闲空间那边挪动一段与对象大小相等的距离。</p>
-<p><strong>空闲列表方式：</strong></p>
-<p>如果Java堆内存中不是规整的，已使用和未使用的内存相互交错，那么虚拟机就必须维护一个列表用来记录哪块内存是可用的，在分配的时候找到一块足够大的空间分配对象实例，并且需要更新列表上的记录。</p>
-<p>Java <strong>堆内存是否规整</strong>是由所使用的垃圾收集器<strong>是否拥有压缩整理功能来决定</strong>的</p>
-<h4 id="内存分配是如何保证线程安全的"><a href="#内存分配是如何保证线程安全的" class="headerlink" title="内存分配是如何保证线程安全的"></a>内存分配是如何保证线程安全的</h4><ul>
-<li>对分配内存空间的动作进行同步处理，通过“<strong>CAS + 失败重试</strong>”的方式保证更新指针操作的原子性</li>
-<li>把分配内存的动作按照线程划分在不同的空间之中，即给每一个线程都预先分配一小段的内存，称为<strong>本地线程分配缓存（TLAB）</strong>，只有TLAB用完并分配新的TLAB时，才需要进行同步锁定。 虚拟机是否使用TLAB，可以通过<strong>-XX: +/-UserTLAB</strong>参数来设定</li>
-</ul>
-<h3 id="对象被访问时是如何找到的"><a href="#对象被访问时是如何找到的" class="headerlink" title="对象被访问时是如何找到的"></a>对象被访问时是如何找到的</h3><p>当创建一个对象的时候，在栈内存中会有一个引用变量，指向堆内存中的某个具体的对象实例。</p>
-<p>Java虚拟机规范中并<strong>没有规定这个引用变量应该以何种方式去定位和访问堆内存中的具体对象</strong>。目前常见的对象访问方式有两种，即句柄访问方式和直接指针访问方式，分别介绍如下。</p>
-<p><strong>句柄访问方式：</strong></p>
-<p>在JVM的堆内存中划分出一块内存来作为句柄池，引用变量中存储的就是对象的句柄地址，句柄中包含了对象实例数据与类型数据各自的具体地址信息。在内存垃圾收集之后，对象会移动，但是引用reference中存储的是稳定的句柄地址，但是句柄地址方式不直接，访问速度较慢。</p>
-<p><strong>直接指针访问方式：</strong></p>
-<p>引用变量中存储的就是对象的直接地址，通过指针直接访问对象。直接指针的访问方式节省了一次指针定位的时间开销，速度较快。Sun HotSpot使用了直接指针方式进行对象的访问。</p>
-<h3 id="内存分配和垃圾回收"><a href="#内存分配和垃圾回收" class="headerlink" title="内存分配和垃圾回收"></a>内存分配和垃圾回收</h3><p>JVM的内存可以分为<strong>堆内存和非堆内存</strong>。堆内存分为<strong>年轻代和老年代</strong>。年轻代又可以进一步划分为<strong>一个Eden（伊甸）区和两个Survivor（幸存）区</strong>组成。如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422170158.png" alt="图片说明"></p>
-<h4 id="JVM堆内存的分配："><a href="#JVM堆内存的分配：" class="headerlink" title="JVM堆内存的分配："></a>JVM堆内存的分配：</h4><p>JVM初始分配的堆内存由<strong>-Xms</strong>指定，默认是物理内存的1/64。JVM最大分配的堆内存由<strong>-Xmx</strong>指定，默认是物理内存的1/4。</p>
-<p>默认空余堆内存小于40%时，JVM就会增大堆直到-Xmx的最大限制。空余堆内存大于70%时，JVM会减少堆直到 -Xms的最小限制。因此我们一般设置-Xms和-Xmx相等以避免在每次GC 后调整堆的大小。</p>
-<p>通过参数<strong>-Xmn2G</strong> 可以设置年轻代大小为2G。通过<strong>-XX:SurvivorRatio</strong>可以设置年轻代中Eden区与Survivor区的比值，设置为8，则表示年轻代中Eden区与一块Survivor的比例为8：1。注意年轻代中有两块Survivor区域。</p>
-<h4 id="JVM非堆内存的分配："><a href="#JVM非堆内存的分配：" class="headerlink" title="JVM非堆内存的分配："></a>JVM非堆内存的分配：</h4><p>JVM使用<strong>-XX:PermSize</strong> 设置非堆内存初始值，默认是物理内存的1/64。由<strong>-XX:MaxPermSize</strong>设置最大非堆内存的大小，默认是物理内存的1/4。</p>
-<h4 id="堆内存上对象的分配与回收"><a href="#堆内存上对象的分配与回收" class="headerlink" title="堆内存上对象的分配与回收"></a>堆内存上对象的分配与回收</h4><p>我们创建的对象会优先在Eden分配，如果是大对象（很长的字符串数组）则可以直接进入老年代。虚拟机提供一个<strong>-XX:PretenureSizeThreshold参数</strong>，令大于这个参数值的对象直接在老年代中分配，避免在Eden区和两个Survivor区发生大量的内存拷贝。</p>
-<p>另外，<strong>长期存活的对象将进入老年代</strong>，每一次<strong>MinorGC（年轻代GC）</strong>，对象年龄就大一岁，默认15岁晋升到老年代，通过<strong>-XX:MaxTenuringThreshold设置晋升年龄。</strong></p>
-<p><strong>堆内存上的对象回收也叫做垃圾回收，那么垃圾回收什么时候开始呢？</strong></p>
-<p>垃圾回收主要是完成<strong>清理对象，整理内存</strong>的工作。上面说到GC经常发生的区域是堆区，堆区还可以细分为新生代、老年代。新生代还分为一个Eden区和两个Survivor区。垃圾回收分为年轻代区域发生的Minor GC和老年代区域发生的Full GC，分别介绍如下。</p>
-<p><strong>Minor GC（年轻代GC）:</strong><br>对象优先在Eden中分配，当Eden中没有足够空间时，虚拟机将发生一次Minor GC，因为Java大多数对象都是朝生夕灭，所以Minor GC非常频繁，而且速度也很快。</p>
-<p><strong>Full GC（老年代GC）:</strong><br>Full GC是指发生在老年代的GC，当老年代没有足够的空间时即发生Full GC，发生Full GC一般都会有一次Minor GC。</p>
-<p><strong>动态对象年龄判定：</strong></p>
-<p>如果Survivor空间中相同年龄所有对象的大小总和大于Survivor空间的一半，那么<strong>年龄大于等于该对象年龄的对象即可晋升</strong>到老年代，不必要等到-XX:MaxTenuringThreshold。</p>
-<p><strong>空间分配担保：</strong></p>
-<p>发生Minor GC时，虚拟机会检测之前每次晋升到老年代的平均大小是否大于老年代的剩余空间大小。如果大于，则进行一次<strong>Full GC（老年代GC）</strong>，如果小于，则查看<strong>HandlePromotionFailure设置是否允许担保失败</strong>，如果允许，那只会进行一次<strong>Minor GC</strong>，如果不允许，则改为进行一次<strong>Full GC</strong>。</p>
-<h3 id="JVM如何判定一个对象是否应该被回收"><a href="#JVM如何判定一个对象是否应该被回收" class="headerlink" title="JVM如何判定一个对象是否应该被回收"></a>JVM如何判定一个对象是否应该被回收</h3><p>判断一个对象是否应该被回收，主要是看其是否还有引用。判断对象是否存在引用关系的方法包括<strong>引用计数法以及root根搜索方法</strong>。</p>
-<p><strong>引用计数法：</strong></p>
-<p>是一种比较古老的回收算法。原理是此对象有一个引用，即增加一个计数，删除一个引用则减少一个计数。垃圾回收时，只需要收集计数为0的对象。此算法最致命的是<strong>无法处理循环引用</strong>的问题。</p>
-<p><strong>root根搜索方法：</strong></p>
-<p>root搜索方法的基本思路就是通过一系列可以做为root的对象作为起始点，从这些节点开始向下搜索。当一个对象到root节点没有任何引用链接时，则证明此对象是可以被回收的。以下对象会被认为是root对象：</p>
-<ul>
-<li><strong>栈内存中引用的对象</strong></li>
-<li><strong>方法区中静态引用和常量引用指向的对象</strong></li>
-<li>被启动类（bootstrap加载器）加载的类和创建的对象</li>
-<li>Native方法中JNI引用的对象。</li>
-</ul>
-<h4 id="什么是对象的引用？"><a href="#什么是对象的引用？" class="headerlink" title="什么是对象的引用？"></a>什么是对象的引用？</h4><p>如果reference类型的数据中存储的数值代表的是另外一块内存的起始地址，就称为<strong>这块内存代表一个引用</strong>。JDK1.2以后将引用分为<strong>强引用，软引用，弱引用和虚引用四种。</strong></p>
-<ul>
-<li><strong>强引用：</strong>普通存在， P p = new P()，只要强引用存在，垃圾收集器永远不会回收掉被引用的对象。</li>
-<li><strong>软引用：</strong>通过SoftReference类来实现软引用，在内存不足的时候会将这些软引用回收掉。</li>
-<li><strong>弱引用：</strong>通过WeakReference类来实现弱引用，每次垃圾回收的时候肯定会回收掉弱引用。</li>
-<li><strong>虚引用：</strong>也称为幽灵引用或者幻影引用，通过PhantomReference类实现。设置虚引用只是为了对象被回收时候收到一个系统通知。</li>
-</ul>
-<h3 id="JVM垃圾回收算法有哪些？"><a href="#JVM垃圾回收算法有哪些？" class="headerlink" title="JVM垃圾回收算法有哪些？"></a>JVM垃圾回收算法有哪些？</h3><p>HotSpot 虚拟机采用了<strong>root根搜索方法</strong>来进行内存回收，常见的回收算法有<strong>标记-清除算法，复制算法和标记整理算法。</strong></p>
-<p><strong>标记-清除算法（Mark-Sweep）：</strong></p>
-<p>标记-清除算法执行分两阶段。第一阶段从引用根节点开始标记所有被引用的对象，第二阶段遍历整个堆，把未标记的对象清除。此算法需要暂停整个应用，并且会产生内存碎片。</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175509.png" alt="图片说明"></p>
-<p><strong>复制算法：</strong></p>
-<p>复制算法把内存空间划为两个相等的区域，每次只使用其中一个区域。垃圾回收时，遍历当前使用区域，把正在使用中的对象复制到另外一个区域中。复制算法每次只处理正在使用中的对象，因此复制成本比较小，同时复制过去以后还能进行相应的内存整理，不会出现“碎片”问题。当然，此算法的缺点也是很明显的，就是需要两倍内存空间。</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175610.png" alt="图片说明"></p>
-<p><strong>标记-整理算法：</strong></p>
-<p>标记-整理算法结合了<strong>“标记-清除”和“复制”</strong>两个算法的优点。也是分两阶段，第一阶段从根节点开始标记所有被引用对象，第二阶段遍历整个堆，清除未标记对象并且把存活对象“压缩”到堆的其中一块，按顺序排放。此算法避免了“标记-清除”的碎片问题，同时也避免了“复制”算法的空间问题。</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422180817.png" alt="图片说明"></p>
-<p>年轻代垃圾回收一般采用复制算法，老年代垃圾回收一般采用标记-清除和标记-整理算法</p>
-<h3 id="JVM中的垃圾收集器"><a href="#JVM中的垃圾收集器" class="headerlink" title="JVM中的垃圾收集器"></a>JVM中的垃圾收集器</h3><p>JVM中的垃圾收集器主要包括7种，即<strong>Serial，Serial Old，ParNew，Parallel Scavenge，Parallel Old以及CMS，G1收集器</strong>。如下图所示：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422182047.png" alt="图片说明"></p>
-<p><strong>Serial收集器：</strong></p>
-<p>Serial收集器是<strong>一个单线程的垃圾收集器</strong>，并且在执行垃圾回收的时候需要 <strong>Stop The World</strong>。虚拟机运行在<strong>Client模式</strong>下的默认新生代收集器。Serial收集器的优点是简单高效，对于限定在单个CPU环境来说，Serial收集器没有多线程交互的开销。</p>
-<p><strong>Serial Old收集器：</strong></p>
-<p>Serial Old是Serial收集器的老年代版本，也是<strong>一个单线程收集器</strong>。主要也是给在Client模式下的虚拟机使用。在Server模式下存在主要是做为CMS垃圾收集器的后备预案，<strong>当CMS并发收集发生Concurrent Mode Failure时使用。</strong></p>
-<p><strong>ParNew收集器：</strong></p>
-<p>ParNew是Serial收集器的<strong>多线程</strong>版本，新生代是并行的（多线程的），老年代是串行的（单线程的），新生代采用复制算法，老年代采用标记整理算法。可以使用参数：<strong>-XX：UseParNewGC使用该收集器，使用 -XX：ParallelGCThreads可以限制线程数量。</strong></p>
-<p><strong>Parallel Scavenge垃圾收集器：</strong></p>
-<p>Parallel Scavenge是一种新生代收集器，使用复制算法的收集器，而且是<strong>并行的多线程收集器。</strong>Parallel收集器特点是更加关注吞吐量（吞吐量就是cpu用于运行用户代码的时间与cpu总消耗时间的比值）。可以通过<strong>-XX:MaxGCPauseMillis参数控制最大垃圾收集停顿时间；通过-XX:GCTimeRatio参数直接设置吞吐量大小；通过-XX:+UseAdaptiveSizePolicy参数可以打开GC自适应调节策略，</strong>该参数打开之后虚拟机会根据系统的运行情况收集性能监控信息，动态调整虚拟机参数以提供最合适的停顿时间或者最大的吞吐量。<strong>自适应调节策略</strong>是Parallel Scavenge收集器和ParNew的主要区别之一。</p>
-<p><strong>Parallel Old收集器：</strong></p>
-<p>Parallel Old是Parallel Scavenge收集器的老年代版本，使用多线程和标记-整理算法。</p>
-<p><strong>CMS（Concurrent Mark Sweep）收集器</strong>：</p>
-<p>CMS收集器是<strong>一种以获取最短回收停顿时间为目标</strong>的收集器。CMS收集器是基于<strong>标记-清除算法</strong>实现的，是一种老年代收集器，通常与<strong>ParNew</strong>一起使用。</p>
-<p><strong>CMS的垃圾收集过程分为4步：</strong></p>
-<ul>
-<li><strong>初始标记</strong>：需要“Stop the World”，初始标记仅仅只是标记一下GC Root能直接关联到的对象，速度很快。</li>
-<li><strong>并发标记</strong>：是主要标记过程，这个标记过程是和用户线程并发执行的。</li>
-<li><strong>重新标记</strong>：需要“Stop the World”，为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录（停顿时间比初始标记长，但比并发标记短得多）。</li>
-<li><strong>并发清除</strong>：和用户线程并发执行的，基于标记结果来清理对象。</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422193203.png" alt="图片说明"></p>
-<p><strong>如果在重新标记之前刚好发生了一次MinorGC，会不会导致重新标记阶段Stop the World时间太长？</strong></p>
-<p>不会的，在并发标记阶段其实还包括了一次并发的<strong>预清理阶段</strong>，虚拟机会主动<strong>等待年轻代发生垃圾回收</strong>，这样可以将重新标记对象引用关系的步骤放在并发标记阶段，有效降低重新标记阶段Stop The World的时间。</p>
-<h4 id="CMS垃圾回收器的优点："><a href="#CMS垃圾回收器的优点：" class="headerlink" title="CMS垃圾回收器的优点："></a>CMS垃圾回收器的优点：</h4><p>CMS以降低垃圾回收的停顿时间为目的，很显然其具有并发收集、停顿时间低的优点。</p>
-<h4 id="CMS垃圾回收器的缺点："><a href="#CMS垃圾回收器的缺点：" class="headerlink" title="CMS垃圾回收器的缺点："></a>CMS垃圾回收器的缺点：</h4><ul>
-<li><strong>对CPU资源非常敏感</strong>，因为并发标记和并发清理阶段和用户线程一起运行，当CPU数变小时，性能容易出现问题。</li>
-<li>收集过程中会产生<strong>浮动垃圾</strong>，所以不可以在老年代内存不够用了才进行垃圾回收，必须提前进行垃圾收集。通过参数<strong>-XX:CMSInitiatingOccupancyFraction</strong>的值来控制内存使用百分比。如果该值设置的太高，那么在CMS运行期间预留的内存可能无法满足程序所需，会出现<strong>Concurrent Mode Failure失败，之后会临时使用Serial Old收集器做为老年代收集器</strong>，会产生更长时间的停顿。</li>
-<li><strong>标记-清除方式会产生内存碎片</strong>，可以使用参数<strong>-XX：UseCMSCompactAtFullCollection</strong>来控制是否开启内存整理（无法并发，默认是开启的）。参数<strong>-XX:CMSFullGCsBeforeCompaction</strong>用于设置执行多少次不压缩的Full GC后进行一次带压缩的内存碎片整理（默认值是0）。</li>
-</ul>
-<p><strong>浮动垃圾：</strong></p>
-<p>由于在应用运行的同时进行垃圾回收，所以有些垃圾可能在垃圾回收进行完成时产生，这样就造成了<strong>“Floating Garbage（浮动垃圾）”</strong>，这些垃圾需要在下次垃圾回收周期时才能回收掉。所以，<strong>并发收集器一般需要20%的预留空间</strong>用于这些浮动垃圾。</p>
-<p><strong>G1（Garbage-First）收集器：</strong></p>
-<p>G1收集器将新生代和老年代取消了，取而代之的是<strong>将堆划分为若干的区域</strong>，仍然属于分代收集器，区域的一部分包含新生代，新生代采用复制算法，老年代采用标记-整理算法。</p>
-<p>通过<strong>将JVM堆分为一个个的区域（region）</strong>,G1收集器可以避免在Java堆中进行全区域的垃圾收集。G1跟踪各个region里面的垃圾堆积的价值大小（回收所获得的空间大小以及回收所需时间的比值），在后台维护一个优先列表，每次<strong>根据回收时间来优先回收价值最大的region。</strong></p>
-<p><strong>G1收集器的特点：</strong></p>
-<ul>
-<li><strong>并行与并发</strong>：G1能充分利用多CPU，多核环境下的硬件优势，来缩短Stop the World，是并发的收集器。</li>
-<li><strong>分代收集</strong>：G1不需要其他收集器就能独立管理整个GC堆，能够采用不同的方式去处理新建对象、存活一段时间的对象和熬过多次GC的对象。</li>
-<li><strong>空间整合</strong>：G1从整体来看是基于标记-整理算法，从局部（两个Region）上看基于复制算法实现，G1运作期间不会产生内存空间碎片。</li>
-<li><strong>可预测的停顿</strong>：能够建立可以预测的停顿时间模型，预测停顿时间。</li>
-</ul>
-<p><strong>和CMS收集器类似，G1收集器的垃圾回收工作也分为了四个阶段：</strong></p>
-<ul>
-<li>初始标记</li>
-<li>并发标记</li>
-<li>最终标记</li>
-<li>筛选回收</li>
-</ul>
-<p>其中，筛选回收阶段首先对各个Region的回收价值和成本进行计算，根据用户期望的GC停顿时间来制定回收计划。</p>
-<p><strong>CMS也确实是我们服务中最常使用的垃圾收集器</strong>。利用CMS并发标记和清理的特性，<strong>可以有效降低用户的停顿时间，对于服务的稳定性有一个非常显著的提升</strong>。</p>
-<h3 id="JVM常用内存调优命令："><a href="#JVM常用内存调优命令：" class="headerlink" title="JVM常用内存调优命令："></a>JVM常用内存调优命令：</h3><p>JVM在内存调优方面，提供了几个常用的命令，分别为<strong>jps，jinfo，jstack，jmap以及jstat命令</strong>。分别介绍如下：</p>
-<ul>
-<li><strong>jps：</strong>主要用来输出JVM中运行的进程状态信息，一般使用jps命令来查看进程的状态信息，包括JVM启动参数等。</li>
-<li><strong>jinfo：</strong>主要用来观察进程运行环境参数等信息。</li>
-<li><strong>jstack：</strong>主要用来查看某个Java进程内的线程堆栈信息。jstack pid 可以看到当前进程中各个线程的状态信息，包括其持有的锁和等待的锁。</li>
-<li><strong>jmap：</strong>用来查看堆内存使用状况。jmap -heap pid可以看到当前进程的堆信息和使用的GC收集器，包括年轻代和老年代的大小分配等</li>
-<li><strong>jstat：</strong>进行实时命令行的监控，包括堆信息以及实时GC信息等。可以使用jstat -gcutil pid1000来每隔一秒来查看当前的GC信息。</li>
-</ul>
-<p><strong>jps</strong> 用于显示当前所有java进程pid，jps经常使用的参数如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">-q：仅输出VM标识符，不包括<span class="class"><span class="keyword">class</span> <span class="title">name</span>,<span class="title">jar</span> <span class="title">name</span>,<span class="title">arguments</span> <span class="title">in</span> <span class="title">main</span> <span class="title">method</span> </span></span><br><span class="line"><span class="class">-<span class="title">m</span>：输出<span class="title">main</span> <span class="title">method</span>的参数 </span></span><br><span class="line"><span class="class">-<span class="title">l</span>：输出完全的包名，应用主类名，<span class="title">jar</span>的完全路径名 </span></span><br><span class="line"><span class="class">-<span class="title">v</span>：输出<span class="title">jvm</span>参数 </span></span><br></pre></td></tr></table></figure>
-<p><strong>jinfo</strong> 可以观察进程运行环境参数，通过jinfo pid可以查看指定进程的运行环境参数.</p>
-<p><strong>jstack</strong> 用于显示jvm中当前所有线程的运行情况和线程当前状态，一般使用的参数为-l，表示长列表，并且打印锁的相关附加信息。jstack的输出中还可以看到每一个线程当前所处的状态以及其当前所占用的锁和等待的锁，还可以检测是否存在死锁。</p>
-<p><strong>jmap</strong> 用来打印内存映射以及查看堆内存细节等，一般情况下使用-heap参数来打印堆内存的概要信息，GC使用的算法以及堆的一些配置等信息。</p>
-<p><strong>jstat</strong> 一般用来观察GC情况，并且进行实时的分析与监控，可以使用的参数如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">-<span class="class"><span class="keyword">class</span> 显示<span class="title">ClassLoad</span>的相关信息</span></span><br><span class="line"><span class="class">-<span class="title">compiler</span> 显示<span class="title">JIT</span>编译的相关信息</span></span><br><span class="line"><span class="class">-<span class="title">gc</span> 显示和<span class="title">gc</span>相关的堆信息</span></span><br><span class="line"><span class="class">-<span class="title">gccapacity</span> 显示各个代的容量以及使用情况</span></span><br><span class="line"><span class="class">-<span class="title">gcmetacapacity</span> 显示<span class="title">metaspace</span>的大小</span></span><br><span class="line"><span class="class">-<span class="title">gcnew</span> 显示新生代信息</span></span><br><span class="line"><span class="class">-<span class="title">gcnewcapacity</span> 显示新生代大小和使用情况</span></span><br><span class="line"><span class="class">-<span class="title">gcold</span> 显示老年代和永久代的信息</span></span><br><span class="line"><span class="class">-<span class="title">gcoldcapacity</span> 显示老年代的大小</span></span><br><span class="line"><span class="class">-<span class="title">gcutil</span>　　 显示垃圾收集信息</span></span><br><span class="line"><span class="class">-<span class="title">gccause</span> 显示垃圾回收的相关信息（通-<span class="title">gcutil</span>）,同时显示最后一次或当前正在发生的垃圾回收的诱因</span></span><br><span class="line"><span class="class">-<span class="title">printcompilation</span> 输出<span class="title">JIT</span>编译的方法信息</span></span><br></pre></td></tr></table></figure>
-<h4 id="如何排查一个线上的服务异常？"><a href="#如何排查一个线上的服务异常？" class="headerlink" title="如何排查一个线上的服务异常？"></a>如何排查一个线上的服务异常？</h4><ul>
-<li>首先查看当前进程的JVM启动参数，查看内存设置是否存在明显问题。</li>
-<li>查看GC日志，看GC频率和时间是否明显异常。</li>
-<li>查看当前进程的状态信息top -Hp pid，包括线程个数等信息。</li>
-<li>jstack pid查看当前的线程状态，是否存在死锁等关键信息。</li>
-<li>jstat -gcutil pid查看当前进程的GC情况。</li>
-<li>jmap -heap pid查看当前进程的堆信息，包括使用的垃圾收集器等信息。</li>
-<li>用jvisiual工具打开dump二进制文件，分析是什么对象导致了内存泄漏，定位到代码处，进行code review。</li>
-</ul>
-<p>一般情况下，我们在测试环境上线新服务的时候，应该重点关注并且查看当前新服务的内存使用以及回收情况，避免新服务中出现内存异常导致服务崩溃的现象发生。</p>
-<h3 id="JDK8中在内存管理上的变化"><a href="#JDK8中在内存管理上的变化" class="headerlink" title="JDK8中在内存管理上的变化"></a>JDK8中在内存管理上的变化</h3><p>JDK8中出现了<strong>元空间代替了永久代</strong>。元空间和永久代类似，都是对JVM规范中方法区的实现。区别在于元空间并不在虚拟机中，而是使用<strong>本地内存，</strong>默认情况下元空间的大小仅受本地内存限制，也可以通过<strong>-XX：MetaspaceSize指定元空间大小。</strong></p>
-<h4 id="为什么要使用元空间代替永久代"><a href="#为什么要使用元空间代替永久代" class="headerlink" title="为什么要使用元空间代替永久代"></a>为什么要使用元空间代替永久代</h4><p>类和方法的信息等比较难确定大小，因此对于永久代的大小指定比较困难，指定的太小容易出现永久代溢出的问题。而使用元空间则使用了本地内存，减少了这种情况。</p>
-<h3 id="JAVA中的类加载机制"><a href="#JAVA中的类加载机制" class="headerlink" title="JAVA中的类加载机制"></a>JAVA中的类加载机制</h3><p>Java中的类加载机制指虚拟机<strong>把描述类的数据从 Class 文件加载到内存</strong>，并对数据进行<strong>校验、转换、解析和初始化</strong>，最终形成可以被虚拟机直接使用的 Java 类型。</p>
-<p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括了：<strong>加载、验证、准备、解析、初始化、使用、卸载七个阶段</strong>。类加载机制的保持则包括前面五个阶段。</p>
-<ul>
-<li><strong>加载：</strong></li>
-</ul>
-<p>加载是指<strong>将类的.class文件中的二进制数据读入到内存中，将其放在运行时数据区的方法区内，然后在堆区创建一个java.lang.Class对象，用来封装类在方法区内的数据结构。</strong></p>
-<ul>
-<li><strong>验证：</strong></li>
-</ul>
-<p>验证的作用是确保被加载的类的正确性，包括文件格式验证，元数据验证，字节码验证以及符号引用验证。</p>
-<ul>
-<li><strong>准备：</strong></li>
-</ul>
-<p>准备阶段为类的静态变量分配内存，并将其初始化为默认值。假设一个类变量的定义为public static int val = 3;那么变量val在准备阶段过后的初始值不是3而是0。</p>
-<ul>
-<li><strong>解析：</strong></li>
-</ul>
-<p>解析阶段将类中<strong>符号引用转换为直接引用</strong>。符号引用以一组符号来描述所引用的目标，符号可以是任何形式的字面量，只要使用时能够无歧义的定位到目标即可。</p>
-<ul>
-<li><strong>初始化：</strong></li>
-</ul>
-<p>初始化阶段<strong>为类的静态变量赋予正确的初始值</strong>，JVM负责对类进行初始化，主要对类变量进行初始化。</p>
-<h4 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h4><ul>
-<li><strong>启动类加载器（Bootstrap ClassLoader）：</strong></li>
-</ul>
-<p>启动类加载器负责加载存放在JDK\jre\lib(JDK代表JDK的安装目录，下同)下，或被-Xbootclasspath参数指定的路径中的类。</p>
-<ul>
-<li><strong>扩展类加载器（ExtClassLoader）：</strong></li>
-</ul>
-<p>扩展类加载器负责加载JDK\jre\lib\ext目录中，或者由java.ext.dirs系统变量指定的路径中的所有类库（如javax.*开头的类）。</p>
-<ul>
-<li><strong>应用类加载器（AppClassLoader）：</strong></li>
-</ul>
-<p>应用类加载器负责加载用户类路径（ClassPath）所指定的类，开发者可以直接使用该类加载器。</p>
-<h4 id="类加载器的职责："><a href="#类加载器的职责：" class="headerlink" title="类加载器的职责："></a>类加载器的职责：</h4><ul>
-<li><strong>全盘负责：</strong></li>
-</ul>
-<p>当一个类加载器负责加载某个Class时，该Class所依赖的和引用的其他Class也将由该类加载器负责载入，除非显式使用另外一个类加载器来载入。</p>
-<ul>
-<li><strong>父类委托：</strong></li>
-</ul>
-<p>类加载机制会先让父类加载器试图加载该类，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类。</p>
-<p>父类委托机制是为了<strong>防止内存中出现多份同样的字节码，</strong>保证java程序安全稳定运行。</p>
-<ul>
-<li><strong>缓存机制：</strong></li>
-</ul>
-<p>缓存机制将会保证所有加载过的Class都会被缓存，当程序中需要使用某个Class时，先从缓存区寻找该Class，只有缓存区不存在，系统才会读取该类对应的二进制数据，并将其转换成Class对象，存入缓存区。这就是为什么修改了Class后，必须重启JVM，程序的修改才会生效。</p>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-        <tag>Java</tag>
-        <tag>Jvm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Spring相关知识</title>
-    <url>/2021/04/23/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-的控制反转（IOC）"><a href="#Spring-的控制反转（IOC）" class="headerlink" title="Spring 的控制反转（IOC）"></a>Spring 的控制反转（IOC）</h3><p>IOC也叫<strong>控制反转，将对象间的依赖关系交给Spring容器</strong>，使用配置文件来创建所依赖的对象，由<strong>主动</strong>创建对象改为了<strong>被动</strong>方式，实现解耦合。</p>
-<p>可以通过注解<strong>@Autowired和@Resource</strong>来注入对象，被注入的对象必须被下边的四个注解之一标注：</p>
-<ul>
-<li><strong>@Controller</strong></li>
-<li><strong>@Service</strong></li>
-<li><strong>@Repository</strong></li>
-<li><strong>@Component</strong></li>
-</ul>
-<a id="more"></a>
-<p>在Spring配置文件中配置 <code>&lt;context:annotation-config/&gt;</code>元素开启注解。还有一个概念是<strong>DI（依赖注入）</strong>，和控制反转是同一个概念的不同角度的描述，即应用程序在运行时依赖IOC容器来动态注入对象需要的外部资源（对象等）。</p>
-<p>Spring是一个<strong>轻量级的IOC和AOP容器</strong>框架。是为Java应用程序提供基础服务的一套框架，目的是用于简化企业应用程序的开发，它使得开发者只需要关心业务需求。</p>
-<p>Spring的<strong>核心模块</strong>如下所示：</p>
-<ul>
-<li><strong>Spring Core：</strong>是核心类库，提供IOC服务；</li>
-<li><strong>Spring Context：</strong>提供框架式的Bean访问方式，以及企业级功能（JNDI、定时任务等）；</li>
-<li><strong>Spring AOP：</strong>提供AOP服务；</li>
-<li><strong>Spring DAO：</strong>对JDBC进行了抽象，简化了数据访问异常等处理；</li>
-<li><strong>Spring ORM：</strong>对现有的ORM持久层框架进行了支持；</li>
-<li><strong>Spring Web：</strong>提供了基本的面向Web的综合特性；</li>
-<li><strong>Spring MVC：</strong>提供面向Web应用的Model-View-Controller实现。</li>
-</ul>
-<h3 id="Spring的优点有哪些呢？"><a href="#Spring的优点有哪些呢？" class="headerlink" title="Spring的优点有哪些呢？"></a>Spring的优点有哪些呢？</h3><ul>
-<li>Spring的<strong>依赖注入</strong>将对象之间的依赖关系交给了框架来处理，减小了各个组件之间的耦合性；</li>
-<li><strong>AOP面向切面编程</strong>，可以将通用的任务抽取出来，复用性更高；</li>
-<li>Spring对于其余<strong>主流框架都提供了很好的支持</strong>，代码的侵入性很低。</li>
-</ul>
-<h3 id="Spring中的AOP面向切面编程"><a href="#Spring中的AOP面向切面编程" class="headerlink" title="Spring中的AOP面向切面编程"></a>Spring中的AOP面向切面编程</h3><p><strong>AOP，</strong>面向切面编程是指当需要在某一个方法之前或者之后做一些额外的操作，比如说日志记录，权限判断，异常统计等，可以利用AOP<strong>将功能代码从业务逻辑代码中分离出来。</strong></p>
-<p><strong>AOP中有如下的操作术语：</strong></p>
-<ul>
-<li><strong>Joinpoint(连接点)：</strong> 类里面可以被增强的方法，这些方法称为连接点</li>
-<li><strong>Pointcut(切入点)：</strong>所谓切入点是指我们要对哪些Joinpoint进行拦截的定义</li>
-<li><strong>Advice(通知/增强)：</strong>所谓通知是指拦截到Joinpoint之后所要做的事情就是通知。</li>
-<li><strong>Aspect(切面)：</strong>是切入点和通知（引介）的结合</li>
-<li><strong>Introduction(引介)：</strong>引介是一种特殊的通知在不修改类代码的前提下，Introduction可以在运行期为类动态地添加一些方法或属性</li>
-<li><strong>Target(目标对象)：</strong>代（dai）理的目标对象(要增强的类)</li>
-<li><strong>Weaving(织入)：</strong>是把增强应用到目标的过程，把advice 应用到 target的过程</li>
-<li><strong>Proxy（代(dai)理）：</strong>一个类被AOP织入增强后，就产生一个结果代（dai）理类</li>
-</ul>
-<p><strong>切入点就是在类里边可以有很多方法被增强</strong>，比如实际操作中，只是增强了个别方法，则定义实际被增强的某个方法为切入点；<strong>通知/增强 就是指增强的逻辑</strong>，比如扩展日志功能，这个日志功能称为增强；<strong>切面</strong>就是把增强应用到具体方法上面的过程称为切面。</p>
-<h3 id="Spring中AOP主要有两种实现方式："><a href="#Spring中AOP主要有两种实现方式：" class="headerlink" title="Spring中AOP主要有两种实现方式："></a>Spring中AOP主要有两种实现方式：</h3><ul>
-<li><strong>使用JDK动态代（dai）理实现</strong>，使用java.lang.reflection.Proxy类来处理</li>
-<li><strong>使用cglib来实现</strong></li>
-</ul>
-<h4 id="两种实现方式的不同之处："><a href="#两种实现方式的不同之处：" class="headerlink" title="两种实现方式的不同之处："></a>两种实现方式的不同之处：</h4><p><strong>JDK动态代理</strong>，只能对实现了接口的类生成代理，而不是针对类，该目标类型实现的接口都将被代理。原理是通过在运行期间创建一个接口的实现类来完成对目标对象的代理。<strong>实现步骤大概如下：</strong></p>
-<ul>
-<li>定义一个实现接口InvocationHandler的类</li>
-<li>通过构造函数，注入被代理类</li>
-<li>实现invoke（ Object proxy, Method method, Object[ ] args）方法</li>
-<li>在主函数中获得被代理类的类加载器</li>
-<li>使用Proxy.newProxyInstance( )产生一个代理对象</li>
-<li>通过代理对象调用各种方法</li>
-</ul>
-<p>JDK动态代理的实例：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.reflect.InvocationHandler;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Proxy;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="comment">//定义一个People作为被代理的类</span></span><br><span class="line">        IPeople ple = <span class="keyword">new</span> People();</span><br><span class="line">        <span class="comment">//定义一个Handler</span></span><br><span class="line">        InvocationHandler handler = <span class="keyword">new</span> MyHandle(ple);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//获得类加载器</span></span><br><span class="line">        ClassLoader cl = ple.getClass().getClassLoader();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//动态产生一个代理，以下两种方法都可以</span></span><br><span class="line">        IPeople p = (IPeople) Proxy.newProxyInstance(cl, ple.getClass().getInterfaces(), handler);</span><br><span class="line">        <span class="comment">//或者 IPeople p = (IPeople) Proxy.newProxyInstance(cl, new Class[]&#123;IPeople.class&#125;, handler);</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行被代理的方法</span></span><br><span class="line">        p.func();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyHandle</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//被代理的实例</span></span><br><span class="line">    Object obj = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//我要代理谁</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyHandle</span><span class="params">(Object obj)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.obj = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        Object result = method.invoke(<span class="keyword">this</span>.obj, args);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//实际被代理类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">People</span> <span class="keyword">implements</span> <span class="title">IPeople</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是fun方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;这是func方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>cglib主要针对类实现代理</strong>，<strong>对是否实现接口无要求</strong>。原理是对指定的类生成一个子类，覆盖其中的方法，因为是继承，所以被代理的类或方法不可以声明为final类型。<strong>实现步骤大概如下：</strong></p>
-<ul>
-<li>定义一个实现了MethodInterceptor接口的类</li>
-<li>实现其 intercept()方法，在其中调用proxy.invokeSuper()</li>
-</ul>
-<h4 id="Spring-AOP对这两种代（dai）理方式的选择："><a href="#Spring-AOP对这两种代（dai）理方式的选择：" class="headerlink" title="Spring AOP对这两种代（dai）理方式的选择："></a>Spring AOP对这两种代（dai）理方式的选择：</h4><ul>
-<li>如果目标对象实现了接口，默认情况下会采用JDK的动态代（dai）理实现AOP，也可以强制使用cglib实现AOP；</li>
-<li>如果目标对象没有实现接口，必须采用cglib库，Spring会自动在JDK动态代（dai）理和cglib之间转换。</li>
-</ul>
-<h3 id="IOC容器的初始化过程"><a href="#IOC容器的初始化过程" class="headerlink" title="IOC容器的初始化过程"></a>IOC容器的初始化过程</h3><p>IOC容器的初始化主要包括<strong>Resource定位，载入和注册</strong>三个步骤，接下来我们依次介绍。</p>
-<ul>
-<li><strong>Resource资源定位：</strong><br>Resouce定位是指BeanDefinition的资源定位，也就是IOC容器找数据的过程。Spring中使用外部资源来描述一个Bean对象，IOC容器第一步就是需要定位Resource外部资源。由ResourceLoader通过统一的Resource接口来完成定位。</li>
-<li><strong>BeanDefinition的载入：</strong><br>载入过程就是把定义好的Bean表示成IOC容器内部的数据结构，即BeanDefinition。在配置文件中每一个Bean都对应着一个BeanDefinition对象。<br>通过BeanDefinitionReader读取，解析Resource定位的资源，将用户定义好的Bean表示成IOC容器的内部数据结构BeanDefinition。<br>在IOC容器内部维护着一个BeanDefinitionMap的数据结构，通过BeanDefinitionMap，IOC容器可以对Bean进行更好的管理。</li>
-<li><strong>BeanDefinition的注册：</strong><br>注册就是将前面的BeanDefition保存到Map中的过程，通过BeanDefinitionRegistry接口来实现注册。</li>
-</ul>
-<h4 id="依赖注入的发生时刻"><a href="#依赖注入的发生时刻" class="headerlink" title="依赖注入的发生时刻"></a>依赖注入的发生时刻</h4><p><strong>IOC容器的初始化过程就是对Bean定义资源的定位、载入和注册</strong>，此时容器对Bean的依赖注入并没有发生。接下来，我们看下<strong>依赖注入的发生时刻吧。</strong></p>
-<p>ApplicationContext默认会在容器启动的时候创建我们配置好的各个Bean，我们的Bean配置如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=<span class="string">&quot;oneBean&quot;</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.nowcoder.oneBean&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>这里边的隐藏属性是lazy-init，即上边的配置和下边的是一样的：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;bean id=<span class="string">&quot;oneBean&quot;</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;com.nowcoder.oneBean&quot;</span> lazy-init=<span class="string">&quot;false&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
-<p><strong>lazy-init=false</strong>表示不开启延迟加载，在容器启动的时候即创建该Bean。对应的，我们还可以配置lazy-init=true表示开启延迟加载，那么该Bean的创建发生在应用程序<strong>第一次向容器索取Bean</strong>时，通过getBean()方法的调用完成。</p>
-<h4 id="BeanFactory和FactoryBean的区别"><a href="#BeanFactory和FactoryBean的区别" class="headerlink" title="BeanFactory和FactoryBean的区别"></a>BeanFactory和FactoryBean的区别</h4><ul>
-<li><strong>BeanFactory</strong>：Bean工厂，是一个工厂(Factory)， 是Spring IOC容器的最顶层接口，它的作用是<strong>管理Bean，即实例化、定位、配置</strong>应用程序中的对象及建立这些对象间的依赖。</li>
-<li><strong>FactoryBean</strong>：工厂Bean，<strong>是一个Bean，作用是产生其他Bean实例</strong>，需要提供一个工厂方法，该方法用来返回其他Bean实例。</li>
-</ul>
-<h4 id="BeanFactory和ApplicationContext有什么区别？"><a href="#BeanFactory和ApplicationContext有什么区别？" class="headerlink" title="BeanFactory和ApplicationContext有什么区别？"></a>BeanFactory和ApplicationContext有什么区别？</h4><p>BeanFactory是Spring里面最顶层的接口，包含了各种Bean的定义，读取Bean配置文档，管理Bean的加载、实例化，控制Bean的生命周期，维护Bean之间的依赖关系。</p>
-<p><strong>ApplicationContext</strong>接口是BeanFactory的派生，除了提供BeanFactory所具有的功能外，还提供了更完整的框架功能：</p>
-<ul>
-<li>继承了MessageSource，支持国际化。</li>
-<li>提供了统一的资源文件访问方式。</li>
-<li>提供在Listener中注册Bean的事件。</li>
-<li>提供同时加载多个配置文件的功能。</li>
-<li>载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层。</li>
-</ul>
-<p><strong>ApplicationContext 三种常见的实现方式:</strong></p>
-<ul>
-<li><strong>FileSystemXmlApplicationContext</strong>：此容器从一个XML文件中加载Bean的定义，XML Bean 配置文件的全路径名必须提供给它的构造函数。</li>
-<li><strong>ClassPathXmlApplicationContext</strong>：此容器也从一个XML文件中加载Bean的定义，需要正确设置classpath因为这个容器将在classpath里找Bean配置。</li>
-<li><strong>WebXmlApplicationContext</strong>：此容器加载一个XML文件，定义了一个WEB应用的所有Bean。</li>
-</ul>
-<p><strong>在创建Bean和内存占用方面的区别：</strong></p>
-<ul>
-<li><strong>BeanFactory采用的是延迟加载形式来注入Bean的</strong>，即只有在使用到某个Bean时(调用getBean())，才对该Bean进行加载实例化。这样，就不能发现一些存在于<strong>Spring配置</strong>中的问题。如果Bean的某一个属性没有注入，BeanFactory加载后，直至第一次使用调用getBean方法才会抛出异常。</li>
-<li><strong>ApplicationContext，它是在容器启动时，一次性创建了所有的Bean</strong>。这样，在容器启动时，我们就可以发现Spring中存在的配置错误，这样有利于检查所依赖属性是否注入。 ApplicationContext启动后预载入所有的单实例Bean，通过预载入单实例Bean ,确保当需要的时候，可以直接获取。</li>
-<li>相对于基本的BeanFactory，ApplicationContext不足之处是占用内存空间。当应用程序配置Bean较多时，程序启动较慢，因为其一次性创建了所有的Bean。</li>
-</ul>
-<h4 id="BeanFactory和ApplicationContext的优缺点："><a href="#BeanFactory和ApplicationContext的优缺点：" class="headerlink" title="BeanFactory和ApplicationContext的优缺点："></a>BeanFactory和ApplicationContext的优缺点：</h4><p><strong>BeanFactory的优缺点：</strong></p>
-<p><strong>优点</strong>：应用启动的时候占用资源很少，对资源要求较高的应用，比较有优势；</p>
-<p><strong>缺点</strong>：运行速度会相对来说慢一些。而且有可能会出现空指针异常的错误，而且通过Bean工厂创建的Bean生命周期会简单一些。</p>
-<p><strong>ApplicationContext的优缺点：</strong></p>
-<p><strong>优点</strong>：所有的Bean在启动的时候都进行了加载，系统运行的速度快；在系统启动的时候，可以发现系统中的配置问题。</p>
-<p><strong>缺点</strong>：把费时的操作放到系统启动中完成，所有的对象都可以预加载，缺点就是内存占用较大。</p>
-<h3 id="Spring中Bean的作用域"><a href="#Spring中Bean的作用域" class="headerlink" title="Spring中Bean的作用域"></a>Spring中Bean的作用域</h3><p>Spring框架支持以下五种Bean的作用域：</p>
-<ul>
-<li><strong>singleton</strong> : Bean在每个Spring IOC 容器中只有一个实例，默认作用域。</li>
-<li><strong>prototype</strong>：一个Bean的定义可以有多个实例。</li>
-<li><strong>request</strong>：每次http请求都会创建一个Bean，该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
-<li><strong>session</strong>：在一个HTTP Session中，一个Bean定义对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
-<li><strong>global-session</strong>：在一个全局的HTTP Session中，一个Bean对应一个实例。该作用域仅在基于web的Spring ApplicationContext情形下有效。</li>
-</ul>
-<h4 id="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"><a href="#Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？" class="headerlink" title="Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？"></a>Spring中Bean的作用域常使用的是singleton，也就是单例作用域。那么单例Bean是线程安全的吗？</h4><p><strong>单例Bean和线程安全与否没有必然的关系</strong>。多个线程在多个<strong>工作内存和主内存交互</strong>的时候会出现不一致的地方，那么就不是线程安全的。大部分的Spring Bean并<strong>没有可变的状态</strong>(比如Service类和DAO类)，所以一定程度上可以说Spring的单例Bean是线程安全的。如果你的Bean有多种状态的话（比如 View Model 对象），就需要自行保证线程安全。在一般情况下，<strong>只有无状态的Bean才可以在多线程环境下共享。</strong></p>
-<h4 id="循环依赖："><a href="#循环依赖：" class="headerlink" title="循环依赖："></a>循环依赖：</h4><p>“<strong>如果A对象创建的过程需要使用到B对象，但是B对象创建的时候也需要A对象，也就是构成了循环依赖的现象，那么Spring会如何解决？</strong>”</p>
-<p>这是一种<strong>构造器循环依赖，通过构造器注入构成的循环依赖，此依赖是无法解决的，只能抛出BeanCurrentlyInCreationException异常表示循环依赖。</strong></p>
-<h4 id="Spring事务"><a href="#Spring事务" class="headerlink" title="Spring事务"></a>Spring事务</h4><p>Spring支持编程式事务管理和声明式事务管理两种方式：</p>
-<ul>
-<li><strong>编程式事务管理</strong>：使用TransactionTemplate实现。</li>
-<li><strong>声明式事务管理</strong>：建立在AOP之上的。其本质是通过AOP功能，对方法前后进行拦截，将事务处理的功能编织到拦截的方法中，也就是在目标方法开始之前加入一个事务，在执行完目标方法之后根据执行情况提交或者回滚事务</li>
-</ul>
-<p><strong>声明式事务的优点：</strong></p>
-<p>就是不需要在业务逻辑代码中掺杂事务管理的代码，只需在配置文件中做相关的事务规则声明或通过@Transactional注解的方式，便可以将事务规则应用到业务逻辑中。</p>
-<p><strong>事务选择：</strong></p>
-<p>声明式事务管理要优于编程式事务管理，这正是Spring倡导的<strong>非侵入式的开发</strong>方式，使业务代码不受污染，只要<strong>加上注解</strong>就可以获得完全的事务支持。唯一不足之处是声明式事务的最细粒度只能作用到方法级别，无法做到像编程式事务那样可以作用到代码块级别。</p>
-<h4 id="事务的传播行为"><a href="#事务的传播行为" class="headerlink" title="事务的传播行为"></a>事务的传播行为</h4><ul>
-<li><strong>PROPAGATION_REQUIRED</strong>：如果当前没有事务，就创建一个新事务，如果当前存在事务，就加入该事务，<strong>该设置是最常用的设置。</strong></li>
-<li>PROPAGATION_SUPPORTS：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就以非事务执行。</li>
-<li>PROPAGATION_MANDATORY：支持当前事务，如果当前存在事务，就加入该事务，如果当前不存在事务，就抛出异常。</li>
-<li>PROPAGATION_REQUIRES_NEW：创建新事务，无论当前存不存在事务，都创建新事务。</li>
-<li>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。</li>
-<li>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。</li>
-<li>PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则按REQUIRED属性执行。</li>
-</ul>
-<h4 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别"></a>事务的隔离级别</h4><ul>
-<li>读未提交</li>
-<li>读已提交</li>
-<li>可重复读</li>
-<li>串行（序列化）</li>
-</ul>
-<h3 id="SpringMVC的消息处理机制"><a href="#SpringMVC的消息处理机制" class="headerlink" title="SpringMVC的消息处理机制"></a>SpringMVC的消息处理机制</h3><p> SpringMVC是一种轻量级的Web层框架，是一个基于请求驱动的Web框架，使用了<strong>“前端控制器（DispatcherServlet）”模型</strong>来进行设计，再根据请求映射规则分发给相应的页面控制器进行处理。消息处理依次经过的组件如下：</p>
-<p><strong>DispatcherServlet、HandlerMapping、HandlerAdapter，返回一个ModelAndView逻辑视图名、ViewResolver、View</strong></p>
-<p><strong>具体流程可以概括为</strong>：通过前端控制器DispatcherServlet来接收并且分发请求，然后通过HandlerMapping和HandlerAdapter找到具体可以处理该请求的Handler，经过逻辑处理，返回一个ModelAndView，经过ViewResolver处理，最后生成了一个View视图返回给了客户端。可以参考如下的示意图：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210424084138.png" alt="图片说明"></p>
-<h3 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h3><p>Spring Boot 是 Spring 开源组织下的子项目，是 Spring 组件<strong>一站式解决方案</strong>，主要是简化了使用 Spring 的难度，简省了繁重的配置，提供了<strong>各种启动器starter</strong>，开发者能快速上手。</p>
-<p>SpringBoot的优点包括可以独立运行，简化了配置，可以实现<strong>自动配置</strong>，无代码生成以及XML配置，并且可以进行应用监控。</p>
-<p><strong>注解 @EnableAutoConfiguration, @Configuration, @ConditionalOnClass 就是自动配置</strong>的核心，实现了SpringBoot项目的自动配置。</p>
-<h4 id="SpringBoot的核心注解"><a href="#SpringBoot的核心注解" class="headerlink" title="SpringBoot的核心注解"></a>SpringBoot的核心注解</h4><p>启动类上面的注解是@SpringBootApplication，它也是 Spring Boot 的核心注解，主要组合包含了以下 3 个注解：</p>
-<ul>
-<li>@<strong>SpringBootConfiguration</strong>：组合了 @Configuration 注解，实现配置文件的功能。</li>
-<li>@<strong>EnableAutoConfiguration</strong>：打开自动配置的功能，也可以关闭某个自动配置的选项。如关闭数据源自动配置功能： @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })。</li>
-<li>@<strong>ComponentScan</strong>：Spring组件扫描。</li>
-</ul>
-<h4 id="SpringBoot项目启动分析"><a href="#SpringBoot项目启动分析" class="headerlink" title="SpringBoot项目启动分析"></a>SpringBoot项目启动分析</h4><p>Application类是通过<strong>SpringApplication</strong>类的静态run方法来启动应用的。打开这个静态方法，该静态方法真正执行的是两部分：<strong>new SpringApplication( )并且执行对象run()方法。</strong></p>
-<h4 id="轻量级和重量级的划分"><a href="#轻量级和重量级的划分" class="headerlink" title="轻量级和重量级的划分"></a>轻量级和重量级的划分</h4><ol>
-<li>主要看它使用了多少服务，使用的服务越多，容器为普通的java对象做的工作就越多，必然会影响到应用的发布时间，或者运行性能。</li>
-<li>对于spring容器，他提供了很多服务，但默认是关闭的，应用需要某种服务，需要指明使用服务，如果服务很少，如只使用了spring核心服务，就认为此时应用属于轻量级的，如果使用了大部分的服务，这时就属于重量级的。</li>
-<li>目前EJB容器就重量级。因为他默认为应用提供了Ejb规范中的所有功能，所以属于重量级。</li>
-</ol>
-]]></content>
-      <categories>
-        <category>面试</category>
-      </categories>
-      <tags>
-        <tag>面试</tag>
-        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
