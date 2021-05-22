@@ -22,21 +22,21 @@
     var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="解码异或后的排列原题链接 题目描述给你一个整数数组 perm ，它是前 n 个正整数的排列，且 n 是个 奇数 。 它被加密成另一个长度为 n - 1 的整数数组 encoded ，满足 encoded[i] &#x3D; perm[i] XOR perm[i + 1] 。比方说，如果 perm &#x3D; [1,3,2] ，那么 encoded &#x3D; [2,1] 。 给你 encoded 数组，请你返回原始数组 p">
+  <meta name="description" content="原题链接 题目描述黑板上写着一个非负整数数组 nums[i] 。Alice 和 Bob 轮流从黑板上擦掉一个数字，Alice 先手。如果擦除一个数字后，剩余的所有数字按位异或运算得出的结果等于 0 的话，当前玩家游戏失败。 (另外，如果只剩一个数字，按位异或运算得到它本身；如果无数字剩余，按位异或运算结果为 0。） 换种说法就是，轮到某个玩家时，如果当前黑板上所有数字按位异或运算结果等于 0，这个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解码异或后的排列">
-<meta property="og:url" content="https://blog.qinhaiqi.com/2021/05/11/%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97/index.html">
+<meta property="og:title" content="黑板异或游戏">
+<meta property="og:url" content="https://blog.qinhaiqi.com/2021/05/22/%E9%BB%91%E6%9D%BF%E5%BC%82%E6%88%96%E6%B8%B8%E6%88%8F/index.html">
 <meta property="og:site_name" content="曾许人间第一流">
-<meta property="og:description" content="解码异或后的排列原题链接 题目描述给你一个整数数组 perm ，它是前 n 个正整数的排列，且 n 是个 奇数 。 它被加密成另一个长度为 n - 1 的整数数组 encoded ，满足 encoded[i] &#x3D; perm[i] XOR perm[i + 1] 。比方说，如果 perm &#x3D; [1,3,2] ，那么 encoded &#x3D; [2,1] 。 给你 encoded 数组，请你返回原始数组 p">
+<meta property="og:description" content="原题链接 题目描述黑板上写着一个非负整数数组 nums[i] 。Alice 和 Bob 轮流从黑板上擦掉一个数字，Alice 先手。如果擦除一个数字后，剩余的所有数字按位异或运算得出的结果等于 0 的话，当前玩家游戏失败。 (另外，如果只剩一个数字，按位异或运算得到它本身；如果无数字剩余，按位异或运算结果为 0。） 换种说法就是，轮到某个玩家时，如果当前黑板上所有数字按位异或运算结果等于 0，这个">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-11T01:58:38.000Z">
-<meta property="article:modified_time" content="2021-05-15T09:33:45.630Z">
+<meta property="article:published_time" content="2021-05-22T02:27:26.000Z">
+<meta property="article:modified_time" content="2021-05-22T03:03:42.231Z">
 <meta property="article:author" content="juhick">
 <meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="位运算">
+<meta property="article:tag" content="博弈论">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://blog.qinhaiqi.com/2021/05/11/%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97/">
+<link rel="canonical" href="https://blog.qinhaiqi.com/2021/05/22/%E9%BB%91%E6%9D%BF%E5%BC%82%E6%88%96%E6%B8%B8%E6%88%8F/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>解码异或后的排列 | 曾许人间第一流</title>
+  <title>黑板异或游戏 | 曾许人间第一流</title>
   
 
 
@@ -197,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/05/11/%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97/">
+    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/05/22/%E9%BB%91%E6%9D%BF%E5%BC%82%E6%88%96%E6%B8%B8%E6%88%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -210,7 +210,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          解码异或后的排列
+          黑板异或游戏
         </h1>
 
         <div class="post-meta">
@@ -219,16 +219,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-05-11 09:58:38" itemprop="dateCreated datePublished" datetime="2021-05-11T09:58:38+08:00">2021-05-11</time>
+              <time title="创建时间：2021-05-22 10:27:26 / 修改时间：11:03:42" itemprop="dateCreated datePublished" datetime="2021-05-22T10:27:26+08:00">2021-05-22</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-15 17:33:45" itemprop="dateModified" datetime="2021-05-15T17:33:45+08:00">2021-05-15</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -257,26 +251,49 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="解码异或后的排列"><a href="#解码异或后的排列" class="headerlink" title="解码异或后的排列"></a>解码异或后的排列</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvZGVjb2RlLXhvcmVkLXBlcm11dGF0aW9uLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给你一个整数数组 <code>perm</code> ，它是前 <code>n</code> 个正整数的排列，且 <code>n</code> 是个 <strong>奇数</strong> 。</p>
-<p>它被加密成另一个长度为 <code>n - 1</code> 的整数数组 <code>encoded</code> ，满足 <code>encoded[i] = perm[i] XOR perm[i + 1]</code> 。比方说，如果 <code>perm = [1,3,2]</code> ，那么 <code>encoded = [2,1]</code> 。</p>
-<p>给你 <code>encoded</code> 数组，请你返回原始数组 <code>perm</code> 。题目保证答案存在且唯一。</p>
+        <p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvY2hhbGtib2FyZC14b3ItZ2FtZS8=">原题链接<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>黑板上写着一个非负整数数组 <code>nums[i]</code> 。Alice 和 Bob 轮流从黑板上擦掉一个数字，Alice 先手。如果擦除一个数字后，剩余的所有数字按位异或运算得出的结果等于 0 的话，当前玩家游戏失败。 (另外，如果只剩一个数字，按位异或运算得到它本身；如果无数字剩余，按位异或运算结果为 0。）</p>
+<p>换种说法就是，轮到某个玩家时，如果当前黑板上所有数字按位异或运算结果等于 0，这个玩家获胜。</p>
+<p>假设两个玩家每步都使用最优解，当且仅当 Alice 获胜时返回 <code>true</code>。</p>
 <a id="more"></a>
-<p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：encoded &#x3D; [3,1]</span><br><span class="line">输出：[1,2,3]</span><br><span class="line">解释：如果 perm &#x3D; [1,2,3] ，那么 encoded &#x3D; [1 XOR 2,2 XOR 3] &#x3D; [3,1]</span><br></pre></td></tr></table></figure>
-<p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：encoded &#x3D; [6,5,4,6]</span><br><span class="line">输出：[2,4,1,5,3]</span><br></pre></td></tr></table></figure>
+<p><strong>示例：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: nums &#x3D; [1, 1, 2]</span><br><span class="line">输出: false</span><br><span class="line">解释: </span><br><span class="line">Alice 有两个选择: 擦掉数字 1 或 2。</span><br><span class="line">如果擦掉 1, 数组变成 [1, 2]。剩余数字按位异或得到 1 XOR 2 &#x3D; 3。那么 Bob 可以擦掉任意数字，因为 Alice 会成为擦掉最后一个数字的人，她总是会输。</span><br><span class="line">如果 Alice 擦掉 2，那么数组变成[1, 1]。剩余数字按位异或得到 1 XOR 1 &#x3D; 0。Alice 仍然会输掉游戏。</span><br></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>3 &lt;= n &lt; 105</code></li>
-<li><code>n</code> 是奇数。</li>
-<li><code>encoded.length == n - 1</code></li>
+<li><code>1 &lt;= N &lt;= 1000</code></li>
+<li><code>0 &lt;= nums[i] &lt;= 2^16</code></li>
 </ul>
-<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><ol>
-<li>由于perm是前<code>n</code>个正整数的排列，所以我们可以轻松的获得所有数的异或值<br>$total = 1\ XOR\ 2\ XOR\ 3\ XOR\ …\ XOR\ n$</li>
-<li>我们可以观察<code>encoded</code>数组的规律如下：<br>$encoded[0] = perm[0]\ XOR\ perm[1]$<br>$encoded[1] = perm[1]\ XOR\ perm[2]$<br>$encoded[2] = perm[2]\ XOR\ perm[3]$<br>$encoded[3] = perm[3]\ XOR\ perm[4]$<br>…<br>根据观察可知，我们只取奇数进行异或操作的话就可以得到不包含<code>perm[0]</code>的其他所有数的异或，该值与之前的<code>total</code>异或可以得到<code>perm[0]</code>的值，然后根据规律与<code>encoded</code>数组依次异或就可以得到<code>perm</code>数组的每个值（<font color='red'>需要注意因为<code>n</code>是一个奇数，所以<code>n-1</code>必定是一个偶数，所以encoded中的奇数下标个数和偶数下标个数是相同的</font>）</li>
-</ol>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] decode(<span class="keyword">int</span>[] encoded) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = encoded.length + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span>[] perm = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">int</span> total = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            total ^= i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> odd = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n - <span class="number">1</span>; i += <span class="number">2</span>)&#123;</span><br><span class="line">            odd ^= encoded[i];</span><br><span class="line">        &#125;</span><br><span class="line">        perm[<span class="number">0</span>] = total ^ odd;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            perm[i + <span class="number">1</span>] = perm[i] ^ encoded[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> perm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><h2 id="情况一：初始时黑板上所有数字异或结果为0"><a href="#情况一：初始时黑板上所有数字异或结果为0" class="headerlink" title="情况一：初始时黑板上所有数字异或结果为0"></a>情况一：初始时黑板上所有数字异或结果为0</h2><p>根据游戏规则，轮到某个玩家时，如果当前黑板上所有数字异或结果等于0，则当前玩家获胜。由于Alice是先手，因此如果初始时黑板上所有数字的异或结果为0，则Alice获胜。</p>
+<h2 id="情况二：初始时黑板上所有数字异或结果不为0"><a href="#情况二：初始时黑板上所有数字异或结果不为0" class="headerlink" title="情况二：初始时黑板上所有数字异或结果不为0"></a>情况二：初始时黑板上所有数字异或结果不为0</h2><p>由于两人交替擦除数字，且每次都恰好擦掉一个数字，因此对于这两人中的任意一人，其每次才擦除数字前，黑板上剩余数字的个数的奇偶性一定是相同的。</p>
+<p>如果$\textit{nums}$的长度为偶数，那么享受Alice是否可能失败呢？</p>
+<p>假设Alice面临失败的状态，则只有一种状况，即无论擦掉哪一个数字，剩余所有数字的异或结果都为0。</p>
+<p>设数组$nums$的长度为$n$，$n$是偶数，用$\oplus$表示异或，记$S$为数组$nums$的全部元素的异或结果，则有</p>
+<script type="math/tex; mode=display">
+S = nums[0] \oplus nums[1] \oplus \dots \oplus nums[n - 1] \neq 0</script><p>记$S_i$为擦掉$nums[i]$之后，剩余所有数字的异或结果，则有</p>
+<script type="math/tex; mode=display">
+S_i \oplus nums[i] = S</script><p>等式两边同时异或$nums[i]$，由于对任意整数$x$都有$x \oplus x = 0$，得</p>
+<script type="math/tex; mode=display">
+S_i = S \oplus nums[i]</script><p>如果无论擦掉哪一个数字，剩余的所有数字异或结果都等于0，则对任意$0 \leq i &lt; n$，都有$S_i = 0$。因此对所有的$S_i$异或结果也等于0，即</p>
+<script type="math/tex; mode=display">
+S_0 \oplus S_1 \oplus \dots \oplus S_{n - 1} = 0</script><p>将$S_i = S \oplus nums[i]$代入上式，并根据异或运算的交换律和结合律化简，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+0 &= S_0 \oplus S_1 \oplus \dots \oplus S_{n - 1} \\
+&= (S \oplus nums[0]) \oplus (S \oplus nums[1]) \oplus \dots \oplus(S \oplus nums[n - 1]) \\
+&= (S \oplus S \oplus \dots \oplus S) \oplus (nums[0] \oplus nums[1] \oplus \dots \oplus nums[n-1]) \\
+&= 0 \oplus S \\
+&= S
+\end{aligned}</script><p>上述计算中，第 33行的左边括号为$n$个$S$异或，由于$n$是偶数，因此$n$个$S$异或的结果是0。</p>
+<p>根据上述计算，可以得到$S=0$，与实际情况$S \ne 0$矛盾。</p>
+<p><strong>因此当数组的长度是偶数时，先手Alice总能找到一个数字，在擦掉这个数字之后剩余的所有数字异或结果不等于0。</strong></p>
+<p>在 Alice 擦掉这个数字后，黑板上剩下奇数个数字，无论 Bob 擦掉哪个数字，留给 Alice 的一定是黑板上剩下偶数个数字，此时 Alice 要么获胜，要么仍可以找到一个数字，在擦掉这个数字之后剩余的所有数字异或结果不等于 0，因此 Alice 总能立于不败之地。</p>
+<p>同理可得，当数组的长度是奇数时，Alice 在擦掉一个数字之后，留给 Bob 的一定是黑板上剩下偶数个数字，因此 Bob 必胜。</p>
+<p>综上所述，当且仅当以下两个条件至少满足一个时，Alice必胜：</p>
+<ul>
+<li>数组$nums$的全部元素的异或结果等于0</li>
+<li>数组$nums$的长度是偶数</li>
+</ul>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">xorGame</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">if</span>((n &amp; <span class="number">1</span>) == <span class="number">0</span>) <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            sum ^= nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -312,7 +329,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.qinhaiqi.com/2021/05/11/%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97/" title="解码异或后的排列">https://blog.qinhaiqi.com/2021/05/11/解码异或后的排列/</a>
+    <a href="https://blog.qinhaiqi.com/2021/05/22/%E9%BB%91%E6%9D%BF%E5%BC%82%E6%88%96%E6%B8%B8%E6%88%8F/" title="黑板异或游戏">https://blog.qinhaiqi.com/2021/05/22/黑板异或游戏/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -343,7 +360,7 @@
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/leetcode/" rel="tag"># leetcode</a>
-              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag"># 位运算</a>
+              <a href="/tags/%E5%8D%9A%E5%BC%88%E8%AE%BA/" rel="tag"># 博弈论</a>
           </div>
 
         
@@ -352,13 +369,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/07/LFU%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1/" rel="prev" title="LFU算法设计">
-      <i class="fa fa-chevron-left"></i> LFU算法设计
+    <a href="/2021/05/19/%E6%89%BE%E5%87%BA%E7%AC%ACK%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC/" rel="prev" title="找出第K大的异或坐标值">
+      <i class="fa fa-chevron-left"></i> 找出第K大的异或坐标值
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/12/%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2/" rel="next" title="子数组异或查询">
-      子数组异或查询 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -418,7 +432,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">解码异或后的排列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">思路分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%B8%80%EF%BC%9A%E5%88%9D%E5%A7%8B%E6%97%B6%E9%BB%91%E6%9D%BF%E4%B8%8A%E6%89%80%E6%9C%89%E6%95%B0%E5%AD%97%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%BA0"><span class="nav-number">2.1.</span> <span class="nav-text">情况一：初始时黑板上所有数字异或结果为0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%85%E5%86%B5%E4%BA%8C%EF%BC%9A%E5%88%9D%E5%A7%8B%E6%97%B6%E9%BB%91%E6%9D%BF%E4%B8%8A%E6%89%80%E6%9C%89%E6%95%B0%E5%AD%97%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%8D%E4%B8%BA0"><span class="nav-number">2.2.</span> <span class="nav-text">情况二：初始时黑板上所有数字异或结果不为0</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -695,7 +709,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'juhick.github.io',
       owner       : 'juhick',
       admin       : ['juhick'],
-      id          : '77c8db930c0c69bf5b1e4c8f3c551ed1',
+      id          : '7915830d567ef1ec42ea760faa05bce5',
         language: 'zh-CN',
       distractionFreeMode: true
     });
