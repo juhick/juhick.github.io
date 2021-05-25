@@ -22,21 +22,21 @@
     var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":null,"activeClass":"gitalk"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="子数组异或查询原题链接 题目描述有一个正整数数组 arr，现给你一个对应的查询数组 queries，其中 queries[i] &#x3D; [Li, Ri]。 对于每个查询 i，请你计算从 Li 到 Ri 的 XOR 值（即 arr[Li] xor arr[Li+1] xor ... xor arr[Ri]）作为本次查询的结果。 并返回一个包含给定查询 queries 所有结果的数组。">
+  <meta name="description" content="原题链接 题目描述给你一个整数数组 nums 和一个整数 k 。区间 [left, right]（left &lt;&#x3D; right）的 异或结果 是对下标位于 left 和 right（包括 left 和 right ）之间所有元素进行 XOR 运算的结果：nums[left] XOR nums[left+1] XOR ... XOR nums[right] 。 返回数组中 要更改的最小元素数 ，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="子数组异或查询">
-<meta property="og:url" content="https://blog.qinhaiqi.com/2021/05/12/%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2/index.html">
+<meta property="og:title" content="使所有区间的异或结果为零">
+<meta property="og:url" content="https://blog.qinhaiqi.com/2021/05/25/%E4%BD%BF%E6%89%80%E6%9C%89%E5%8C%BA%E9%97%B4%E7%9A%84%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%BA%E9%9B%B6/index.html">
 <meta property="og:site_name" content="曾许人间第一流">
-<meta property="og:description" content="子数组异或查询原题链接 题目描述有一个正整数数组 arr，现给你一个对应的查询数组 queries，其中 queries[i] &#x3D; [Li, Ri]。 对于每个查询 i，请你计算从 Li 到 Ri 的 XOR 值（即 arr[Li] xor arr[Li+1] xor ... xor arr[Ri]）作为本次查询的结果。 并返回一个包含给定查询 queries 所有结果的数组。">
+<meta property="og:description" content="原题链接 题目描述给你一个整数数组 nums 和一个整数 k 。区间 [left, right]（left &lt;&#x3D; right）的 异或结果 是对下标位于 left 和 right（包括 left 和 right ）之间所有元素进行 XOR 运算的结果：nums[left] XOR nums[left+1] XOR ... XOR nums[right] 。 返回数组中 要更改的最小元素数 ，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-12T01:31:07.000Z">
-<meta property="article:modified_time" content="2021-05-15T09:33:55.277Z">
+<meta property="article:published_time" content="2021-05-25T02:01:42.000Z">
+<meta property="article:modified_time" content="2021-05-25T03:16:06.449Z">
 <meta property="article:author" content="juhick">
 <meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="位运算">
+<meta property="article:tag" content="动态规划">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://blog.qinhaiqi.com/2021/05/12/%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2/">
+<link rel="canonical" href="https://blog.qinhaiqi.com/2021/05/25/%E4%BD%BF%E6%89%80%E6%9C%89%E5%8C%BA%E9%97%B4%E7%9A%84%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%BA%E9%9B%B6/">
 
 
 <script id="page-configurations">
@@ -49,7 +49,7 @@
   };
 </script>
 
-  <title>子数组异或查询 | 曾许人间第一流</title>
+  <title>使所有区间的异或结果为零 | 曾许人间第一流</title>
   
 
 
@@ -197,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/05/12/%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.qinhaiqi.com/2021/05/25/%E4%BD%BF%E6%89%80%E6%9C%89%E5%8C%BA%E9%97%B4%E7%9A%84%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%BA%E9%9B%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.png">
@@ -210,7 +210,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          子数组异或查询
+          使所有区间的异或结果为零
         </h1>
 
         <div class="post-meta">
@@ -219,16 +219,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-05-12 09:31:07" itemprop="dateCreated datePublished" datetime="2021-05-12T09:31:07+08:00">2021-05-12</time>
+              <time title="创建时间：2021-05-25 10:01:42 / 修改时间：11:16:06" itemprop="dateCreated datePublished" datetime="2021-05-25T10:01:42+08:00">2021-05-25</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-15 17:33:55" itemprop="dateModified" datetime="2021-05-15T17:33:55+08:00">2021-05-15</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -257,37 +251,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="子数组异或查询"><a href="#子数组异或查询" class="headerlink" title="子数组异或查询"></a>子数组异或查询</h1><p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMveG9yLXF1ZXJpZXMtb2YtYS1zdWJhcnJheS8=">原题链接<i class="fa fa-external-link-alt"></i></span></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>有一个正整数数组 <code>arr</code>，现给你一个对应的查询数组 <code>queries</code>，其中 <code>queries[i] = [Li, Ri]</code>。</p>
-<p>对于每个查询 <code>i</code>，请你计算从 <code>Li</code> 到 <code>Ri</code> 的 <strong>XOR</strong> 值（即 <code>arr[Li] xor arr[Li+1] xor ... xor arr[Ri]</code>）作为本次查询的结果。</p>
-<p>并返回一个包含给定查询 <code>queries</code> 所有结果的数组。</p>
+        <p><span class="exturl" data-url="aHR0cHM6Ly9sZWV0Y29kZS1jbi5jb20vcHJvYmxlbXMvbWFrZS10aGUteG9yLW9mLWFsbC1zZWdtZW50cy1lcXVhbC10by16ZXJvLw==">原题链接<i class="fa fa-external-link-alt"></i></span></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> 。区间 <code>[left, right]</code>（<code>left &lt;= right</code>）的 <strong>异或结果</strong> 是对下标位于 <code>left</code> 和 <code>right</code>（包括 <code>left</code> 和 <code>right</code> ）之间所有元素进行 <code>XOR</code> 运算的结果：<code>nums[left] XOR nums[left+1] XOR ... XOR nums[right]</code> 。</p>
+<p>返回数组中 <strong>要更改的最小元素数</strong> ，以使所有长度为 <code>k</code> 的区间异或结果等于零。</p>
 <a id="more"></a>
 <p><strong>示例 1：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入：arr &#x3D; [1,3,4,8], queries &#x3D; [[0,1],[1,2],[0,3],[3,3]]</span><br><span class="line">输出：[2,7,14,8] </span><br><span class="line">解释：</span><br><span class="line">数组中元素的二进制表示形式是：</span><br><span class="line">1 &#x3D; 0001 </span><br><span class="line">3 &#x3D; 0011 </span><br><span class="line">4 &#x3D; 0100 </span><br><span class="line">8 &#x3D; 1000 </span><br><span class="line">查询的 XOR 值为：</span><br><span class="line">[0,1] &#x3D; 1 xor 3 &#x3D; 2 </span><br><span class="line">[1,2] &#x3D; 3 xor 4 &#x3D; 7 </span><br><span class="line">[0,3] &#x3D; 1 xor 3 xor 4 xor 8 &#x3D; 14 </span><br><span class="line">[3,3] &#x3D; 8</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [1,2,0,3,0], k &#x3D; 1</span><br><span class="line">输出：3</span><br><span class="line">解释：将数组 [1,2,0,3,0] 修改为 [0,0,0,0,0]</span><br></pre></td></tr></table></figure>
 <p><strong>示例 2：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：arr &#x3D; [4,8,2,10], queries &#x3D; [[2,3],[1,3],[0,0],[0,3]]</span><br><span class="line">输出：[8,0,4,4]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [3,4,5,2,1,7,3,4,7], k &#x3D; 3</span><br><span class="line">输出：3</span><br><span class="line">解释：将数组 [3,4,5,2,1,7,3,4,7] 修改为 [3,4,7,3,4,7,3,4,7]</span><br></pre></td></tr></table></figure>
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：nums &#x3D; [1,2,4,1,2,5,1,2,6], k &#x3D; 3</span><br><span class="line">输出：3</span><br><span class="line">解释：将数组[1,2,4,1,2,5,1,2,6] 修改为 [1,2,3,1,2,3,1,2,3]</span><br></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
 <ul>
-<li><code>1 &lt;= arr.length &lt;= 3 * 10^4</code></li>
-<li><code>1 &lt;= arr[i] &lt;= 10^9</code></li>
-<li><code>1 &lt;= queries.length &lt;= 3 * 10^4</code></li>
-<li><code>queries[i].length == 2</code></li>
-<li><code>0 &lt;= queries[i][0] &lt;= queries[i][1] &lt; arr.length</code></li>
+<li><code>1 &lt;= k &lt;= nums.length &lt;= 2000</code></li>
+<li><code>0 &lt;= nums[i] &lt; 210</code></li>
 </ul>
-<h2 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h2><p>看到这个，可能首先想到的是每次读出左右边界并进行异或计算，然后存到数组里。</p>
-<p>不妨先假设<code>arr</code>的数组长度为<code>m</code>，<code>queries</code>的数组长度为<code>n</code>，则每次进行查询的最差时间复杂度为<code>O(m)</code>，总的时间复杂度为<code>O(nm)</code>，时间复杂度太高。</p>
-<p>需要对其进行优化，从而使得每次查询操作的时间复杂度降为<code>O(1)</code>。</p>
-<p>这里就需要保存一个<strong>前缀异或数组</strong><code>xors</code>。该数组的长度为<code>m+1</code>，计算过程如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xors[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">xors[i + <span class="number">1</span>] = xors[i] ^ arr[i];</span><br></pre></td></tr></table></figure>
-<p>即<code>xors[i]</code>保存的是索引从<code>0</code>到<code>i - 1</code>的<code>arr</code>数组的异或值。</p>
-<p>设每次计算的左右边界分别为<code>left</code>和<code>right</code>，然后需要计算的值如下：</p>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>设$nums$数组的长度为$n$，修改后的数组任意长度为$k$的区间异或结果为0，则对于任意的$i$有：</p>
 <script type="math/tex; mode=display">
-\begin{aligned}
-res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
-&= (arr[0] \oplus arr[1] \oplus...\oplus arr[left - 1]) \oplus (arr[0] \oplus arr[1] \oplus...\oplus arr[left - 1]) \\
-&\oplus (arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right]) \\
-&= xors[left] \oplus xors[right + 1]
-\end{aligned}</script><h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] xorQueries(<span class="keyword">int</span>[] arr, <span class="keyword">int</span>[][] queries) &#123;</span><br><span class="line">        <span class="keyword">int</span> m = arr.length;</span><br><span class="line">        <span class="keyword">int</span> n = queries.length;</span><br><span class="line">        <span class="keyword">int</span>[] xor = <span class="keyword">new</span> <span class="keyword">int</span>[m + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        xor[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; ++i)&#123;</span><br><span class="line">            xor[i] = xor[i - <span class="number">1</span>] ^ arr[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; n; i++)&#123;</span><br><span class="line">            res[i] = xor[queries[i][<span class="number">0</span>]] ^ xor[queries[i][<span class="number">1</span>] + <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+nums[i] \oplus nums[i + 1] \oplus \dots \oplus nums[i + k - 1] = 0</script><p>同时还有：</p>
+<script type="math/tex; mode=display">
+nums[i + 1] \oplus nums[i + 2] \oplus \dots \oplus nums[i + k] = 0</script><p>由这两个等式可以推出：</p>
+<script type="math/tex; mode=display">
+nums[i] \oplus nums[i + k] = 0</script><p>即$nums[i] = nums[i + k]$，由此可以得出每隔$k$个数字都是相等的，即修改之后的$nums$数组是一个以$k$为周期的数组，即$\forall i \in [0, n - k), nums[i] = nums[i + k]$。</p>
+<p>因此，我们可以将数组$nums$根据下标对$k$取模的结果$0, 1, 2, 3, \dots, k - 1$分成$k$个组，每个组内的元素必须都相等，且这k个组对应元素的异或和为0，即：</p>
+<script type="math/tex; mode=display">
+num[0] \oplus nums[1] \oplus \dots \oplus nums[k - 1] = 0</script><p>对于第$i$个组，我们可以用哈希表来存储每个分组内出现的元素及其相应个数，之后采用动态规划对该问题求解，即求将每个组内元素修改为全部相等并且全部分组的数字的异或和为0所需的最少次数。</p>
+<p>设$f(i, mask)$为已经处理了第$0, 1, \dots, i$个组，且这些组对应元素的异或和</p>
+<script type="math/tex; mode=display">
+nums[0] \oplus nums[1] \oplus \dots \oplus nums[i]</script><p>为$mask$的前提下，这些组<strong>总计</strong>需要修改的元素个数。在进行状态转移时，我们可以枚举第$i$组被修改成了哪个数。假设被修改为了$x$，那么第$0, 1, \dots, i - 1$组的异或值为$mask \oplus x$，因此的到状态转移方程:</p>
+<script type="math/tex; mode=display">
+f(i, mask) = \min \limits_{x}[f(i - 1, mask \oplus x) + size(i) - count(i, x)]</script><p>其中$size(i)$代表$i$组的元素个数，$count(i, x)$代表第$i$组中$x$的个数。它们可以根据哈希表得到。</p>
+<p>上述状态转移方程的意义即为：如果我们选择将第$i$组全部修改为$x$，那么有 $\text{count}(i, x)$个数是无需修改的，这样就需要修改$\text{size}(i) - \text{count}(i, x)$次。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>首先，由于$size(i)$是一个与$x$无关的变量，所以从$min$中取出，即：</p>
+<script type="math/tex; mode=display">
+f(i, mask) = size(i) + \min_{x}[f(i - 1, mask \oplus x) - count(i, x)]</script><p>由于我们需要求的是「最小值」，因此在状态转移方程中添加若干大于等于「最小值」的项，对最终的答案不会产生影响。</p>
+<p>考虑$count(i, x)$这一项，如果$x$没有在哈希表中出现，那么这一项的值为0，否则这一项的值大于0，即：</p>
+<ul>
+<li>如果$x$没有在哈希表中出现，那么转移的状态为：<script type="math/tex; mode=display">
+f(i - 1, mask \oplus x)</script></li>
+</ul>
+<ul>
+<li>如果$x$在哈希表中出现，那么转移的状态为：<script type="math/tex; mode=display">
+f(i - 1, mask \oplus x) - count(i, x)</script>它严格小于$f(i - 1, mask \oplus x)$。如果我们在状态转移方程在添加$f(i - 1, mask \oplus x)$，最终答案不会变化。</li>
+</ul>
+<p>因此我们可以将状态转移方程变化为：</p>
+<script type="math/tex; mode=display">
+f(i, mask) = size(i) + \min\{t1, t2\}</script><p>其中$t1$对应$x$在哈希表中的状态，即:</p>
+<script type="math/tex; mode=display">
+t1 = \min_{x \in HashTable(i)} \{f(i - 1, mask \oplus x) - count(i, x)\}</script><p>$t2$对应的是$x$不在哈希表中的状态，以及$x$在哈希表中出现且我们额外添加的状态，即：</p>
+<script type="math/tex; mode=display">
+t2 = \min_x f(i-1, mask \oplus x)</script><p>$t2$就是所有状态$f(i-1, ..)$中的最小值。最终的答案为$f(k - 1, 0)$。</p>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><p>由于$f(i, ..)$只会从 $f(i-1, ..)$转移而来，因此我们可以使用两个长度为$2^{10}$的一维数组代替二维数组，交替地进行状态转移，减少空间复杂度。</p>
+<p>此外，当$i=0$时，$f(-1, ..)$ 都是需要特殊考虑的边界条件。由于 $f(-1, ..)$表示没有考虑任何组时的异或和，因此该异或和一定为 0，即 $f(-1, 0) = 0$。其它的状态都是不合法的状态，我们可以将它们赋予一个极大值 $\infty$。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAXX = <span class="number">1</span> &lt;&lt; <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INFTY = Integer.MAX_VALUE / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minChanges</span><span class="params">(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.length;</span><br><span class="line">        <span class="keyword">int</span>[] f = <span class="keyword">new</span> <span class="keyword">int</span>[MAXX];</span><br><span class="line">        Arrays.fill(f, INFTY);</span><br><span class="line">        f[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; k; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> size = <span class="number">0</span>;</span><br><span class="line">            Map&lt;Integer, Integer&gt; memo = <span class="keyword">new</span> HashMap&lt;Integer, Integer&gt;();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i; j &lt; n; j += k)&#123;</span><br><span class="line">                size++;</span><br><span class="line">                memo.put(nums[j], memo.getOrDefault(nums[j], <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> minT2 = Arrays.stream(f).min().getAsInt();</span><br><span class="line">            <span class="keyword">int</span>[] g = <span class="keyword">new</span> <span class="keyword">int</span>[MAXX];</span><br><span class="line">            Arrays.fill(g, minT2);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> mask = <span class="number">0</span>; mask &lt; MAXX; mask++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry:memo.entrySet())&#123;</span><br><span class="line">                    <span class="keyword">int</span> x = entry.getKey(), countX = entry.getValue();</span><br><span class="line">                    g[mask] = Math.min(f[mask ^ x] - countX, g[mask]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; MAXX; j++)&#123;</span><br><span class="line">                g[j] += size;</span><br><span class="line">            &#125;</span><br><span class="line">            f = g;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> f[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -323,7 +339,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://blog.qinhaiqi.com/2021/05/12/%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2/" title="子数组异或查询">https://blog.qinhaiqi.com/2021/05/12/子数组异或查询/</a>
+    <a href="https://blog.qinhaiqi.com/2021/05/25/%E4%BD%BF%E6%89%80%E6%9C%89%E5%8C%BA%E9%97%B4%E7%9A%84%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%BA%E9%9B%B6/" title="使所有区间的异或结果为零">https://blog.qinhaiqi.com/2021/05/25/使所有区间的异或结果为零/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC8="><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</span> 许可协议。转载请注明出处！
@@ -354,7 +370,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
       <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/leetcode/" rel="tag"># leetcode</a>
-              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/" rel="tag"># 位运算</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
           </div>
 
         
@@ -363,13 +379,10 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/11/%E8%A7%A3%E7%A0%81%E5%BC%82%E6%88%96%E5%90%8E%E7%9A%84%E6%8E%92%E5%88%97/" rel="prev" title="解码异或后的排列">
-      <i class="fa fa-chevron-left"></i> 解码异或后的排列
+    <a href="/2021/05/24/%E5%A5%87%E6%80%AA%E7%9A%84%E6%89%93%E5%8D%B0%E6%9C%BA/" rel="prev" title="奇怪的打印机">
+      <i class="fa fa-chevron-left"></i> 奇怪的打印机
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/05/12/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E7%9A%84%E6%9C%80%E5%A4%A7%E5%80%BC/" rel="next" title="滑动窗口的最大值">
-      滑动窗口的最大值 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -429,7 +442,7 @@ res[i] &= arr[left] \oplus arr[left + 1] \oplus ... \oplus arr[right] \\
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%90%E6%95%B0%E7%BB%84%E5%BC%82%E6%88%96%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.</span> <span class="nav-text">子数组异或查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">1.2.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.3.</span> <span class="nav-text">代码实现</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">思路分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">2.1.</span> <span class="nav-text">优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%86%E8%8A%82"><span class="nav-number">2.2.</span> <span class="nav-text">细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">代码实现</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -706,7 +719,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'juhick.github.io',
       owner       : 'juhick',
       admin       : ['juhick'],
-      id          : '403a2fa3ae56a49b89bebf9c5fcc03ae',
+      id          : '8ee41ba5f28fa92834734505e0ad7928',
         language: 'zh-CN',
       distractionFreeMode: true
     });
