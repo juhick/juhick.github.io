@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="[TOC]
+信息存储大部分计算机使用8位的块，或叫作字节（byte），来作为最小的可寻址的存储器单位，而不是访问存储器中单独的位。机器级程序将存储器视为一个非常大的字节数组，称为虚拟存储器（virtual memory）。存储器的每个字节都由一个唯一的数字来标识，称为它的地址（address），所有可能地址的集合就称为虚拟地址空间（virtual address space）。
+编译器和运行时系统">
+  <meta name="author" content="Juhick">
+  <meta name="keywords" content="">
+  
+  <title>计算机中信息的表示和处理 - 曾许人间第一流</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="计算机中信息的表示和处理">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-15 17:37" pubdate>
+        2021年5月15日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      645 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机中信息的表示和处理</h1>
+            
+            <div class="markdown-body">
+              <p>[TOC]</p>
+<h1 id="信息存储"><a href="#信息存储" class="headerlink" title="信息存储"></a>信息存储</h1><p>大部分计算机使用8位的块，或叫作<strong>字节（byte）</strong>，来作为最小的可寻址的存储器单位，而不是访问存储器中单独的位。机器级程序将存储器视为一个非常大的字节数组，称为<strong>虚拟存储器（virtual memory）</strong>。存储器的每个字节都由一个唯一的数字来标识，称为<strong>它的地址（address）</strong>，所有可能地址的集合就称为<strong>虚拟地址空间（virtual address space）</strong>。</p>
+<p>编译器和运行时系统的一个任务就是将这个存储器空间划分为更可管理的单元=，来存放不同的<strong>程序对象（program object）</strong>，也就是，程序数据、指令和控制信息。</p>
+<span id="more"></span>
+
+<h2 id="十六进制表示法"><a href="#十六进制表示法" class="headerlink" title="十六进制表示法"></a>十六进制表示法</h2><table>
+<thead>
+<tr>
+<th>十六进制数字</th>
+<th>十进制值</th>
+<th>二进制值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0000</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0001</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>0010</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>0011</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>0100</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>0101</td>
+</tr>
+<tr>
+<td>6</td>
+<td>6</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8</td>
+<td>1000</td>
+</tr>
+<tr>
+<td>9</td>
+<td>9</td>
+<td>1001</td>
+</tr>
+<tr>
+<td>A</td>
+<td>10</td>
+<td>1010</td>
+</tr>
+<tr>
+<td>B</td>
+<td>11</td>
+<td>1011</td>
+</tr>
+<tr>
+<td>C</td>
+<td>12</td>
+<td>1100</td>
+</tr>
+<tr>
+<td>D</td>
+<td>13</td>
+<td>1101</td>
+</tr>
+<tr>
+<td>E</td>
+<td>14</td>
+<td>1110</td>
+</tr>
+<tr>
+<td>F</td>
+<td>15</td>
+<td>1111</td>
+</tr>
+</tbody></table>
+<p>一个字节的值域：</p>
+<p>$$<br>\begin{aligned}<br>&amp; 二进制：00000000_2 \sim 11111111_2 \<br>&amp; 十进制：0_{10} \sim 255_{10} \<br>&amp; 十六进制：00_{16} \sim FF_{16}<br>\end{aligned}<br>$$</p>
+<h3 id="十六进制转二进制"><a href="#十六进制转二进制" class="headerlink" title="十六进制转二进制"></a>十六进制转二进制</h3><p>将每个十六进制数字展开成四位二进制然后拼接</p>
+<p>例：转化 <code>0x173A4C</code><br>$$<br>\begin{aligned}<br>&amp; 十六进制 &amp; &amp;\ 1\ &amp;      &amp;\ 7\ &amp;   &amp;\ 3\ &amp;    &amp;\ A\ &amp;    &amp;\ 4\ &amp;   &amp;\ C\ &amp;\<br>&amp; 二进制 &amp;   &amp;\ 0001\ &amp; &amp;\ 0111\ &amp; &amp;\ 0011\ &amp; &amp;\ 1010\ &amp; &amp;\ 0100\ &amp; &amp;\ 1100\ &amp;<br>\end{aligned}<br>$$</p>
+<h3 id="二进制转十六进制"><a href="#二进制转十六进制" class="headerlink" title="二进制转十六进制"></a>二进制转十六进制</h3><p>从后往前每四位二进制转化为一位十六进制数字</p>
+<p>如果怕总数不是四的倍数，最左边的一组可以少于四位，前面用零补足</p>
+<p>例：转化<code>1111001010110110110011</code><br>$$<br>\begin{aligned}<br>&amp;二进制&amp;&amp;\ 11&amp;&amp;\ 1100&amp;&amp;\ 1010&amp;&amp;\ 1101&amp;&amp;\ 1011&amp;&amp;\ 0011&amp;  \<br>&amp;十六进制&amp;&amp;\ 3&amp;&amp;\ C&amp;&amp;\ A&amp;&amp;\ D&amp;&amp;\ B&amp;&amp;\ 3&amp;<br>\end{aligned}<br>$$</p>
+<h2 id="字"><a href="#字" class="headerlink" title="字"></a>字</h2><p>每台计算机都有一个<strong>字长（word size）</strong>，对于一个字长为<code>n</code>位的机器来说，虚拟地址的范围为$0\sim2^n-1$,程序最多访问$2^n$字节。</p>
+<p>今天的计算机基本是32位和64位的。</p>
+<h2 id="寻址和字节顺序"><a href="#寻址和字节顺序" class="headerlink" title="寻址和字节顺序"></a>寻址和字节顺序</h2><h3 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h3><p>在几乎所有的机器中，多字节对象都被存储为连续的字节序列，对象的地址所使用字节序列中最小的地址。</p>
+<h3 id="字节序列排序"><a href="#字节序列排序" class="headerlink" title="字节序列排序"></a>字节序列排序</h3><ol>
+<li><strong>小端法（little endian）</strong>：最低有效字节在最前面</li>
+<li><strong>大端法（big endian）</strong>：最高有效字节在最前面</li>
+</ol>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BF%A1%E6%81%AF%E8%A1%A8%E7%A4%BA/">信息表示</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BF%A1%E6%81%AF%E5%A4%84%E7%90%86/">信息处理</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">计算机系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/16/%E6%95%B0%E7%BB%84%E4%B8%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%80%BC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数组中两个数的最大异或值</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/13/%E6%8B%AC%E5%8F%B7%E7%94%9F%E6%88%90/">
+                        <span class="hidden-mobile">括号生成</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

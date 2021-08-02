@@ -1,0 +1,479 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="原题链接
+题目描述给你一个整数数组 nums 和一个整数 k 。区间 [left, right]（left &amp;lt;= right）的 异或结果 是对下标位于 left 和 right（包括 left 和 right ）之间所有元素进行 XOR 运算的结果：nums[left] XOR nums[left+1] XOR ... XOR nums[right] 。
+返回数组中 要更改的最小元素数 ，">
+  <meta name="author" content="Juhick">
+  <meta name="keywords" content="">
+  
+  <title>使所有区间的异或结果为零 - 曾许人间第一流</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="使所有区间的异或结果为零">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-25 10:01" pubdate>
+        2021年5月25日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.4k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      19
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">使所有区间的异或结果为零</h1>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/make-the-xor-of-all-segments-equal-to-zero/">原题链接</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> 。区间 <code>[left, right]</code>（<code>left &lt;= right</code>）的 <strong>异或结果</strong> 是对下标位于 <code>left</code> 和 <code>right</code>（包括 <code>left</code> 和 <code>right</code> ）之间所有元素进行 <code>XOR</code> 运算的结果：<code>nums[left] XOR nums[left+1] XOR ... XOR nums[right]</code> 。</p>
+<p>返回数组中 <strong>要更改的最小元素数</strong> ，以使所有长度为 <code>k</code> 的区间异或结果等于零。</p>
+<span id="more"></span>
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入：nums = <span class="hljs-string">[1,2,0,3,0]</span>, k = <span class="hljs-number">1</span><br>输出：<span class="hljs-number">3</span><br>解释：将数组 <span class="hljs-string">[1,2,0,3,0]</span> 修改为 <span class="hljs-string">[0,0,0,0,0]</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">3,4,5,2</span>,<span class="hljs-number">1,7,3,4</span>,<span class="hljs-number">7</span>], k = <span class="hljs-number">3</span><br>输出：<span class="hljs-number">3</span><br>解释：将数组 [<span class="hljs-number">3,4,5,2</span>,<span class="hljs-number">1,7,3,4</span>,<span class="hljs-number">7</span>] 修改为 [<span class="hljs-number">3,4,7,3</span>,<span class="hljs-number">4,7,3,4</span>,<span class="hljs-number">7</span>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：nums = [<span class="hljs-number">1,2,4,1</span>,<span class="hljs-number">2,5,1,2</span>,<span class="hljs-number">6</span>], k = <span class="hljs-number">3</span><br>输出：<span class="hljs-number">3</span><br>解释：将数组[<span class="hljs-number">1,2,4,1</span>,<span class="hljs-number">2,5,1,2</span>,<span class="hljs-number">6</span>] 修改为 [<span class="hljs-number">1,2,3,1</span>,<span class="hljs-number">2,3,1,2</span>,<span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= k &lt;= nums.length &lt;= 2000</code></li>
+<li><code>0 &lt;= nums[i] &lt; 210</code></li>
+</ul>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><p>设$nums$数组的长度为$n$，修改后的数组任意长度为$k$的区间异或结果为0，则对于任意的$i$有：<br>$$<br>nums[i] \oplus nums[i + 1] \oplus \dots \oplus nums[i + k - 1] = 0<br>$$<br>同时还有：<br>$$<br>nums[i + 1] \oplus nums[i + 2] \oplus \dots \oplus nums[i + k] = 0<br>$$<br>由这两个等式可以推出：<br>$$<br>nums[i] \oplus nums[i + k] = 0<br>$$<br>即$nums[i] = nums[i + k]$，由此可以得出每隔$k$个数字都是相等的，即修改之后的$nums$数组是一个以$k$为周期的数组，即$\forall i \in [0, n - k), nums[i] = nums[i + k]$。</p>
+<p>因此，我们可以将数组$nums$根据下标对$k$取模的结果$0, 1, 2, 3, \dots, k - 1$分成$k$个组，每个组内的元素必须都相等，且这k个组对应元素的异或和为0，即：<br>$$<br>num[0] \oplus nums[1] \oplus \dots \oplus nums[k - 1] = 0<br>$$</p>
+<p>对于第$i$个组，我们可以用哈希表来存储每个分组内出现的元素及其相应个数，之后采用动态规划对该问题求解，即求将每个组内元素修改为全部相等并且全部分组的数字的异或和为0所需的最少次数。</p>
+<p>设$f(i, mask)$为已经处理了第$0, 1, \dots, i$个组，且这些组对应元素的异或和<br>$$<br>nums[0] \oplus nums[1] \oplus \dots \oplus nums[i]<br>$$<br>为$mask$的前提下，这些组<strong>总计</strong>需要修改的元素个数。在进行状态转移时，我们可以枚举第$i$组被修改成了哪个数。假设被修改为了$x$，那么第$0, 1, \dots, i - 1$组的异或值为$mask \oplus x$，因此的到状态转移方程:<br>$$<br>f(i, mask) = \min \limits_{x}[f(i - 1, mask \oplus x) + size(i) - count(i, x)]<br>$$<br>其中$size(i)$代表$i$组的元素个数，$count(i, x)$代表第$i$组中$x$的个数。它们可以根据哈希表得到。</p>
+<p>上述状态转移方程的意义即为：如果我们选择将第$i$组全部修改为$x$，那么有 $\text{count}(i, x)$个数是无需修改的，这样就需要修改$\text{size}(i) - \text{count}(i, x)$次。</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>首先，由于$size(i)$是一个与$x$无关的变量，所以从$min$中取出，即：<br>$$<br>f(i, mask) = size(i) + \min_{x}[f(i - 1, mask \oplus x) - count(i, x)]<br>$$<br>由于我们需要求的是「最小值」，因此在状态转移方程中添加若干大于等于「最小值」的项，对最终的答案不会产生影响。</p>
+<p>考虑$count(i, x)$这一项，如果$x$没有在哈希表中出现，那么这一项的值为0，否则这一项的值大于0，即：</p>
+<ul>
+<li><p>如果$x$没有在哈希表中出现，那么转移的状态为：<br>$$<br>f(i - 1, mask \oplus x)<br>$$</p>
+</li>
+<li><p>如果$x$在哈希表中出现，那么转移的状态为：<br>$$<br>f(i - 1, mask \oplus x) - count(i, x)<br>$$<br>它严格小于$f(i - 1, mask \oplus x)$。如果我们在状态转移方程在添加$f(i - 1, mask \oplus x)$，最终答案不会变化。</p>
+</li>
+</ul>
+<p>因此我们可以将状态转移方程变化为：<br>$$<br>f(i, mask) = size(i) + \min{t1, t2}<br>$$<br>其中$t1$对应$x$在哈希表中的状态，即:<br>$$<br>t1 = \min_{x \in HashTable(i)} {f(i - 1, mask \oplus x) - count(i, x)}<br>$$<br>$t2$对应的是$x$不在哈希表中的状态，以及$x$在哈希表中出现且我们额外添加的状态，即：<br>$$<br>t2 = \min_x f(i-1, mask \oplus x)<br>$$<br>$t2$就是所有状态$f(i-1, ..)$中的最小值。最终的答案为$f(k - 1, 0)$。</p>
+<h2 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h2><p>由于$f(i, ..)$只会从 $f(i-1, ..)$转移而来，因此我们可以使用两个长度为$2^{10}$的一维数组代替二维数组，交替地进行状态转移，减少空间复杂度。</p>
+<p>此外，当$i=0$时，$f(-1, ..)$ 都是需要特殊考虑的边界条件。由于 $f(-1, ..)$表示没有考虑任何组时的异或和，因此该异或和一定为 0，即 $f(-1, 0) = 0$。其它的状态都是不合法的状态，我们可以将它们赋予一个极大值 $\infty$。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MAXX = <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">10</span>;<br>    <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> INFTY = Integer.MAX_VALUE / <span class="hljs-number">2</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">minChanges</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums, <span class="hljs-keyword">int</span> k)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = nums.length;<br>        <span class="hljs-keyword">int</span>[] f = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[MAXX];<br>        Arrays.fill(f, INFTY);<br>        f[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; k; i++)&#123;<br>            <span class="hljs-keyword">int</span> size = <span class="hljs-number">0</span>;<br>            Map&lt;Integer, Integer&gt; memo = <span class="hljs-keyword">new</span> HashMap&lt;Integer, Integer&gt;();<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &lt; n; j += k)&#123;<br>                size++;<br>                memo.put(nums[j], memo.getOrDefault(nums[j], <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>            &#125;<br><br>            <span class="hljs-keyword">int</span> minT2 = Arrays.stream(f).min().getAsInt();<br>            <span class="hljs-keyword">int</span>[] g = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[MAXX];<br>            Arrays.fill(g, minT2);<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> mask = <span class="hljs-number">0</span>; mask &lt; MAXX; mask++)&#123;<br>                <span class="hljs-keyword">for</span>(Map.Entry&lt;Integer, Integer&gt; entry:memo.entrySet())&#123;<br>                    <span class="hljs-keyword">int</span> x = entry.getKey(), countX = entry.getValue();<br>                    g[mask] = Math.min(f[mask ^ x] - countX, g[mask]);<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; MAXX; j++)&#123;<br>                g[j] += size;<br>            &#125;<br>            f = g;<br>        &#125;<br>        <span class="hljs-keyword">return</span> f[<span class="hljs-number">0</span>];<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/">leetcode</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/08/01/hello-world/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/24/%E5%A5%87%E6%80%AA%E7%9A%84%E6%89%93%E5%8D%B0%E6%9C%BA/">
+                        <span class="hidden-mobile">奇怪的打印机</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

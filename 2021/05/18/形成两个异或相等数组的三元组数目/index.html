@@ -1,0 +1,499 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="原题链接
+题目描述给你一个整数数组 arr 。
+现需要从数组中取三个下标 i、j 和 k ，其中 (0 &amp;lt;= i &amp;lt; j &amp;lt;= k &amp;lt; arr.length) 。
+a 和 b 定义如下：
+
+a = arr[i] ^ arr[i + 1] ^ ... ^ arr[j - 1]
+b = arr[j] ^ arr[j + 1] ^ ... ^ arr[k]
+
+注意：^ 表示 按位">
+  <meta name="author" content="Juhick">
+  <meta name="keywords" content="">
+  
+  <title>形成两个异或相等数组的三元组数目 - 曾许人间第一流</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="形成两个异或相等数组的三元组数目">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-18 10:06" pubdate>
+        2021年5月18日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      913 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">形成两个异或相等数组的三元组数目</h1>
+            
+            <div class="markdown-body">
+              <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-triplets-that-can-form-two-arrays-of-equal-xor/">原题链接</a></p>
+<h1 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h1><p>给你一个整数数组 <code>arr</code> 。</p>
+<p>现需要从数组中取三个下标 <code>i</code>、<code>j</code> 和 <code>k</code> ，其中 <code>(0 &lt;= i &lt; j &lt;= k &lt; arr.length)</code> 。</p>
+<p><code>a</code> 和 <code>b</code> 定义如下：</p>
+<ul>
+<li><code>a = arr[i] ^ arr[i + 1] ^ ... ^ arr[j - 1]</code></li>
+<li><code>b = arr[j] ^ arr[j + 1] ^ ... ^ arr[k]</code></li>
+</ul>
+<p>注意：<strong>^</strong> 表示 <strong>按位异或</strong> 操作。</p>
+<p>请返回能够令 <code>a == b</code> 成立的三元组 (<code>i</code>, <code>j</code> , <code>k</code>) 的数目。</p>
+<span id="more"></span>
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gcode">输入：arr = [<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]<br>输出：<span class="hljs-number">4</span><br>解释：满足题意的三元组分别是 <span class="hljs-comment">(0,1,2)</span>, <span class="hljs-comment">(0,2,2)</span>, <span class="hljs-comment">(2,3,4)</span> 以及 <span class="hljs-comment">(2,4,4)</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入：arr = <span class="hljs-string">[1,1,1,1,1]</span><br>输出：<span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs fix"><span class="hljs-attr">输入：arr </span>=<span class="hljs-string"> [2,3]</span><br><span class="hljs-string">输出：0</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 4：</strong></p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">输入：arr = <span class="hljs-string">[1,3,5,7,9]</span><br>输出：<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 5：</strong></p>
+<figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：arr = [<span class="hljs-number">7,11,12,9</span>,<span class="hljs-number">5,2,7,17</span>,<span class="hljs-number">22</span>]<br>输出：<span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= arr.length &lt;= 300</code></li>
+<li><code>1 &lt;= arr[i] &lt;= 10^8</code></li>
+</ul>
+<h1 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h1><h2 id="解法一：二重循环"><a href="#解法一：二重循环" class="headerlink" title="解法一：二重循环"></a>解法一：二重循环</h2><p>因为$a == b$，所以$a \oplus b = arr[i] \oplus arr[i + 1] \oplus \cdots \oplus arr[k] = 0$，可以看出最终结果与$j$是没有关系的，所以一个简单的思路是直接二重循环遍历所有的$i$和$k$值，然后异或值为0是结果增加$k-i$即可。</p>
+<h3 id="代码实现："><a href="#代码实现：" class="headerlink" title="代码实现："></a>代码实现：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">countTriplets</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> cur = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++)&#123;<br>            cur = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> k = i; k &lt; arr.length; k++)&#123;<br>                cur ^= arr[k];<br>                <span class="hljs-keyword">if</span>(cur == <span class="hljs-number">0</span>)&#123;<br>                    res += (k - i);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li>时间复杂度：$O(n^2)$，$n$是$arr$数组的长度</li>
+<li>空间复杂度：$O(1)$</li>
+</ul>
+<h2 id="思路二：一重循环"><a href="#思路二：一重循环" class="headerlink" title="思路二：一重循环"></a>思路二：一重循环</h2><p>首先定义长度为$n$的数组$arr$的异或前缀和如下<br>$$<br>S_i = \begin{equation}<br>\left{<br>\begin{aligned}<br>&amp;0,&amp;    &amp;i = 0 \<br>&amp;arr[0] \oplus arr[1] \oplus \cdots \oplus arr[i - 1], &amp;&amp;i \leq i \leq n<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$<br>由该定义可得<br>$$<br>S_i = \begin{equation}<br>\left{<br>\begin{aligned}<br>&amp;0, &amp;&amp;i = 0 \<br>&amp;S_{i - 1} \oplus arr[i-1],&amp;&amp;1 \leq i \leq n<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$<br>对于两个下标不同的异或前缀和$S_i$和$S_j$，设$0 &lt; i &lt; j$，有<br>$$<br>S_i \oplus S_j = (arr[0] \oplus arr[1] \oplus \cdots \oplus arr[i - 1]) \oplus (arr[0] \oplus arr[1] \oplus \cdots \oplus arr[i - 1] \oplus arr[i] \oplus \cdots \oplus arr[j - 1])<br>$$<br>由于异或运算满足结合律和交换律，且任意数组异或自身等于0，上式可简化为：<br>$$<br>S_i \oplus S_j = arr[i] \oplus \cdots \oplus arr[j - 1]<br>$$<br>从而，数组$arr$的子区间$[i, j]$的元素异或和可表示为<br>$$<br>S_i \oplus S_{j+1}<br>$$</p>
+<p>则题目中的$a$和$b$可以表示为：<br>$$<br>a = S_i \oplus S_j \<br>b = S_j \oplus S_{k+1}<br>$$<br>若$a=b$，则有：<br>$$<br>S_i \oplus S_j = S_j \oplus S_{k+1}<br>$$<br>即<br>$$<br>S_i = S_{k+1}<br>$$<br>对于下标$k$，若下标$i = i_1, i_2, \cdots , i_m$时均满足$S_i = S_{k + 1}$，这些二元组$(i_1, k), (i_2, k), \cdots ,(i_m, k)$对答案的贡献之和为<br>$$<br>(k - i_1) + (k - i_2) + \cdots + (k - i_m) = m \cdot k - (i_1 + i_2 + \cdots + i_m)<br>$$<br>也就是说，当遍历下标$k$时，我们需要直到所有满足$S_i = S_{k + 1}$的</p>
+<ul>
+<li>下标$i$的出现次数$m$</li>
+<li>下标$i$之和</li>
+</ul>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">countTriplets</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] arr)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = arr.length;<br>        Map&lt;Integer, Integer&gt; cnt = <span class="hljs-keyword">new</span> HashMap&lt;Integer, Integer&gt;();<br>        Map&lt;Integer, Integer&gt; total = <span class="hljs-keyword">new</span> HashMap&lt;Integer, Integer&gt;();<br>        <span class="hljs-keyword">int</span> ans = <span class="hljs-number">0</span>, s = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; n; ++k) &#123;<br>            <span class="hljs-keyword">int</span> val = arr[k];<br>            <span class="hljs-keyword">if</span> (cnt.containsKey(s ^ val)) &#123;<br>                ans += cnt.get(s ^ val) * k - total.get(s ^ val);<br>            &#125;<br>            cnt.put(s, cnt.getOrDefault(s, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>            total.put(s, total.getOrDefault(s, <span class="hljs-number">0</span>) + k);<br>            s ^= val;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ans;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><ul>
+<li>时间复杂度：O(n)<em>O</em>(<em>n</em>)，其中 n<em>n</em> 是数组 \textit{arr}<em>arr</em> 的长度。</li>
+<li>空间复杂度：O(n)<em>O</em>(<em>n</em>)。我们需要使用 O(n)<em>O</em>(<em>n</em>) 的空间存储两个哈希表。</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/leetcode/">leetcode</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/leetcode/">leetcode</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/">位运算</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/05/19/%E6%89%BE%E5%87%BA%E7%AC%ACK%E5%A4%A7%E7%9A%84%E5%BC%82%E6%88%96%E5%9D%90%E6%A0%87%E5%80%BC/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">找出第K大的异或坐标值</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/05/16/%E6%95%B0%E7%BB%84%E4%B8%AD%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%9A%84%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%80%BC/">
+                        <span class="hidden-mobile">数组中两个数的最大异或值</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

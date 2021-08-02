@@ -1,0 +1,503 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="MyBatisMyBatis是什么MyBatis是一个半ORM（对象关系映射）框架，内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。通过直接编写原生态SQL，可以严格控制SQL语句的执行性能，灵活度高(支持动态SQL语句)。
+MyBatis 使用XML或注解来配置和映射原生信息，将 POJO映射成数据库中的记录，避免了">
+  <meta name="author" content="Juhick">
+  <meta name="keywords" content="">
+  
+  <title>MyBatis相关知识 - 曾许人间第一流</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="MyBatis相关知识">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-24 09:03" pubdate>
+        2021年4月24日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MyBatis相关知识</h1>
+            
+            <div class="markdown-body">
+              <h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><h3 id="MyBatis是什么"><a href="#MyBatis是什么" class="headerlink" title="MyBatis是什么"></a>MyBatis是什么</h3><p>MyBatis是一个<strong>半ORM（对象关系映射）框架</strong>，内部封装了JDBC，开发时只需要关注SQL语句本身，不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。通过直接编写原生态SQL，可以严格控制SQL语句的执行性能，灵活度高(<strong>支持动态SQL语句</strong>)。</p>
+<p>MyBatis <strong>使用XML或注解来配置和映射原生信息</strong>，将 POJO映射成数据库中的记录，避免了JDBC代码手动设置参数以及获取结果集的繁琐步骤。</p>
+<p>MyBatis<strong>通过xml文件或注解的方式将要执行的各种 statement 配置起来</strong>，并通过Java对象和 statement中SQL的动态参数进行映射生成最终执行的SQL语句，最后由MyBatis框架执行SQL语句，并将结果映射为Java对象并返回。</p>
+<span id="more"></span>
+<h4 id="MyBatis和Hibernate的区别"><a href="#MyBatis和Hibernate的区别" class="headerlink" title="MyBatis和Hibernate的区别"></a>MyBatis和Hibernate的区别</h4><ul>
+<li><strong>MyBatis</strong>的优点是代码开发量少、简单易上手、SQL语句和代码分离（便于修改）、数据库可移植；但是，其缺点是SQL语句需要自己写，并且参数只能有一个。</li>
+<li><strong>Hibernate</strong>的优点是进行了对象关系数据库映射、完全面向对象、提供缓存机制和HQL编程；但是，其缺点是不能灵活使用原生SQL、无法对SQL优化、全表映射效率。</li>
+</ul>
+<h4 id="JDBC、MyBatis和Hibernate的主要区别"><a href="#JDBC、MyBatis和Hibernate的主要区别" class="headerlink" title="JDBC、MyBatis和Hibernate的主要区别"></a>JDBC、MyBatis和Hibernate的主要区别</h4><p>JDBC更为灵活，更加有效率，系统运行速度快。但是代码繁琐复杂，如果使用了存储过程就不方便数据库移植了。</p>
+<p>Hibernate和MyBatis是关系数据库框架，开发速度快，更加面向对象，可以移植更换数据库，但影响系统性能。</p>
+<h3 id="MyBatis的核心组件"><a href="#MyBatis的核心组件" class="headerlink" title="MyBatis的核心组件"></a>MyBatis的核心组件</h3><p>MyBatis的核心组件包括<strong>SqlSessionFactoryBuilder，SqlSessionFactory，SqlSession和Mapper</strong>。</p>
+<p><strong>SqlSessionFactoryBuilder</strong>是一个构建器，通过XML配置文件或者Java编码获得资源来构建SqlSessionFactory，通过Builder可以构建多个SessionFactory。其生命周期一般只存在于方法的局部，用完即可回收。</p>
+<p><strong>SqlSessionFactory</strong>的作用就是创建SqlSession，也就是创建一个会话。每次程序需要访问数据库，就需要使用到SqlSession。所以SqlSessionFactory应该在MyBatis应用的整个生命周期中。为了减少每次都创建一个会话带来的资源消耗，一般情况下都会使用单例模式来创建SqlSession。</p>
+<p><strong>SqlSession</strong>就是一个会话，相当于JDBC中的Connection对象，既可以发送SQL去执行并返回结果，也可以获取Mapper接口。SqlSession是一个线程不安全的对象，其生命周期应该是请求数据库处理事务的过程中。每次创建的SqlSession对象必须及时关闭，否则会使得数据库连接池的活动资源减少，影响系统性能。</p>
+<p><strong>Mapper</strong>也叫做映射器，由Java接口和XML文件（或者是注解）共同组成，给出了对应的SQL和映射规则，主要负责发送SQL去执行，并且返回结果。通过下边的语句来获取Mapper，接下来就可以调用Mapper中的各个方法去获取数据库结果了。</p>
+<h3 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h3><p>MyBatis动态SQL可以在XML映射文件内，以标签的形式编写动态SQL。动态SQL的执行原理是，<strong>根据表达式的值完成逻辑判断并动态拼接SQL语句。</strong></p>
+<p>对动态SQL的支持是MyBatis的一大优点。MyBatis提供了9种动态SQL标签：</p>
+<ul>
+<li><strong>if：</strong>单条件分支的判断语句</li>
+<li><strong>choose, when, otherwise：</strong>多条件的分支判断语句</li>
+<li><strong>foreach：</strong>列举条件，遍历集合，实现循环语句</li>
+<li><strong>trim,where,set：</strong>是一些辅助元素，可以对拼接的SQL进行处理</li>
+<li><strong>bind：</strong>进行模糊匹配查询的时候使用，提高数据库的可移植性</li>
+</ul>
+<h3 id="MyBatis的Mapper中常见标签"><a href="#MyBatis的Mapper中常见标签" class="headerlink" title="MyBatis的Mapper中常见标签"></a>MyBatis的Mapper中常见标签</h3><p>Mapper中常见的标签如下：</p>
+<ul>
+<li>select | insert | updae | delete</li>
+<li>resultMap | parameterMap | sql | include | selectKey</li>
+<li>trim | where | set | foreach | if | choose | when | otherwise | bind</li>
+</ul>
+<h3 id="DAO接口"><a href="#DAO接口" class="headerlink" title="DAO接口"></a>DAO接口</h3><p><strong>Dao接口即Mapper接口</strong>。接口的全限名，就是映射文件中的namespace的值。接口的方法名，就是映射文件中Mapper的Statement的id值。接口方法内的参数，就是传递给SQL的参数。</p>
+<p>Mapper接口是没有实现类的，当调用接口方法时，接口<strong>全限名+方法名</strong>拼接字符串作为key值，可唯一定位一个<strong>MapperStatement</strong>。在MyBatis中，每一个<code>&lt;select&gt;</code>、<code>&lt;insert&gt;</code>、<code>&lt;update&gt;</code>、<code>&lt;delete&gt;</code>标签，都会被解析为一个<strong>MapperStatement对象</strong>。</p>
+<p>Mapper接口的工作原理<strong>是JDK动态代（dai）理</strong>，MyBatis运行时会使用JDK动态代（dai）理为Mapper接口生成代（dai）理对象proxy，代（dai）理对象会拦截接口方法，转而执行MapperStatement所代表的SQL，然后将SQL执行结果返回。</p>
+<h4 id="Dao接口中的方法可以重载么？"><a href="#Dao接口中的方法可以重载么？" class="headerlink" title="Dao接口中的方法可以重载么？"></a>Dao接口中的方法可以重载么？</h4><p><strong>Mapper接口里的方法，是不能重载的，因为是使用 全限名+方法名 的保存和寻找策略。</strong></p>
+<h4 id="不同映射文件xml中的id值可以重复么"><a href="#不同映射文件xml中的id值可以重复么" class="headerlink" title="不同映射文件xml中的id值可以重复么"></a>不同映射文件xml中的id值可以重复么</h4><ul>
+<li>不同的xml映射文件，如果配置了namespace，那么id可以重复</li>
+<li>如果没有配置namespace，那么id不能重复</li>
+</ul>
+<h3 id="和-有什么区别"><a href="#和-有什么区别" class="headerlink" title="#和$有什么区别"></a><code>#</code>和<code>$</code>有什么区别</h3><p>myBatis中我们<strong>能用<code>#</code>号就尽量不要使用<code>$</code>符号</strong>，它们的区别主要体现在下边几点：</p>
+<ul>
+<li><code>#</code>符号将传入的数据都当做一个字符串，会对自动传入的数据加一个双引号</li>
+<li><code>$</code>符号将传入的数据<strong>直接显示</strong>在生成的SQL语句中。</li>
+<li><code>#</code>符号<strong>存在预编译的过程</strong>，对问号赋值，防止<strong>SQL注入</strong>。</li>
+<li><code>$</code>符号是<strong>直译</strong>的方式，一般用在**order by ${列名}**语句中。</li>
+</ul>
+<h3 id="MyBatis的缓存机制"><a href="#MyBatis的缓存机制" class="headerlink" title="MyBatis的缓存机制"></a>MyBatis的缓存机制</h3><p>MyBatis的缓存机制分为一级和二级缓存，分别介绍如下：</p>
+<ul>
+<li><strong>一级缓存（同一个SqlSession）:</strong></li>
+</ul>
+<p>基于HashMap的本地缓存，其存储作用域为Session，当 Session flush 或 close 之后，该 Session 中的所有缓存就将清空，默认打开一级缓存。</p>
+<ul>
+<li><strong>二级缓存（同一个SqlSessionFactory）：</strong></li>
+</ul>
+<p>二级缓存与一级缓存其机制相同，默认也是采用HashMap的本地存储，不同在于其存储作用域为 Mapper(Namespace)，并且可自定义存储源。</p>
+<h3 id="MyBatis的接口绑定"><a href="#MyBatis的接口绑定" class="headerlink" title="MyBatis的接口绑定"></a>MyBatis的接口绑定</h3><p>接口绑定就是在MyBatis中任意定义接口,然后把接口里面的方法和SQL语句绑定, 我们直接调用接口方法就可以。</p>
+<p><strong>接口绑定有两种实现方式：</strong></p>
+<ul>
+<li>通过注解绑定，就是在接口的方法上面加上 @Select、@Update等注解，里面包含SQL语句来绑定</li>
+<li>通过xml里面写SQL来绑定, 在这种情况下,要指定xml映射文件里面的namespace必须为接口的全路径名。</li>
+</ul>
+<p><strong>接口绑定方式的选择：</strong></p>
+<p>当SQL语句比较简单时候，用注解绑定；当SQL语句比较复杂时候，用xml绑定；实际的开发中，我们一般都使用xml绑定方式。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/MyBatis/">MyBatis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/24/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Redis相关知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/23/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+                        <span class="hidden-mobile">Spring相关知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

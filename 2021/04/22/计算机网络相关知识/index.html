@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="计算机网络分组交换时延
+处理时延
+排队时延
+传输时延
+传播时延
+">
+  <meta name="author" content="Juhick">
+  <meta name="keywords" content="">
+  
+  <title>计算机网络相关知识 - 曾许人间第一流</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="计算机网络相关知识">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-22 14:25" pubdate>
+        2021年4月22日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      10k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      107
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">计算机网络相关知识</h1>
+            
+            <div class="markdown-body">
+              <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><h3 id="时延"><a href="#时延" class="headerlink" title="时延"></a>时延</h3><ol>
+<li>处理时延</li>
+<li>排队时延</li>
+<li>传输时延</li>
+<li>传播时延</li>
+</ol>
+<span id="more"></span>
+
+<h2 id="分层体系结构"><a href="#分层体系结构" class="headerlink" title="分层体系结构"></a>分层体系结构</h2><h3 id="因特网协议栈"><a href="#因特网协议栈" class="headerlink" title="因特网协议栈"></a>因特网协议栈</h3><ol>
+<li>应用层<br>包含网络应用程序及<strong>HTTP、SMTP、FTP</strong>等应用层协议<br>信息分组为<strong>报文</strong></li>
+<li>运输层<br>在应用程序端点之间传送应用层报文<br>包括<strong>TCP和UDP</strong>运输协议<br>分组为<strong>报文段</strong></li>
+<li>网络层<br>负责将网络层分组——<strong>数据报</strong>从一台主机移动到另一台主机<br>包括网际协议<strong>IP</strong>以及路由选择协议</li>
+<li>链路层<br>传输网络层下传的数据<br>分组为<strong>帧</strong></li>
+<li>物理层<br>运输帧中的一个个<strong>比特</strong></li>
+</ol>
+<h3 id="OSI模型-开放系统互连模型"><a href="#OSI模型-开放系统互连模型" class="headerlink" title="OSI模型(开放系统互连模型)"></a>OSI模型(开放系统互连模型)</h3><p>包括以上五层，并在应用层和运输层之间添加了表示层和会话层</p>
+<ol>
+<li>表示层：使通信的应用程序能够交换数据的含义<br>包括<strong>数据压缩</strong>、<strong>数据加密</strong>和<strong>数据描述</strong></li>
+<li>会话层：提供数据交换的定界和同步功能，包括建立检查点和恢复方案的方法</li>
+</ol>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h4 id="网络应用程序体系结构"><a href="#网络应用程序体系结构" class="headerlink" title="网络应用程序体系结构"></a>网络应用程序体系结构</h4><ol>
+<li>客户-服务器体系结构(CS结构)<br>客户相互之间不直接通信<br>服务器具有固定的、周知的IP地址<br>服务器总是打开的<br>主机分为客户和服务器</li>
+<li>P2P(对等)体系结构<br>主机称为对等方<br>对等方为用户所有<br>应用程序在间断连接的主机对之间使用直接通信<br>高度非集中式结构，面临安全性、性能和可靠性等挑战 </li>
+</ol>
+<h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>在两个不同端系统上的进程，通过跨越计算机网络交换<strong>报文</strong>而相互通信。</p>
+<ol>
+<li>客户和服务器进程<br>发起通信的进程被标识为<strong>客户</strong>，在会话开始时等待联系的进程是<strong>服务器</strong></li>
+<li>进程与计算机网络之间的接口<br>进程通过**套接字(Socket)**与网络通信<br>套接字是同一台主机应用层和运输层之间的接口</li>
+<li>进程寻址<br>采用<strong>IP地址</strong>+<strong>端口号</strong></li>
+</ol>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><p>Web的应用层协议是超文本传输协议(HyperText Transfer Protocol, HTTP)，它是Web的核心。</p>
+<p>Web页面(也叫文档)由对象组成。一个对象只是一个文件，且可以通过URL地址进行寻址。</p>
+<p>多数Web页面含有一个HTML基本文件以及几个引用对象。</p>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>HTTP定义了Web客户向Web服务器请求Web页面的方式，以及服务器向客户传送Web页面的方式。</p>
+<p>HTTP使用TCP作为它的支撑运输协议。</p>
+<p>HTTP是<strong>无状态协议</strong>，不保存用户的任何信息。</p>
+<p>HTTP默认使用持续连接，也支持非持续连接。</p>
+<h4 id="采用非持续连接的HTTP"><a href="#采用非持续连接的HTTP" class="headerlink" title="采用非持续连接的HTTP"></a>采用非持续连接的HTTP</h4><p>每个TCP连接在服务器发送一个对象后关闭，即该连接并不为其他的对象而持续下来。</p>
+<p>每个TCP连接只传输一个请求报文和一个响应报文。</p>
+<p>在默认方式下，大部分浏览器打开5~10个并行的TCP连接。用户可以配置浏览器来控制量级的并行度。</p>
+<p>假定Web页面有一个HTML基本文件和10个JPEG图形，并且这11个对象位于同一台服务器上。假设该HTML文件的地址为:<code>http://www.example.com/some/index.html</code>。</p>
+<ol>
+<li>HTTP客户进程在端口号80发起一个到服务器<code>www.example.com</code>的TCP连接。在客户和服务器上分别有一个套接字与该连接相关联。(该过程涉及一次“三次握手”过程，并且第三次握手与下一步中的请求报文相结合)。</li>
+<li>HTTP客户经由它的套接字向该服务器发送一个HTTP请求报文。请求报文中包含了路径名<code>/some/index.html</code>。</li>
+<li>HTTP服务器进程经它的套接字接收该请求报文，从存储器(RAM或磁盘)中检索出对象<code>www.example.com/some/index.html</code>，在一个HTTP响应报文中封装对象，并通过其套接字向客户发送响应报文。</li>
+<li>HTTP服务器进程通知TCP断开该TCP连接。(直到TCP确认客户完整地接收到响应报文为止，它才会实际中断连接。)</li>
+<li>HTTP客户端接收响应报文，TCP连接关闭。该报文指出封装的对象是一个HTML文件，客户从响应报文中提取出该文件，检查该HTML文件，得到对10个JPEG图形的引用。</li>
+<li>对每个引用的JPEG对象重复前四个步骤。</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>必须为每一个请求的对象建立和维护一个全新的连接。对于每个这样的连接，在客户和服务器中都要分配TCP的缓冲区和保持TCP变量，为Web服务器带来了严重的负担。</li>
+<li>每一个对象都要经受两倍RTT的交付时延。</li>
+</ol>
+<h4 id="采用持续连接的HTTP"><a href="#采用持续连接的HTTP" class="headerlink" title="采用持续连接的HTTP"></a>采用持续连接的HTTP</h4><p>服务器在发送响应后保持该TCP连接打开，后续的请求和响应报文可以通过相同的连接进行传送。</p>
+<p>一般来说，如果一个连接经过一段时间间隔(可配置的时间间隔)仍未被使用，HTTP服务器就关闭该连接。</p>
+<h4 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h4><p>下面是一个典型的HTTP请求报文</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/somedir/page.html</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>www.someschool.edu //指明了对象所在的主机<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close //指明不使用持续连接<br><span class="hljs-attribute">User-agent</span><span class="hljs-punctuation">: </span>Mozilia/5.0 //指名向服务器发送请求的浏览器的类型<br><span class="hljs-attribute">Accept-language</span><span class="hljs-punctuation">: </span>fr //表示用户想要得到的语言版本<br></code></pre></td></tr></table></figure>
+
+<p>第一行为请求行，包括三个字段：方法字段、URL字段和HTTP版本字段。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210413165620.png" srcset="/img/loading.gif" lazyload alt="6D912A7180EBEAC28FE14650C189B3EB"></p>
+<p>上面是一个HTTP请求报文的通用格式</p>
+<p>在首部行之后还有一个“实体体”，使用GET方法时实体体为空，使用POST方法时才使用该实体体。</p>
+<h4 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h4><p>下面是一条典型的HTTP响应报文，该响应报文是对刚刚讨论的例子中的请求报文的响应。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">200</span> OK<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close //告诉客户，发送完报文后将关闭该TCP连接<br><span class="hljs-attribute">Date</span><span class="hljs-punctuation">: </span>Tue, 18 Aug 2015 15:44:04 GMT //服务器产生并发送该响应报文的日期和时间<br><span class="hljs-attribute">Server</span><span class="hljs-punctuation">: </span>Apache/2.2.3 (CentOS) //指名服务器的类型<br><span class="hljs-attribute">Last-Modified</span><span class="hljs-punctuation">: </span>Tue, 18 Aug 2015 15:11:03 GMT //对象创建或最后修改的日期和时间<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>6821 //指示了被发送对象中的字节数<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>text/html //指名实体体中的对象类型<br><br><span class="haskell">(<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-keyword">data</span> <span class="hljs-keyword">data</span> <span class="hljs-keyword">data</span> ...)</span></span><br></code></pre></td></tr></table></figure>
+
+<p>包含一个初始状态行，包括协议版本字段、状态码和相应状态信息</p>
+<p>6个首部行</p>
+<p>然后是实体体</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210413174044.png" srcset="/img/loading.gif" lazyload alt="9EA6171716E8F8273B15D1951160A44C"></p>
+<p>上图是一个HTTP响应报文的通用格式</p>
+<p>常见的状态码和相关的短语：</p>
+<ul>
+<li>200 OK：请求成功，信息在返回的响应报文中</li>
+<li>301 Moved Permanently：请求的对象已经被永久转移了，新的URL定义在响应报文的Location：首部行中。客户软件将自动获取新的URL。</li>
+<li>400 Bad Request：一个通用的差错代码，指示该请求不能被服务器理解。</li>
+<li>404 Not Found：被请求的文档不在服务器上</li>
+<li>505 HTTP Version Not Supported：服务器不支持请求报文使用的HTTP协议版本</li>
+</ul>
+<h4 id="用户与服务器的交互：Cookie"><a href="#用户与服务器的交互：Cookie" class="headerlink" title="用户与服务器的交互：Cookie"></a>用户与服务器的交互：Cookie</h4><p>HTTP使用cookie来对用户进行追踪。</p>
+<p>Cookie用四个组件;</p>
+<ol>
+<li>在HTTP响应报文中的一个cookie首部行</li>
+<li>在HTTP请求报文中的一个cookie首部行</li>
+<li>在用户端系统中保留有一个cookie文件，并由用户的浏览器进行管理</li>
+<li>位于Web站点的一个后端数据库</li>
+</ol>
+<p>用户首次请求网站时，服务器会产生一个唯一识别码，并以此为索引在它的后端数据库中产生一个表项。接下来服务器用一个包含Set-cookie：首部的HTTP响应报文对用户的浏览器进行响应。其中Set-cookie首部含有该识别码。</p>
+<p>用户的浏览器收到该HTTP响应报文后，会看到Set-cookie首部。浏览器会在它管理的特定cookie文件中添加一行，该行包括服务器的主机名和在Set-cookie首部中的识别码。</p>
+<p>当用户再次范围网站时，浏览器会查询该cookie文件并提取出该网站的识别码，并放到HTTP请求报文中包括识别码的cookie首部行中。</p>
+<p>服务器就可以根据该识别码跟踪用户在站点的活动。</p>
+<h3 id="HTTP与SMTP的对比"><a href="#HTTP与SMTP的对比" class="headerlink" title="HTTP与SMTP的对比"></a>HTTP与SMTP的对比</h3><p>相同之处：</p>
+<ol>
+<li>都是从一台主机向另一台主机发送文件</li>
+<li>持续的HTTP和SMTP都使用持续连接</li>
+</ol>
+<p>区别：</p>
+<ol>
+<li>HTTP主要是一个<strong>拉协议</strong>，用户从服务器拉取信息。TCP连接是由想接受文件的机器发起的。<br>SMTP主要是一个<strong>推协议</strong>，发送邮件服务器把文件推向接收邮件服务器。TCP连接由要发送文件的机器发起。</li>
+<li>SMTP要求每个报文（包括他们的体）采用7比特ASCII码格式。<br>HTTP不受这种限制。</li>
+<li>HTTP把每个对象封装到它自己的HTTP响应报文中。<br>SMTP则把所有报文对象放在一个报文之中。</li>
+</ol>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><h4 id="DNS提供的服务"><a href="#DNS提供的服务" class="headerlink" title="DNS提供的服务"></a>DNS提供的服务</h4><ol>
+<li>将主机名解析为IP地址</li>
+<li>主机别名</li>
+<li>邮件服务器别名</li>
+<li>负载分配，一个IP地址集合与一个规范主机名相联系，DNS在这些冗余的Web服务器之间循环分配了负载。</li>
+</ol>
+<h4 id="三层DNS服务器"><a href="#三层DNS服务器" class="headerlink" title="三层DNS服务器"></a>三层DNS服务器</h4><ol>
+<li>根DNS服务器</li>
+<li>TLD DNS服务器</li>
+<li>权威DNS服务器</li>
+</ol>
+<h4 id="DNS记录"><a href="#DNS记录" class="headerlink" title="DNS记录"></a>DNS记录</h4><p>资源记录RR：</p>
+<p>​    <code>(Name, Value, Type, TTL)</code>，TTL是该记录的生存时间，它决定了资源记录应当从缓存中删除的时间。</p>
+<p>记录类型：</p>
+<p><code>Type = A</code>，则<code>Name</code>是主机名，<code>Value</code>是该主机名对应的IP地址。提供了标准的主机名到IP地址的映射。</p>
+<p><code>Type = NS</code>，则<code>Name</code>是个域，如(<code>foo.com</code>)，而<code>Value</code>是个知道如何获得该域中主机IP地址的权威DNS服务器的主机名。该记录用于沿着查询链来路由DNS查询。</p>
+<p><code>Type = CNAME</code>，则<code>Value</code>是别名为<code>Name</code>的主机对应的规范主机名。该记录能够向查询的主机提供一个主机名对应的规范主机名。</p>
+<p><code>Type = MX</code>，则<code>Value</code>是个别名为<code>Name</code>的邮件服务器的规范主机名。MX记录允许邮件服务器主机名有简单的别名。通过MX记录，一个公司的邮件服务器和其他服务器可以使用相同的别名。</p>
+<h3 id="DoS"><a href="#DoS" class="headerlink" title="DoS"></a>DoS</h3><p>DoS称为拒绝服务攻击，DDoS是<strong>分布式DoS</strong>。</p>
+<p>Dos的种类：</p>
+<ol>
+<li>弱点攻击</li>
+<li>带宽洪泛：发送大量分组</li>
+<li>连接洪泛：创建大量的半开或全开的TCP连接</li>
+</ol>
+<h2 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h2><h3 id="多路复用和多路分解"><a href="#多路复用和多路分解" class="headerlink" title="多路复用和多路分解"></a>多路复用和多路分解</h3><p>多路复用和多路分解是所有计算机网络需要的。</p>
+<p>将运输层报文段中的数据交付到争取的套接字的工作称为<strong>多路分解</strong>。</p>
+<p>在源主机从不同套接字中手机数据块，并为每个数据块封装上首部信息（这将在以后用于分解）从而生成报文段，然后将报文段传递到网络层，所有这些工作称为<strong>多路复用</strong>。</p>
+<h3 id="无连接运输：UDP"><a href="#无连接运输：UDP" class="headerlink" title="无连接运输：UDP"></a>无连接运输：UDP</h3><p>UDP除了复用/分解功能及少量的差错检测外，几乎没有对IP增加别的东西。</p>
+<p>UDP首部只有8字节。</p>
+<p>UDP的特点：</p>
+<ol>
+<li><p>关于发送什么数据以及何时发送的应用层控制更为精细。</p>
+</li>
+<li><p>无须建立连接，不会引入建立连接的时延。</p>
+</li>
+<li><p>无连接状态。</p>
+</li>
+<li><p>分组首部开销小。每个TCP报文段都有20字节的首部开销，而UDP仅有8字节的开销。</p>
+</li>
+</ol>
+<h3 id="回退N步（GBN）协议"><a href="#回退N步（GBN）协议" class="headerlink" title="回退N步（GBN）协议"></a>回退N步（GBN）协议</h3><p>允许发送方发送多个分组（当有多个分组可用时）而不需等待确认，但它也受限于在流水线中未确认的分组数不能超过某个最大允许数N。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210415171754.png" srcset="/img/loading.gif" lazyload alt="5AAF2F098550DD15DAEAD1395B9EE20E"></p>
+<p>在实践中，一个分组的序号承载在分组首部的一个固定长度的字段中。如果分组序号字段的比特数是<code>k</code>，则该序号范围是<code>[0, 2^k - 1]</code>。</p>
+<p>GBN发送方必须响应三种类型的事件：</p>
+<ul>
+<li>上层的调用。窗口未满则产生一个分组并将其发送，并相应地更新变量。</li>
+<li>收到一个ACK。对序号为n的分组的确认采用<strong>累计确认</strong>的方式，表明接收方已正确接收到序号为n的以前且包括n在内的所有分组。</li>
+<li>超时事件。出现超时，发送方重传所有已发送但还未确认的分组。</li>
+</ul>
+<p>接收方的动作也很简单。如果一个序号为n的分组被接收到，并且按序（即上次交付给上层的数据是序号为n - 1的分组），则接收方为分组n发送一个ACK，并将该分组中的数据部分交付给上层。在所有其他情况下，接收方丢弃该分组，并为最近按序接收的分组重新发送ACK。注意到因为一次交付给上层一个分组，如果分组k已接受并交付，则所有序号比k小的分组也已经交付。</p>
+<p>在GBN协议中，接收方丢弃所有失序分组。这样接收方将不用缓存任何失序分组。</p>
+<h4 id="用到的可靠数据传输技术"><a href="#用到的可靠数据传输技术" class="headerlink" title="用到的可靠数据传输技术"></a>用到的可靠数据传输技术</h4><ol>
+<li>使用序号</li>
+<li>累计确认</li>
+<li>校验和</li>
+<li>超时/重传</li>
+</ol>
+<h3 id="选择重传（SR）"><a href="#选择重传（SR）" class="headerlink" title="选择重传（SR）"></a>选择重传（SR）</h3><p>选择重传协议通过让发送方仅重传那些它怀疑在接收方出错（即丢失或受损）的分组而避免了不必要的重传。这种个别的、按需的重传要求接收方<em>逐个地</em>确认正确接受的分组。</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210415201234.png" srcset="/img/loading.gif" lazyload alt="0183CCAA4C3B00781FE49AF39B465D43"></p>
+<p>SR发送方的事件与动作：</p>
+<ol>
+<li>从上层收到数据。检查下一个可用于该分组的序号，如果序号在发送方的窗口内，则将数据打包并发送。</li>
+<li>超时。每个分组有自己的逻辑定时器。超时发生时只能发送一个分组。</li>
+<li>收到ACK。倘若该分组序号在窗口内，则发送方将被确认的分组标记为已接收。如果该分组的序号等于send_base，则窗口基序号向前移动到具有最小序号的未确认分组处。如果窗口移动了且有序号落在窗口内的未发送分组，则发送这些分组。</li>
+</ol>
+<p>SR接收方的事件与动作：</p>
+<ol>
+<li>序号在[rcv_base, rcv_base + N - 1]内的分组被正确接收。一个选择ACK被回送给发送方。如果该分组以前没收到过，则缓存该分组。如果分组的序号等于接收窗口的基序号（如上图的rcv_base），则该分组以及以前缓存的序号连续的（起始于rcv_base的）分组交付给上层。然后，接收窗口按向前移动分组的编号向上交付这些分组。</li>
+<li>序号在[rcv_base - N, rcv_base - 1]内的分组被正确收到。在此情况下，必须产生一个ACK，即使该分组是接收方之前已经确认过的分组。</li>
+<li>其他情况。忽略该分组。</li>
+</ol>
+<h3 id="可靠数据传输机制"><a href="#可靠数据传输机制" class="headerlink" title="可靠数据传输机制"></a>可靠数据传输机制</h3><ol>
+<li>检验和</li>
+<li>定时器</li>
+<li>序号</li>
+<li>确认</li>
+<li>否定确认</li>
+<li>窗口、流水线</li>
+</ol>
+<h3 id="面向连接的运输：TCP"><a href="#面向连接的运输：TCP" class="headerlink" title="面向连接的运输：TCP"></a>面向连接的运输：TCP</h3><p>TCP依赖于差错检测、重传、累计确认、定时器以及用于序号和确认号的首部字段。</p>
+<p>TCP的首部字节一般是20字节。</p>
+<p>特点：</p>
+<ol>
+<li><strong>面向连接</strong>，连接组成：一台主机上的缓存、变量和与进程连接的套接字以及另一台主机上的另一组缓存、变量和与进程连接的套接字。</li>
+<li>提供的是<strong>全双工服务</strong></li>
+<li>TCP连接总是<strong>点对点</strong>的，即在单个发送方和单个接收方之间的连接。</li>
+</ol>
+<h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><ol>
+<li>客户首先发送给一个特殊的TCP报文段，该报文段中不包含应用层数据。但在报文段首部中的一个标志位（即SYN比特）被置为1。因此，这个特殊报文段称为SYN报文段。客户会随机地选择一个初始序号（client_isn），并将此编号放置于该起始地TCP SYN报文段的序号字段中。</li>
+<li>服务器用另一个特殊的TCP报文段响应。服务器从该数据报中提取出TCP SYN报文段，为该TCP连接分配TCP缓存和变量，并向该客户TCP发送允许连接的报文段。这个允许连接的报文段也不包含应用层数据。但是，在报文段的首部却包含3个重要信息。首先，SYN比特被置为1。其次，该TCP报文段首部的确认号字段被置为client_isn + 1。最后，服务器选择自己的初始序号（server_isn），并将其放置在TCP报文段首部的序号字段中。该允许连接的报文段被称为<strong>SYNACK报文段</strong>。</li>
+<li>客户再用第三个特殊报文段作为回应。客户给连接分配缓存和变量。这最后一个报文段对服务器允许连接的报文段进行了确认（该客户通过将值server_isn+1放置到TCP报文段首部的确认字段来完成此项工作）。SYN比特被置为0。该三次握手的第三个阶段可以在报文段负载中携带客户到浏览器的数据。</li>
+</ol>
+<p>前两个报文段不承载“有效载荷”，也就是不包含应用层数据。第三个报文段可以承载有效载荷。</p>
+<h4 id="MSS"><a href="#MSS" class="headerlink" title="MSS"></a>MSS</h4><p>MSS即<strong>最大报文段长度</strong>，MSS是指在报文段里应用层数据的最大长度，而不是指包括首部的TCP报文段的最大长度。</p>
+<p>MSS通常根据最初确定的由本地发送主句发送的最大链路层帧长度（即所谓的<strong>最大传输单元</strong>（MTU））来设置。设置MSS要保证一个TCP报文段（当封装在一个IP数据报中）加上TCP/IP长度（通常为40字节）将适合单个链路层帧。</p>
+<p>以太网和PPP链路层协议都有1500字节的MTU，因此MSS的典型值为1460字节。</p>
+<h4 id="网络拥塞的代价"><a href="#网络拥塞的代价" class="headerlink" title="网络拥塞的代价"></a>网络拥塞的代价</h4><ol>
+<li>分组经历巨大的排队时延。</li>
+<li>发送方必须执行重传以补偿因为缓存溢出而丢弃（丢失）的分组。</li>
+<li>发送方在遇到大时延时所进行的不必要重传会引起路由器利用其链路带宽来转发不必要的分组副本。</li>
+<li>当一个分组沿一条路径被丢弃时，每个上游路由器用于转发该分组到丢弃该分组而使用的传输容量最终被浪费掉了。</li>
+</ol>
+<h3 id="TCP拥塞控制"><a href="#TCP拥塞控制" class="headerlink" title="TCP拥塞控制"></a>TCP拥塞控制</h3><p>TCP拥塞控制常常被称为<strong>加性增、乘性减</strong>（AIMD）拥塞控制方式。</p>
+<ol>
+<li>慢启动<br>cwnd的值初始置为一个MSS的较小值，在慢启动状态，cwnd的值以1个MSS开始并且每当传输的报文段首次被确认就增加一个MSS。<br>如果存在一个由超时指示的丢包事件（即拥塞），TCP发送方将cwnd设置为1并重新开始慢启动过程。还将ssthresh（慢启动阈值）设置为cwnd/2。<br>当达到或超过ssthresh的值时，结束慢启动并且TCP转移到拥塞避免模式。<br>如果检测到三个冗余ACK，这时TCP执行一种快速重传并进入快速恢复状态。</li>
+<li>拥塞避免<br>每个RTT只将cwnd的值增加一个MSS。一种通用的方式是对于TCP发送方无论何时到达一个新的确认，就将cwnd增加一个MSS（MSS/cwnd）字节。<br>出现超时事件则将ssthresh设置为cwnd的一半，cwnd设置为1，进入慢启动状态。ssthresh = cwnd/2，cwnd = ssthresh。<br>出现三个冗余ACK，则将ssthresh设置为cwnd的一半，cwnd设置为ssthresh + 3*MSS，并进入快速恢复阶状态</li>
+<li>快速恢复<br>对收到的每个冗余的ACK，cwnd的值增加一个MSS。<br>当对丢失报文段的一个ACK到达时，TCP在降低cwnd（降为ssthresh）后进入拥塞避免状态。<br>出现超时事件，则采取跟另两个状态相同的操作并进入慢启动状态。<br>快速恢复时TCP推荐的而非必须的构件。</li>
+</ol>
+<h3 id="OSI七层模型"><a href="#OSI七层模型" class="headerlink" title="OSI七层模型"></a>OSI七层模型</h3><ul>
+<li><strong>应用层：</strong>由用户自己规定，<strong>规定各个应用之间消息传递的形式</strong>等，包括各机互访协议，分布式数据库协议等。常见的应用层协议有HTTP协议、SMTP协议和FTP协议等。</li>
+<li><strong>表示层：</strong>在满足用户需求的基础上，尽可能的节省传输费用而设置的，比如传输压缩文件，jpeg或者加密文件等格式。</li>
+<li><strong>会话层：</strong>用于建立和拆除会话。</li>
+<li><strong>传输层：</strong>负责将来自会话层的消息传递给网络层，<strong>常见的传输层协议有TCP和UDP等协议。</strong></li>
+<li><strong>网络层：</strong>规定通信网内的路由选择等方式，建立用户间的信息报传输设施。常见的网络层协议有IP，ICMP以及ARP等协议。</li>
+<li><strong>数据链路层：</strong>与建立数据传输链路相关。</li>
+<li><strong>物理层：</strong>规定一些机电性能，也包括工作方式如双工、单工或半双工，建立通信的启动和终止等。</li>
+</ul>
+<h3 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h3><p>TCP/IP协议是一系列网络协议的总称，是网络通信的基本骨架。TCP/IP协议模型在OSI七层模型的基础上，通过合并的方式，简化为<strong>四层</strong>，分别为<strong>应用层，传输层，网络层以及链路层</strong>。</p>
+<p>我们通常的应用程序都工作在应用层，当各个应用之间通信时，传输层的TCP模块负责给HTTP数据添加TCP头部等信息；网络层的IP模块负责给HTTP数据添加IP头部等信息；链路层添加以太网首部等信息，并且通过电信号来传输数据包；然后数据包会依次经过对方的链路层，网络层，传输层以及应用层，实现数据的通信。</p>
+<h4 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h4><p>IP协议制定了一套网络地址，也就是IP地址，根据IP协议能够区分两台主机是否同属一个网络（子网）。</p>
+<h4 id="ARP协议（地址解析协议）："><a href="#ARP协议（地址解析协议）：" class="headerlink" title="ARP协议（地址解析协议）："></a>ARP协议（地址解析协议）：</h4><p>根据IP地址获取MAC地址，将目标的IP地址在链路层进行包装，生成以太网数据包，在同一个子网内进行广播出去，各个主机拿到IP地址和自己的IP地址对比，若一样，则返回自己的MAC地址。注意，MAC地址与对应的IP地址存入本机ARP缓存中并保留一定时间。</p>
+<h4 id="路由协议："><a href="#路由协议：" class="headerlink" title="路由协议："></a>路由协议：</h4><p>ARP的寻址必须是在同一个子网内，我们可以通过IP协议来确定是否是同一个子网。如果不是同一个子网，则通过网关将数据包多次转发到对应的子网中，完成这个路由协议的物理设备就是路由器。</p>
+<h4 id="三次握手流程图"><a href="#三次握手流程图" class="headerlink" title="三次握手流程图"></a>三次握手流程图</h4><p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422220405.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<p>客户端经历了Close-&gt;SYN_SENT-&gt;ESTABLISHED的状态变化；</p>
+<p>服务端经历了Close-&gt;Listen-&gt;SYN_RCVD-&gt;EATABLISHED的状态变化。</p>
+<h4 id="四次挥手的状态流程图："><a href="#四次挥手的状态流程图：" class="headerlink" title="四次挥手的状态流程图："></a>四次挥手的状态流程图：</h4><p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422221225.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<p><strong>客户端经历的状态变化为：</strong><br>    ESTABLISHED-&gt;FIN_WAIT_1-&gt;FIN_WAIT_2-&gt;TIME_WAIT-&gt;CLOSE</p>
+<p><strong>服务端经历的状态变化为：</strong><br>    ESTABLISHED-&gt;CLOSE_WAIT-&gt; LAST_ACK-&gt;CLOSE</p>
+<h3 id="常见的HTTP-Code有哪些？"><a href="#常见的HTTP-Code有哪些？" class="headerlink" title="常见的HTTP Code有哪些？"></a>常见的HTTP Code有哪些？</h3><ul>
+<li>1xx（临时响应）</li>
+<li>2xx（成功）</li>
+<li>3xx（重定向）：表示要完成请求需要进一步操作</li>
+<li>4xx（错误）：表示请求可能出错，妨碍了服务器的处理</li>
+<li>5xx（服务器错误）：表示服务器在尝试处理请求时发生内部错误</li>
+</ul>
+<h3 id="常见HTTP协议的状态码"><a href="#常见HTTP协议的状态码" class="headerlink" title="常见HTTP协议的状态码"></a>常见HTTP协议的状态码</h3><ul>
+<li>200（成功）</li>
+<li>302 （重定向）：请求重定向到指定网页</li>
+<li>304（未修改）：自从上次请求后，请求的网页未修改过。服务器返回此响应时，不会返回网页内容</li>
+<li>400：访问的页面域名不存在或者请求错误</li>
+<li>401（未授权）：请求要求身份验证</li>
+<li>403（禁止）：服务器拒绝请求（比如死循环了，一直访问）</li>
+<li>404（未找到）：服务器找不到请求的网页</li>
+<li>405 （方法禁用）:Post请求当成了Get请求直接访问</li>
+<li>500 （服务器内部错误）：有bug导致程序嗝屁了</li>
+<li>502 （错误网关）：服务器从上游接到了无效响应</li>
+<li>504 （ 网关超时）：nginx请求超时，请求一直没有返回</li>
+<li>505：HTTP版本不支持</li>
+</ul>
+<h3 id="SSL协议"><a href="#SSL协议" class="headerlink" title="SSL协议"></a>SSL协议</h3><p>HTTPS协议在HTTP的基础上加入了SSL（安全套接字层）协议，SSL逐渐演变为了TLS协议，但是业界习惯仍然称其为SSL协议。</p>
+<p>SSL协议在传输控制层的基础上建立了安全的连接，它作为一种通用可靠的安全解决方案，可与多种应用层协议结合使用，实现应用数据的安全传输。SSL协议分为<strong>记录协议，握手协议，警告协议和密码规范改变协议</strong>：</p>
+<p><strong>记录协议：</strong>接收上层协议或下层协议的消息并进行一系列的处理，然后再将处理后的消息继续向下或向上传递。主要包括对消息进行加解密，压缩解压缩，分段或者重组等操作。</p>
+<p><strong>握手协议：</strong>建立在三次握手之后，为通信双方确立安全连接所需要的安全参数，通常也会在此阶段对通信双方身份的真实性进行验证。</p>
+<p><strong>警告协议：</strong>无论是在握手阶段还是在对应用层数据的传输阶段，都有可能出现差错。警告协议规定了在SSL协议工作过程中可能出现的差错、错误的严重等级以及相应的处理方式。</p>
+<p><strong>密码规范改变协议：</strong>在SSL握手刚开始的时候，加密参数还没确定，消息都是明文传送的。双方协商好加密参数之后，在发送握手结束消息之前，需要发送一个密码规范改变消息（Change Cipher Message）来通知对方随后的消息都使用刚刚协商好的加密算法和加密密钥进行加密。</p>
+<h3 id="HTTP1-0，HTTP1-1以及HTTP2-0协议的区别"><a href="#HTTP1-0，HTTP1-1以及HTTP2-0协议的区别" class="headerlink" title="HTTP1.0，HTTP1.1以及HTTP2.0协议的区别"></a>HTTP1.0，HTTP1.1以及HTTP2.0协议的区别</h3><ul>
+<li><p>HTTP1.0<br>浏览器的每次请求都需要与服务器建立一个TCP连接，服务器处理完成后立即断开TCP连接，服务器不跟踪每个客户端也不记录过去的请求。也就是默认使用Connection: close</p>
+</li>
+<li><p>HTTP1.1<br>HTTP/1.1中默认使用Connection: keep-alive，避免了连接建立和释放的开销。但服务器必须按照客户端请求的先后顺序依次回送相应的结果，以保证客户端能够区分出每次请求的响应内容。通过Content-Length字段来判断当前请求的数据是否已经全部接收。不允许同时存在两个并行的响应。</p>
+</li>
+<li><p>HTTP2.0</p>
+<p>HTTP2.0协议新增了二进制分帧，多路复用，头部压缩和服务器推送等功能，进一步提高了传输效率。</p>
+</li>
+</ul>
+<h3 id="路由汇聚"><a href="#路由汇聚" class="headerlink" title="路由汇聚"></a>路由汇聚</h3><p><strong>路由汇聚</strong>是指把一组路由汇聚为一个单个的路由广播。路由汇聚优点是可以缩小网络上的路由表的尺寸。</p>
+<ul>
+<li>将各子网地址的网段以二进制写出。</li>
+<li>比较，从第1位比特开始进行比较，将从开始不相同的比特到末尾位填充为0。由此得到的地址为汇总后的网段的网络地址，其网络位为连续的相同的比特的位数。</li>
+</ul>
+<p>假设下面有4个网络:</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs http">172.18.129.0/24<br>172.18.130.0/24<br>172.18.132.0/24<br>172.18.133.0/24<br></code></pre></td></tr></table></figure>
+
+<p><strong>具体计算方式如下：</strong></p>
+<ul>
+<li>129的二进制代码是10000001</li>
+<li>130的二进制代码是10000010</li>
+<li>132的二进制代码是10000100</li>
+<li>133的二进制代码是10000101</li>
+</ul>
+<p>这四个数的前五位相同都是10000，所以加上前面的172.18这两部分相同的位数，网络号就是<strong>8+8+5=21</strong>。而10000000的十进制数是128，所以，路由汇聚的IP地址就是172.18.128.0。所以最终答案就是172.18.128.0/21</p>
+<h3 id="子网掩码的求法"><a href="#子网掩码的求法" class="headerlink" title="子网掩码的求法"></a>子网掩码的求法</h3><p><strong>根据划分的子网数：</strong></p>
+<p><strong>算法实现：</strong>在求子网掩码之前必须先搞清楚要划分的子网数目，以及每个子网内的所需主机数目。</p>
+<ul>
+<li>将子网数目转化为二进制来表示</li>
+<li>取得该二进制的位数，为 N</li>
+<li>取得该IP地址的类子网掩码，将其主机地址部分的前N位置1 即得出该IP地址划分子网的子网掩码。</li>
+</ul>
+<p><strong>举例：</strong></p>
+<p>如欲将B类IP地址168.195.0.0划分成27个子网，则其子网掩码为<strong>255.255.248.0</strong></p>
+<ul>
+<li>27=11011</li>
+<li>该二进制为五位数，N = 5</li>
+<li>将B类地址的子网掩码255.255.0.0的主机地址前5位置1（B类地址的主机位包括后两个字节，所以这里要把第三个字节的前5位置1），得到 <strong>255.255.248.0</strong></li>
+</ul>
+<p>根据每个子网中的主机数：</p>
+<p><strong>算法实现：</strong>利用主机数来计算。</p>
+<ul>
+<li>将主机数目转化为二进制来表示</li>
+<li>如果主机数小于或等于254（注意去掉保留的两个IP地址），则取得该主机的二进制位数，为 N，这里肯定N&lt;8。如果大于254，则 N&gt;8，这就是说主机地址将占据不止8位。</li>
+<li>使用255.255.255.255来将该类IP地址的主机地址位数全部置1，然后从后向前的将N位全部置为 0，即为子网掩码值。</li>
+</ul>
+<p><strong>举例：</strong></p>
+<p>如欲将B类IP地址168.195.0.0划分成若干子网，每个子网内有主机700台，则其子网掩码为：<strong>255.255.252.0</strong></p>
+<ul>
+<li>700=1010111100</li>
+<li>该二进制为十位数，N = 10</li>
+<li>将该B类地址的子网掩码255.255.0.0的主机地址全部置1，得到255.255.255.255</li>
+<li>然后再从后向前将后10位置0,即为： 11111111.11111111.11111100.00000000</li>
+<li>即255.255.252.0。</li>
+</ul>
+<h3 id="XSS跨站脚本攻击："><a href="#XSS跨站脚本攻击：" class="headerlink" title="XSS跨站脚本攻击："></a>XSS跨站脚本攻击：</h3><p><strong>XSS （Cross-Site Scripting）</strong>跨站脚本攻击是一种常见的安全漏洞，恶意攻击者在用户提交的数据中加入一些代码，将代码嵌入到了Web页面中，从而可以盗取用户资料，控制用户行为或者破坏页面结构和样式等。为了和 CSS 区分，这里把攻击的第一个字母改成了 X，于是叫做 XSS。</p>
+<p>最简单的就是当我们提交一个查询后弹出一个alert页面，却无论如何都关不掉，这就是发生了XSS跨站脚本攻击。</p>
+<h4 id="XSS产生原因："><a href="#XSS产生原因：" class="headerlink" title="XSS产生原因："></a>XSS产生原因：</h4><p>XSS产生的原因是过于信任客户端的数据，没有做好过滤或者转义等工作。如果客户端上传的数据中插入一些符号以及javascript代码，那么这些数据将会成为应用代码中的一部分了，这样就造成了XSS攻击。</p>
+<h4 id="XSS分类："><a href="#XSS分类：" class="headerlink" title="XSS分类："></a>XSS分类：</h4><ul>
+<li><strong>存储型：</strong>攻击者将恶意代码存储到了数据库中，在响应浏览器请求的时候返回恶意代码，并且执行。这种攻击常见于带有用户保存数据的网站功能；</li>
+<li><strong>反射型：</strong>将恶意代码放在URL中，将参数提交到服务器。服务器解析后响应，在响应结果中存在XSS代码，最终通过浏览器解析执行；</li>
+<li><strong>DOM型：</strong>取出和执行恶意代码由浏览器端完成，属于前端 JavaScript的安全漏洞。</li>
+</ul>
+<h4 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h4><p><strong>XSS防御：</strong></p>
+<ul>
+<li>对重要的 cookie设置 httpOnly, 防止客户端通过document.cookie读取 cookie；</li>
+<li>对输入内容的特定字符进行编码，前端后端都可以对传入的内容进行过滤，去掉带javascript等字段的输入</li>
+</ul>
+<h3 id="CSRF跨站请求伪造："><a href="#CSRF跨站请求伪造：" class="headerlink" title="CSRF跨站请求伪造："></a>CSRF跨站请求伪造：</h3><p><strong>CSRF（ Cross-site request forgery）跨站请求伪造</strong>，也是一种常见的安全漏洞。XSS相当于是控制了站点内的信任用户，而CSRF则通过<strong>伪装</strong>成受信任用户的请求来利用受信任的网站。</p>
+<p><strong>CSRF举例：</strong></p>
+<p>用户登录受信任网站A，并在本地生成登录态Cookie。（如果用户没有登录网站A，那么网站B在获取A网站的信息并且去请求网站A的接口时，会提示登录）<strong>在不登出A的情况下</strong>，访问恶意网站B，那么网站B得到了网站A的所有信息，然后B网站去请求A网站的接口，伪装成A网站的正常请求为所欲为。</p>
+<p>下边以示意图来说明<strong>CSRF整个流程</strong>：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423100106.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<p><strong>注意：</strong></p>
+<p>CSRF中恶意网站仅仅是伪装成了正常用户，但是其并不可以直接获取到正常用户的登录态cookie等信息。如果不做防御，被攻击网站服务器是无法区分是否是冒用用户，因为当前请求确实带着登录凭证等信息。</p>
+<p><strong>CSRF防御：</strong></p>
+<ul>
+<li><strong>Referer 头验证</strong>：在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。不靠谱，Referer可以被改变；</li>
+<li><strong>Token验证</strong>：服务器发送给客户端一个Token，客户端提交的表单中（或者URL上）带着这个Token。如果这个Token 不合法，那么服务器拒绝这个请求。</li>
+<li><strong>双重Cookie验证</strong>：利用恶意网站无法获取cookie信息，仅可冒用的特点，我们将cookie中的参数取出来，加入到请求参数中，服务端进行校验，如果参数中没有附加额外的cookie中的参数，那么就拒绝请求。</li>
+</ul>
+<p><strong>解析：</strong></p>
+<p>XSS和CSRF均属于安全漏洞，和我们的开发工作息息相关。对于一些对安全性有一定要求的方向和岗位，了解常见的XSS和CSRF攻击无疑是面试的一大加分项。</p>
+<p>那么接下来，我们看看<strong>CSRF和XSS的区别有哪些呢</strong>？</p>
+<ul>
+<li>CSRF攻击需要用户先登录网站A，恶意网站B获取到A网站用户的 cookie；</li>
+<li>XSS攻击则不需要登录。</li>
+<li>CSRF攻击本质是利用网站A本身的漏洞，去请求网站A的相关接口；</li>
+<li>XSS攻击向网站 A 注入恶意代码，然后通过执行恶意代码，篡改了网站A的内容。</li>
+</ul>
+<h3 id="SSRF服务端请求伪造"><a href="#SSRF服务端请求伪造" class="headerlink" title="SSRF服务端请求伪造"></a>SSRF服务端请求伪造</h3><p>SSRF是一种由攻击者构造请求，利用服务端发起的一种安全漏洞。一般情况下，SSRF攻击的目标是<strong>外网无法访问的内部系统。</strong>我们先来看下SSRF攻击的示意图：</p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423101154.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<p><strong>SSRF漏洞举例：</strong></p>
+<ul>
+<li>正常的网络请求流程：客户端A发起请求 -&gt; 服务端B接收请求 -&gt; 服务端B处理请求 -&gt; 服务端B返回响应</li>
+<li>存在SSRF漏洞下的网络请求流程：<br>比如现在客户端A发起的请求是这样的 <a target="_blank" rel="noopener" href="http://www.nowcoder.com/xxx.php?image=www.abc.com/photo.jpg">www.nowcoder.com/xxx.php?image=www.abc.com/photo.jpg</a>服务端B收到该请求后，会接着取访问<a target="_blank" rel="noopener" href="http://www.abc.com/photo.jpg">www.abc.com/photo.jpg</a> 获取资源文件。如果服务端B对客户端发起的请求没有进行过滤等操作，那么?image=可能会被恶意篡改。最后的结果就是，<strong>借助于公网上的服务器来访问了内网系统。</strong></li>
+</ul>
+<p><strong>SSRF产生原因：</strong></p>
+<p>SSRF 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能，且没有对目标地址做过滤与限制。比如指定URL地址获取网页文本内容，加载指定地址的图片和文档等。</p>
+<p><strong>常见SSRF漏洞出现场景：</strong></p>
+<ul>
+<li>分享场景，通过URL地址分享网页内容。</li>
+<li>转码服务，在线翻译场景。</li>
+<li>地址加载或下载图片。</li>
+<li>图片、文章收藏功能。</li>
+<li>未公开的api实现以及其他调用URL的功能等。</li>
+</ul>
+<p><strong>SSRF漏洞危害：</strong></p>
+<p>因为外网借助了服务端来实现了对内网服务器的访问，所以很多操作都可以进行，包括如下的危害：</p>
+<ul>
+<li>对服务器所在的内网进行端口扫描，获取一些服务的banner信息等。</li>
+<li>攻击运行在内网或者本地的应用程序。</li>
+<li>对内网WEB应用进行指纹识别，通过访问默认文件实现。</li>
+<li>下载内网的一些资源文件等。</li>
+</ul>
+<p><strong>SSRF的防御措施：</strong></p>
+<ul>
+<li>对<strong>错误信息进行统一处理</strong>，避免用户可以根据错误信息来判断远端服务器的端口状态。</li>
+<li>对请求的<strong>端口进行限制</strong>，限定为HTTP常用的端口，比如，80，443和8080等。</li>
+<li>设定<strong>IP黑名单</strong>。避免应用被用来获取内网数据，攻击内网。</li>
+<li><strong>禁用不需要的协议</strong>。仅仅允许HTTP和HTTPS请求。</li>
+<li>对返回信息进行<strong>有效过滤</strong>等。</li>
+</ul>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><p>SQL注入是指通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器，执行恶意的SQL命令。</p>
+<p>SQL注入就是服务端将客户端传入的恶意SQL语句直接进行了执行，这样会导致问题出现。比如说用户在登录的时候，使用了or 1=1来完成身份验证和授权。</p>
+<p>SQL注入是一种流行的攻击攻击方法，但是通过一些手段是可以防御该攻击的，<strong>常见的防御手段如下：</strong></p>
+<ul>
+<li>使用预编译语句，比如MyBatis中的SQL语句使用#号代替$符号。</li>
+<li>使用安全的存储过程来防止SQL注入。</li>
+<li>对客户端的输入进行数据类型的检查等。</li>
+</ul>
+<p>作为一名优秀的服务端开发人员，我们应该牢记一条原则，“<strong>永远不要相信客户端</strong>”。对客户端的每次请求，我们都要做好充分的过滤，验证与授权，这样才可以尽可能的避免常见的Web安全漏洞，抵御来自外部世界的攻击。</p>
+<h3 id="从浏览器输入一个网站，之后会发生什么"><a href="#从浏览器输入一个网站，之后会发生什么" class="headerlink" title="从浏览器输入一个网站，之后会发生什么"></a>从浏览器输入一个网站，之后会发生什么</h3><p>在浏览器中输入一个网址，首先要做的就是<strong>域名的解析</strong>，也就是域名-&gt;ip的解析，依次查看了浏览器缓存，系统缓存，hosts文件，路由器缓存，递归搜索根域名服务器，直到<strong>找到最终的ip地址</strong>。</p>
+<p>然后就是TCP协议的<strong>三次握手</strong>建立连接，过程我们已经阐述了。由浏览器发送一个HTTP请求；经过路由器的转发，通过服务器的防火墙，该HTTP请求到达了服务器；服务器处理该HTTP请求，返回一个<strong>HTML文件</strong>；浏览器解析该HTML文件，并且<strong>渲染显示</strong>在浏览器端。</p>
+<p>这里，我们可以来具体阐述下<strong>HTTP协议和TCP协议的关系与区别。</strong></p>
+<h3 id="HTTP协议和TCP协议的关系与区别："><a href="#HTTP协议和TCP协议的关系与区别：" class="headerlink" title="HTTP协议和TCP协议的关系与区别："></a>HTTP协议和TCP协议的关系与区别：</h3><p>HTTP协议是一种基于TCP/IP的应用层协议，进行HTTP数据请求必须先建立TCP/IP连接。HTTP协议提供了封装或者显示数据的具体形式；TCP协议提供了网络通信的能力。两个计算机之间的交流其实就是是两个端口之间的数据通信,具体的数据会以什么样的形式展现是以不同的应用层协议来定义的。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/22/Java%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Java基础部分</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/12/%E6%9C%80%E5%B0%8F%E8%A6%86%E7%9B%96%E5%AD%90%E4%B8%B2/">
+                        <span class="hidden-mobile">最小覆盖子串</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
