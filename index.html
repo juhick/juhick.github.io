@@ -855,13 +855,13 @@ k 是一个正整数，它的值小于或等于链表的长度。
       
       $.ajax({
         type: 'GET',
-        url: 'https://v2.jinrishici.com/sentence',
-        headers: {"X-User-Token:gwBAYJ9ft9X4vcRtBP0FvfgM6+YFlieo":null},
+        url: 'https://v1.hitokoto.cn/',
+        headers: {},
         dataType: 'json',
         success: function (result) {
           var text;
           if (result) {
-            var keys = 'data,content'.split('.')
+            var keys = 'hitokoto'.split('.')
             if (result instanceof Array) {
               result = result[0]
             }
