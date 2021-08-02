@@ -775,7 +775,7 @@ cusdis:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/default.png
+  banner_img: /img/bg/archive.png
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -787,7 +787,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/bg/category.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -817,7 +817,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/bg/tag.jpg
   banner_img_height: 80
   banner_mask_alpha: 0.3
   subtitle:
@@ -835,7 +835,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/bg/about.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
@@ -858,7 +858,7 @@ about:
 # Custom Page through `hexo new page`
 #---------------------------
 page:
-  banner_img: /img/default.png
+  banner_img: /img/bg/page.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -869,7 +869,7 @@ page:
 #---------------------------
 page404:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/bg/404.jpg
   banner_img_height: 85
   banner_mask_alpha: 0.3
   subtitle: "Page not found"
@@ -881,7 +881,7 @@ page404:
 #---------------------------
 links:
   enable: true
-  banner_img: /img/default.png
+  banner_img: /img/bg/links.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   subtitle:
