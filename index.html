@@ -182,19 +182,21 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/08/01/hello-world/" target="_self">
-          Hello World
+        <a href="/2021/09/12/%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="_self">
+          有效的括号字符串
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/08/01/hello-world/" target="_self">
+        <a href="/2021/09/12/%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7%E5%AD%97%E7%AC%A6%E4%B8%B2/" target="_self">
           
           
             
           
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
+          原题链接
+思路分析首先只考虑括号不考虑*的话，只需要保证左右括号的个数相同，并且每个配对的左括号都在其配对的右括号的前边。
+然后考虑带有*的情况，多余的*需要能够满足不足的左括号或者右括号的需求，并且代替右括号时需要在对应的左括号之后，代替左括号时同理。
+因此，我们可以采用两个栈来分别存储左括号的序号和星号的序号，碰到右括号时优先匹配左括号，最后如果左括号剩余再进行下标的判断，从而判断括号是否都能
         </a>
       </p>
 
@@ -202,12 +204,21 @@ Quick
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-08-01 12:19" pubdate>
-              2021-08-01
+            <time datetime="2021-09-12 09:43" pubdate>
+              2021-09-12
             </time>
           </div>
         
         
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/leetcode/">leetcode</a>
+            
+              <a href="/tags/%E6%A0%88/">栈</a>
+            
+          </div>
         
       </div>
     </article>
