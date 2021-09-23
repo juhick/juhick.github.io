@@ -14,7 +14,7 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="description" content="SpringSpring 的控制反转（IOC）IOC也叫控制反转，将对象间的依赖关系交给Spring容器，使用配置文件来创建所依赖的对象，由主动创建对象改为了被动方式，实现解耦合。
-可以通过注解**@Autowired和@Resource**来注入对象，被注入的对象必须被下边的四个注解之一标注：
+可以通过注解@Autowired和@Resource来注入对象，被注入的对象必须被下边的四个注解之一标注：
 
 @Controller
 @Service
@@ -23,16 +23,16 @@
 ">
   <meta name="author" content="Juhick">
   <meta name="keywords" content="">
-  <meta name="description" content="SpringSpring 的控制反转（IOC）IOC也叫控制反转，将对象间的依赖关系交给Spring容器，使用配置文件来创建所依赖的对象，由主动创建对象改为了被动方式，实现解耦合。 可以通过注解**@Autowired和@Resource**来注入对象，被注入的对象必须被下边的四个注解之一标注：  @Controller @Service @Repository @Component">
+  <meta name="description" content="SpringSpring 的控制反转（IOC）IOC也叫控制反转，将对象间的依赖关系交给Spring容器，使用配置文件来创建所依赖的对象，由主动创建对象改为了被动方式，实现解耦合。 可以通过注解@Autowired和@Resource来注入对象，被注入的对象必须被下边的四个注解之一标注：  @Controller @Service @Repository @Component">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring相关知识">
 <meta property="og:url" content="https://blog.qinhaiqi.com/2021/04/23/Spring%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="曾许人间第一流">
-<meta property="og:description" content="SpringSpring 的控制反转（IOC）IOC也叫控制反转，将对象间的依赖关系交给Spring容器，使用配置文件来创建所依赖的对象，由主动创建对象改为了被动方式，实现解耦合。 可以通过注解**@Autowired和@Resource**来注入对象，被注入的对象必须被下边的四个注解之一标注：  @Controller @Service @Repository @Component">
+<meta property="og:description" content="SpringSpring 的控制反转（IOC）IOC也叫控制反转，将对象间的依赖关系交给Spring容器，使用配置文件来创建所依赖的对象，由主动创建对象改为了被动方式，实现解耦合。 可以通过注解@Autowired和@Resource来注入对象，被注入的对象必须被下边的四个注解之一标注：  @Controller @Service @Repository @Component">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210424084138.png">
 <meta property="article:published_time" content="2021-04-23T13:29:14.000Z">
-<meta property="article:modified_time" content="2021-08-01T00:57:09.925Z">
+<meta property="article:modified_time" content="2021-09-23T10:46:38.935Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="Spring">
@@ -206,7 +206,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      8.5k 字
     </span>
   
 
@@ -215,7 +215,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      27 分钟
     </span>
   
 
@@ -248,13 +248,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 个月前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="Spring"><a href="#Spring" class="headerlink" title="Spring"></a>Spring</h1><h3 id="Spring-的控制反转（IOC）"><a href="#Spring-的控制反转（IOC）" class="headerlink" title="Spring 的控制反转（IOC）"></a>Spring 的控制反转（IOC）</h3><p>IOC也叫<strong>控制反转，将对象间的依赖关系交给Spring容器</strong>，使用配置文件来创建所依赖的对象，由<strong>主动</strong>创建对象改为了<strong>被动</strong>方式，实现解耦合。</p>
-<p>可以通过注解**@Autowired和@Resource**来注入对象，被注入的对象必须被下边的四个注解之一标注：</p>
+<p>可以通过注解<strong>@Autowired和@Resource</strong>来注入对象，被注入的对象必须被下边的四个注解之一标注：</p>
 <ul>
 <li><strong>@Controller</strong></li>
 <li><strong>@Service</strong></li>
@@ -262,7 +262,6 @@
 <li><strong>@Component</strong></li>
 </ul>
 <span id="more"></span>
-
 <p>在Spring配置文件中配置 <code>&lt;context:annotation-config/&gt;</code>元素开启注解。还有一个概念是<strong>DI（依赖注入）</strong>，和控制反转是同一个概念的不同角度的描述，即应用程序在运行时依赖IOC容器来动态注入对象需要的外部资源（对象等）。</p>
 <p>Spring是一个<strong>轻量级的IOC和AOP容器</strong>框架。是为Java应用程序提供基础服务的一套框架，目的是用于简化企业应用程序的开发，它使得开发者只需要关心业务需求。</p>
 <p>Spring的<strong>核心模块</strong>如下所示：</p>
@@ -308,7 +307,6 @@
 </ul>
 <p>JDK动态代理的实例：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.lang.reflect.InvocationHandler;<br><span class="hljs-keyword">import</span> java.lang.reflect.Method;<br><span class="hljs-keyword">import</span> java.lang.reflect.Proxy;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span><br><span class="hljs-comment"> */</span><br><br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>&#123;<br>        <span class="hljs-comment">//定义一个People作为被代理的类</span><br>        IPeople ple = <span class="hljs-keyword">new</span> People();<br>        <span class="hljs-comment">//定义一个Handler</span><br>        InvocationHandler handler = <span class="hljs-keyword">new</span> MyHandle(ple);<br><br>        <span class="hljs-comment">//获得类加载器</span><br>        ClassLoader cl = ple.getClass().getClassLoader();<br><br>        <span class="hljs-comment">//动态产生一个代理，以下两种方法都可以</span><br>        IPeople p = (IPeople) Proxy.newProxyInstance(cl, ple.getClass().getInterfaces(), handler);<br>        <span class="hljs-comment">//或者 IPeople p = (IPeople) Proxy.newProxyInstance(cl, new Class[]&#123;IPeople.class&#125;, handler);</span><br><br>        <span class="hljs-comment">//执行被代理的方法</span><br>        p.func();<br><br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyHandle</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">InvocationHandler</span></span>&#123;<br><br>    <span class="hljs-comment">//被代理的实例</span><br>    Object obj = <span class="hljs-keyword">null</span>;<br><br>    <span class="hljs-comment">//我要代理谁</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyHandle</span><span class="hljs-params">(Object obj)</span></span>&#123;<br>        <span class="hljs-keyword">this</span>.obj = obj;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Object <span class="hljs-title">invoke</span><span class="hljs-params">(Object proxy, Method method, Object[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>&#123;<br>        Object result = method.invoke(<span class="hljs-keyword">this</span>.obj, args);<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">IPeople</span></span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span></span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span></span>;<br>&#125;<br><span class="hljs-comment">//实际被代理类</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">People</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">IPeople</span></span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">fun</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;这是fun方法&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">func</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;这是func方法&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <p><strong>cglib主要针对类实现代理</strong>，<strong>对是否实现接口无要求</strong>。原理是对指定的类生成一个子类，覆盖其中的方法，因为是继承，所以被代理的类或方法不可以声明为final类型。<strong>实现步骤大概如下：</strong></p>
 <ul>
 <li>定义一个实现了MethodInterceptor接口的类</li>
@@ -327,10 +325,8 @@
 <h4 id="依赖注入的发生时刻"><a href="#依赖注入的发生时刻" class="headerlink" title="依赖注入的发生时刻"></a>依赖注入的发生时刻</h4><p><strong>IOC容器的初始化过程就是对Bean定义资源的定位、载入和注册</strong>，此时容器对Bean的依赖注入并没有发生。接下来，我们看下<strong>依赖注入的发生时刻吧。</strong></p>
 <p>ApplicationContext默认会在容器启动的时候创建我们配置好的各个Bean，我们的Bean配置如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean id=<span class="hljs-string">&quot;oneBean&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;com.nowcoder.oneBean&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
-
 <p>这里边的隐藏属性是lazy-init，即上边的配置和下边的是一样的：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">&lt;bean id=<span class="hljs-string">&quot;oneBean&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span></span>=<span class="hljs-string">&quot;com.nowcoder.oneBean&quot;</span> lazy-init=<span class="hljs-string">&quot;false&quot;</span>&gt;<br></code></pre></td></tr></table></figure>
-
 <p><strong>lazy-init=false</strong>表示不开启延迟加载，在容器启动的时候即创建该Bean。对应的，我们还可以配置lazy-init=true表示开启延迟加载，那么该Bean的创建发生在应用程序<strong>第一次向容器索取Bean</strong>时，通过getBean()方法的调用完成。</p>
 <h4 id="BeanFactory和FactoryBean的区别"><a href="#BeanFactory和FactoryBean的区别" class="headerlink" title="BeanFactory和FactoryBean的区别"></a>BeanFactory和FactoryBean的区别</h4><ul>
 <li><strong>BeanFactory</strong>：Bean工厂，是一个工厂(Factory)， 是Spring IOC容器的最顶层接口，它的作用是<strong>管理Bean，即实例化、定位、配置</strong>应用程序中的对象及建立这些对象间的依赖。</li>
@@ -413,9 +409,9 @@
 </ul>
 <h4 id="SpringBoot项目启动分析"><a href="#SpringBoot项目启动分析" class="headerlink" title="SpringBoot项目启动分析"></a>SpringBoot项目启动分析</h4><p>Application类是通过<strong>SpringApplication</strong>类的静态run方法来启动应用的。打开这个静态方法，该静态方法真正执行的是两部分：<strong>new SpringApplication( )并且执行对象run()方法。</strong></p>
 <h4 id="轻量级和重量级的划分"><a href="#轻量级和重量级的划分" class="headerlink" title="轻量级和重量级的划分"></a>轻量级和重量级的划分</h4><ol>
-<li>   主要看它使用了多少服务，使用的服务越多，容器为普通的java对象做的工作就越多，必然会影响到应用的发布时间，或者运行性能。</li>
-<li>   对于spring容器，他提供了很多服务，但默认是关闭的，应用需要某种服务，需要指明使用服务，如果服务很少，如只使用了spring核心服务，就认为此时应用属于轻量级的，如果使用了大部分的服务，这时就属于重量级的。</li>
-<li>   目前EJB容器就重量级。因为他默认为应用提供了Ejb规范中的所有功能，所以属于重量级。</li>
+<li>主要看它使用了多少服务，使用的服务越多，容器为普通的java对象做的工作就越多，必然会影响到应用的发布时间，或者运行性能。</li>
+<li>对于spring容器，他提供了很多服务，但默认是关闭的，应用需要某种服务，需要指明使用服务，如果服务很少，如只使用了spring核心服务，就认为此时应用属于轻量级的，如果使用了大部分的服务，这时就属于重量级的。</li>
+<li>目前EJB容器就重量级。因为他默认为应用提供了Ejb规范中的所有功能，所以属于重量级。</li>
 </ol>
 
             </div>

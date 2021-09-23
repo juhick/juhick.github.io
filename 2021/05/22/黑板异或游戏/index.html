@@ -26,7 +26,7 @@
 <meta property="og:description" content="原题链接 题目描述黑板上写着一个非负整数数组 nums[i] 。Alice 和 Bob 轮流从黑板上擦掉一个数字，Alice 先手。如果擦除一个数字后，剩余的所有数字按位异或运算得出的结果等于 0 的话，当前玩家游戏失败。 (另外，如果只剩一个数字，按位异或运算得到它本身；如果无数字剩余，按位异或运算结果为 0。） 换种说法就是，轮到某个玩家时，如果当前黑板上所有数字按位异或运算结果等于 0，这个">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-22T02:27:26.000Z">
-<meta property="article:modified_time" content="2021-08-01T00:57:09.929Z">
+<meta property="article:modified_time" content="2021-09-23T10:45:39.375Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="博弈论">
@@ -199,7 +199,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      2k 字
     </span>
   
 
@@ -208,7 +208,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      6 分钟
     </span>
   
 
@@ -241,7 +241,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 个月前
+                  本文最后更新于：2 分钟前
                 
               </p>
             
@@ -251,10 +251,8 @@
 <p>换种说法就是，轮到某个玩家时，如果当前黑板上所有数字按位异或运算结果等于 0，这个玩家获胜。</p>
 <p>假设两个玩家每步都使用最优解，当且仅当 Alice 获胜时返回 <code>true</code>。</p>
 <span id="more"></span>
-
 <p><strong>示例：</strong></p>
 <figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tap">输入: nums = [1, 1, 2]<br>输出: false<br>解释: <br>Alice 有两个选择: 擦掉数字<span class="hljs-number"> 1 </span>或 2。<br>如果擦掉 1, 数组变成 [1, 2]。剩余数字按位异或得到<span class="hljs-number"> 1 </span>XOR<span class="hljs-number"> 2 </span>= 3。那么 Bob 可以擦掉任意数字，因为 Alice 会成为擦掉最后一个数字的人，她总是会输。<br>如果 Alice 擦掉 2，那么数组变成[1, 1]。剩余数字按位异或得到<span class="hljs-number"> 1 </span>XOR<span class="hljs-number"> 1 </span>= 0。Alice 仍然会输掉游戏。<br></code></pre></td></tr></table></figure>
-
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>1 &lt;= N &lt;= 1000</code></li>
@@ -264,7 +262,23 @@
 <h2 id="情况二：初始时黑板上所有数字异或结果不为0"><a href="#情况二：初始时黑板上所有数字异或结果不为0" class="headerlink" title="情况二：初始时黑板上所有数字异或结果不为0"></a>情况二：初始时黑板上所有数字异或结果不为0</h2><p>由于两人交替擦除数字，且每次都恰好擦掉一个数字，因此对于这两人中的任意一人，其每次才擦除数字前，黑板上剩余数字的个数的奇偶性一定是相同的。</p>
 <p>如果$\textit{nums}$的长度为偶数，那么享受Alice是否可能失败呢？</p>
 <p>假设Alice面临失败的状态，则只有一种状况，即无论擦掉哪一个数字，剩余所有数字的异或结果都为0。</p>
-<p>设数组$nums$的长度为$n$，$n$是偶数，用$\oplus$表示异或，记$S$为数组$nums$的全部元素的异或结果，则有<br>$$<br>S = nums[0] \oplus nums[1] \oplus \dots \oplus nums[n - 1] \neq 0<br>$$<br>记$S_i$为擦掉$nums[i]$之后，剩余所有数字的异或结果，则有<br>$$<br>S_i \oplus nums[i] = S<br>$$<br>等式两边同时异或$nums[i]$，由于对任意整数$x$都有$x \oplus x = 0$，得<br>$$<br>S_i = S \oplus nums[i]<br>$$<br>如果无论擦掉哪一个数字，剩余的所有数字异或结果都等于0，则对任意$0 \leq i &lt; n$，都有$S_i = 0$。因此对所有的$S_i$异或结果也等于0，即<br>$$<br>S_0 \oplus S_1 \oplus \dots \oplus S_{n - 1} = 0<br>$$<br>将$S_i = S \oplus nums[i]$代入上式，并根据异或运算的交换律和结合律化简，有<br>$$<br>\begin{aligned}<br>0 &amp;= S_0 \oplus S_1 \oplus \dots \oplus S_{n - 1} \<br>&amp;= (S \oplus nums[0]) \oplus (S \oplus nums[1]) \oplus \dots \oplus(S \oplus nums[n - 1]) \<br>&amp;= (S \oplus S \oplus \dots \oplus S) \oplus (nums[0] \oplus nums[1] \oplus \dots \oplus nums[n-1]) \<br>&amp;= 0 \oplus S \<br>&amp;= S<br>\end{aligned}<br>$$<br>上述计算中，第 33行的左边括号为$n$个$S$异或，由于$n$是偶数，因此$n$个$S$异或的结果是0。</p>
+<p>设数组$nums$的长度为$n$，$n$是偶数，用$\oplus$表示异或，记$S$为数组$nums$的全部元素的异或结果，则有</p>
+<script type="math/tex; mode=display">
+S = nums[0] \oplus nums[1] \oplus \dots \oplus nums[n - 1] \neq 0</script><p>记$S_i$为擦掉$nums[i]$之后，剩余所有数字的异或结果，则有</p>
+<script type="math/tex; mode=display">
+S_i \oplus nums[i] = S</script><p>等式两边同时异或$nums[i]$，由于对任意整数$x$都有$x \oplus x = 0$，得</p>
+<script type="math/tex; mode=display">
+S_i = S \oplus nums[i]</script><p>如果无论擦掉哪一个数字，剩余的所有数字异或结果都等于0，则对任意$0 \leq i &lt; n$，都有$S_i = 0$。因此对所有的$S_i$异或结果也等于0，即</p>
+<script type="math/tex; mode=display">
+S_0 \oplus S_1 \oplus \dots \oplus S_{n - 1} = 0</script><p>将$S_i = S \oplus nums[i]$代入上式，并根据异或运算的交换律和结合律化简，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+0 &= S_0 \oplus S_1 \oplus \dots \oplus S_{n - 1} \\
+&= (S \oplus nums[0]) \oplus (S \oplus nums[1]) \oplus \dots \oplus(S \oplus nums[n - 1]) \\
+&= (S \oplus S \oplus \dots \oplus S) \oplus (nums[0] \oplus nums[1] \oplus \dots \oplus nums[n-1]) \\
+&= 0 \oplus S \\
+&= S
+\end{aligned}</script><p>上述计算中，第 33行的左边括号为$n$个$S$异或，由于$n$是偶数，因此$n$个$S$异或的结果是0。</p>
 <p>根据上述计算，可以得到$S=0$，与实际情况$S \ne 0$矛盾。</p>
 <p><strong>因此当数组的长度是偶数时，先手Alice总能找到一个数字，在擦掉这个数字之后剩余的所有数字异或结果不等于0。</strong></p>
 <p>在 Alice 擦掉这个数字后，黑板上剩下奇数个数字，无论 Bob 擦掉哪个数字，留给 Alice 的一定是黑板上剩下偶数个数字，此时 Alice 要么获胜，要么仍可以找到一个数字，在擦掉这个数字之后剩余的所有数字异或结果不等于 0，因此 Alice 总能立于不败之地。</p>
@@ -275,7 +289,6 @@
 <li>数组$nums$的长度是偶数</li>
 </ul>
 <h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">xorGame</span><span class="hljs-params">(<span class="hljs-keyword">int</span>[] nums)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = nums.length;<br>        <span class="hljs-keyword">if</span>((n &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;<br>        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            sum ^= nums[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> sum == <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
             </div>
             <hr>
@@ -494,6 +507,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
 
 
 

@@ -27,7 +27,7 @@
 <meta property="og:description" content="解码异或后的排列原题链接 题目描述给你一个整数数组 perm ，它是前 n 个正整数的排列，且 n 是个 奇数 。 它被加密成另一个长度为 n - 1 的整数数组 encoded ，满足 encoded[i] &#x3D; perm[i] XOR perm[i + 1] 。比方说，如果 perm &#x3D; [1,3,2] ，那么 encoded &#x3D; [2,1] 。 给你 encoded 数组，请你返回原始数组 p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-05-11T01:58:38.000Z">
-<meta property="article:modified_time" content="2021-08-01T00:57:09.930Z">
+<meta property="article:modified_time" content="2021-09-23T10:45:35.123Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="位运算">
@@ -200,7 +200,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      1.1k 字
     </span>
   
 
@@ -209,7 +209,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      3 分钟
     </span>
   
 
@@ -242,7 +242,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 个月前
+                  本文最后更新于：3 分钟前
                 
               </p>
             
@@ -252,13 +252,10 @@
 <p>它被加密成另一个长度为 <code>n - 1</code> 的整数数组 <code>encoded</code> ，满足 <code>encoded[i] = perm[i] XOR perm[i + 1]</code> 。比方说，如果 <code>perm = [1,3,2]</code> ，那么 <code>encoded = [2,1]</code> 。</p>
 <p>给你 <code>encoded</code> 数组，请你返回原始数组 <code>perm</code> 。题目保证答案存在且唯一。</p>
 <span id="more"></span>
-
 <p><strong>示例 1：</strong></p>
 <figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs inform7">输入：encoded = <span class="hljs-comment">[3,1]</span><br>输出：<span class="hljs-comment">[1,2,3]</span><br>解释：如果 perm = <span class="hljs-comment">[1,2,3]</span> ，那么 encoded = <span class="hljs-comment">[1 XOR 2,2 XOR 3]</span> = <span class="hljs-comment">[3,1]</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>示例 2：</strong></p>
 <figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dns">输入：encoded = [<span class="hljs-number">6,5,4,6</span>]<br>输出：[<span class="hljs-number">2,4,1,5</span>,<span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure>
-
 <p><strong>提示：</strong></p>
 <ul>
 <li><code>3 &lt;= n &lt; 105</code></li>
@@ -270,7 +267,6 @@
 <li>我们可以观察<code>encoded</code>数组的规律如下：<br>$encoded[0] = perm[0]\ XOR\ perm[1]$<br>$encoded[1] = perm[1]\ XOR\ perm[2]$<br>$encoded[2] = perm[2]\ XOR\ perm[3]$<br>$encoded[3] = perm[3]\ XOR\ perm[4]$<br>…<br>根据观察可知，我们只取奇数进行异或操作的话就可以得到不包含<code>perm[0]</code>的其他所有数的异或，该值与之前的<code>total</code>异或可以得到<code>perm[0]</code>的值，然后根据规律与<code>encoded</code>数组依次异或就可以得到<code>perm</code>数组的每个值（<font color='red'>需要注意因为<code>n</code>是一个奇数，所以<code>n-1</code>必定是一个偶数，所以encoded中的奇数下标个数和偶数下标个数是相同的</font>）</li>
 </ol>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span>[] decode(<span class="hljs-keyword">int</span>[] encoded) &#123;<br>        <span class="hljs-keyword">int</span> n = encoded.length + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span>[] perm = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[n];<br>        <span class="hljs-keyword">int</span> total = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>            total ^= i;<br>        &#125;<br>        <span class="hljs-keyword">int</span> odd = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt; n - <span class="hljs-number">1</span>; i += <span class="hljs-number">2</span>)&#123;<br>            odd ^= encoded[i];<br>        &#125;<br>        perm[<span class="hljs-number">0</span>] = total ^ odd;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">1</span>; i++)&#123;<br>            perm[i + <span class="hljs-number">1</span>] = perm[i] ^ encoded[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> perm;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 
             </div>
             <hr>
@@ -489,6 +485,48 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        loader: {
+          
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
+
+  
 
 
 

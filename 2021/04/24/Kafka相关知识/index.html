@@ -24,7 +24,7 @@
 <meta property="og:description" content="Kafka消息队列KafkaKafka是一个消息队列，可以实现发布订阅模式，在异步通信或者生产者和消费者需要解耦合的场景中经常使用，可以对数据流进行处理等。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-04-24T03:29:33.000Z">
-<meta property="article:modified_time" content="2021-08-01T00:57:09.927Z">
+<meta property="article:modified_time" content="2021-09-23T10:46:45.699Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="Kafka">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      4.4k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      14 分钟
     </span>
   
 
@@ -239,14 +239,13 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 个月前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h1><h3 id="消息队列Kafka"><a href="#消息队列Kafka" class="headerlink" title="消息队列Kafka"></a>消息队列Kafka</h3><p>Kafka是一个消息队列，可以实现发布订阅模式，在异步通信或者生产者和消费者需要解耦合的场景中经常使用，可以对数据流进行处理等。</p>
 <span id="more"></span>
-
 <p><strong>Kafka的特性如下所示：</strong></p>
 <ul>
 <li>Kafka支持消息的快速持久化</li>
@@ -326,7 +325,7 @@
 <h3 id="Kafka的文件存储机制"><a href="#Kafka的文件存储机制" class="headerlink" title="Kafka的文件存储机制"></a>Kafka的文件存储机制</h3><p>Kafka中消息是以topic进行分类的，生产者通过topic向Kafka broker发送消息，消费者通过topic读取数据。</p>
 <p>然而topic在物理层面又能以partition为分组，一个topic可以分成若干个partition，partition还可以细分为segment，一个partition物理上由多个segment组成。</p>
 <p>在Kafka文件存储中，同一个topic下有多个不同的partition，每个partiton为一个目录，partition的名称规则为：topic名称+有序序号，第一个序号从0开始计，最大的序号为partition数量减1。</p>
-<h3 id="Topic和Partition"><a href="#Topic和Partition" class="headerlink" title="Topic和Partition"></a>Topic和Partition</h3><p>Kafka中的一个topic可以认为是一类消息，每个topic将被分成多个partition，每个partition在存储层面是append log文件。发布到此partition的消息都会被追加到log文件的尾部，<strong>每条消息在文件中的位置称为offset(偏移量)<strong>，offset为一个long型的数字，它唯一标记一条消息。每条消息都被append到partition中，是一种顺序写磁盘的方式，</strong>顺序写磁盘</strong>效率比随机写内存还要高，这也是Kafka高吞吐率的一个很重要的保证。</p>
+<h3 id="Topic和Partition"><a href="#Topic和Partition" class="headerlink" title="Topic和Partition"></a>Topic和Partition</h3><p>Kafka中的一个topic可以认为是一类消息，每个topic将被分成多个partition，每个partition在存储层面是append log文件。发布到此partition的消息都会被追加到log文件的尾部，<strong>每条消息在文件中的位置称为offset(偏移量)</strong>，offset为一个long型的数字，它唯一标记一条消息。每条消息都被append到partition中，是一种顺序写磁盘的方式，<strong>顺序写磁盘</strong>效率比随机写内存还要高，这也是Kafka高吞吐率的一个很重要的保证。</p>
 <p>每一条消息被发送到broker中，会根据partition规则选择被存储到哪一个partition。如果partition规则设置的合理，所有消息可以均匀分布到不同的partition里。</p>
 <h4 id="为什么Kafka中的分区只支持增长，不支持减小分区个数的操作"><a href="#为什么Kafka中的分区只支持增长，不支持减小分区个数的操作" class="headerlink" title="为什么Kafka中的分区只支持增长，不支持减小分区个数的操作"></a>为什么Kafka中的分区只支持增长，不支持减小分区个数的操作</h4><ul>
 <li>删除掉的分区的消息不好处理，若丢弃则可靠性得不到保证</li>

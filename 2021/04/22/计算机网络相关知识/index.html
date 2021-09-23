@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423100106.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423101154.png">
 <meta property="article:published_time" content="2021-04-22T06:25:41.000Z">
-<meta property="article:modified_time" content="2021-08-01T00:57:09.924Z">
+<meta property="article:modified_time" content="2021-09-23T10:46:59.632Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="计算机网络">
@@ -211,7 +211,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      undefined 字
+      13k 字
     </span>
   
 
@@ -220,7 +220,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      NaN 分钟
+      42 分钟
     </span>
   
 
@@ -253,7 +253,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：2 个月前
+                  本文最后更新于：1 分钟前
                 
               </p>
             
@@ -265,7 +265,6 @@
 <li>传播时延</li>
 </ol>
 <span id="more"></span>
-
 <h2 id="分层体系结构"><a href="#分层体系结构" class="headerlink" title="分层体系结构"></a>分层体系结构</h2><h3 id="因特网协议栈"><a href="#因特网协议栈" class="headerlink" title="因特网协议栈"></a>因特网协议栈</h3><ol>
 <li>应用层<br>包含网络应用程序及<strong>HTTP、SMTP、FTP</strong>等应用层协议<br>信息分组为<strong>报文</strong></li>
 <li>运输层<br>在应用程序端点之间传送应用层报文<br>包括<strong>TCP和UDP</strong>运输协议<br>分组为<strong>报文段</strong></li>
@@ -285,7 +284,7 @@
 <h3 id="进程通信"><a href="#进程通信" class="headerlink" title="进程通信"></a>进程通信</h3><p>在两个不同端系统上的进程，通过跨越计算机网络交换<strong>报文</strong>而相互通信。</p>
 <ol>
 <li>客户和服务器进程<br>发起通信的进程被标识为<strong>客户</strong>，在会话开始时等待联系的进程是<strong>服务器</strong></li>
-<li>进程与计算机网络之间的接口<br>进程通过**套接字(Socket)**与网络通信<br>套接字是同一台主机应用层和运输层之间的接口</li>
+<li>进程与计算机网络之间的接口<br>进程通过<strong>套接字(Socket)</strong>与网络通信<br>套接字是同一台主机应用层和运输层之间的接口</li>
 <li>进程寻址<br>采用<strong>IP地址</strong>+<strong>端口号</strong></li>
 </ol>
 <h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><p>Web的应用层协议是超文本传输协议(HyperText Transfer Protocol, HTTP)，它是Web的核心。</p>
@@ -316,14 +315,12 @@
 <p>一般来说，如果一个连接经过一段时间间隔(可配置的时间间隔)仍未被使用，HTTP服务器就关闭该连接。</p>
 <h4 id="HTTP请求报文"><a href="#HTTP请求报文" class="headerlink" title="HTTP请求报文"></a>HTTP请求报文</h4><p>下面是一个典型的HTTP请求报文</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">GET</span> <span class="hljs-string">/somedir/page.html</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>www.someschool.edu //指明了对象所在的主机<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close //指明不使用持续连接<br><span class="hljs-attribute">User-agent</span><span class="hljs-punctuation">: </span>Mozilia/5.0 //指名向服务器发送请求的浏览器的类型<br><span class="hljs-attribute">Accept-language</span><span class="hljs-punctuation">: </span>fr //表示用户想要得到的语言版本<br></code></pre></td></tr></table></figure>
-
 <p>第一行为请求行，包括三个字段：方法字段、URL字段和HTTP版本字段。</p>
 <p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210413165620.png" srcset="/img/loading.gif" lazyload alt="6D912A7180EBEAC28FE14650C189B3EB"></p>
 <p>上面是一个HTTP请求报文的通用格式</p>
 <p>在首部行之后还有一个“实体体”，使用GET方法时实体体为空，使用POST方法时才使用该实体体。</p>
 <h4 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h4><p>下面是一条典型的HTTP响应报文，该响应报文是对刚刚讨论的例子中的请求报文的响应。</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-meta">HTTP/1.1</span> <span class="hljs-number">200</span> OK<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close //告诉客户，发送完报文后将关闭该TCP连接<br><span class="hljs-attribute">Date</span><span class="hljs-punctuation">: </span>Tue, 18 Aug 2015 15:44:04 GMT //服务器产生并发送该响应报文的日期和时间<br><span class="hljs-attribute">Server</span><span class="hljs-punctuation">: </span>Apache/2.2.3 (CentOS) //指名服务器的类型<br><span class="hljs-attribute">Last-Modified</span><span class="hljs-punctuation">: </span>Tue, 18 Aug 2015 15:11:03 GMT //对象创建或最后修改的日期和时间<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>6821 //指示了被发送对象中的字节数<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>text/html //指名实体体中的对象类型<br><br><span class="haskell">(<span class="hljs-class"><span class="hljs-keyword">data</span> <span class="hljs-keyword">data</span> <span class="hljs-keyword">data</span> <span class="hljs-keyword">data</span> ...)</span></span><br></code></pre></td></tr></table></figure>
-
 <p>包含一个初始状态行，包括协议版本字段、状态码和相应状态信息</p>
 <p>6个首部行</p>
 <p>然后是实体体</p>
@@ -532,7 +529,6 @@
 </ul>
 <p>假设下面有4个网络:</p>
 <figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs http">172.18.129.0/24<br>172.18.130.0/24<br>172.18.132.0/24<br>172.18.133.0/24<br></code></pre></td></tr></table></figure>
-
 <p><strong>具体计算方式如下：</strong></p>
 <ul>
 <li>129的二进制代码是10000001</li>
@@ -559,7 +555,7 @@
 <p><strong>算法实现：</strong>利用主机数来计算。</p>
 <ul>
 <li>将主机数目转化为二进制来表示</li>
-<li>如果主机数小于或等于254（注意去掉保留的两个IP地址），则取得该主机的二进制位数，为 N，这里肯定N&lt;8。如果大于254，则 N&gt;8，这就是说主机地址将占据不止8位。</li>
+<li>如果主机数小于或等于254（注意去掉保留的两个IP地址），则取得该主机的二进制位数，为 N，这里肯定N<8。如果大于254，则 N>8，这就是说主机地址将占据不止8位。</li>
 <li>使用255.255.255.255来将该类IP地址的主机地址位数全部置1，然后从后向前的将N位全部置为 0，即为子网掩码值。</li>
 </ul>
 <p><strong>举例：</strong></p>
