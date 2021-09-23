@@ -1,0 +1,641 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="RedisRedis有了解么redis（Remote Dictionary Server远程字典服务），是一款高性能的(key/value)分布式内存数据库，基于内存运行并支持持久化的NoSQL数据库。因为数据都在内存中，所以运行速度快。redis支持丰富的数据类型并且支持事务，事务中的所有命令会被序列化、按顺序执行，在执行的过程中不会被其他客户端发送来的命令打断。">
+  <meta name="author" content="Juhick">
+  <meta name="keywords" content="">
+  <meta name="description" content="RedisRedis有了解么redis（Remote Dictionary Server远程字典服务），是一款高性能的(key&#x2F;value)分布式内存数据库，基于内存运行并支持持久化的NoSQL数据库。因为数据都在内存中，所以运行速度快。redis支持丰富的数据类型并且支持事务，事务中的所有命令会被序列化、按顺序执行，在执行的过程中不会被其他客户端发送来的命令打断。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis相关知识">
+<meta property="og:url" content="https://blog.qinhaiqi.com/2021/04/24/Redis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="曾许人间第一流">
+<meta property="og:description" content="RedisRedis有了解么redis（Remote Dictionary Server远程字典服务），是一款高性能的(key&#x2F;value)分布式内存数据库，基于内存运行并支持持久化的NoSQL数据库。因为数据都在内存中，所以运行速度快。redis支持丰富的数据类型并且支持事务，事务中的所有命令会被序列化、按顺序执行，在执行的过程中不会被其他客户端发送来的命令打断。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-24T01:44:19.000Z">
+<meta property="article:modified_time" content="2021-09-23T10:46:40.459Z">
+<meta property="article:author" content="Juhick">
+<meta property="article:tag" content="面试">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary_large_image">
+  
+  <title>Redis相关知识 - 曾许人间第一流</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Juhick</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/post.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Redis相关知识">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-24 09:44" pubdate>
+        2021年4月24日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      16 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Redis相关知识</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：31 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h1 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h1><h3 id="Redis有了解么"><a href="#Redis有了解么" class="headerlink" title="Redis有了解么"></a>Redis有了解么</h3><p><strong>redis（Remote Dictionary Server远程字典服务）</strong>，是一款高性能的(key/value)分布式<strong>内存数据库</strong>，基于<strong>内存运行</strong>并支持<strong>持久化</strong>的NoSQL数据库。因为数据都在内存中，所以运行速度快。redis支持丰富的数据类型并且支持事务，事务中的所有命令会被序列化、按顺序执行，在执行的过程中不会被其他客户端发送来的命令打断。</p>
+<span id="more"></span>
+<h4 id="redis相比memcached有什么优势？"><a href="#redis相比memcached有什么优势？" class="headerlink" title="redis相比memcached有什么优势？"></a>redis相比memcached有什么优势？</h4><ul>
+<li>memcached所有的值均是简单的字符串，redis作为其替代者，支持更为丰富的数据类型。</li>
+<li>redis的速度比memcached快很多，并且redis支持数据的持久化。</li>
+<li>redis支持数据的备份，即master-slave模式的数据备份。</li>
+<li>使用底层模型不同，它们之间底层实现方式 以及与客户端之间通信的应用协议不一样。redis自己构建了VM 管理机制。</li>
+<li>value大小不同，redis最大可以达到512MB，而memcache只有1MB。</li>
+</ul>
+<h4 id="redis都支持哪些数据类型？应用场景有哪些？"><a href="#redis都支持哪些数据类型？应用场景有哪些？" class="headerlink" title="redis都支持哪些数据类型？应用场景有哪些？"></a>redis都支持哪些数据类型？应用场景有哪些？</h4><p>redis支持五种数据类型作为其Value，redis的Key都是字符串类型的。</p>
+<ul>
+<li><strong>string：</strong>redis 中字符串 value 最大可为512M。可以用来做一些计数功能的缓存（也是实际工作中最常见的）。</li>
+<li><strong>list：</strong>简单的字符串列表，按照插入顺序排序，可以添加一个元素到列表的头部（左边）或者尾部（右边），其底层实现是一个链表。可以实现一个简单消息队列功能，做基于redis的分页功能等。</li>
+<li><strong>set：</strong>是一个字符串类型的无序集合。可以用来进行全局去重等。</li>
+<li><strong>sorted set：</strong>是一个字符串类型的有序集合，给每一个元素一个固定的<strong>分数score</strong>来保持顺序。可以用来做排行榜应用或者进行范围查找等。</li>
+<li><strong>hash：</strong>键值对集合，是一个字符串类型的 Key和 Value 的映射表，也就是说其存储的Value是一个键值对（Key- Value）。可以用来存放一些具有特定结构的信息。</li>
+</ul>
+<h3 id="redis是单线程的么？为什么执行速度这么快？"><a href="#redis是单线程的么？为什么执行速度这么快？" class="headerlink" title="redis是单线程的么？为什么执行速度这么快？"></a>redis是单线程的么？为什么执行速度这么快？</h3><p> redis是单线程的，redis的单线程是指网络请求模块使用了一个线程，所以不需考虑并发安全性。但是对于需要依赖多个操作的复合操作来说，还是需要锁的，而且有可能是分布式锁。</p>
+<p><strong>那么单线程的redis为什么执行速度如此之快？</strong></p>
+<ul>
+<li>基于内存实现，完全内存计算</li>
+<li>单线程操作，避免了线程上下文切换操作</li>
+<li><strong>多路I/O复用的线程模型</strong>，实现了一个线程监控多个IO流，及时响应请求</li>
+<li>redis对外部的依赖比较少，属于轻量级内存数据库</li>
+</ul>
+<p>redis的线程模型<strong>多路I/O复用机制</strong>是一个比较重要并且常见的考察点。目前支持I/O多路复用的系统调用有<strong>select，pselect，poll，epoll</strong>等函数。I/O多路复用就是通过一种机制<strong>一个进程可以监视多个描述符</strong>，一旦某个描述符读就绪或者写就绪，其能够通知应用程序进行相应的读写操作。</p>
+<p><strong>多路I/O复用机制</strong>与多进程和多线程技术相比系统开销小，系统不必创建进程/线程，也不必维护这些进程/线程，从而大大减小了系统的开销。</p>
+<h3 id="使用Redis可能出现的问题"><a href="#使用Redis可能出现的问题" class="headerlink" title="使用Redis可能出现的问题"></a>使用Redis可能出现的问题</h3><h4 id="缓存雪崩："><a href="#缓存雪崩：" class="headerlink" title="缓存雪崩："></a>缓存雪崩：</h4><p><strong>举例：</strong>缓存同一时间大面积的失效，这个时候又来的一波请求都到数据库上，导致数据库连接异常。</p>
+<p><strong>解决办法：</strong>可以给缓存设置不同的缓存时间，更新数据使用互斥锁或者通过双缓存在避免缓存雪崩。</p>
+<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><p><strong>举例：</strong>redis中存储的是热点数据，当高并发请求访问redis中热点数据的时候，如果redis中的数据过期了，会造成缓存击穿的现象，请求都打到了数据库上。</p>
+<p><strong>解决办法：</strong>使用互斥锁，只让一个请求去load DB，成功之后重新写缓存，其余请求没有获取到互斥锁，可以尝试重新获取缓存中的数据。</p>
+<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p><strong>举例：</strong>故意的去请求缓存中不存在的数据，导致请求都打到了数据库上，导致数据库异常。</p>
+<p><strong>解决办法：</strong>可以使用互斥锁或者无论是否取到结果都将结果存入缓存，还可以使用有效的机制（比如布隆过滤器）来拦截不合法的key值等。</p>
+<h4 id="数据库和缓存的双写一致性问题："><a href="#数据库和缓存的双写一致性问题：" class="headerlink" title="数据库和缓存的双写一致性问题："></a>数据库和缓存的双写一致性问题：</h4><p>在高并发请求下很容易导致数据不一致的问题，如果你的业务需要保证数据的强一致性，那么建议不要使用缓存。在数据库中和缓存数据的删除或者写入过程中，如果有失败的情况，会导致数据的不一致。</p>
+<p><strong>解决办法：</strong></p>
+<ul>
+<li><strong>双删延时的解决办法。</strong>可以先删除缓存数据，然后再更新数据库数据，最后再隔固定的时间再次删除缓存。</li>
+<li><strong>更新数据库产生的binlog订阅（使用canal）</strong>。将有变化的key记录下来，并且尝试去不断的去删除缓存（如果上次删除缓存失败）</li>
+</ul>
+<h3 id="Redis的持久化方法"><a href="#Redis的持久化方法" class="headerlink" title="Redis的持久化方法"></a>Redis的持久化方法</h3><p><strong>redis的持久化方式有两种，即RDB和AOF的方式</strong></p>
+<h4 id="RDB（快照方式-snapshotting）（全量持久化）"><a href="#RDB（快照方式-snapshotting）（全量持久化）" class="headerlink" title="RDB（快照方式 snapshotting）（全量持久化）"></a>RDB（快照方式 snapshotting）（全量持久化）</h4><p>将当前内存中的数据集快照写入磁盘，实现数据的持久化，恢复时可以将快照重新载入内存。</p>
+<p><strong>触发方式：</strong></p>
+<ul>
+<li><strong>自动触发：</strong>在配置文件中，可以配置执行了多少次save就自动触发自动持久化。</li>
+<li><strong>手动触发：</strong>通过bgsave命令，在后台异步进行生成快照的操作，同时还可以响应客户端的请求。通过redis进程fork操作创建子进程，生成的快照由子进程负责，客户端请求只会在fork阶段被阻塞。</li>
+</ul>
+<p><strong>快照恢复：</strong>将备份文件 (dump.rdb) 移动到 redis 安装目录并启动服务，redis会自动加载快照文件数据到内存。但是，redis 服务器在载入 RDB 文件期间，会一直处于阻塞状态，直到载入工作完成为止。</p>
+<p><strong>优缺点分析：</strong></p>
+<ul>
+<li>RDB持久化方式存在数据的丢失，因为其没有办法实现实时持久化。因为bgsave每次运行都要执行fork操作创建子进程，属于重量级操作，频繁执行成本过高，会影响系统性能。自动触发也存在丢失部分数据的情况。</li>
+<li>在恢复大数据集时候，RDB方式相对于AOF要快。</li>
+</ul>
+<h4 id="AOF（append-only-file）（增量持久化）："><a href="#AOF（append-only-file）（增量持久化）：" class="headerlink" title="AOF（append-only-file）（增量持久化）："></a>AOF（append-only-file）（增量持久化）：</h4><p>在 redis配置文件的 APPEND ONLY MODE 中，可以设置AOF持久化。通过记录redis服务器所执行的写命令来记录数据库状态。恢复时可以将AOF文件载入内存，并且可以通过<strong>redis-check-aof —fix</strong> 进行修复AOF文件。</p>
+<p><strong>AOF日志重写：</strong></p>
+<ul>
+<li>AOF文件会随着服务器运行的时间越来越大，可以通过AOF重写来控制AOF文件的大小。</li>
+<li>AOF重写会首先读取数据库中现有的键值对状态，然后根据类型使用一条命令来替代前面对键值对操作的多条命令。</li>
+<li>使用命令 bgrewriteaof 来实现AOF重写</li>
+</ul>
+<p><strong>AOF重写缓存区：</strong></p>
+<p>redis 是单线程工作，当AOF文件较大时重写时间会比较长，在重写 AOF 期间，redis将长时间无法处理客户端请求。为了解决这个问题，可以将 AOF 重写程序放到子进程中执行，好处如下：</p>
+<ul>
+<li>子进程进行 AOF 重写期间，服务器进程（父进程）可以继续处理其它客户端请求。</li>
+<li>子进程带有父进程的数据副本，使用子进程而不是线程，可以在避免使用锁的情况下，保证数据的安全性。</li>
+</ul>
+<p><strong>子进程中AOF重写导致的问题：</strong></p>
+<ul>
+<li>子进程在进行 AOF 重写期间，服务器进程依然可以处理其它客户端请求，这就会导致数据库状态已经发生了改变，使得当前数据库数据状态和重写后的 AOF 文件中的数据不一致。</li>
+<li>也就是出现了AOF文件和数据库中数据不一致的问题。</li>
+</ul>
+<p><strong>数据状态不一致解决办法：</strong></p>
+<ul>
+<li>redis 服务器设置了一个 AOF 重写缓冲区。这个缓冲区在创建子进程后开始使用，当redis服务器执行一个客户端的写请求命令，之后将这个写命令也发送到 AOF 重写缓冲区。</li>
+<li>当子进程完成 AOF 日志重写之后，给父进程发送信号，父进程接收此信号后，将 AOF 重写缓冲区的内容写到新的 AOF 文件中，保持数据的一致性。</li>
+</ul>
+<p><strong>优缺点分析：</strong></p>
+<ul>
+<li>AOF文件可以做到秒级持久化，使用追加写的方式来写入，可读性强并且可以使用命令进行文件修复。</li>
+<li>相比于RDB文件，同样数据下AOF文件体积要大。在redis负载较高时，秒级更新AOF文件会影响性能</li>
+</ul>
+<h4 id="持久化策略的选择"><a href="#持久化策略的选择" class="headerlink" title="持久化策略的选择"></a>持久化策略的选择</h4><ul>
+<li>AOF更安全，可将数据及时同步到文件中，但需要较多的磁盘IO，AOF文件尺寸较大，文件内容恢复相对较慢也更加完整。</li>
+<li>RDB持久化，安全性较差，它是正常时期数据备份及 master-slave数据同步的最佳手段，文件尺寸较小并且恢复速度较快。</li>
+</ul>
+<h3 id="redis数据的过期回收策略与内存淘汰机制"><a href="#redis数据的过期回收策略与内存淘汰机制" class="headerlink" title="redis数据的过期回收策略与内存淘汰机制"></a>redis数据的过期回收策略与内存淘汰机制</h3><p>redis中的数据过期回收策略使用了定期删除和惰性删除相结合的方式。</p>
+<ul>
+<li><strong>定期删除：</strong></li>
+</ul>
+<p>redis会每隔一定的时间去抽查一定量的数据判断其是否过期，过期则进行删除。</p>
+<ul>
+<li><strong>惰性删除：</strong></li>
+</ul>
+<p>在获取一个key的时候，redis会检查这个key是否已经过期，若过期，则会进行删除操作。</p>
+<p><strong>内存淘汰机制：</strong></p>
+<p>在配置文件中，我们可以对内存淘汰机制进行配置。当内存使用达到最大值时，redis可以使用的<strong>清除策略</strong>如下：</p>
+<ul>
+<li><strong>volatile-lru</strong>：利用LRU算法移除设置过过期时间的key (LRU:最近使用 Least Recently Used )</li>
+<li><strong>allkeys-lru</strong>：利用LRU算法移除任何key</li>
+<li><strong>volatile-random</strong>：移除设置过过期时间的随机key</li>
+<li><strong>allkeys-random</strong>：移除随机key</li>
+<li><strong>volatile-ttl</strong>：移除即将过期的key(minor TTL)</li>
+<li><strong>noeviction</strong> ：不移除任何key，只是返回一个写错误 ，默认选项</li>
+</ul>
+<h3 id="redis的主从复制机制"><a href="#redis的主从复制机制" class="headerlink" title="redis的主从复制机制"></a>redis的主从复制机制</h3><p>当项目比较大的时候，我们可以使用<strong>主从架构Master/Slave机制</strong>，Master 以写为主，Slave 以读为主，Master 主节点更新后根据配置，自动同步到从机Slave 节点。</p>
+<p>主从复制的原理包括<strong>旧版同步</strong>和<strong>命令传播</strong>，主从复制的代价就是系统复制较重的时候会导致主从延迟，并且根据CAP理论，无法同时保证服务可用性和数据一致性。</p>
+<h4 id="什么是CAP理论"><a href="#什么是CAP理论" class="headerlink" title="什么是CAP理论"></a>什么是CAP理论</h4><p><strong>CAP理论是指</strong> 当网络分区发生时，一致性和可用性不可能同时保证。</p>
+<ul>
+<li><strong>C：Consistent 一致性</strong></li>
+<li><strong>A：Availability 可用性</strong></li>
+<li><strong>P：Partition tolerance 分区容忍度</strong></li>
+<li><strong>网络分区</strong>：分布式系统的节点往往都是分布在不同的机器上进行网络隔离开的，这意味着必然会有网络断开的风险，网络断开也就意味着发生了网络分区。</li>
+<li><strong>最终一致性</strong>：Redis可以保证最终一致性，从节点会努力追赶主节点，最终从节点的状态会和主节点的状态将保持一致。</li>
+</ul>
+<h3 id="redis对事务的支持"><a href="#redis对事务的支持" class="headerlink" title="redis对事务的支持"></a>redis对事务的支持</h3><p> redis对事务的支持主要可以概括如下：</p>
+<ul>
+<li><strong>隔离性：</strong>redis 是单进程的程序，保证在执行事务时，不会对事务进行中断，事务可以运行直到执行完所有事务队列中的命令为止。所以redis的事务支持隔离性。</li>
+<li><strong>redis会将一个事务中的所有命令序列化</strong>，然后按顺序执行。<strong>redis不可能在一个事务的执行过程中插入执行另一个客户端发出的请求</strong>。可以保证Redis将这些命令作为一个单独的隔离操作执行。</li>
+</ul>
+<p>redis操作事务的相关命令如下所示：</p>
+<ul>
+<li><strong>MULTI：</strong>标记一个事务块的开始。</li>
+<li><strong>EXEC：</strong>执行所有事务块内的命令。</li>
+<li><strong>DISCARD：</strong>取消事务，放弃执行事务块内的所有命令。</li>
+<li><strong>UNWATCH：</strong>取消 WATCH 命令对所有 key 的监视。</li>
+<li><strong>WATCH key [key …]：</strong>监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。</li>
+</ul>
+<p>需要注意的是<strong>redis的事务不支持回滚操作</strong>，redis以 MULTI 开始一个事务，然后将多个命令入队到事务中，最后由 EXEC 命令触发事务， 一并执行事务中的所有命令。只有当被调用的redis命令有语法错误时，这条命令才会执行失败，或者对某个键执行不符合其数据类型的操作，但是应该在将命令入队列的时候就应该并且能够发现这些问题，所以redis的事务不支持进行回滚操作。</p>
+<h3 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h3><p>关于分布式锁，为了使得加锁操作具有原子性，不可以使用多条命令来完成，我们可以使用带多个参数的set命令来完成，如下所示：jedis.set(String key, String value, String nxxx, String expx, int time)</p>
+<p>第一个为key，我们使用key来当锁，因为key是唯一的。</p>
+<p>第二个为value，我们传的是requestId，通过给value赋值为requestId，我们就知道这把锁是哪个请求加的了，在解锁的时候就可以有依据。</p>
+<p>第三个为nxxx，这个参数我们填的是NX，意思是SET IF NOT EXIST，即当key不存在时，我们进行set操作；若key已经存在，则不做任何操作；</p>
+<p>第四个为expx，这个参数我们传的是PX，意思是我们要给这个key加一个过期的设置，具体时间由第五个参数决定。</p>
+<p>第五个为time，与第四个参数相呼应，代表key的过期时间。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/04/24/Kafka%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Kafka相关知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/04/24/MyBatis%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">
+                        <span class="hidden-mobile">MyBatis相关知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"d1d427beff57ea9d6ccf","clientSecret":"ba3d1540396867fd92f96cfe7c41f48334fdc7fb","repo":"juhick.github.io","owner":"juhick","admin":["juhick"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '05eac8396d753d3eb9494153b0b3f83a'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- 不蒜子统计PV -->
+        <span id="busuanzi_container_site_pv" style="display: none">
+            总访问量 
+            <span id="busuanzi_value_site_pv"></span>
+             次
+          </span>
+      
+      
+        <!-- 不蒜子统计UV -->
+        <span id="busuanzi_container_site_uv" style="display: none">
+            总访客数 
+            <span id="busuanzi_value_site_uv"></span>
+             人
+          </span>
+      
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
