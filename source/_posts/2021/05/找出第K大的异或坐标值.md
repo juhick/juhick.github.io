@@ -6,7 +6,7 @@ tags:
  - 位运算
 categories:
  - leetcode
-mathjax: true
+math: true
 ---
 
 [原题链接](https://leetcode-cn.com/problems/find-kth-largest-xor-coordinate-value/)

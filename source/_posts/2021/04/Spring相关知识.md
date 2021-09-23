@@ -6,7 +6,7 @@ tags:
  - Spring
 categories:
  - 面试
-mathjax:
+math:
 ---
 
 # Spring

@@ -5,7 +5,7 @@ tags:
  - 个人博客
  - 图床
 categories:
-mathjax:
+math:
 ---
 
 # PicGo+Github+Typora实现笔记图片上传到github图床

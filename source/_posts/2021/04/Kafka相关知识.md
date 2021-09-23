@@ -6,7 +6,7 @@ tags:
  - Kafka
 categories:
  - 面试
-mathjax:
+math:
 ---
 
 # Kafka

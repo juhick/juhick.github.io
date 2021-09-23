@@ -6,7 +6,7 @@ tags:
  - Java
 categories:
  - 面试
-mathjax:
+math:
 ---
 
 ### Java进阶

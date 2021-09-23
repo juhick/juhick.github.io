@@ -6,7 +6,7 @@ tags:
  - LFU
 categories:
  - leetcode
-mathjax:
+math:
 ---
 
 # LFU算法设计

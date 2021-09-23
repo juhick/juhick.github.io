@@ -7,7 +7,7 @@ tags:
  - Jvm
 categories:
  - 面试
-mathjax:
+math:
 ---
 
 # JVM内存机制

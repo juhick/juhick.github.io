@@ -6,7 +6,7 @@ tags:
  - LRU
 categories:
  - leetcode
-mathjax:
+math:
 ---
 
 # LRU缓存算法设计

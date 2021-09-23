@@ -6,7 +6,7 @@ tags:
  - 链表
 categories:
  - leetcode
-mathjax:
+math:
 ---
 
 # K个一组翻转链表

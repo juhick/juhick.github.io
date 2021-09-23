@@ -6,7 +6,7 @@ tags:
  - Redis
 categories:
  - 面试
-mathjax:
+math:
 ---
 
 # Redis

@@ -6,7 +6,7 @@ tags:
  - MyBatis
 categories:
  - 面试
-mathjax:
+math:
 ---
 
 # MyBatis
