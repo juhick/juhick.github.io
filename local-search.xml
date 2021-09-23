@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>Magic Forest</title>
+    <link href="/2021/09/23/Magic-Forest/"/>
+    <url>/2021/09/23/Magic-Forest/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/922/problem/B">原题链接</a></p><h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>给定一个$n$，在$1-n$的范围内寻找三个数，这三个数需要满足三个条件：</p><ol><li>$1 \leq a \leq b \leq c \leq n$</li><li>$a \oplus b \oplus c = 0$，这里的$x \oplus y$就是按位异或</li><li>$(a, b, c)$这三个数需要能够组成三角形</li></ol><span id="more"></span><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><p>第一个条件很容易满足，我们可以通过循环来控制。</p><p>第二个条件比较关键，因为异或有一条性质，即自己与自己的异或结果为0——$x \oplus x = 0$，所以我们找$c$时可以直接从所有的$a \oplus b$中寻找，这样可以节省大量时间。找出来的$c$首先要满足的条件就是$b \leq c \leq n$，不满足条件的可以直接舍弃。</p><p>看三条边能否构成三角形就很简单了，满足任意两条边的和大于第三边即可。</p><h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Scanner in = <span class="hljs-keyword">new</span> Scanner(System.in);<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> n = in.nextInt();<br>        <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &lt;= n; j++)&#123;<br>                <span class="hljs-keyword">int</span> m = i ^ j;<br>                <span class="hljs-keyword">if</span>(m &gt;= j &amp;&amp; m &lt;= n &amp;&amp; i + j &gt; m &amp;&amp; i + m &gt; j &amp;&amp; j + m &gt; i)&#123;<br>                    res++;<br>                &#125;<br>            &#125;<br>        &#125;<br>        System.out.println(res);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> n;<br>    <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;<br>    cin &gt;&gt; n;<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &lt;= n; j++)&#123;<br>            <span class="hljs-keyword">int</span> c = i ^ j;<br>            <span class="hljs-keyword">if</span>(c &gt;= j &amp;&amp; c &lt;= n &amp;&amp; i + j &gt; c &amp;&amp; i + c &gt; j &amp;&amp; j + c &gt; i)&#123;<br>                res++;<br>            &#125;<br>        &#125;<br>    &#125;<br>    cout &lt;&lt; res &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Codeforces</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Codeforces</tag>
+      
+      <tag>简单数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Cloning Toys</title>
+    <link href="/2021/09/23/Cloning-Toys/"/>
+    <url>/2021/09/23/Cloning-Toys/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/922/problem/A">原题链接</a></p><h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>Imp初始有个<strong>原型</strong>玩具，并且有一个能够克隆玩具的机器。该机器有两种工作模式：</p><ol><li>放入一个<strong>原型</strong>玩具将获得一个额外的<strong>原型</strong>玩具以及一个玩具<strong>副本</strong></li><li>放入一个玩具<strong>副本</strong>将获得的两个额外的玩具<strong>副本</strong></li></ol><p>现在给定一个$x$和一个$y$，$x$代表玩具<strong>副本</strong>的个数，$y$代表<strong>原型</strong>玩具的个数，试问进行以上的两次操作是否能够得到指定个数的<strong>副本</strong>及<strong>原型</strong>。</p><span id="more"></span><h1 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h1><ol><li>初始时一定有1个<strong>原型</strong>，也就是说$y = 0$时直接输出No</li><li>$x$最多比$y$小1，而且是只进行操作一的结果，但凡$x$太少则可以直接输出No</li><li>由于操作一产生的两种玩具是$1:1$的关系，所以$x - y + 1$就是全由操作二产出的<strong>副本</strong>，并且易知该数应该是一个偶数</li></ol><h1 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Scanner in = <span class="hljs-keyword">new</span> Scanner(System.in);<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> x = in.nextInt();<br>        <span class="hljs-keyword">int</span> y = in.nextInt();<br><br>        <span class="hljs-keyword">int</span> left = y - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">if</span>(x - y &lt; -<span class="hljs-number">1</span> || y == <span class="hljs-number">0</span> || y == <span class="hljs-number">1</span> &amp;&amp; x &gt; <span class="hljs-number">0</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;No&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>((x - left) % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;<br>            System.out.println(<span class="hljs-string">&quot;Yes&quot;</span>);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            System.out.println(<span class="hljs-string">&quot;No&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> x, y;<br>    cin &gt;&gt; x &gt;&gt; y;<br>    <span class="hljs-keyword">if</span>(x - y &lt; <span class="hljs-number">-1</span> || y == <span class="hljs-number">0</span> || y == <span class="hljs-number">1</span> &amp;&amp; x != <span class="hljs-number">0</span>)&#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;No&quot;</span> &lt;&lt; endl;<br>    &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>((x - y + <span class="hljs-number">1</span>) % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)&#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;Yes&quot;</span> &lt;&lt; endl;<br>    &#125;<span class="hljs-keyword">else</span> cout &lt;&lt; <span class="hljs-string">&quot;No&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Codeforces</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Codeforces</tag>
+      
+      <tag>简单数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使所有区间的异或结果为零</title>
     <link href="/2021/05/25/%E4%BD%BF%E6%89%80%E6%9C%89%E5%8C%BA%E9%97%B4%E7%9A%84%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%BA%E9%9B%B6/"/>
     <url>/2021/05/25/%E4%BD%BF%E6%89%80%E6%9C%89%E5%8C%BA%E9%97%B4%E7%9A%84%E5%BC%82%E6%88%96%E7%BB%93%E6%9E%9C%E4%B8%BA%E9%9B%B6/</url>
