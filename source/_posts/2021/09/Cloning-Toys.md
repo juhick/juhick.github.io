@@ -6,7 +6,7 @@ tags:
  - 简单数学
 categories:
  - Codeforces
-Math: true
+math: true
 ---
 
 [原题链接](https://codeforces.com/contest/922/problem/A)
