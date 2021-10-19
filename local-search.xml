@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>字典树</title>
+    <link href="/2021/10/19/%E5%AD%97%E5%85%B8%E6%A0%91/"/>
+    <url>/2021/10/19/%E5%AD%97%E5%85%B8%E6%A0%91/</url>
+    
+    <content type="html"><![CDATA[<p><a href="https://leetcode-cn.com/problems/implement-trie-prefix-tree/">实现Trie（前缀树）</a></p><h1 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h1><p>Trie，又称字典树或前缀树，是一棵有根树，其每个结点包含以下字段：</p><ul><li><p>指向子节点的指针数组$children$。</p></li><li><p>布尔字段$isEnd$，表示该节点是否为字符串的结尾。</p></li></ul><span id="more"></span><h2 id="插入字符串"><a href="#插入字符串" class="headerlink" title="插入字符串"></a>插入字符串</h2><p>我们从字典树的根开始，插入字符串。对于当前字符对应的子节点，有两种情况：</p><ul><li>子节点存在。沿着指针移动到子节点，继续处理下一个字符。</li><li>子节点不存在。创建一个子节点，记录在$chidren$数组的对应位置上，然后沿着指针移动到子节点，继续搜索下一个字符。</li></ul><p>重复以上步骤，直到处理字符串的最后一个字符，然后将当前节点标记为字符串的结尾。</p><h2 id="查找前缀"><a href="#查找前缀" class="headerlink" title="查找前缀"></a>查找前缀</h2><p>我们从字典树的根开始，查找前缀。对于当前字符对应的子节点，有两种情况：</p><ul><li>子节点存在。沿着指针移动到子节点，继续搜索下一个字符。</li><li>子节点不存在。说明字典树中不包含该前缀，返回空指针。</li></ul><p>重复以上步骤，直到返回空指针或搜索完前缀的最后一个字符。</p><p>若搜索到了前缀的末尾，就说明字典树中存在该前缀。此外，若前缀末尾对应节点的$isEnd$为真，则说明字典树中存在该字符串。</p><h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><figure class="highlight java"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Trie</span> </span>&#123;<br>    <span class="hljs-keyword">private</span> Trie[] children;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> isEnd;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Trie</span><span class="hljs-params">()</span></span>&#123;<br>        children = <span class="hljs-keyword">new</span> Trie[<span class="hljs-number">26</span>];<br>        isEnd = <span class="hljs-keyword">false</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(String word)</span></span>&#123;<br>        Trie node = <span class="hljs-keyword">this</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; word.length(); ++i)&#123;<br>            <span class="hljs-keyword">char</span> ch = word.charAt(i);<br>            <span class="hljs-keyword">int</span> index = ch - <span class="hljs-string">&#x27;a&#x27;</span>;<br>            <span class="hljs-keyword">if</span> (node.children[index] == <span class="hljs-keyword">null</span>)&#123;<br>                node.children[index] = <span class="hljs-keyword">new</span> Trie();<br>            &#125;<br>            node = node.children[index];<br>        &#125;<br>        node.isEnd = <span class="hljs-keyword">true</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">search</span><span class="hljs-params">(String word)</span></span>&#123;<br>        Trie node = searchPrefix(word);<br>        <span class="hljs-keyword">return</span> node != <span class="hljs-keyword">null</span> &amp;&amp; node.isEnd;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">startsWith</span><span class="hljs-params">(String prefix)</span></span>&#123;<br>        <span class="hljs-keyword">return</span> searchPrefix(prefix) != <span class="hljs-keyword">null</span>;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> Trie <span class="hljs-title">searchPrefix</span><span class="hljs-params">(String prefix)</span></span>&#123;<br>        Trie node = <span class="hljs-keyword">this</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; prefix.length(); i++)&#123;<br>            <span class="hljs-keyword">char</span> ch = prefix.charAt(i);<br>            <span class="hljs-keyword">int</span> index = ch - <span class="hljs-string">&#x27;a&#x27;</span>;<br>            <span class="hljs-keyword">if</span> (node.children[index] == <span class="hljs-keyword">null</span>)&#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>            &#125;<br>            node = node.children[index];<br>        &#125;<br>        <span class="hljs-keyword">return</span> node;<br>    &#125;<br>&#125;<br></code></pre></div></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>数据结构</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数据结构</tag>
+      
+      <tag>字典树</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>分数到小数</title>
     <link href="/2021/10/03/%E5%88%86%E6%95%B0%E5%88%B0%E5%B0%8F%E6%95%B0/"/>
     <url>/2021/10/03/%E5%88%86%E6%95%B0%E5%88%B0%E5%B0%8F%E6%95%B0/</url>
