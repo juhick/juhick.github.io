@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>机器学习入门</title>
+    <link href="/2021/11/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/"/>
+    <url>/2021/11/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><h3 id="机器学习概念"><a href="#机器学习概念" class="headerlink" title="机器学习概念"></a>机器学习概念</h3><p>机器学习致力于研究如何通过<strong>计算</strong>的手段，利用<strong>经验</strong>来改善系统自身的性能。</p><blockquote><p>假设用$P$来评估计算机程序在某任务类$T$上的性能，若一个程序通过利用经验$E$在$T$中任务上获得了性能改善，则我们就说关于$T$和$P$,该程序对$E$进行了学习。</p></blockquote><h3 id="机器学习主要研究内容"><a href="#机器学习主要研究内容" class="headerlink" title="机器学习主要研究内容"></a>机器学习主要研究内容</h3><p>在计算机系统中，「经验」通常以<strong>数据</strong>形式存在。</p><p>因此，机器学习的主要研究内容，是关于在计算机上从<strong>数据</strong>中产生「模型」的算法，即「学习算法」。</p><h2 id="基本术语"><a href="#基本术语" class="headerlink" title="基本术语"></a>基本术语</h2><h3 id="数据相关"><a href="#数据相关" class="headerlink" title="数据相关"></a>数据相关</h3><p>要进行机器学习，先要有数据，数据的集合称为<strong>数据集</strong>。</p><p>其中的每条记录是关于一个事件或对象，称为一个<strong>示例</strong>或<strong>样本</strong>。</p><h3 id="属性相关"><a href="#属性相关" class="headerlink" title="属性相关"></a>属性相关</h3><p>反映事件或对象在某方面的表现或性质的事项，称为<strong>属性</strong>或<strong>特征</strong>。</p><p>属性上的取值，称为<strong>属性值</strong>。</p><p>属性张成的空间称为<strong>属性空间、样本空间或输入空间</strong>。</p><p>由于空间中的每个点对应一个<strong>坐标向量</strong>，因此一个示例也称为一个<strong>特征向量</strong>。</p><p>从数据中学得模型的过程称为<strong>学习</strong>或<strong>训练</strong>。</p><h3 id="样本相关"><a href="#样本相关" class="headerlink" title="样本相关"></a>样本相关</h3><p>训练过程中使用的数据称为<strong>训练数据</strong>，其中每个样本称为一个<strong>训练样本</strong>，训练样本组成的集合称为<strong>训练集</strong>。</p><p>关于示例结果的信息，称为<strong>标记</strong>。</p><p>拥有了标记信息的实例，称为<strong>样例</strong>。</p><h3 id="学习类型"><a href="#学习类型" class="headerlink" title="学习类型"></a>学习类型</h3><p>若预测的是离散值，此类学习任务称为<strong>分类</strong>。</p><p>若预测的是连续值，此类学习任务称为<strong>回归</strong>。</p><p>将数据划分为若干组的过程称为<strong>聚类</strong>，每组称为一个<strong>簇</strong>。样本通常不拥有标记信息。</p><p>根据训练数据是否拥有标记信息，学习任务可以分为<strong>监督学习</strong>和<strong>无监督学习</strong>。分类和回归是前者的代表，而聚类则是后者的代表。</p><p>学得模型适用于新样本的能力，称为<strong>泛化</strong>能力。</p><h2 id="NFL定理"><a href="#NFL定理" class="headerlink" title="NFL定理"></a>NFL定理</h2><h3 id="模糊概念"><a href="#模糊概念" class="headerlink" title="模糊概念"></a>模糊概念</h3><p>算法之间的期望性能相同。</p><h3 id="启示"><a href="#启示" class="headerlink" title="启示"></a>启示</h3><p>脱离实际问题，空谈什么学习算法好毫无意义。</p><h2 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h2><ol><li>二十世纪五十年代到七十年代初，人工智能研究处于「推理期」</li><li>二十世纪七十年代中期开始，人工智能研究进入了「知识期」</li><li>五十年代中后期，基于神经网络的「连接主义」学习</li><li>六七十年代，基于逻辑表示的「符号主义」</li><li>以决策理论为基础的学习技术以及强化学习技术</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>机器学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>机器学习</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Vue简介</title>
+    <link href="/2021/11/14/Vue%E7%AE%80%E4%BB%8B/"/>
+    <url>/2021/11/14/Vue%E7%AE%80%E4%BB%8B/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Vue是什么"><a href="#Vue是什么" class="headerlink" title="Vue是什么"></a>Vue是什么</h1><p>一套用于<strong>构建用户界面</strong>的<strong>渐进式</strong>JavaScript框架</p><blockquote><p>Vue可以自底向上逐层的应用</p><p>简单应用：只需一个轻量小巧的核心库</p><p>复杂应用：可以引入各式各样的Vue插件</p></blockquote><h1 id="Vue作者"><a href="#Vue作者" class="headerlink" title="Vue作者"></a>Vue作者</h1><p>尤雨溪</p><p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20211114172703.png" alt="CleanShot 2021-11-14 at 17.26.54@2x"></p><p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20211114172926.png" alt="CleanShot 2021-11-14 at 17.29.16@2x"></p><h1 id="Vue的特点"><a href="#Vue的特点" class="headerlink" title="Vue的特点"></a>Vue的特点</h1><ol><li>采用<strong>组件化</strong>模式，提高代码复用率、且让代码更好维护。<img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20211114173349.png" alt="CleanShot 2021-11-14 at 17.33.41@2x"></li><li><strong>声明式</strong>编码，让编码人员无需直接操作DOM，提高开发效率。</li><li>使用<strong>虚拟DOM</strong>+优秀的<strong>Diff算法</strong>，尽量复用DOM节点。</li></ol><h1 id="前置JS知识"><a href="#前置JS知识" class="headerlink" title="前置JS知识"></a>前置JS知识</h1><p>ES6语法规范</p><p>ES6模块化</p><p>包管理器</p><p>原型、原型链</p><p>数组常用方法</p><p>axios</p><p>promise</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>前端</category>
+      
+      <category>Vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>前端</tag>
+      
+      <tag>Vue</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>字典树</title>
     <link href="/2021/10/19/%E5%AD%97%E5%85%B8%E6%A0%91/"/>
     <url>/2021/10/19/%E5%AD%97%E5%85%B8%E6%A0%91/</url>
@@ -894,9 +948,9 @@
       
       <tag>leetcode</tag>
       
-      <tag>树</tag>
-      
       <tag>数据结构</tag>
+      
+      <tag>树</tag>
       
     </tags>
     
@@ -925,9 +979,9 @@
       
       <tag>leetcode</tag>
       
-      <tag>树</tag>
-      
       <tag>数据结构</tag>
+      
+      <tag>树</tag>
       
     </tags>
     
@@ -956,9 +1010,9 @@
       
       <tag>leetcode</tag>
       
-      <tag>树</tag>
-      
       <tag>数据结构</tag>
+      
+      <tag>树</tag>
       
     </tags>
     
