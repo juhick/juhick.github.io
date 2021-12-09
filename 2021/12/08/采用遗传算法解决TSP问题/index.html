@@ -13,7 +13,8 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
+  <meta name="description" content="求解过程数据预处理首先读取出每个城市的坐标信息，并计算出每两个城市之间的直线距离：
+123456789101112def read_array():    data = np.loadtxt(&amp;#x27;data.txt&amp;#x27;)    city_name = data[:, 0]    city_point = data[:, 1:]    city_count = len(city_nam">
   <meta name="author" content="Juhick">
   <meta name="keywords" content="">
   <meta name="description" content="求解过程数据预处理首先读取出每个城市的坐标信息，并计算出每两个城市之间的直线距离： 123456789101112def read_array():    data &#x3D; np.loadtxt(&amp;#x27;data.txt&amp;#x27;)    city_name &#x3D; data[:, 0]    city_point &#x3D; data[:, 1:]    city_count &#x3D; len(city_nam">
@@ -26,7 +27,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20211209161208.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20211209193559.png">
 <meta property="article:published_time" content="2021-12-08T13:48:00.000Z">
-<meta property="article:modified_time" content="2021-12-09T12:11:53.668Z">
+<meta property="article:modified_time" content="2021-12-09T12:15:00.022Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="遗传算法">
 <meta property="article:tag" content="TSP问题">
@@ -254,13 +255,14 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：3 分钟前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
               <h1 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h1><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><p>首先读取出每个城市的<strong>坐标信息</strong>，并计算出每两个城市之间的<strong>直线距离</strong>：</p>
 <figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read_array</span>():</span><br>    data = np.loadtxt(<span class="hljs-string">&#x27;data.txt&#x27;</span>)<br>    city_name = data[:, <span class="hljs-number">0</span>]<br>    city_point = data[:, <span class="hljs-number">1</span>:]<br>    city_count = <span class="hljs-built_in">len</span>(city_name)<br>    distance = np.zeros([city_count, city_count])<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>            distance[i][j] = math.sqrt((city_point[i][<span class="hljs-number">0</span>] - city_point[j][<span class="hljs-number">0</span>]) ** <span class="hljs-number">2</span> +<br>                                       (city_point[i][<span class="hljs-number">1</span>] - city_point[j][<span class="hljs-number">1</span>]) ** <span class="hljs-number">2</span>)<br><br>    <span class="hljs-keyword">return</span> city_count, distance<br></code></pre></div></td></tr></table></figure>
+<span id="more"></span>
 <h2 id="种群初始化"><a href="#种群初始化" class="headerlink" title="种群初始化"></a>种群初始化</h2><p>进行初期的优秀个体的选择，先<strong>随机生成</strong>指定个数的个体。</p>
 <p>然后对每一个个体进行指定次数的<strong>改良圈算法</strong>，取得<strong>较好</strong>的个体</p>
 <p>改良圈算法即每次随机选择个体中的两个相异城市<code>u</code>和<code>v</code>，如果交换这两个城市能够取得<strong>更好的适应度</strong>（即更小的总距离），则交换这两个城市，重复改良操作指定次数得到多个较好的个体。具体的改良圈算法如下：</p>
