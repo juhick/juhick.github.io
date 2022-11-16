@@ -13,10 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="">
   <meta name="author" content="Juhick">
   <meta name="keywords" content="">
-  <meta property="og:type" content="website">
+  
+    <meta property="og:type" content="website">
 <meta property="og:title" content="曾许人间第一流">
 <meta property="og:url" content="https://blog.qinhaiqi.com/index.html">
 <meta property="og:site_name" content="曾许人间第一流">
@@ -24,15 +24,22 @@
 <meta property="article:author" content="Juhick">
 <meta name="twitter:card" content="summary_large_image">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>曾许人间第一流</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
 
-<!-- 主题依赖的图标库，不要自行修改 -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -41,21 +48,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>Juhick</strong>
@@ -149,6 +177,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -161,34 +190,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/bg/bk.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="风止意难平">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bk.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="风止意难平"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -207,17 +242,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/11/16/%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%BB%93%E6%9E%84%E5%85%89%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/" target="_self">
-          
-          
-            
-          
-          基于投影结构光法的三维重建3D表面成像Structured-light 3D surface imaging-a tutorial.pdf
-3D表面成像处理的是物体表面上点的$(x,y,z)$坐标的测量，这个过程也被称为3D表面测量、测距、距离传感、深度映射、表面扫描等。
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/11/16/%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%BB%93%E6%9E%84%E5%85%89%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/" target="_self">
+        <div>
+          基于投影结构光法的三维重建3D表面成像Structured-light 3D surface imaging-a tutorial.pdf 3D表面成像处理的是物体表面上点的$(x,y,z)$坐标的测量，这个过程也被称为3D表面测量、测距、距离传感、深度映射、表面扫描等。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -229,22 +259,36 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" class="category-chain-item">计算机视觉</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">计算机视觉</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/">#计算机视觉</a>
             
-              <a href="/tags/%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/">三维重建</a>
+              <a href="/tags/%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/">#三维重建</a>
             
-              <a href="/tags/%E7%BB%93%E6%9E%84%E5%85%89/">结构光</a>
+              <a href="/tags/%E7%BB%93%E6%9E%84%E5%85%89/">#结构光</a>
             
           </div>
         
@@ -263,16 +307,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/08/%E9%87%87%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3TSP%E9%97%AE%E9%A2%98/" target="_self">
-          
-          
-            
-          
-          求解过程数据预处理首先读取出每个城市的坐标信息，并计算出每两个城市之间的直线距离：
-123456789101112def read_array():    data = np.loadtxt(&#x27;data.txt&#x27;)    city_name = data[:, 0]    city_point = data[:, 1:]    city_count = len(city_nam
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/12/08/%E9%87%87%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3TSP%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          求解过程数据预处理首先读取出每个城市的坐标信息，并计算出每两个城市之间的直线距离： 123456789101112def read_array():    data = np.loadtxt(&#x27;data.txt&#x27;)    city_name = data[:, 0]    city_point = data[:, 1:]    city_count = len(city_nam
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -284,20 +324,34 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/">人工智能算法</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/" class="category-chain-item">人工智能算法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">遗传算法</a>
+              <a href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">#遗传算法</a>
             
-              <a href="/tags/TSP%E9%97%AE%E9%A2%98/">TSP问题</a>
+              <a href="/tags/TSP%E9%97%AE%E9%A2%98/">#TSP问题</a>
             
           </div>
         
@@ -316,19 +370,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/18/%E6%9C%AA%E6%9B%BE%E4%B8%8E%E4%BD%A0%E5%85%B1%E5%BA%A6%E4%B8%80%E5%88%87/" target="_self">
-          
-          
-            
-          
-          现在我要告诉你一些事情。
-Now let me tell you something.
-我看过无数次日出日落，在大地上，森林和群山都被笼罩在光芒之中，
-I have seen a thousand sunsets and sunrises, on land where it floods forest and mountains with honey coloured light,
-在大海上，为五
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/18/%E6%9C%AA%E6%9B%BE%E4%B8%8E%E4%BD%A0%E5%85%B1%E5%BA%A6%E4%B8%80%E5%88%87/" target="_self">
+        <div>
+          现在我要告诉你一些事情。 Now let me tell you something. 我看过无数次日出日落，在大地上，森林和群山都被笼罩在光芒之中， I have seen a thousand sunsets and sunrises, on land where it floods forest and mountains with honey coloured light, 在大海上，为五
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -340,18 +387,32 @@ I have seen a thousand sunsets and sunrises, on land where it floods forest and 
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BC%98%E7%BE%8E%E5%8F%A5%E5%AD%90/">优美句子</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BC%98%E7%BE%8E%E5%8F%A5%E5%AD%90/" class="category-chain-item">优美句子</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E4%BC%98%E7%BE%8E%E5%8F%A5%E5%AD%90/">优美句子</a>
+              <a href="/tags/%E4%BC%98%E7%BE%8E%E5%8F%A5%E5%AD%90/">#优美句子</a>
             
           </div>
         
@@ -370,27 +431,12 @@ I have seen a thousand sunsets and sunrises, on land where it floods forest and 
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/15/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" target="_self">
-          
-          
-            
-          
-          概论统计学习特点统计学习是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测与分析的一门学科。统计学习也称为统计机器学习。
-
-统计学习以计算机及网络为平台
-
-以数据为研究对象
-
-对数据进行预测与分析
-
-以方法为中心，构建模型并进行预测与分析
-
-
-统计学习三要素模型、策略和算法
-模型在监督学习过程中，模型就是所要学习的条件概率分布或决策函数。模型的假设空间包含所有可能的条件概率分布或决策函数
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/15/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/" target="_self">
+        <div>
+          概论统计学习特点统计学习是关于计算机基于数据构建概率统计模型并运用模型对数据进行预测与分析的一门学科。统计学习也称为统计机器学习。  统计学习以计算机及网络为平台  以数据为研究对象  对数据进行预测与分析  以方法为中心，构建模型并进行预测与分析   统计学习三要素模型、策略和算法 模型在监督学习过程中，模型就是所要学习的条件概率分布或决策函数。模型的假设空间包含所有可能的条件概率分布或决策函数
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -402,20 +448,34 @@ I have seen a thousand sunsets and sunrises, on land where it floods forest and 
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
             
-              <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/">统计学习</a>
+              <a href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0/">#统计学习</a>
             
           </div>
         
@@ -434,20 +494,12 @@ I have seen a thousand sunsets and sunrises, on land where it floods forest and 
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/" target="_self">
-          
-          
-            
-          
-          绪论引言机器学习概念机器学习致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。
-
-假设用$P$来评估计算机程序在某任务类$T$上的性能，若一个程序通过利用经验$E$在$T$中任务上获得了性能改善，则我们就说关于$T$和$P$,该程序对$E$进行了学习。
-
-机器学习主要研究内容在计算机系统中，「经验」通常以数据形式存在。
-因此，机器学习的主要研究内容，是关于在计算机上从数据中产生「模型」的
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/15/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8/" target="_self">
+        <div>
+          绪论引言机器学习概念机器学习致力于研究如何通过计算的手段，利用经验来改善系统自身的性能。  假设用$P$来评估计算机程序在某任务类$T$上的性能，若一个程序通过利用经验$E$在$T$中任务上获得了性能改善，则我们就说关于$T$和$P$,该程序对$E$进行了学习。  机器学习主要研究内容在计算机系统中，「经验」通常以数据形式存在。 因此，机器学习的主要研究内容，是关于在计算机上从数据中产生「模型」的
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -459,18 +511,32 @@ I have seen a thousand sunsets and sunrises, on land where it floods forest and 
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
             
           </div>
         
@@ -489,29 +555,12 @@ I have seen a thousand sunsets and sunrises, on land where it floods forest and 
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/11/14/Vue%E7%AE%80%E4%BB%8B/" target="_self">
-          
-          
-            
-          
-          Vue是什么一套用于构建用户界面的渐进式JavaScript框架
-
-Vue可以自底向上逐层的应用
-简单应用：只需一个轻量小巧的核心库
-复杂应用：可以引入各式各样的Vue插件
-
-Vue作者尤雨溪
-
-
-Vue的特点
-采用组件化模式，提高代码复用率、且让代码更好维护。
-声明式编码，让编码人员无需直接操作DOM，提高开发效率。
-使用虚拟DOM+优秀的Diff算法，尽量复用DOM节点。
-
-前置JS知识ES6
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/11/14/Vue%E7%AE%80%E4%BB%8B/" target="_self">
+        <div>
+          Vue是什么一套用于构建用户界面的渐进式JavaScript框架  Vue可以自底向上逐层的应用 简单应用：只需一个轻量小巧的核心库 复杂应用：可以引入各式各样的Vue插件  Vue作者尤雨溪   Vue的特点 采用组件化模式，提高代码复用率、且让代码更好维护。 声明式编码，让编码人员无需直接操作DOM，提高开发效率。 使用虚拟DOM+优秀的Diff算法，尽量复用DOM节点。  前置JS知识ES6
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -523,22 +572,41 @@ Vue的特点
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-            
-              <a href="/categories/%E5%89%8D%E7%AB%AF/Vue/">Vue</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%89%8D%E7%AB%AF/" class="category-chain-item">前端</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%89%8D%E7%AB%AF/Vue/" class="category-chain-item">Vue</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>
             
-              <a href="/tags/Vue/">Vue</a>
+              <a href="/tags/Vue/">#Vue</a>
             
           </div>
         
@@ -557,22 +625,12 @@ Vue的特点
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/19/%E5%AD%97%E5%85%B8%E6%A0%91/" target="_self">
-          
-          
-            
-          
-          实现Trie（前缀树）
-字典树Trie，又称字典树或前缀树，是一棵有根树，其每个结点包含以下字段：
-
-指向子节点的指针数组$children$。
-
-布尔字段$isEnd$，表示该节点是否为字符串的结尾。
-
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/19/%E5%AD%97%E5%85%B8%E6%A0%91/" target="_self">
+        <div>
+          实现Trie（前缀树） 字典树Trie，又称字典树或前缀树，是一棵有根树，其每个结点包含以下字段：  指向子节点的指针数组$children$。  布尔字段$isEnd$，表示该节点是否为字符串的结尾。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -584,20 +642,34 @@ Vue的特点
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>
             
-              <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/">字典树</a>
+              <a href="/tags/%E5%AD%97%E5%85%B8%E6%A0%91/">#字典树</a>
             
           </div>
         
@@ -616,18 +688,12 @@ Vue的特点
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/10/03/%E5%88%86%E6%95%B0%E5%88%B0%E5%B0%8F%E6%95%B0/" target="_self">
-          
-          
-            
-          
-          原题链接
-题目分析题目要求给定的分子和分母，将分数转成整数或小数。由于给定的分子和分母的取值范围都是$[-2^{31}, 2^{31} - 1]$，为了防止计算过程中产生溢出，需要将分子和分母转为$64$位整数表示。
-将分数转为整数或小数，做法是计算分子和分母相除的结果。可能的结果有三种：整数、有限小数、无限循环小数。
-如果分子可以被分母整除，则结果是整数，将分子除以分母的商以字符串的形式返回即可
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/10/03/%E5%88%86%E6%95%B0%E5%88%B0%E5%B0%8F%E6%95%B0/" target="_self">
+        <div>
+          原题链接 题目分析题目要求给定的分子和分母，将分数转成整数或小数。由于给定的分子和分母的取值范围都是$[-2^{31}, 2^{31} - 1]$，为了防止计算过程中产生溢出，需要将分子和分母转为$64$位整数表示。 将分数转为整数或小数，做法是计算分子和分母相除的结果。可能的结果有三种：整数、有限小数、无限循环小数。 如果分子可以被分母整除，则结果是整数，将分子除以分母的商以字符串的形式返回即可
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -639,20 +705,34 @@ Vue的特点
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/leetcode/">leetcode</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/leetcode/" class="category-chain-item">leetcode</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/leetcode/">leetcode</a>
+              <a href="/tags/leetcode/">#leetcode</a>
             
-              <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+              <a href="/tags/%E6%95%B0%E5%AD%A6/">#数学</a>
             
           </div>
         
@@ -671,20 +751,12 @@ Vue的特点
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/09/26/%E4%B8%A4%E6%95%B4%E6%95%B0%E4%B9%8B%E5%92%8C/" target="_self">
-          
-          
-            
-          
-          原题链接
-预备知识有符号整数通常用补码来表示和存储，补码具有以下特征：
-
-正整数的补码与原码相同；负整数的补码为其原码除符号位外的所有位取反后加1。
-符号位与数值为可以一起参与运算。
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/09/26/%E4%B8%A4%E6%95%B4%E6%95%B0%E4%B9%8B%E5%92%8C/" target="_self">
+        <div>
+          原题链接 预备知识有符号整数通常用补码来表示和存储，补码具有以下特征：  正整数的补码与原码相同；负整数的补码为其原码除符号位外的所有位取反后加1。 符号位与数值为可以一起参与运算。
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -696,20 +768,34 @@ Vue的特点
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/leetcode/">leetcode</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/leetcode/" class="category-chain-item">leetcode</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/leetcode/">leetcode</a>
+              <a href="/tags/leetcode/">#leetcode</a>
             
-              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/">位运算</a>
+              <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/">#位运算</a>
             
           </div>
         
@@ -728,21 +814,12 @@ Vue的特点
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/09/23/Magic-Forest/" target="_self">
-          
-          
-            
-          
-          原题链接
-题目大意给定一个$n$，在$1-n$的范围内寻找三个数，这三个数需要满足三个条件：
-
-$1 \leq a \leq b \leq c \leq n$
-$a \oplus b \oplus c = 0$，这里的$x \oplus y$就是按位异或
-$(a, b, c)$这三个数需要能够组成三角形
-
-        </a>
-      </p>
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2021/09/23/Magic-Forest/" target="_self">
+        <div>
+          原题链接 题目大意给定一个$n$，在$1-n$的范围内寻找三个数，这三个数需要满足三个条件：  $1 \leq a \leq b \leq c \leq n$ $a \oplus b \oplus c = 0$，这里的$x \oplus y$就是按位异或 $(a, b, c)$这三个数需要能够组成三角形
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -754,20 +831,34 @@ $(a, b, c)$这三个数需要能够组成三角形
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Codeforces/">Codeforces</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Codeforces/" class="category-chain-item">Codeforces</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Codeforces/">Codeforces</a>
+              <a href="/tags/Codeforces/">#Codeforces</a>
             
-              <a href="/tags/%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/">简单数学</a>
+              <a href="/tags/%E7%AE%80%E5%8D%95%E6%95%B0%E5%AD%A6/">#简单数学</a>
             
           </div>
         
@@ -812,56 +903,58 @@ $(a, b, c)$这三个数需要能够组成三角形
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -880,10 +973,52 @@ $(a, b, c)$这三个数需要能够组成三角形
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://v1.hitokoto.cn/',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'hitokoto'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://v1.hitokoto.cn/:', error);
+            }
+            typing(text);
+          }
+        })
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -893,72 +1028,24 @@ $(a, b, c)$这三个数需要能够组成三角形
 
 
 
-  
 
-
-
-
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      jQuery.ajax({
-        type: 'GET',
-        url: 'https://v1.hitokoto.cn/',
-        headers: {},
-        dataType: 'json',
-        success: function (result) {
-          var text;
-          if (result) {
-            var keys = 'hitokoto'.split('.')
-            if (result instanceof Array) {
-              result = result[0]
-            }
-            for (const k of keys) {
-              var value = result[k]
-              if (typeof value === 'string') {
-                text = value
-                break
-              } else if (value instanceof Object) {
-                result = value
-              }
-            }
-          }
-          text ? typing(text) : typing(title);
-        },
-        error: function () {
-          typing(title)
-        }
-      })
-      
-    })(window, document);
-  </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

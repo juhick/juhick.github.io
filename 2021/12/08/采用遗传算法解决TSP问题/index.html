@@ -13,11 +13,10 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="求解过程数据预处理首先读取出每个城市的坐标信息，并计算出每两个城市之间的直线距离：
-123456789101112def read_array():    data = np.loadtxt(&amp;#x27;data.txt&amp;#x27;)    city_name = data[:, 0]    city_point = data[:, 1:]    city_count = len(city_nam">
   <meta name="author" content="Juhick">
   <meta name="keywords" content="">
-  <meta name="description" content="求解过程数据预处理首先读取出每个城市的坐标信息，并计算出每两个城市之间的直线距离： 123456789101112def read_array():    data &#x3D; np.loadtxt(&amp;#x27;data.txt&amp;#x27;)    city_name &#x3D; data[:, 0]    city_point &#x3D; data[:, 1:]    city_count &#x3D; len(city_nam">
+  
+    <meta name="description" content="求解过程数据预处理首先读取出每个城市的坐标信息，并计算出每两个城市之间的直线距离： 123456789101112def read_array():    data &#x3D; np.loadtxt(&amp;#x27;data.txt&amp;#x27;)    city_name &#x3D; data[:, 0]    city_point &#x3D; data[:, 1:]    city_count &#x3D; len(city_nam">
 <meta property="og:type" content="article">
 <meta property="og:title" content="采用遗传算法解决TSP问题">
 <meta property="og:url" content="https://blog.qinhaiqi.com/2021/12/08/%E9%87%87%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3TSP%E9%97%AE%E9%A2%98/index.html">
@@ -34,30 +33,28 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20211209161208.png">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
   <title>采用遗传算法解决TSP问题 - 曾许人间第一流</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
 
+
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+
   <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
 
-  
-    
-    
-      
-      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/hybrid.min.css" />
-    
-  
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 
-  
-    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -66,21 +63,42 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.qinhaiqi.com","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":"§"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
-<meta name="generator" content="Hexo 5.4.0"></head>
+  
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>Juhick</strong>
@@ -174,6 +192,7 @@
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -186,57 +205,71 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/bg/post.jpg') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="采用遗传算法解决TSP问题">
-              
-            </span>
-
-            
-              <div class="mt-3">
-  
-  
-    <span class="post-meta">
-      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-08 21:48" pubdate>
-        2021年12月8日 晚上
-      </time>
-    </span>
-  
-</div>
-
-<div class="mt-1">
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-chart"></i>
-      14k 字
-    </span>
   
 
-  
-    <span class="post-meta mr-2">
-      <i class="iconfont icon-clock-fill"></i>
-      
-      
-      45 分钟
-    </span>
-  
-
-  
-  
-</div>
-
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/post.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="采用遗传算法解决TSP问题"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-12-08 21:48" pubdate>
+          2021年12月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          120 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
       </div>
+
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
@@ -245,35 +278,44 @@
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
-        <div class="py-5" id="board">
+        <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">采用遗传算法解决TSP问题</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：1 年前
+                  
+                    <!-- compatible with older versions-->
+                    本文最后更新于：1 年前
+                  
                 
               </p>
             
-            <div class="markdown-body">
-              <h1 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h1><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><p>首先读取出每个城市的<strong>坐标信息</strong>，并计算出每两个城市之间的<strong>直线距离</strong>：</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read_array</span>():</span><br>    data = np.loadtxt(<span class="hljs-string">&#x27;data.txt&#x27;</span>)<br>    city_name = data[:, <span class="hljs-number">0</span>]<br>    city_point = data[:, <span class="hljs-number">1</span>:]<br>    city_count = <span class="hljs-built_in">len</span>(city_name)<br>    distance = np.zeros([city_count, city_count])<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>            distance[i][j] = math.sqrt((city_point[i][<span class="hljs-number">0</span>] - city_point[j][<span class="hljs-number">0</span>]) ** <span class="hljs-number">2</span> +<br>                                       (city_point[i][<span class="hljs-number">1</span>] - city_point[j][<span class="hljs-number">1</span>]) ** <span class="hljs-number">2</span>)<br><br>    <span class="hljs-keyword">return</span> city_count, distance<br></code></pre></div></td></tr></table></figure>
+            
+              <div class="markdown-body">
+                
+                <h1 id="求解过程"><a href="#求解过程" class="headerlink" title="求解过程"></a>求解过程</h1><h2 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h2><p>首先读取出每个城市的<strong>坐标信息</strong>，并计算出每两个城市之间的<strong>直线距离</strong>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_array</span>():<br>    data = np.loadtxt(<span class="hljs-string">&#x27;data.txt&#x27;</span>)<br>    city_name = data[:, <span class="hljs-number">0</span>]<br>    city_point = data[:, <span class="hljs-number">1</span>:]<br>    city_count = <span class="hljs-built_in">len</span>(city_name)<br>    distance = np.zeros([city_count, city_count])<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>            distance[i][j] = math.sqrt((city_point[i][<span class="hljs-number">0</span>] - city_point[j][<span class="hljs-number">0</span>]) ** <span class="hljs-number">2</span> +<br>                                       (city_point[i][<span class="hljs-number">1</span>] - city_point[j][<span class="hljs-number">1</span>]) ** <span class="hljs-number">2</span>)<br><br>    <span class="hljs-keyword">return</span> city_count, distance<br></code></pre></td></tr></table></figure>
 <span id="more"></span>
 <h2 id="种群初始化"><a href="#种群初始化" class="headerlink" title="种群初始化"></a>种群初始化</h2><p>进行初期的优秀个体的选择，先<strong>随机生成</strong>指定个数的个体。</p>
 <p>然后对每一个个体进行指定次数的<strong>改良圈算法</strong>，取得<strong>较好</strong>的个体</p>
 <p>改良圈算法即每次随机选择个体中的两个相异城市<code>u</code>和<code>v</code>，如果交换这两个城市能够取得<strong>更好的适应度</strong>（即更小的总距离），则交换这两个城市，重复改良操作指定次数得到多个较好的个体。具体的改良圈算法如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">improve</span>(<span class="hljs-params">x</span>):</span><br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i &lt; improve_count:<br>        <span class="hljs-comment"># 生成指定范围的两个整数</span><br>        u = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">2</span>)<br>        v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># 如果倒序区间内的路径可以取得更好的路径时，更新路径</span><br>        <span class="hljs-keyword">if</span> Distance[u - <span class="hljs-number">1</span>][v] + Distance[u][v + <span class="hljs-number">1</span>] &lt; Distance[u - <span class="hljs-number">1</span>][u] + Distance[v][v + <span class="hljs-number">1</span>]:<br>            t = x[u]<br>            x[u] = x[v]<br>            x[v] = t<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> x<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">improve</span>(<span class="hljs-params">x</span>):<br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i &lt; improve_count:<br>        <span class="hljs-comment"># 生成指定范围的两个整数</span><br>        u = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">2</span>)<br>        v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># 如果倒序区间内的路径可以取得更好的路径时，更新路径</span><br>        <span class="hljs-keyword">if</span> Distance[u - <span class="hljs-number">1</span>][v] + Distance[u][v + <span class="hljs-number">1</span>] &lt; Distance[u - <span class="hljs-number">1</span>][u] + Distance[v][v + <span class="hljs-number">1</span>]:<br>            t = x[u]<br>            x[u] = x[v]<br>            x[v] = t<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> x<br></code></pre></td></tr></table></figure>
 <p>初始化的全过程：</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python">population = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>    <span class="hljs-comment"># 随机生成个体</span><br>    x = index.copy()<br>    <span class="hljs-comment"># 打乱顺序</span><br>    random.shuffle(x)<br>    <span class="hljs-comment"># 改良圈算法优化种群</span><br>    x = improve(x)<br>    <span class="hljs-comment"># 把每个个体逐个添加到种群里</span><br>    population.append(x)<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">population = []<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>    <span class="hljs-comment"># 随机生成个体</span><br>    x = index.copy()<br>    <span class="hljs-comment"># 打乱顺序</span><br>    random.shuffle(x)<br>    <span class="hljs-comment"># 改良圈算法优化种群</span><br>    x = improve(x)<br>    <span class="hljs-comment"># 把每个个体逐个添加到种群里</span><br>    population.append(x)<br></code></pre></td></tr></table></figure>
 <h2 id="自然选择"><a href="#自然选择" class="headerlink" title="自然选择"></a>自然选择</h2><p>在遗传学中，适应度是指个体对自然环境的适应程度，自然选择过程中需要根据适者生存的原则保存优秀的个体，淘汰不适应环境的个体。</p>
 <p>在TSP问题中，适应度即为一个个体的总距离。</p>
 <p>若当前城市为最后一个城市，则总距离加上回到起点的距离，否则加上当前城市与下一城市之间的距离。</p>
 <p>计算单个个体总距离的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_total_distance</span>(<span class="hljs-params">x</span>):</span><br>    distance = <span class="hljs-number">0</span><br>    <span class="hljs-comment"># 距离矩阵中第一个点到这个个体的第一个点的距离</span><br>    distance += Distance[origin][x[<span class="hljs-number">0</span>]]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(x)):<br>        <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>:<br>            <span class="hljs-comment"># 从终点回到起点</span><br>            distance += Distance[origin][x[i]]<br>        <span class="hljs-keyword">else</span>:<br>            distance += Distance[x[i]][x[i + <span class="hljs-number">1</span>]]<br>    <span class="hljs-keyword">return</span> distance<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_total_distance</span>(<span class="hljs-params">x</span>):<br>    distance = <span class="hljs-number">0</span><br>    <span class="hljs-comment"># 距离矩阵中第一个点到这个个体的第一个点的距离</span><br>    distance += Distance[origin][x[<span class="hljs-number">0</span>]]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(x)):<br>        <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>:<br>            <span class="hljs-comment"># 从终点回到起点</span><br>            distance += Distance[origin][x[i]]<br>        <span class="hljs-keyword">else</span>:<br>            distance += Distance[x[i]][x[i + <span class="hljs-number">1</span>]]<br>    <span class="hljs-keyword">return</span> distance<br></code></pre></td></tr></table></figure>
 <p>总距离越小越符合我们的要求，所以按照<strong>总距离的升序</strong>排序即为<strong>适应度</strong>从大到小的顺序。</p>
 <p>首先根据<strong>适者生存</strong>的原则，选择指定比例适应度高的个体<strong>直接生存</strong>，然后采用<strong>轮盘赌法</strong>选择一定数量的个体。</p>
 <p>轮盘赌法的具体流程如下：</p>
@@ -299,7 +341,7 @@ q(n) & =p(1)+p(2)+...+p(n)\\
 </li>
 </ol>
 <p>轮盘赌的代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 轮盘赌</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">roulette</span>(<span class="hljs-params">population</span>):</span><br>    q = []<br>    p = []<br><br>    <span class="hljs-comment"># 计算每个个体被遗传到下一代群体中的概率</span><br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> population:<br>        p.append(get_total_distance(item))<br>    p /= <span class="hljs-built_in">sum</span>(p)<br><br>    <span class="hljs-comment"># 计算每个个体的累计概率</span><br>    cur = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> p:<br>        cur += i<br>        q.append(cur)<br><br>    choices = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>        rate = random.random()<br>        <span class="hljs-keyword">for</span> _, j <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(q):<br>            <span class="hljs-keyword">if</span> rate &lt;= j:<br>                choices.append(_)<br>    <span class="hljs-keyword">return</span> choices<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 轮盘赌</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">roulette</span>(<span class="hljs-params">population</span>):<br>    q = []<br>    p = []<br><br>    <span class="hljs-comment"># 计算每个个体被遗传到下一代群体中的概率</span><br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> population:<br>        p.append(get_total_distance(item))<br>    p /= <span class="hljs-built_in">sum</span>(p)<br><br>    <span class="hljs-comment"># 计算每个个体的累计概率</span><br>    cur = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> p:<br>        cur += i<br>        q.append(cur)<br><br>    choices = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>        rate = random.random()<br>        <span class="hljs-keyword">for</span> _, j <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(q):<br>            <span class="hljs-keyword">if</span> rate &lt;= j:<br>                choices.append(_)<br>    <span class="hljs-keyword">return</span> choices<br></code></pre></td></tr></table></figure>
 <h2 id="交叉"><a href="#交叉" class="headerlink" title="交叉"></a>交叉</h2><blockquote>
 <p>  交叉是指每一个个体是由父亲和母亲两个个体繁殖产生，子代个体的 DNA（二进制串） 获得了一半父亲的 DNA，一半母亲的 DNA，但是这里的一半并不是真正的一半，这个位置叫做交配点，是<strong>随机产生</strong>的，可以是染色体的任意位置。</p>
 </blockquote>
@@ -308,12 +350,12 @@ q(n) & =p(1)+p(2)+...+p(n)\\
 <p><strong>交叉结束后需要保持种群规模稳定，即种群的总个体数是不变的。</strong></p>
 <p>次序杂交算法首先<strong>随机</strong>地在双亲中选择<strong>两个杂交点</strong>，再<strong>交换杂交段</strong>，其他位置根据双亲城市的<strong>相对位置</strong>确定。</p>
 <p>具体代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 交叉繁殖</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">crossover</span>(<span class="hljs-params">parents</span>):</span><br>    <span class="hljs-comment"># 生成的子代的个数，以此保证种群稳定，即总种群数是不变的</span><br>    target_count = count - <span class="hljs-built_in">len</span>(parents)<br>    <span class="hljs-comment"># 子代列表</span><br>    children = []<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(children) &lt; target_count:<br>        <span class="hljs-comment"># 随机选择父母</span><br>        male_index, female_index = random.sample(<span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(parents) - <span class="hljs-number">1</span>), <span class="hljs-number">2</span>)<br>        male = parents[male_index]<br>        female = parents[female_index]<br><br>        left = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">2</span>)<br>        right = random.randint(left + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">1</span>)<br><br>        <span class="hljs-comment"># 交叉片段</span><br>        <span class="hljs-comment"># 此处的交叉过程参照pdf</span><br>        gene1 = male[left:right]<br>        gene2 = female[left:right]<br><br>        <span class="hljs-comment"># 转换附带染色体的顺序得到亚父代</span><br>        child1_c = male[right:] + male[:right]<br>        child2_c = female[right:] + female[:right]<br>        child1 = child1_c.copy()<br>        child2 = child2_c.copy()<br><br>        <span class="hljs-comment"># 去掉交叉片段</span><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene2:<br>            child1_c.remove(o)<br><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene1:<br>            child2_c.remove(o)<br><br>        <span class="hljs-comment"># 插入交叉片段</span><br>        child1[left:right] = gene2<br>        child2[left:right] = gene1<br><br>        <span class="hljs-comment"># 填入原来的片段</span><br>        child1[right:] = child1_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child1) - right]<br>        child1[:left] = child1_c[<span class="hljs-built_in">len</span>(child1) - right:]<br><br>        child2[right:] = child2_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child2) - right]<br>        child2[:left] = child2_c[<span class="hljs-built_in">len</span>(child2) - right:]<br><br>        children.append(child1)<br>        children.append(child2)<br><br>    <span class="hljs-keyword">return</span> children<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 交叉繁殖</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">crossover</span>(<span class="hljs-params">parents</span>):<br>    <span class="hljs-comment"># 生成的子代的个数，以此保证种群稳定，即总种群数是不变的</span><br>    target_count = count - <span class="hljs-built_in">len</span>(parents)<br>    <span class="hljs-comment"># 子代列表</span><br>    children = []<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(children) &lt; target_count:<br>        <span class="hljs-comment"># 随机选择父母</span><br>        male_index, female_index = random.sample(<span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(parents) - <span class="hljs-number">1</span>), <span class="hljs-number">2</span>)<br>        male = parents[male_index]<br>        female = parents[female_index]<br><br>        left = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">2</span>)<br>        right = random.randint(left + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">1</span>)<br><br>        <span class="hljs-comment"># 交叉片段</span><br>        <span class="hljs-comment"># 此处的交叉过程参照pdf</span><br>        gene1 = male[left:right]<br>        gene2 = female[left:right]<br><br>        <span class="hljs-comment"># 转换附带染色体的顺序得到亚父代</span><br>        child1_c = male[right:] + male[:right]<br>        child2_c = female[right:] + female[:right]<br>        child1 = child1_c.copy()<br>        child2 = child2_c.copy()<br><br>        <span class="hljs-comment"># 去掉交叉片段</span><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene2:<br>            child1_c.remove(o)<br><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene1:<br>            child2_c.remove(o)<br><br>        <span class="hljs-comment"># 插入交叉片段</span><br>        child1[left:right] = gene2<br>        child2[left:right] = gene1<br><br>        <span class="hljs-comment"># 填入原来的片段</span><br>        child1[right:] = child1_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child1) - right]<br>        child1[:left] = child1_c[<span class="hljs-built_in">len</span>(child1) - right:]<br><br>        child2[right:] = child2_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child2) - right]<br>        child2[:left] = child2_c[<span class="hljs-built_in">len</span>(child2) - right:]<br><br>        children.append(child1)<br>        children.append(child2)<br><br>    <span class="hljs-keyword">return</span> children<br></code></pre></td></tr></table></figure>
 <h2 id="变异"><a href="#变异" class="headerlink" title="变异"></a>变异</h2><p>变异是对种群选定个体的操作。</p>
 <p>遍历种群中的每一个个体，生成$[0,1]$范围内均匀分布的伪随机数，如果随机数<strong>小于给定的变异率</strong>，则该个体执行变异操作。</p>
 <p>变异操作的具体操作为：在染色体中随机地取三个整数，满足$1&lt;u&lt;v&lt;w&lt;城市数$，把<code>u</code>和<code>v</code>之间的（包括<code>u</code>和<code>v</code>）的基因段插到<code>w</code>后面。</p>
 <p>具体操作如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># 变异</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mutation</span>(<span class="hljs-params">children</span>):</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(children)):<br>        <span class="hljs-comment"># 满足条件才变异</span><br>        <span class="hljs-keyword">if</span> random.random() &lt; mutation_rate:<br>            child = children[i]<br>            u = random.randint(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">4</span>)<br>            v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">3</span>)<br>            w = random.randint(v + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">2</span>)<br>            <span class="hljs-comment"># 第二和第三段互换</span><br>            child = child[<span class="hljs-number">0</span>:u] + child[v:w] + child[u:v] + child[w:]<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 变异</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mutation</span>(<span class="hljs-params">children</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(children)):<br>        <span class="hljs-comment"># 满足条件才变异</span><br>        <span class="hljs-keyword">if</span> random.random() &lt; mutation_rate:<br>            child = children[i]<br>            u = random.randint(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">4</span>)<br>            v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">3</span>)<br>            w = random.randint(v + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">2</span>)<br>            <span class="hljs-comment"># 第二和第三段互换</span><br>            child = child[<span class="hljs-number">0</span>:u] + child[v:w] + child[u:v] + child[w:]<br></code></pre></td></tr></table></figure>
 <h1 id="问题解答"><a href="#问题解答" class="headerlink" title="问题解答"></a>问题解答</h1><h2 id="遗传算法求解TSP问题的流程图"><a href="#遗传算法求解TSP问题的流程图" class="headerlink" title="遗传算法求解TSP问题的流程图"></a>遗传算法求解TSP问题的流程图</h2><p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20211209161208.png" srcset="/img/loading.gif" lazyload alt="1"></p>
 <h2 id="不同规模的TSP问题的算法性能"><a href="#不同规模的TSP问题的算法性能" class="headerlink" title="不同规模的TSP问题的算法性能"></a>不同规模的TSP问题的算法性能</h2><p>城市数量规模越大或种群规模越大或迭代次数越大，运行时间就越长。</p>
 <p>城市规模越大，每次迭代所用的时间越长，获取最优解的时间也越长，当城市规模大到一定程度时，遗传算法的求解性能优于广度/宽度优先搜索算法，耗时远小于一般的搜索算法。</p>
@@ -677,44 +719,100 @@ q(n) & =p(1)+p(2)+...+p(n)\\
 </table>
 </div>
 <p>对比可知，完全随机法虽然运行速度快，但是<strong>10次中有5次</strong>无法找到最优解。可见，在此条件下（变异概率、强者存活率和种群规模等），个体选择概率分配方式不宜选择完全随机法，适应度比例法效果更好。</p>
-<h1 id="整体代码"><a href="#整体代码" class="headerlink" title="整体代码"></a>整体代码</h1><figure class="highlight python"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-keyword">import</span> tqdm<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> random<br><br><br><span class="hljs-comment"># 获取数据并计算每两个城市之间的距离</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">read_array</span>(<span class="hljs-params">n</span>):</span><br>    data = np.loadtxt(<span class="hljs-string">&#x27;data.txt&#x27;</span>)<br>    data = data[<span class="hljs-number">0</span>:n, :]<br>    city_name = data[:, <span class="hljs-number">0</span>]<br>    city_point = data[:, <span class="hljs-number">1</span>:]<br>    city_count = <span class="hljs-built_in">len</span>(city_name)<br>    distance = np.zeros([city_count, city_count])<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>            distance[i][j] = math.sqrt((city_point[i][<span class="hljs-number">0</span>] - city_point[j][<span class="hljs-number">0</span>]) ** <span class="hljs-number">2</span> +<br>                                       (city_point[i][<span class="hljs-number">1</span>] - city_point[j][<span class="hljs-number">1</span>]) ** <span class="hljs-number">2</span>)<br><br>    <span class="hljs-keyword">return</span> city_count, distance<br><br><br><span class="hljs-comment"># 计算一个个体的总距离</span><br><span class="hljs-comment"># 此处的个体即为其中的一条路径，这里就是求这条路径的总距离</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_total_distance</span>(<span class="hljs-params">x</span>):</span><br>    distance = <span class="hljs-number">0</span><br>    <span class="hljs-comment"># 距离矩阵中第一个点到这个个体的第一个点的距离</span><br>    distance += Distance[origin][x[<span class="hljs-number">0</span>]]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(x)):<br>        <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>:<br>            <span class="hljs-comment"># 从终点回到起点</span><br>            distance += Distance[origin][x[i]]<br>        <span class="hljs-keyword">else</span>:<br>            distance += Distance[x[i]][x[i + <span class="hljs-number">1</span>]]<br>    <span class="hljs-keyword">return</span> distance<br><br><br><span class="hljs-comment"># 改良圈算法</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">improve</span>(<span class="hljs-params">x</span>):</span><br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i &lt; improve_count:<br>        <span class="hljs-comment"># 生成指定范围的两个整数</span><br>        u = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">2</span>)<br>        v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># 如果倒序区间内的路径可以取得更好的路径时，更新路径</span><br>        <span class="hljs-keyword">if</span> Distance[u - <span class="hljs-number">1</span>][v] + Distance[u][v + <span class="hljs-number">1</span>] &lt; Distance[u - <span class="hljs-number">1</span>][u] + Distance[v][v + <span class="hljs-number">1</span>]:<br>            t = x[u]<br>            x[u] = x[v]<br>            x[v] = t<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> x<br><br><br><span class="hljs-comment"># 获取当前种群的最佳结果，即获取当前种群中总距离最小的那条路径</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_result</span>(<span class="hljs-params">population</span>):</span><br>    graded = [[get_total_distance(x), x] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> population]<br>    graded = <span class="hljs-built_in">sorted</span>(graded)<br>    min_res = graded[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br>    max_res = graded[<span class="hljs-built_in">len</span>(graded) - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">return</span> min_res, max_res, graded[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]<br><br><br><span class="hljs-comment"># 轮盘赌</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">roulette</span>(<span class="hljs-params">population</span>):</span><br>    q = []<br>    p = []<br><br>    <span class="hljs-comment"># 计算每个个体被遗传到下一代群体中的概率</span><br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> population:<br>        p.append(get_total_distance(item))<br>    p /= <span class="hljs-built_in">sum</span>(p)<br><br>    <span class="hljs-comment"># 计算每个个体的累计概率</span><br>    cur = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> p:<br>        cur += i<br>        q.append(cur)<br><br>    choices = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>        rate = random.random()<br>        <span class="hljs-keyword">for</span> _, j <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(q):<br>            <span class="hljs-keyword">if</span> rate &lt;= j:<br>                choices.append(_)<br>                <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">return</span> choices<br><br><br><span class="hljs-comment"># 自然选择过程</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">selection</span>(<span class="hljs-params">population</span>):</span><br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    选择</span><br><span class="hljs-string">    先对适应度从大到小排序，选出存活的染色体</span><br><span class="hljs-string">    再进行随机选择，选出适应度虽然小，但是幸存下来的个体（使用轮盘赌方法）</span><br><span class="hljs-string">    :param population: 初始种群</span><br><span class="hljs-string">    :return: 选择出的种群</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 适应度从大到小排序，选出存活的染色体，即强者存活</span><br>    graded = [[get_total_distance(x), x] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> population]<br>    graded = [x[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">sorted</span>(graded)]<br>    <span class="hljs-comment"># 选出适应性强的染色体</span><br>    retain_length = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">len</span>(graded) * retain_rate)<br>    parents = graded[:retain_length]<br>    <span class="hljs-comment"># 轮盘赌</span><br>    choices = roulette(graded)<br>    <span class="hljs-keyword">for</span> choice <span class="hljs-keyword">in</span> choices:<br>        <span class="hljs-keyword">if</span> graded[choice] <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> parents:<br>            parents.append(graded[choice])<br>    <span class="hljs-keyword">return</span> parents<br><br><br><span class="hljs-comment"># 交叉繁殖</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">crossover</span>(<span class="hljs-params">parents</span>):</span><br>    <span class="hljs-comment"># 生成的子代的个数，以此保证种群稳定，即总种群数是不变的</span><br>    target_count = count - <span class="hljs-built_in">len</span>(parents)<br>    <span class="hljs-comment"># 子代列表</span><br>    children = []<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(children) &lt; target_count:<br>        <span class="hljs-comment"># 随机选择父母</span><br>        male_index, female_index = random.sample(<span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(parents) - <span class="hljs-number">1</span>), <span class="hljs-number">2</span>)<br>        male = parents[male_index]<br>        female = parents[female_index]<br><br>        left = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">2</span>)<br>        right = random.randint(left + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">1</span>)<br><br>        <span class="hljs-comment"># 交叉片段</span><br>        <span class="hljs-comment"># 此处的交叉过程参照pdf</span><br>        gene1 = male[left:right]<br>        gene2 = female[left:right]<br><br>        <span class="hljs-comment"># 转换附带染色体的顺序得到亚父代</span><br>        child1_c = male[right:] + male[:right]<br>        child2_c = female[right:] + female[:right]<br>        child1 = child1_c.copy()<br>        child2 = child2_c.copy()<br><br>        <span class="hljs-comment"># 去掉交叉片段</span><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene2:<br>            child1_c.remove(o)<br><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene1:<br>            child2_c.remove(o)<br><br>        <span class="hljs-comment"># 插入交叉片段</span><br>        child1[left:right] = gene2<br>        child2[left:right] = gene1<br><br>        <span class="hljs-comment"># 填入原来的片段</span><br>        child1[right:] = child1_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child1) - right]<br>        child1[:left] = child1_c[<span class="hljs-built_in">len</span>(child1) - right:]<br><br>        child2[right:] = child2_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child2) - right]<br>        child2[:left] = child2_c[<span class="hljs-built_in">len</span>(child2) - right:]<br><br>        children.append(child1)<br>        children.append(child2)<br><br>    <span class="hljs-keyword">return</span> children<br><br><br><span class="hljs-comment"># 变异</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">mutation</span>(<span class="hljs-params">children</span>):</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(children)):<br>        <span class="hljs-comment"># 满足条件才变异</span><br>        <span class="hljs-keyword">if</span> random.random() &lt; mutation_rate:<br>            child = children[i]<br>            u = random.randint(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">4</span>)<br>            v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">3</span>)<br>            w = random.randint(v + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">2</span>)<br>            <span class="hljs-comment"># 第二和第三段互换</span><br>            child = child[<span class="hljs-number">0</span>:u] + child[v:w] + child[u:v] + child[w:]<br><br><br><span class="hljs-comment"># 进行遗传算法</span><br><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">begin</span>():</span><br>    <span class="hljs-comment"># 使用改良圈算法初始化种群</span><br>    population = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>        <span class="hljs-comment"># 随机生成个体</span><br>        x = index.copy()<br>        <span class="hljs-comment"># 打乱顺序</span><br>        random.shuffle(x)<br>        <span class="hljs-comment"># 改良圈算法优化种群</span><br>        x = improve(x)<br>        <span class="hljs-comment"># 把每个个体逐个添加到种群里</span><br>        population.append(x)<br><br>    <span class="hljs-comment"># 保存每次最优路径</span><br>    register = []<br>    min_res, max_res, result_path = get_result(population)<br>    <span class="hljs-comment"># 进化次数</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tqdm.trange(iter_count):<br>        <span class="hljs-comment"># 选择繁殖个体群</span><br>        parents = selection(population)<br>        <span class="hljs-comment"># 交叉繁殖</span><br>        children = crossover(parents)<br>        <span class="hljs-comment"># 变异操作</span><br>        mutation(children)<br>        <span class="hljs-comment"># 更新种群</span><br>        population = parents + children<br>        min_res, max_res, result_path = get_result(population)<br>        register.append(min_res)<br>    <span class="hljs-keyword">return</span> min_res, max_res, result_path<br><br><br><span class="hljs-comment"># 主函数</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-comment"># 设置参数</span><br>    count = <span class="hljs-number">500</span>  <span class="hljs-comment"># 种群规模</span><br>    retain_rate = <span class="hljs-number">0.2</span>  <span class="hljs-comment"># 强者生存率</span><br>    mutation_rate = <span class="hljs-number">0.1</span>  <span class="hljs-comment"># 变异概率</span><br>    iter_count = <span class="hljs-number">500</span>  <span class="hljs-comment"># 迭代次数</span><br>    improve_count = <span class="hljs-number">500</span>  <span class="hljs-comment"># 改良次数</span><br>    scales = [<span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">25</span>, <span class="hljs-number">30</span>, <span class="hljs-number">35</span>, <span class="hljs-number">40</span>, <span class="hljs-number">45</span>, <span class="hljs-number">50</span>, <span class="hljs-number">55</span>, <span class="hljs-number">60</span>, <span class="hljs-number">65</span>, <span class="hljs-number">70</span>, <span class="hljs-number">75</span>]<br><br>    <span class="hljs-comment"># 设置起点</span><br>    origin = <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">for</span> scale <span class="hljs-keyword">in</span> scales:<br>        start = time.time()<br><br>        city_count, Distance = read_array(scale)<br><br>        <span class="hljs-comment"># 建立索引</span><br>        index = np.arange(city_count).tolist()<br>        index.remove(origin)<br><br>        min_res, max_res, result_path = begin()<br><br>        <span class="hljs-built_in">print</span>(min_res, max_res)<br>        <span class="hljs-built_in">print</span>(result_path)<br><br>        end = time.time()<br>        <span class="hljs-built_in">print</span>(scale, end-start)<br></code></pre></div></td></tr></table></figure>
+<h1 id="整体代码"><a href="#整体代码" class="headerlink" title="整体代码"></a>整体代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> math<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-keyword">import</span> tqdm<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> random<br><br><br><span class="hljs-comment"># 获取数据并计算每两个城市之间的距离</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">read_array</span>(<span class="hljs-params">n</span>):<br>    data = np.loadtxt(<span class="hljs-string">&#x27;data.txt&#x27;</span>)<br>    data = data[<span class="hljs-number">0</span>:n, :]<br>    city_name = data[:, <span class="hljs-number">0</span>]<br>    city_point = data[:, <span class="hljs-number">1</span>:]<br>    city_count = <span class="hljs-built_in">len</span>(city_name)<br>    distance = np.zeros([city_count, city_count])<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(city_count):<br>            distance[i][j] = math.sqrt((city_point[i][<span class="hljs-number">0</span>] - city_point[j][<span class="hljs-number">0</span>]) ** <span class="hljs-number">2</span> +<br>                                       (city_point[i][<span class="hljs-number">1</span>] - city_point[j][<span class="hljs-number">1</span>]) ** <span class="hljs-number">2</span>)<br><br>    <span class="hljs-keyword">return</span> city_count, distance<br><br><br><span class="hljs-comment"># 计算一个个体的总距离</span><br><span class="hljs-comment"># 此处的个体即为其中的一条路径，这里就是求这条路径的总距离</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_total_distance</span>(<span class="hljs-params">x</span>):<br>    distance = <span class="hljs-number">0</span><br>    <span class="hljs-comment"># 距离矩阵中第一个点到这个个体的第一个点的距离</span><br>    distance += Distance[origin][x[<span class="hljs-number">0</span>]]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(x)):<br>        <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>:<br>            <span class="hljs-comment"># 从终点回到起点</span><br>            distance += Distance[origin][x[i]]<br>        <span class="hljs-keyword">else</span>:<br>            distance += Distance[x[i]][x[i + <span class="hljs-number">1</span>]]<br>    <span class="hljs-keyword">return</span> distance<br><br><br><span class="hljs-comment"># 改良圈算法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">improve</span>(<span class="hljs-params">x</span>):<br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i &lt; improve_count:<br>        <span class="hljs-comment"># 生成指定范围的两个整数</span><br>        u = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">2</span>)<br>        v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(x) - <span class="hljs-number">1</span>)<br>        <span class="hljs-comment"># 如果倒序区间内的路径可以取得更好的路径时，更新路径</span><br>        <span class="hljs-keyword">if</span> Distance[u - <span class="hljs-number">1</span>][v] + Distance[u][v + <span class="hljs-number">1</span>] &lt; Distance[u - <span class="hljs-number">1</span>][u] + Distance[v][v + <span class="hljs-number">1</span>]:<br>            t = x[u]<br>            x[u] = x[v]<br>            x[v] = t<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> x<br><br><br><span class="hljs-comment"># 获取当前种群的最佳结果，即获取当前种群中总距离最小的那条路径</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_result</span>(<span class="hljs-params">population</span>):<br>    graded = [[get_total_distance(x), x] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> population]<br>    graded = <span class="hljs-built_in">sorted</span>(graded)<br>    min_res = graded[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]<br>    max_res = graded[<span class="hljs-built_in">len</span>(graded) - <span class="hljs-number">1</span>][<span class="hljs-number">0</span>]<br>    <span class="hljs-keyword">return</span> min_res, max_res, graded[<span class="hljs-number">0</span>][<span class="hljs-number">1</span>]<br><br><br><span class="hljs-comment"># 轮盘赌</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">roulette</span>(<span class="hljs-params">population</span>):<br>    q = []<br>    p = []<br><br>    <span class="hljs-comment"># 计算每个个体被遗传到下一代群体中的概率</span><br>    <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> population:<br>        p.append(get_total_distance(item))<br>    p /= <span class="hljs-built_in">sum</span>(p)<br><br>    <span class="hljs-comment"># 计算每个个体的累计概率</span><br>    cur = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> p:<br>        cur += i<br>        q.append(cur)<br><br>    choices = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>        rate = random.random()<br>        <span class="hljs-keyword">for</span> _, j <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(q):<br>            <span class="hljs-keyword">if</span> rate &lt;= j:<br>                choices.append(_)<br>                <span class="hljs-keyword">break</span><br>    <span class="hljs-keyword">return</span> choices<br><br><br><span class="hljs-comment"># 自然选择过程</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">selection</span>(<span class="hljs-params">population</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    选择</span><br><span class="hljs-string">    先对适应度从大到小排序，选出存活的染色体</span><br><span class="hljs-string">    再进行随机选择，选出适应度虽然小，但是幸存下来的个体（使用轮盘赌方法）</span><br><span class="hljs-string">    :param population: 初始种群</span><br><span class="hljs-string">    :return: 选择出的种群</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># 适应度从大到小排序，选出存活的染色体，即强者存活</span><br>    graded = [[get_total_distance(x), x] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> population]<br>    graded = [x[<span class="hljs-number">1</span>] <span class="hljs-keyword">for</span> x <span class="hljs-keyword">in</span> <span class="hljs-built_in">sorted</span>(graded)]<br>    <span class="hljs-comment"># 选出适应性强的染色体</span><br>    retain_length = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">len</span>(graded) * retain_rate)<br>    parents = graded[:retain_length]<br>    <span class="hljs-comment"># 轮盘赌</span><br>    choices = roulette(graded)<br>    <span class="hljs-keyword">for</span> choice <span class="hljs-keyword">in</span> choices:<br>        <span class="hljs-keyword">if</span> graded[choice] <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> parents:<br>            parents.append(graded[choice])<br>    <span class="hljs-keyword">return</span> parents<br><br><br><span class="hljs-comment"># 交叉繁殖</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">crossover</span>(<span class="hljs-params">parents</span>):<br>    <span class="hljs-comment"># 生成的子代的个数，以此保证种群稳定，即总种群数是不变的</span><br>    target_count = count - <span class="hljs-built_in">len</span>(parents)<br>    <span class="hljs-comment"># 子代列表</span><br>    children = []<br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(children) &lt; target_count:<br>        <span class="hljs-comment"># 随机选择父母</span><br>        male_index, female_index = random.sample(<span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(parents) - <span class="hljs-number">1</span>), <span class="hljs-number">2</span>)<br>        male = parents[male_index]<br>        female = parents[female_index]<br><br>        left = random.randint(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">2</span>)<br>        right = random.randint(left + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(male) - <span class="hljs-number">1</span>)<br><br>        <span class="hljs-comment"># 交叉片段</span><br>        <span class="hljs-comment"># 此处的交叉过程参照pdf</span><br>        gene1 = male[left:right]<br>        gene2 = female[left:right]<br><br>        <span class="hljs-comment"># 转换附带染色体的顺序得到亚父代</span><br>        child1_c = male[right:] + male[:right]<br>        child2_c = female[right:] + female[:right]<br>        child1 = child1_c.copy()<br>        child2 = child2_c.copy()<br><br>        <span class="hljs-comment"># 去掉交叉片段</span><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene2:<br>            child1_c.remove(o)<br><br>        <span class="hljs-keyword">for</span> o <span class="hljs-keyword">in</span> gene1:<br>            child2_c.remove(o)<br><br>        <span class="hljs-comment"># 插入交叉片段</span><br>        child1[left:right] = gene2<br>        child2[left:right] = gene1<br><br>        <span class="hljs-comment"># 填入原来的片段</span><br>        child1[right:] = child1_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child1) - right]<br>        child1[:left] = child1_c[<span class="hljs-built_in">len</span>(child1) - right:]<br><br>        child2[right:] = child2_c[<span class="hljs-number">0</span>:<span class="hljs-built_in">len</span>(child2) - right]<br>        child2[:left] = child2_c[<span class="hljs-built_in">len</span>(child2) - right:]<br><br>        children.append(child1)<br>        children.append(child2)<br><br>    <span class="hljs-keyword">return</span> children<br><br><br><span class="hljs-comment"># 变异</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">mutation</span>(<span class="hljs-params">children</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(children)):<br>        <span class="hljs-comment"># 满足条件才变异</span><br>        <span class="hljs-keyword">if</span> random.random() &lt; mutation_rate:<br>            child = children[i]<br>            u = random.randint(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">4</span>)<br>            v = random.randint(u + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">3</span>)<br>            w = random.randint(v + <span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(child) - <span class="hljs-number">2</span>)<br>            <span class="hljs-comment"># 第二和第三段互换</span><br>            child = child[<span class="hljs-number">0</span>:u] + child[v:w] + child[u:v] + child[w:]<br><br><br><span class="hljs-comment"># 进行遗传算法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">begin</span>():<br>    <span class="hljs-comment"># 使用改良圈算法初始化种群</span><br>    population = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(count):<br>        <span class="hljs-comment"># 随机生成个体</span><br>        x = index.copy()<br>        <span class="hljs-comment"># 打乱顺序</span><br>        random.shuffle(x)<br>        <span class="hljs-comment"># 改良圈算法优化种群</span><br>        x = improve(x)<br>        <span class="hljs-comment"># 把每个个体逐个添加到种群里</span><br>        population.append(x)<br><br>    <span class="hljs-comment"># 保存每次最优路径</span><br>    register = []<br>    min_res, max_res, result_path = get_result(population)<br>    <span class="hljs-comment"># 进化次数</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> tqdm.trange(iter_count):<br>        <span class="hljs-comment"># 选择繁殖个体群</span><br>        parents = selection(population)<br>        <span class="hljs-comment"># 交叉繁殖</span><br>        children = crossover(parents)<br>        <span class="hljs-comment"># 变异操作</span><br>        mutation(children)<br>        <span class="hljs-comment"># 更新种群</span><br>        population = parents + children<br>        min_res, max_res, result_path = get_result(population)<br>        register.append(min_res)<br>    <span class="hljs-keyword">return</span> min_res, max_res, result_path<br><br><br><span class="hljs-comment"># 主函数</span><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-comment"># 设置参数</span><br>    count = <span class="hljs-number">500</span>  <span class="hljs-comment"># 种群规模</span><br>    retain_rate = <span class="hljs-number">0.2</span>  <span class="hljs-comment"># 强者生存率</span><br>    mutation_rate = <span class="hljs-number">0.1</span>  <span class="hljs-comment"># 变异概率</span><br>    iter_count = <span class="hljs-number">500</span>  <span class="hljs-comment"># 迭代次数</span><br>    improve_count = <span class="hljs-number">500</span>  <span class="hljs-comment"># 改良次数</span><br>    scales = [<span class="hljs-number">10</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">25</span>, <span class="hljs-number">30</span>, <span class="hljs-number">35</span>, <span class="hljs-number">40</span>, <span class="hljs-number">45</span>, <span class="hljs-number">50</span>, <span class="hljs-number">55</span>, <span class="hljs-number">60</span>, <span class="hljs-number">65</span>, <span class="hljs-number">70</span>, <span class="hljs-number">75</span>]<br><br>    <span class="hljs-comment"># 设置起点</span><br>    origin = <span class="hljs-number">0</span><br><br>    <span class="hljs-keyword">for</span> scale <span class="hljs-keyword">in</span> scales:<br>        start = time.time()<br><br>        city_count, Distance = read_array(scale)<br><br>        <span class="hljs-comment"># 建立索引</span><br>        index = np.arange(city_count).tolist()<br>        index.remove(origin)<br><br>        min_res, max_res, result_path = begin()<br><br>        <span class="hljs-built_in">print</span>(min_res, max_res)<br>        <span class="hljs-built_in">print</span>(result_path)<br><br>        end = time.time()<br>        <span class="hljs-built_in">print</span>(scale, end-start)<br></code></pre></td></tr></table></figure>
 
-            </div>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/">人工智能算法</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">遗传算法</a>
-                    
-                      <a class="hover-with-bg" href="/tags/TSP%E9%97%AE%E9%A2%98/">TSP问题</a>
-                    
-                  </div>
                 
               </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%AE%97%E6%B3%95/" class="category-chain-item">人工智能算法</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/">#遗传算法</a>
+      
+        <a href="/tags/TSP%E9%97%AE%E9%A2%98/">#TSP问题</a>
+      
+    </div>
+  
+</div>
+
+
               
-                <p class="note note-warning">
-                  
-                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
-                  
-                </p>
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>采用遗传算法解决TSP问题</div>
+      <div>https://blog.qinhaiqi.com/2021/12/08/采用遗传算法解决TSP问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Juhick</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年12月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
               
               
-                <div class="post-prevnext">
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/16/%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%BB%93%E6%9E%84%E5%85%89%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/">
+                      <a href="/2022/11/16/%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%BB%93%E6%9E%84%E5%85%89%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/" title="基于投影结构光法的三维重建">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">基于投影结构光法的三维重建</span>
                         <span class="visible-mobile">上一篇</span>
@@ -724,7 +822,7 @@ q(n) & =p(1)+p(2)+...+p(n)\\
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/18/%E6%9C%AA%E6%9B%BE%E4%B8%8E%E4%BD%A0%E5%85%B1%E5%BA%A6%E4%B8%80%E5%88%87/">
+                      <a href="/2021/11/18/%E6%9C%AA%E6%9B%BE%E4%B8%8E%E4%BD%A0%E5%85%B1%E5%BA%A6%E4%B8%80%E5%88%87/" title="未曾与你共度一切">
                         <span class="hidden-mobile">未曾与你共度一切</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -736,12 +834,8 @@ q(n) & =p(1)+p(2)+...+p(n)\\
             </div>
 
             
-              <!-- Comments -->
-              <article class="comments" id="comments" lazyload>
-                
-                  
-                
-                
+  <article id="comments" lazyload>
+    
   <div id="gitalk-container"></div>
   <script type="text/javascript">
     Fluid.utils.loadComments('#gitalk-container', function() {
@@ -761,25 +855,63 @@ q(n) & =p(1)+p(2)+...+p(n)\\
   <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-              </article>
-            
+  </article>
+
+
           </article>
         </div>
       </div>
     </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
-      </div>
-    
+
+
+  </aside>
+
+
+    </div>
   </div>
 </div>
 
-<!-- Custom -->
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
 
 
     
@@ -804,56 +936,58 @@ q(n) & =p(1)+p(2)+...+p(n)\\
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
   
 
   
-</footer>
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
 
+  
+  
+  
+</div>
 
-  <!-- SCRIPTS -->
+  </footer>
+
+  <!-- Scripts -->
   
   <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
@@ -872,10 +1006,22 @@ q(n) & =p(1)+p(2)+...+p(n)\\
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
 
-  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -885,100 +1031,160 @@ q(n) & =p(1)+p(2)+...+p(n)\\
 
 
 
-  
-
-
 
   
-    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
-  
-  
-    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
-  
-  
-    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
-  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
+  <script src=https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
 
   <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
 
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
-  <script>
-    (function (window, document) {
-      var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
-      
-      typing(title)
-      
-    })(window, document);
-  </script>
 
-
-
-
-
-  
-
-  
-    <!-- MathJax -->
-    <script>
-      MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        },
-        loader: {
-          
-        },
-        options: {
-          renderActions: {
-            findScript: [10, doc => {
-              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-                const display = !!node.type.match(/; *mode=display/);
-                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-                const text = document.createTextNode('');
-                node.parentNode.replaceChild(text, node);
-                math.start = { node: text, delim: '', n: 0 };
-                math.end = { node: text, delim: '', n: 0 };
-                doc.math.push(math);
-              });
-            }, '', false],
-            insertedScript: [200, () => {
-              document.querySelectorAll('mjx-container').forEach(node => {
-                let target = node.parentNode;
-                if (target.nodeName.toLowerCase() === 'li') {
-                  target.parentNode.classList.add('has-jax');
-                }
-              });
-            }, '', false]
-          }
-        }
-      };
-    </script>
-
-    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-svg.js" ></script>
-
-  
-
-
-
-
-
-
-
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
