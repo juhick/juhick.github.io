@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>子序列宽度之和</title>
+    <link href="/2022/11/18/%E5%AD%90%E5%BA%8F%E5%88%97%E5%AE%BD%E5%BA%A6%E4%B9%8B%E5%92%8C/"/>
+    <url>/2022/11/18/%E5%AD%90%E5%BA%8F%E5%88%97%E5%AE%BD%E5%BA%A6%E4%B9%8B%E5%92%8C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="子序列宽度值之和"><a href="#子序列宽度值之和" class="headerlink" title="子序列宽度值之和"></a>子序列宽度值之和</h1><p><a href="https://leetcode.cn/problems/sum-of-subsequence-widths/">原题链接</a></p><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>对于每个子序列而言，设其最大值为$max$，最小值为$min$，则子序列对最后结果的贡献为$(max - min)$。</p><p>若某个数$nums[i]$为最大值参与的子序列数为$m$个，则其对结果的贡献为$nums[i]*m$</p><p>若某个数$nums[i]$为最小值参与的子序列数为$n$个，则其对结果的贡献为$-nums[i]*n$</p><p>因此，我们只需要求出$nums[i]$作为最大值和最小值的次数即可求出其对答案的贡献为$(m - n) * nums[i]$，将所有的结果累加即为最终结果</p><h3 id="求出-nums-i-作为最值时，有多少个子序列"><a href="#求出-nums-i-作为最值时，有多少个子序列" class="headerlink" title="求出$nums[i]$作为最值时，有多少个子序列"></a>求出$nums[i]$作为最值时，有多少个子序列</h3><p>当$nums[i]$作为序列最小值时，设比它大的数有$k$个，则可以构成的子序列数为$2^k$个。</p><p>同理，作为序列最大值时只需考虑比它小的数，即可求得子序列个数。</p><h3 id="2-k-重复计算问题"><a href="#2-k-重复计算问题" class="headerlink" title="$2^k$重复计算问题"></a>$2^k$重复计算问题</h3><p>在计算过程中会有许多相同的$2^k$被计算，所以最好预先计算出会使用的$2^k$保存。</p><span id="more"></span><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sumSubseqWidths</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums)</span> </span>&#123;<br>        <span class="hljs-type">static</span> <span class="hljs-type">long</span> <span class="hljs-type">long</span> N = <span class="hljs-number">100010</span>, MOD = <span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>;<br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> p[N];<br>        p[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; N; ++i)&#123;<br>            p[i] = p[i - <span class="hljs-number">1</span>] * <span class="hljs-number">2</span> % MOD;<br>        &#125;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-number">0</span>;<br>        <span class="hljs-built_in">sort</span>(nums.<span class="hljs-built_in">begin</span>(), nums.<span class="hljs-built_in">end</span>());<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i) &#123;<br>            ans += (p[i] * nums[i]) % MOD;<br>            ans %= MOD;<br>            ans -= (p[n - i - <span class="hljs-number">1</span>] * nums[i]) % MOD;<br>            ans %= MOD;<br>        &#125;<br>        <span class="hljs-keyword">return</span> (<span class="hljs-type">int</span>)ans;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>leetcode</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>leetcode</tag>
+      
+      <tag>数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>基于投影结构光法的三维重建</title>
     <link href="/2022/11/16/%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%BB%93%E6%9E%84%E5%85%89%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/"/>
     <url>/2022/11/16/%E5%9F%BA%E4%BA%8E%E6%8A%95%E5%BD%B1%E7%BB%93%E6%9E%84%E5%85%89%E6%B3%95%E7%9A%84%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/</url>
