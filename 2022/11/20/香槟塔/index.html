@@ -16,26 +16,25 @@
   <meta name="author" content="Juhick">
   <meta name="keywords" content="">
   
-    <meta name="description" content="从前序与中序遍历序列构造二叉树原题链接 题目描述根据一棵树的前序遍历与中序遍历构造二叉树。">
+    <meta name="description" content="香槟塔原题链接 解题思路设流经某个玻璃杯的香槟杯数为$dp[i][j]$，由于杯子中最多只能留存一杯，因此某个玻璃杯中最终的存留的香槟数量为$\min(dp[i][j], 1.0)$。 香槟流经某个玻璃杯后，有$dp[i][j]-1$的香槟溢出，分别流向下方左右的两个玻璃杯，因此可以得到转移方程如下：  dp[i+1][j] +&#x3D; \frac{dp[i][j] - 1}{2} \\ dp[i+1]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从前序与中序遍历序列构造二叉树">
-<meta property="og:url" content="https://blog.qinhaiqi.com/2021/04/08/%E4%BB%8E%E5%89%8D%E5%BA%8F%E4%B8%8E%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E5%BA%8F%E5%88%97%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/index.html">
+<meta property="og:title" content="香槟塔">
+<meta property="og:url" content="https://blog.qinhaiqi.com/2022/11/20/%E9%A6%99%E6%A7%9F%E5%A1%94/index.html">
 <meta property="og:site_name" content="曾许人间第一流">
-<meta property="og:description" content="从前序与中序遍历序列构造二叉树原题链接 题目描述根据一棵树的前序遍历与中序遍历构造二叉树。">
+<meta property="og:description" content="香槟塔原题链接 解题思路设流经某个玻璃杯的香槟杯数为$dp[i][j]$，由于杯子中最多只能留存一杯，因此某个玻璃杯中最终的存留的香槟数量为$\min(dp[i][j], 1.0)$。 香槟流经某个玻璃杯后，有$dp[i][j]-1$的香槟溢出，分别流向下方左右的两个玻璃杯，因此可以得到转移方程如下：  dp[i+1][j] +&#x3D; \frac{dp[i][j] - 1}{2} \\ dp[i+1]">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-08T13:31:43.000Z">
-<meta property="article:modified_time" content="2021-09-23T12:55:28.374Z">
+<meta property="article:published_time" content="2022-11-20T06:24:57.000Z">
+<meta property="article:modified_time" content="2022-11-20T06:46:35.927Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="数据结构">
-<meta property="article:tag" content="树">
+<meta property="article:tag" content="简单dp">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>从前序与中序遍历序列构造二叉树 - 曾许人间第一流</title>
+  <title>香槟塔 - 曾许人间第一流</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -212,7 +211,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="从前序与中序遍历序列构造二叉树"></span>
+            <span id="subtitle" data-typed-text="香槟塔"></span>
           
         </div>
 
@@ -223,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-04-08 21:31" pubdate>
-          2021年4月8日 晚上
+        <time datetime="2022-11-20 14:24" pubdate>
+          2022年11月20日 下午
         </time>
       </span>
     
@@ -236,7 +235,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2.5k 字
+          638 字
         
       </span>
     
@@ -248,7 +247,7 @@
         
         
           <!-- compatible with older versions-->
-          21 分钟
+          6 分钟
         
       </span>
     
@@ -286,13 +285,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">从前序与中序遍历序列构造二叉树</h1>
+            <h1 style="display: none">香槟塔</h1>
             
               <p class="note note-info">
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：1 年前
+                    本文最后更新于：1 分钟前
                   
                 
               </p>
@@ -300,36 +299,14 @@
             
               <div class="markdown-body">
                 
-                <h1 id="从前序与中序遍历序列构造二叉树"><a href="#从前序与中序遍历序列构造二叉树" class="headerlink" title="从前序与中序遍历序列构造二叉树"></a>从前序与中序遍历序列构造二叉树</h1><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">原题链接</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>根据一棵树的前序遍历与中序遍历构造二叉树。</p>
+                <h1 id="香槟塔"><a href="#香槟塔" class="headerlink" title="香槟塔"></a>香槟塔</h1><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/champagne-tower/">原题链接</a></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>设流经某个玻璃杯的香槟杯数为$dp[i][j]$，由于杯子中最多只能留存一杯，因此某个玻璃杯中最终的存留的香槟数量为$\min(dp[i][j], 1.0)$。</p>
+<p>香槟流经某个玻璃杯后，有$dp[i][j]-1$的香槟溢出，分别流向下方左右的两个玻璃杯，因此可以得到转移方程如下：</p>
+<script type="math/tex; mode=display">
+dp[i+1][j] += \frac{dp[i][j] - 1}{2} \\
+dp[i+1][j+1] += \frac{dp[i][j] - 1}{2} \\</script><p>边界条件为$dp[0][0] = poured$。</p>
 <span id="more"></span>
-<p><strong>注意:</strong></p>
-<p>你可以假设树中没有重复的元素。</p>
-<p>例如，给出</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">前序遍历 preorder = <span class="hljs-string">[3,9,20,15,7]</span><br>中序遍历 inorder = <span class="hljs-string">[9,3,15,20,7]</span><br></code></pre></td></tr></table></figure>
-<p>返回如下的二叉树：</p>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs livescript">  <span class="hljs-number">3</span><br> / <span class="hljs-string">\</span><br><span class="hljs-number">9</span>  <span class="hljs-number">20</span><br>  /  <span class="hljs-string">\</span><br> <span class="hljs-number">15</span>   <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="方法一：递归"><a href="#方法一：递归" class="headerlink" title="方法一：递归"></a>方法一：递归</h3><p>对于任意一颗树而言，前序遍历的形式总是</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[ 根节点, <span class="hljs-comment">[左子树的前序遍历结果]</span>, <span class="hljs-comment">[右子树的前序遍历结果]</span> ]</span><br></code></pre></td></tr></table></figure>
-<p>即根节点总是前序遍历中的第一个节点。而中序遍历的形式总是</p>
-<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7"><span class="hljs-comment">[ <span class="hljs-comment">[左子树的中序遍历结果]</span>, 根节点, <span class="hljs-comment">[右子树的中序遍历结果]</span> ]</span><br></code></pre></td></tr></table></figure>
-<p>前序遍历序列的第一个必定为当前树的树根。每次选前序遍历的第一个作为树根，找到其在中序遍历中的位置，然后就可以获取到左右子树的长度。</p>
-<p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
-<p>具体实现如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">buildTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; preorder, vector&lt;<span class="hljs-type">int</span>&gt;&amp; inorder)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">build</span>(preorder, <span class="hljs-number">0</span>, preorder.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>, inorder, <span class="hljs-number">0</span>, inorder.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>);<br>    &#125;<br><br>    <span class="hljs-function">TreeNode* <span class="hljs-title">build</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; preorder, <span class="hljs-type">int</span> preStart, <span class="hljs-type">int</span> preEnd, vector&lt;<span class="hljs-type">int</span>&gt; inorder, <span class="hljs-type">int</span> inStart, <span class="hljs-type">int</span> inEnd)</span></span>&#123;<br>        <span class="hljs-keyword">if</span>(preStart &gt; preEnd)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br><br>        <span class="hljs-type">int</span> rootVal = preorder[preStart];<br><br>        <span class="hljs-type">int</span> index = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = inStart; i &lt;= inEnd; ++i)&#123;<br>            <span class="hljs-keyword">if</span>(inorder[i] == rootVal)&#123;<br>                index = i;<br>                <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-type">int</span> leftSize = index - inStart;<br>        TreeNode* root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(rootVal);<br><br>        root-&gt;left = <span class="hljs-built_in">build</span>(preorder, preStart + <span class="hljs-number">1</span>, preStart + leftSize, inorder, inStart, index - <span class="hljs-number">1</span>);<br>        root-&gt;right = <span class="hljs-built_in">build</span>(preorder, preStart + leftSize + <span class="hljs-number">1</span>, preEnd, inorder, index + <span class="hljs-number">1</span>, inEnd);<br><br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
-<h3 id="方法二：迭代"><a href="#方法二：迭代" class="headerlink" title="方法二：迭代"></a>方法二：迭代</h3><blockquote>
-<p>对于前序遍历中的任意两个连续节点 <em>u</em> 和 <em>v</em>，根据前序遍历的流程，我们可以知道 <em>u</em> 和<em>v</em> 只有两种可能的关系：</p>
-<ul>
-<li><em>v</em> 是 <em>u</em> 的左儿子。这是因为在遍历到 <em>u</em> 之后，下一个遍历的节点就是 <em>u</em> 的左儿子，即 <em>v</em>；</li>
-<li><em>u</em> 没有左儿子，并且 <em>v</em> 是 <em>u</em> 的某个祖先节点（或者 <em>u</em> 本身）的右儿子。如果 <em>u</em> 没有左儿子，那么下一个遍历的节点就是 <em>u</em> 的右儿子。如果 <em>u</em> 没有右儿子，我们就会向上回溯，直到遇到第一个有右儿子（且 <em>u</em> 不在它的右儿子的子树中）的节点 <em>u~a~</em>，那么 <em>v</em> 就是 <em>u~a~</em> 的右儿子。</li>
-</ul>
-</blockquote>
-<p> 因为前序遍历是根-&gt;左孩子-&gt;右孩子的顺序，所以在树中会向左一直访问到左孩子直到没有左孩子往上再访问右孩子。而中序遍历则是左孩子-&gt;根-&gt;右孩子的顺序，所以第一个访问的就是最左边的左孩子，再依次访问根和右孩子。因此，我们在前序遍历中找到中序的第一个，再往前回退，前序回退时中序往后走，若值仍相等，则说明这一个是前一个的左孩子，然后一直往下走，直到值不同时出现右孩子应在的位置。</p>
-<blockquote>
-<p>我们用一个栈 <code>stack</code> 来维护「当前节点的所有还没有考虑过右儿子的祖先节点」，栈顶就是当前节点。也就是说，只有在栈中的节点才可能连接一个新的右儿子。同时，我们用一个指针 <code>index</code> 指向中序遍历的某个位置，初始值为 <code>0</code>。<code>index</code> 对应的节点是「当前节点不断往左走达到的最终节点」，这也是符合中序遍历的。</p>
-</blockquote>
-<p>具体代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">TreeNode* <span class="hljs-title">buildTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; preorder, vector&lt;<span class="hljs-type">int</span>&gt;&amp; inorder)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(preorder.<span class="hljs-built_in">size</span>() == <span class="hljs-number">0</span>)<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>        <span class="hljs-type">int</span> index = <span class="hljs-number">0</span>;<br>        stack&lt;TreeNode*&gt; stk;<br>        TreeNode* root = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preorder[<span class="hljs-number">0</span>]);<br>        stk.<span class="hljs-built_in">push</span>(root);<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; preorder.<span class="hljs-built_in">size</span>(); ++i)&#123;<br>            <span class="hljs-type">int</span> preVal = preorder[i];<br>            TreeNode* node = stk.<span class="hljs-built_in">top</span>();<br>            <span class="hljs-keyword">if</span>(node-&gt;val != inorder[index])&#123;<br>                node-&gt;left = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preVal);<br>                stk.<span class="hljs-built_in">push</span>(node-&gt;left);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                <span class="hljs-keyword">while</span>(!stk.<span class="hljs-built_in">empty</span>() &amp;&amp; stk.<span class="hljs-built_in">top</span>()-&gt;val == inorder[index])&#123;<br>                    node = stk.<span class="hljs-built_in">top</span>();<br>                    stk.<span class="hljs-built_in">pop</span>();<br>                    index++;<br>                &#125;<br>                node-&gt;right = <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(preVal);<br>                stk.<span class="hljs-built_in">push</span>(node-&gt;right);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">double</span> <span class="hljs-title">champagneTower</span><span class="hljs-params">(<span class="hljs-type">int</span> poured, <span class="hljs-type">int</span> query_row, <span class="hljs-type">int</span> query_glass)</span> </span>&#123;<br>        <span class="hljs-type">double</span> dp[<span class="hljs-number">101</span>][<span class="hljs-number">101</span>] = &#123;<span class="hljs-number">0</span>&#125;;<br>        dp[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = poured;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= query_row; ++i) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt;= query_glass; ++j) &#123;<br>                <span class="hljs-keyword">if</span>(dp[i][j] &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">continue</span>;<br>                dp[i + <span class="hljs-number">1</span>][j] += (dp[i][j] - <span class="hljs-number">1.0</span>) / <span class="hljs-number">2.0</span>;<br>                dp[i + <span class="hljs-number">1</span>][j + <span class="hljs-number">1</span>] += (dp[i][j] - <span class="hljs-number">1.0</span>) / <span class="hljs-number">2.0</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">min</span>(dp[query_row][query_glass], <span class="hljs-number">1.0</span>);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -351,13 +328,6 @@
   <a href="/categories/leetcode/" class="category-chain-item">leetcode</a>
   
   
-    <span>></span>
-    
-  <a href="/categories/leetcode/%E6%A0%91/" class="category-chain-item">树</a>
-  
-  
-
-  
 
       </span>
     
@@ -372,9 +342,7 @@
       
         <a href="/tags/leetcode/">#leetcode</a>
       
-        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">#数据结构</a>
-      
-        <a href="/tags/%E6%A0%91/">#树</a>
+        <a href="/tags/%E7%AE%80%E5%8D%95dp/">#简单dp</a>
       
     </div>
   
@@ -386,8 +354,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>从前序与中序遍历序列构造二叉树</div>
-      <div>https://blog.qinhaiqi.com/2021/04/08/从前序与中序遍历序列构造二叉树/</div>
+      <div>香槟塔</div>
+      <div>https://blog.qinhaiqi.com/2022/11/20/香槟塔/</div>
     </div>
     <div class="license-meta">
       
@@ -399,7 +367,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年4月8日</div>
+          <div>2022年11月20日</div>
         </div>
       
       
@@ -431,18 +399,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/09/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86/" title="二叉树的层次遍历">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">二叉树的层次遍历</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/04/08/%E9%9D%A2%E8%AF%95%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93/" title="面试技巧总结">
-                        <span class="hidden-mobile">面试技巧总结</span>
+                      <a href="/2022/11/18/%E5%AD%90%E5%BA%8F%E5%88%97%E5%AE%BD%E5%BA%A6%E4%B9%8B%E5%92%8C/" title="子序列宽度之和">
+                        <span class="hidden-mobile">子序列宽度之和</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -463,7 +425,7 @@
         var options = Object.assign(
           {"clientID":"d1d427beff57ea9d6ccf","clientSecret":"ba3d1540396867fd92f96cfe7c41f48334fdc7fb","repo":"juhick.github.io","owner":"juhick","admin":["juhick"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: 'a4fe26ed713100ec6d1cda8c66353f5b'
+            id: 'eed19f46461574c0bfd2e6dd049a038f'
           }
         )
         var gitalk = new Gitalk(options);
@@ -520,6 +482,12 @@
 
 
   
+
+
+  
+  
+
+
 
 
 
@@ -737,6 +705,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://cdn.jsdelivr.net/npm/mathjax@3.1.4/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
