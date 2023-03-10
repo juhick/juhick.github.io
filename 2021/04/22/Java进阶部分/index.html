@@ -23,22 +23,22 @@
 <meta property="og:site_name" content="曾许人间第一流">
 <meta property="og:description" content="Java进阶从Java5.0开始，JDK中提供了java.util.concurrent（简称JUC ）包，在此包中增加了并发编程中常用的工具类，用于定义线程的自定义子系统，包括线程池、异步IO 和轻量级任务框架等。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421211812.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421211901.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212003.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212118.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212700.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212745.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422111547.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422145850.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422150246.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421211812.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421211901.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212003.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212118.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212700.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212745.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422111547.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422145850.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422150246.png">
 <meta property="article:published_time" content="2021-04-22T06:31:14.000Z">
-<meta property="article:modified_time" content="2021-09-23T12:55:28.372Z">
+<meta property="article:modified_time" content="2023-03-10T08:44:14.501Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421211812.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421211812.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -301,7 +301,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：1 年前
+                    本文最后更新于：6 分钟前
                   
                 
               </p>
@@ -339,17 +339,17 @@
 <h4 id="线程的状态有哪些？"><a href="#线程的状态有哪些？" class="headerlink" title="线程的状态有哪些？"></a>线程的状态有哪些？</h4><p>线程的状态包括 <strong>新建状态，运行状态，阻塞等待状态和消亡状态。</strong>其中阻塞等待状态又分为<strong>BLOCKED, WAITING和TIMED_WAITING</strong>状态。</p>
 <p>JDK8中对于Thread状态的枚举定义，所有的状态如下所示：</p>
 <ol>
-<li><p>NEW：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421211812.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>这是属于一个已经创建的线程，但是还没有调用start方法启动的线程所处的状态。</p>
+<li><p>NEW：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421211812.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>这是属于一个已经创建的线程，但是还没有调用start方法启动的线程所处的状态。</p>
 </li>
-<li><p>RUNNABLE：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421211901.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>该状态包含两种可能。有可能正在运行，或者正在等待CPU资源。总体上就是当我们创建线程并且启动之后，就属于Runnable状态。</p>
+<li><p>RUNNABLE：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421211901.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>该状态包含两种可能。有可能正在运行，或者正在等待CPU资源。总体上就是当我们创建线程并且启动之后，就属于Runnable状态。</p>
 </li>
-<li><p>BLOCKED：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212003.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>阻塞状态，当线程准备进入synchronized同步块或同步方法的时候，需要申请一个监视器锁而进行的等待，会使线程进入BLOCKED状态。</p>
+<li><p>BLOCKED：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212003.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>阻塞状态，当线程准备进入synchronized同步块或同步方法的时候，需要申请一个监视器锁而进行的等待，会使线程进入BLOCKED状态。</p>
 </li>
-<li><p>WAITING<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212118.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>该状态的出现是因为调用了<strong>Object.wait()或者Thread.join()或者LockSupport.park()</strong>。处于该状态下的线程在等待另一个线程 执行一些其余action来将其唤醒。</p>
+<li><p>WAITING<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212118.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>该状态的出现是因为调用了<strong>Object.wait()或者Thread.join()或者LockSupport.park()</strong>。处于该状态下的线程在等待另一个线程 执行一些其余action来将其唤醒。</p>
 </li>
-<li><p>TIMED_WAITING:<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212700.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>该状态和上一个状态其实是一样的，只不过其等待的时间是明确的。</p>
+<li><p>TIMED_WAITING:<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212700.png" srcset="/img/loading.gif" lazyload alt="图片说明"><br>该状态和上一个状态其实是一样的，只不过其等待的时间是明确的。</p>
 </li>
-<li><p>TERMINATED：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212745.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<li><p>TERMINATED：<br><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212745.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
 <p>消亡状态比较容易理解，那就是线程执行结束了，run方法执行结束表示线程处于消亡状态了。</p>
 </li>
 </ol>
@@ -488,7 +488,7 @@
 <li>线程的创建需要占用系统内存，消耗系统资源，使用线程池可以更好的管理线程，做到统一分配、调优和监控线程，提高系统的稳定性。</li>
 </ul>
 <p>创建线程是有开销的，为了重复利用已创建的线程降低线程创建和销毁的消耗，提高资源的利用效率，所以出现了线程池。线程池的参数字段如下所示：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422111547.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422111547.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
 <ul>
 <li><strong>corePoolSize：核心线程数</strong></li>
 <li><strong>maximumPoolSize：最大线程数</strong></li>
@@ -600,13 +600,13 @@
 </ol>
 <h4 id="JVM对内部锁有哪些优化"><a href="#JVM对内部锁有哪些优化" class="headerlink" title="JVM对内部锁有哪些优化"></a>JVM对内部锁有哪些优化</h4><p>优化主要包括锁消除（Lock Elision）、锁粗化（Lock Coarsening）、偏向锁（Biased Locking）以及适应性锁（Adaptive Locking）。</p>
 <h5 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h5><p>锁消除（Lock Elision）是JIT编译器对内部锁的具体实现所做的一种优化。</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422145850.png" srcset="/img/loading.gif" lazyload alt="face/TF2SkMAAKFfj7TSWrrC5QaiDSaCswn6T.png"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422145850.png" srcset="/img/loading.gif" lazyload alt="face/TF2SkMAAKFfj7TSWrrC5QaiDSaCswn6T.png"></p>
 <p>在动态编译同步块的时候，JIT编译器可以借助一种被称为逃逸分析（Escape Analysis）的技术来判断同步块所使用的锁对象是否只能够被一个线程访问而没有被发布到其他线程。如果同步块所使用的锁对象通过这种分析被证实只能够被一个线程访问，那么JIT编译器在编译这个同步块的时候并不生成synchronized所表示的锁的申请与释放对应的机器码，而仅生成原临界区代码对应的机器码，这就造成了被动态编译的字节码就像是不包含monitorenter（申请锁）和monitorexit（释放锁）这两个字节码指令一样，即消除了锁的使用。这种编译器优化就被称为锁消除（Lock Elision），它使得特定情况下我们可以完全消除锁的开销。</p>
 <p>锁消除优化能否被实施还取决于被调用的同步方法（或者带同步块的方法）是否能够被内联。</p>
 <p>因为锁消除是JIT编译器而不是javac所做的一种优化，而一段代码只有在其被执行的频率足够大的情况下才有可能会被JIT编译器优化。也就是说在JIT编译器优化介入之前，只要源代码中使用了内部锁，那么这个锁的开销就会存在。另外，JIT编译器所执行的内联优化、逃逸分析以及锁消除优化本身都是有其开销的。</p>
 <p>在锁消除的作用下，利用ThreadLocal将一个线程安全的对象（比如Random）作为一个线程特有对象来使用，不仅仅可以避免锁的争用，还可以彻底消除这些对象内部所使用的锁的开销。</p>
 <h5 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h5><p>锁粗化（Lock Coarsening/Lock Merging）是JIT编译器对内部锁的具体实现所做的一种优化。</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210422150246.png" srcset="/img/loading.gif" lazyload alt="face/ENSjarckiW474mpxyhEjFNsRAR2XNtm4.png"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422150246.png" srcset="/img/loading.gif" lazyload alt="face/ENSjarckiW474mpxyhEjFNsRAR2XNtm4.png"></p>
 <p>对于相邻的几个同步块，如果这些同步块使用的是同一个锁实例，那么JIT编译器会将这些同步块合并为一个大同步块，从而避免了一个线程反复申请、释放同一个锁所导致的开销。然而，锁粗化可能导致一个线程持续持有一个锁的时间变长，从而使得同步在该锁之上的其他线程在申请锁时的等待时间变长。例如上图中，第1个同步块结束和第2个同步块开始之间的时间间隙中，其他线程本来是有机会获得monitorX的，但是经过锁粗化之后由于临界区的长度变长，这些线程在申请monitorX时所需的等待时间也相应变长了。因此，锁粗化不会被应用到循环体内的相邻同步块。</p>
 <p>相邻的两个同步块之间如果存在其他语句，也不一定就会阻碍JIT编译器执行锁粗化优化，这是因为JIT编译器可能在执行锁粗化优化前将这些语句挪到（即指令重排序）后一个同步块的临界区之中（当然，JIT编译器并不会将临界区内的代码挪到临界区之外）。</p>
 <p>实际上，我们写的代码中可能很少会出现上图中那种连续的同步块。这种同一个锁实例引导的相邻同步块往往是JIT编译器编译之后形成的。</p>

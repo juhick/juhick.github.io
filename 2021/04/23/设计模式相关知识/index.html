@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="曾许人间第一流">
 <meta property="og:description" content="设计模式设计模式的六大原则：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423193638.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423195257.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423201323.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423193638.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423195257.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423201323.jpeg">
 <meta property="article:published_time" content="2021-04-23T09:20:38.000Z">
-<meta property="article:modified_time" content="2021-09-23T12:55:28.376Z">
+<meta property="article:modified_time" content="2023-03-10T08:41:39.481Z">
 <meta property="article:author" content="Juhick">
 <meta property="article:tag" content="面试">
 <meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423193638.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423193638.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -295,7 +295,7 @@
                 
                   
                     <!-- compatible with older versions-->
-                    本文最后更新于：1 年前
+                    本文最后更新于：9 分钟前
                   
                 
               </p>
@@ -363,7 +363,7 @@
 <p><strong>单例模式的使用场景：</strong>创建一个对象需要消耗太多的资源或者在一个系统中不适合创建多个对象实例的情况下，我们可以采用单例模式设计实现。</p>
 <h3 id="工厂方法模式（创建型模式）"><a href="#工厂方法模式（创建型模式）" class="headerlink" title="工厂方法模式（创建型模式）"></a>工厂方法模式（创建型模式）</h3><p>工厂方法模式是一种常见的设计模式。工厂方法模式定义了一个用于创建对象的接口，让子类决定实例化哪一个类。工厂方法模式使一个类的实例化延迟到其子类。</p>
 <p><strong>工厂方法模式的类图：</strong></p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423193638.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423193638.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
 <p>其中，Product和ConcreteProduct分别表示抽象产品类和具体产品类。Creator和ConcreteCreator则分别表示抽象创建类和具体创建类。抽象创建类Creator中定义了创建产品的方法createProduct。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@author</span> 秦海祺 &#123;2021/4/21&#125;</span><br><span class="hljs-comment"> */</span><br><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Main</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException&#123;<br>        <span class="hljs-type">Creator</span> <span class="hljs-variable">creator</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcreteCreator</span>();<br><br>        <span class="hljs-type">Product</span> <span class="hljs-variable">product</span> <span class="hljs-operator">=</span> creator.createProduct(ConcreteProduct.class);<br><br>        product.method1();<br>        product.method2();<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Product</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method1</span><span class="hljs-params">()</span>&#123;<br><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method2</span><span class="hljs-params">()</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteProduct</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Product</span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">method2</span><span class="hljs-params">()</span> &#123;<br><br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Creator</span>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> &lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Product</span>&gt; T <span class="hljs-title function_">createProduct</span><span class="hljs-params">(Class&lt;T&gt; c)</span>;<br>&#125;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">ConcreteCreator</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Creator</span>&#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> &lt;T <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Product</span>&gt; T <span class="hljs-title function_">createProduct</span><span class="hljs-params">(Class&lt;T&gt; c)</span> &#123;<br>        <span class="hljs-type">Product</span> <span class="hljs-variable">product</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">try</span>&#123;<br>            product = (Product) Class.forName(c.getName()).newInstance();<br>        &#125;<span class="hljs-keyword">catch</span> (ClassNotFoundException | InstantiationException | IllegalAccessException e)&#123;<br><br>        &#125;<br>        <span class="hljs-keyword">return</span> (T)product;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p><strong>那么，工厂方法模式的优点有哪些呢？</strong></p>
@@ -377,7 +377,7 @@
 <li>当需要灵活，可扩展的创建多个对象的场景时，可以使用工厂方法模式。</li>
 </ul>
 <h3 id="模板方法模式（行为型模式）"><a href="#模板方法模式（行为型模式）" class="headerlink" title="模板方法模式（行为型模式）"></a>模板方法模式（行为型模式）</h3><p>模板方法模式也是一个常见的模式。模板方法模式定义了一个框架，将一些步骤延迟到其子类中实现，子类可以在不改变框架的前提下重新定义某些特定的执行步骤。</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423195257.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423195257.png" srcset="/img/loading.gif" lazyload alt="图片说明"></p>
 <p>AbstractClass是一个抽象模板，它的方法分为模板方法和基本方法。</p>
 <ul>
 <li>基本方法：是抽象方法，由子类实现，并且在模板方法中被调用。</li>
@@ -408,7 +408,7 @@
 <p><strong>缺点：</strong> 1、策略类会增多。 2、所有策略类都需要对外暴露。</p>
 <p><strong>注意事项：</strong>如果一个系统的策略多于四个，就需要考虑使用混合模式，解决策略类膨胀的问题。</p>
 <p>类图如下：</p>
-<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/20210423201323.jpeg" srcset="/img/loading.gif" lazyload alt="策略模式的 UML 图"></p>
+<p><img src="https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423201323.jpeg" srcset="/img/loading.gif" lazyload alt="策略模式的 UML 图"></p>
 <h3 id="责任链模式（行为型模式）"><a href="#责任链模式（行为型模式）" class="headerlink" title="责任链模式（行为型模式）"></a>责任链模式（行为型模式）</h3><p>责任链模式（Chain of Responsibility Pattern）为请求创建了一个接收者对象的链。这种模式给予请求的类型，对请求的发送者和接收者进行解耦。在这种模式中，通常每个接收者都包含对另一个接收者的引用。如果一个对象不能处理该请求，那么它会把相同的请求传给下一个接收者，依此类推。</p>
 <p><strong>意图：</strong>避免请求发送者与接收者耦合在一起，让多个对象都有可能接收请求，将这些对象连接成一条链，并且沿着这条链传递请求，直到有对象处理它为止。</p>
 <p><strong>主要解决：</strong>职责链上的处理者负责处理请求，客户只需要将请求发送到职责链上即可，无须关心请求的处理细节和请求的传递，所以职责链将请求的发送者和请求的处理者解耦了。</p>
