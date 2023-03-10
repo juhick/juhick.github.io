@@ -24,13 +24,13 @@ math:
 
 尤雨溪
 
-![CleanShot 2021-11-14 at 17.26.54@2x](https://raw.githubusercontent.com/juhick/picJuhick/master/20211114172703.png)
+![CleanShot 2021-11-14 at 17.26.54@2x](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/11/20211114172703.png)
 
-![CleanShot 2021-11-14 at 17.29.16@2x](https://raw.githubusercontent.com/juhick/picJuhick/master/20211114172926.png)
+![CleanShot 2021-11-14 at 17.29.16@2x](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/11/20211114172926.png)
 
 # Vue的特点
 
-1. 采用**组件化**模式，提高代码复用率、且让代码更好维护。![CleanShot 2021-11-14 at 17.33.41@2x](https://raw.githubusercontent.com/juhick/picJuhick/master/20211114173349.png)
+1. 采用**组件化**模式，提高代码复用率、且让代码更好维护。![CleanShot 2021-11-14 at 17.33.41@2x](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/11/20211114173349.png)
 2. **声明式**编码，让编码人员无需直接操作DOM，提高开发效率。
 3. 使用**虚拟DOM**+优秀的**Diff算法**，尽量复用DOM节点。
 

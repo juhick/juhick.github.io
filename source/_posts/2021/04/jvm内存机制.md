@@ -16,7 +16,7 @@ math:
 
 JVM中的内存主要划分为5个区域，即**方法区，堆内存，程序计数器，虚拟机栈以及本地方法栈**。下边是Java虚拟机运行时数据区示意图：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422155921.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422155921.png)
 
 <!-- more -->
 
@@ -71,7 +71,7 @@ Java虚拟机规范中并**没有规定这个引用变量应该以何种方式�
 
 JVM的内存可以分为**堆内存和非堆内存**。堆内存分为**年轻代和老年代**。年轻代又可以进一步划分为**一个Eden（伊甸）区和两个Survivor（幸存）区**组成。如下图所示：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422170158.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422170158.png)
 
 #### JVM堆内存的分配：
 
@@ -143,19 +143,19 @@ HotSpot 虚拟机采用了**root根搜索方法**来进行内存回收，常见�
 
 标记-清除算法执行分两阶段。第一阶段从引用根节点开始标记所有被引用的对象，第二阶段遍历整个堆，把未标记的对象清除。此算法需要暂停整个应用，并且会产生内存碎片。
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175509.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422175509.png)
 
 **复制算法：**
 
 复制算法把内存空间划为两个相等的区域，每次只使用其中一个区域。垃圾回收时，遍历当前使用区域，把正在使用中的对象复制到另外一个区域中。复制算法每次只处理正在使用中的对象，因此复制成本比较小，同时复制过去以后还能进行相应的内存整理，不会出现“碎片”问题。当然，此算法的缺点也是很明显的，就是需要两倍内存空间。
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422175610.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422175610.png)
 
 **标记-整理算法：**
 
 标记-整理算法结合了**“标记-清除”和“复制”**两个算法的优点。也是分两阶段，第一阶段从根节点开始标记所有被引用对象，第二阶段遍历整个堆，清除未标记对象并且把存活对象“压缩”到堆的其中一块，按顺序排放。此算法避免了“标记-清除”的碎片问题，同时也避免了“复制”算法的空间问题。
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422180817.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422180817.png)
 
 年轻代垃圾回收一般采用复制算法，老年代垃圾回收一般采用标记-清除和标记-整理算法
 
@@ -163,7 +163,7 @@ HotSpot 虚拟机采用了**root根搜索方法**来进行内存回收，常见�
 
 JVM中的垃圾收集器主要包括7种，即**Serial，Serial Old，ParNew，Parallel Scavenge，Parallel Old以及CMS，G1收集器**。如下图所示：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422182047.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422182047.png)
 
 **Serial收集器：**
 
@@ -196,7 +196,7 @@ CMS收集器是**一种以获取最短回收停顿时间为目标**的收集器�
 - **重新标记**：需要“Stop the World”，为了修正并发标记期间因用户程序继续运作而导致标记产生变动的那一部分对象的标记记录（停顿时间比初始标记长，但比并发标记短得多）。
 - **并发清除**：和用户线程并发执行的，基于标记结果来清理对象。
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422193203.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422193203.png)
 
 **如果在重新标记之前刚好发生了一次MinorGC，会不会导致重新标记阶段Stop the World时间太长？**
 

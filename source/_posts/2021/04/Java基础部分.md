@@ -173,7 +173,7 @@ Java的8种基本数据类型分别是：**byte，short，int，long，float，d
 
 各个类型的取值范围：
 
-![image-20210420160235367](https://raw.githubusercontent.com/juhick/picJuhick/master/20210420160235.png)
+![image-20210420160235367](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210420160235.png)
 
 #### Java中的元注解有哪些？
 
@@ -442,7 +442,7 @@ public class Test {
 
 运行程序后会发现，**输出为Hello world！**下面是执行过程中的内存变化。
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210420194126.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210420194126.png)
 
 从图中可以看出**x和i指向了同样的内存地址**，那么i.append操作将直接修改内存地址里边的值，所以当方法结束，**局部变量i消失**，先前变量x所指向的内存值发生了变化，**所以输出为Hello world！**
 
@@ -464,7 +464,7 @@ public class Test {
 
 上边的代码将会输出Hello，画图分析其内存变化：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210420194443.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210420194443.png)
 
 由图中我们可以看出来，**在函数change2中将引用变量i重新指向了堆内存中另一块区域**，下边都是对另一块区域进行修改，**所以输出是Hello**。
 
@@ -644,7 +644,7 @@ Integer 在常量池中的存储范围为[-128,127]，127在这范围内，因�
 
 Java中的集合，从上层接口看分为了两类，**Map和Collection**。Collection接口的子接口又包括了Set和List接口。这样**常见的Map，Set和List三大集合**接口就出来了。接口类图如下所示：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210420230156.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210420230156.png)
 
 Map是和Collection并列的集合上层接口，没有继承关系；List和Set是Collection的子接口。
 
@@ -687,7 +687,7 @@ Map是和Collection并列的集合上层接口，没有继承关系；List和Set
 
 JDK8之前，底层实现数据结构为**数组+链表**的形式，JDK8及以后的版本使用了**数组+链表+红黑树**实现，结局了链表太长导致查询速度变慢的问题。大概结构如下图：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421092228.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421092228.png)
 
 ##### HashMap的初始容量、加载因子、扩容增量是多少？
 
@@ -767,9 +767,9 @@ ConcurrentHashMap锁的方式是稍微粒度的，ConcurrentHashMap将hash表分
 #### 集合的类图
 
 * HashMap的类图结构
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421160909.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421160909.png)
 * ConcurrentHashMap的类图结构：
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421160938.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421160938.png)
 * Hashtable的类图结构：
   ![图片说明](https://uploadfiles.nowcoder.com/images/20191026/5459305_1572062499403_8266E4BFEDA1BD42D8F9794EB4EA0A13)
 
@@ -1009,16 +1009,16 @@ Executor是线程池的接口，Executors是进行线程池相关的操作的工
 #### 集合类图
 
 * TreeMap的类图结构：
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421213044.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421213044.png)
 * LinkedHashMap的类图结构：
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421213119.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421213119.png)
 * ArrayList的类图结构：
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421213158.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421213158.png)
 * LinkedList的类图结构：
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421213407.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421213407.png)
 * Vector的类图结构：
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421213433.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421213433.png)
 * HashSet的类图结构
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421213457.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421213457.png)
 * TreeSet的类图结构：
-  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421213532.png)
+  ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421213532.png)

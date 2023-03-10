@@ -291,7 +291,7 @@ Spring支持编程式事务管理和声明式事务管理两种方式：
 
 **具体流程可以概括为**：通过前端控制器DispatcherServlet来接收并且分发请求，然后通过HandlerMapping和HandlerAdapter找到具体可以处理该请求的Handler，经过逻辑处理，返回一个ModelAndView，经过ViewResolver处理，最后生成了一个View视图返回给了客户端。可以参考如下的示意图：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210424084138.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210424084138.png)
 
 ### SpringBoot
 

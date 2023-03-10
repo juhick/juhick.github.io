@@ -68,7 +68,7 @@ MySQL中最常见的存储引擎有InnoDB和MyISAM，它们的主要区别如下
 
 MySQL的基本逻辑架构图:
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210423144917.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210423144917.png)
 
 由MySQL的逻辑架构图我们可以看出，逻辑架构包括**Server层和存储引擎层**。其中Server层包括连接器，分析器，优化器以及执行器；存储引擎层包括多种支持的存储引擎。各个逻辑部件的作用如下：
 

@@ -71,7 +71,7 @@ pre(i, j) = pre(i - 1, j) \oplus pre(i, j - 1) \oplus pre(i - 1, j - 1) \oplus m
 $$
 下面是二位前缀和的可视化展示。
 
-![fig1](https://raw.githubusercontent.com/juhick/picJuhick/master/20210519093919.png)
+![fig1](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/05/20210519093919.png)
 
 在得到前缀和之后，我们只需要找去其中第K大的元素即可，可以采用快速选择算法进行实现。
 

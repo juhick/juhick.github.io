@@ -56,27 +56,27 @@ math:
 JDK8中对于Thread状态的枚举定义，所有的状态如下所示：
 
 1. NEW：
-   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421211812.png)
+   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421211812.png)
    这是属于一个已经创建的线程，但是还没有调用start方法启动的线程所处的状态。
 
 2. RUNNABLE：
-   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421211901.png)
+   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421211901.png)
    该状态包含两种可能。有可能正在运行，或者正在等待CPU资源。总体上就是当我们创建线程并且启动之后，就属于Runnable状态。
 
 3. BLOCKED：
-   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212003.png)
+   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212003.png)
    阻塞状态，当线程准备进入synchronized同步块或同步方法的时候，需要申请一个监视器锁而进行的等待，会使线程进入BLOCKED状态。
 
 4. WAITING
-   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212118.png)
+   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212118.png)
    该状态的出现是因为调用了**Object.wait()或者Thread.join()或者LockSupport.park()**。处于该状态下的线程在等待另一个线程 执行一些其余action来将其唤醒。
 
 5. TIMED_WAITING:
-   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212700.png)
+   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212700.png)
    该状态和上一个状态其实是一样的，只不过其等待的时间是明确的。
 
 6. TERMINATED：
-   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210421212745.png)
+   ![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210421212745.png)
 
    消亡状态比较容易理解，那就是线程执行结束了，run方法执行结束表示线程处于消亡状态了。
 
@@ -331,7 +331,7 @@ java.util.concurrent.ThreadPoolExecutor类就是一个线程池。客户端调�
 
 创建线程是有开销的，为了重复利用已创建的线程降低线程创建和销毁的消耗，提高资源的利用效率，所以出现了线程池。线程池的参数字段如下所示：
 
-![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422111547.png)
+![图片说明](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422111547.png)
 
 - **corePoolSize：核心线程数**
 - **maximumPoolSize：最大线程数**
@@ -538,7 +538,7 @@ public class Test {
 
 锁消除（Lock Elision）是JIT编译器对内部锁的具体实现所做的一种优化。
 
-![face/TF2SkMAAKFfj7TSWrrC5QaiDSaCswn6T.png](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422145850.png)
+![face/TF2SkMAAKFfj7TSWrrC5QaiDSaCswn6T.png](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422145850.png)
 
 在动态编译同步块的时候，JIT编译器可以借助一种被称为逃逸分析（Escape Analysis）的技术来判断同步块所使用的锁对象是否只能够被一个线程访问而没有被发布到其他线程。如果同步块所使用的锁对象通过这种分析被证实只能够被一个线程访问，那么JIT编译器在编译这个同步块的时候并不生成synchronized所表示的锁的申请与释放对应的机器码，而仅生成原临界区代码对应的机器码，这就造成了被动态编译的字节码就像是不包含monitorenter（申请锁）和monitorexit（释放锁）这两个字节码指令一样，即消除了锁的使用。这种编译器优化就被称为锁消除（Lock Elision），它使得特定情况下我们可以完全消除锁的开销。
 
@@ -552,7 +552,7 @@ public class Test {
 
 锁粗化（Lock Coarsening/Lock Merging）是JIT编译器对内部锁的具体实现所做的一种优化。
 
-![face/ENSjarckiW474mpxyhEjFNsRAR2XNtm4.png](https://raw.githubusercontent.com/juhick/picJuhick/master/20210422150246.png)
+![face/ENSjarckiW474mpxyhEjFNsRAR2XNtm4.png](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/04/20210422150246.png)
 
 对于相邻的几个同步块，如果这些同步块使用的是同一个锁实例，那么JIT编译器会将这些同步块合并为一个大同步块，从而避免了一个线程反复申请、释放同一个锁所导致的开销。然而，锁粗化可能导致一个线程持续持有一个锁的时间变长，从而使得同步在该锁之上的其他线程在申请锁时的等待时间变长。例如上图中，第1个同步块结束和第2个同步块开始之间的时间间隙中，其他线程本来是有机会获得monitorX的，但是经过锁粗化之后由于临界区的长度变长，这些线程在申请monitorX时所需的等待时间也相应变长了。因此，锁粗化不会被应用到循环体内的相邻同步块。
 

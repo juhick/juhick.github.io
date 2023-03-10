@@ -245,7 +245,7 @@ def mutation(children):
 
 ## 遗传算法求解TSP问题的流程图
 
-![1](https://raw.githubusercontent.com/juhick/picJuhick/master/20211209161208.png)
+![1](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/12/20211209161208.png)
 
 ## 不同规模的TSP问题的算法性能
 
@@ -282,7 +282,7 @@ def mutation(children):
 |    70    |   24433    |
 |    75    |   25549    |
 
-![image-20211209193559091](https://raw.githubusercontent.com/juhick/picJuhick/master/20211209193559.png)
+![image-20211209193559091](https://raw.githubusercontent.com/juhick/picJuhick/master/2021/12/20211209193559.png)
 
 由图中可以看出，遗传算法的**执行时间随着$TSP$问题规模的增大而增大**，并且大致为线性增长
 
